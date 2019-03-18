@@ -4,6 +4,10 @@
   "main": "index.js",
   "repository": "git@github.com:FredaFei/react-typeScript-ui.git",
   "author": "FredaFei <964959033@qq.com>",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
   "license": "MIT",
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
