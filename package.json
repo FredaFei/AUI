@@ -1,20 +1,28 @@
 {
   "name": "react-typeScript-ui",
   "version": "1.0.0",
-  "main": "./dist/index.js",
+  "main": "dist/lib/index",
+  "types": "dist/lib/index",
   "repository": "git@github.com:FredaFei/react-typeScript-ui.git",
   "author": "FredaFei <964959033@qq.com>",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js"
+    "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
+    "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand"
   },
   "license": "MIT",
   "devDependencies": {
+    "@babel/preset-env": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
     "@types/react": "^16.8.8",
     "@types/react-dom": "^16.8.2",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-jest": "^24.5.0",
     "cross-env": "^5.2.0",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.5.0",
+    "react-test-renderer": "^16.8.4",
+    "ts-jest": "^24.0.0",
     "typescript": "^3.3.3333",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
