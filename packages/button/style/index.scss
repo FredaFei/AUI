@@ -1,0 +1,70 @@
+@import '../../style/var.scss';
+@import '../../style/mixin.scss';
+.am-button {
+  font-size: $button-fontSize;
+  height: $button-height;
+  padding: 0 1em;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background: $button-bg;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  outline: none;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  position: relative;
+  & + .am-button {
+    margin-left: 0.5em;
+  }
+  .ripple {
+    position: absolute;
+    background: rgba(0,0,0,.15);
+    border-radius: 100%;
+    transform: scale(0);
+    pointer-events: none;
+    &.active{
+      @include ripple;
+    }
+  }
+  & > .loading {
+    @include spin;
+  }
+  > .am-button-content {
+    line-height: 1em;
+  }
+  &.icon-left {
+    > .icon {
+      order: 1;
+      margin-right: 0.1em;
+    }
+    > .am-button-content {
+      order: 2;
+    }
+  }
+  &.icon-right {
+    > .icon {
+      order: 2;
+      margin-left: 0.1em;
+    }
+    > .am-button-content {
+      order: 1;
+    }
+  }
+  &.icon-disabled {
+    cursor: not-allowed;
+  }
+  &:not(.icon-disabled):hover {
+    border-color: $border-color-hover;
+  }
+
+  &:active {
+    background-color: $border-active-bg;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

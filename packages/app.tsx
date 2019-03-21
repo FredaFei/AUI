@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import Button from './button/button'
+import Button from './button/button'
 import Icon from './icon/icon'
 
 class App extends Component {
@@ -13,7 +13,7 @@ class App extends Component {
         <Icon name="loading" onClick={this.onClick} />
         <Icon name="left" rotate={90} style={{ fill: 'red'}} onClick={this.onClick} />
         <Icon name="right" className="haha" onClick={this.onClick} />
-        {/* <Button /> */}
+        <Button />
       </div>
     )
   }
