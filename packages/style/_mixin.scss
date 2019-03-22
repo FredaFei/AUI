@@ -11,10 +11,10 @@
 }
 @keyframes ripple {
   to {
-    transform: scale(2);
+    transform: scale(1);
     opacity: 0;
   }
 }
 @mixin ripple {
-  animation: ripple 0.75s ease-out;
+  animation: ripple 0.65s ease-out;
 }

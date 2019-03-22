@@ -16,14 +16,16 @@ const componentName = 'Icon'
 
 const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
   const { name, style, rotate, spin, className, onClick } = props
-  const classes = classNames(componentName, className, {
-    'icon-spin': spin || name === 'loading'
-  })
+  const classes = classNames(componentName, [
+    className,
+    spin || name === 'loading' && 'icon-spin' 
+  ])
   const styles = Object.assign(
     {},
     style,
     rotate && {
-      transform: `rotate(${rotate}deg)`
+      transform: `rotate(${rotate}deg)`,
+      transition: `transform .2s ease`
     }
   )
   return (
