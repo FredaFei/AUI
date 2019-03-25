@@ -37,6 +37,7 @@ const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
   onClick: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  style: PropTypes.object
 }
 export default Icon
