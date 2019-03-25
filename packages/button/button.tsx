@@ -7,6 +7,7 @@ import './style'
 type ButtonProps = {
   icon?: string
   className?: string
+  style?: React.CSSProperties
   iconPosition?: string
   disabled?: boolean
   onClick?: React.MouseEventHandler
@@ -26,7 +27,8 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     className: PropTypes.string,
     iconPosition: PropTypes.string,
     disabled: PropTypes.bool,
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    style: PropTypes.object
   }
   private rippleElement: React.RefObject<HTMLDivElement>
   private buttonElement: React.RefObject<HTMLButtonElement>
