@@ -1,3 +1,8 @@
+*{margin: 0;padding: 0;box-sizing: border-box;}
+.app{
+  margin: 20px;
+  width: 800px;
+}
 .am-button.custom {
   color: rgb(225, 0, 80);
   border-color: rgba(225, 0, 80, 0.5);
@@ -16,4 +21,7 @@
     border: 1px solid rgb(225, 0, 80);
     background-color: rgba(225, 0, 80, 0.08);
   }
+}
+.am-row{
+  margin: 10px 0;
 }
