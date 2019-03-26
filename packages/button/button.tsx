@@ -67,9 +67,17 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     onClick && (onClick as React.MouseEventHandler)(e)
   }
   renderButton = () => {
-    const styles = Object.assign({})
     const { position } = this.state
-    const { icon, iconPosition, disabled, className, children } = this.props
+    const {
+      icon,
+      iconPosition,
+      disabled,
+      style,
+      className,
+      children,
+      ...rest
+    } = this.props
+    const styles = Object.assign({}, { ...style })
     const buttonWrapClass = classNames(componentName, [
       className,
       disabled && 'icon-disabled'
@@ -96,6 +104,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
         className={buttonWrapClass}
         onClick={this.handleClick}
         ref={this.buttonElement}
+        {...rest}
       >
         {renderButtonBody()}
         <div className="ripple" style={position} ref={this.rippleElement} />
