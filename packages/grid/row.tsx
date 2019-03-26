@@ -29,7 +29,7 @@ class Row extends React.Component<RowProps> {
     super(props)
   }
   render() {
-    const { style, gutter, className, children } = this.props
+    const { style, gutter, className, children, ...rest } = this.props
     const styles = Object.assign(
       {},
       {
@@ -41,7 +41,7 @@ class Row extends React.Component<RowProps> {
     const rowWrapClass = classNames(componentName, [className])
 
     return (
-      <div data-role="row" style={styles} className={rowWrapClass}>
+      <div data-role="row" style={styles} className={rowWrapClass} {...rest}>
         {React.Children.map(children, child => {
           return React.cloneElement(child as React.ReactElement<ColProps>, {
             gutter
