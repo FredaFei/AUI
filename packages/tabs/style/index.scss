@@ -1,0 +1,71 @@
+@import '../../style/var.scss';
+@import '../../style/mixin.scss';
+.am-tabs {
+  &-wrapper {
+    position: relative;
+    &.vertical {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+  &-nav {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    flex-shrink: 0;
+    border-bottom: 1px solid #ddd;
+    > .line {
+      position: absolute;
+      bottom: -1px;
+      border-bottom: 2px solid #1890ff;
+      box-sizing: border-box;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+    &.vertical {
+      flex-direction: column;
+      border-right: 1px solid #ddd;
+      border-bottom: none;
+      > .line {
+        right: -1px;
+        border-right: 2px solid #1890ff;
+      }
+    }
+  }
+  &-nav-item {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    &:hover {
+      color: $blue;
+    }
+    & + .am-tabs-item {
+      margin-left: 10px;
+    }
+    &.vertical + .am-tabs-item {
+      margin-top: 10px;
+      margin-left: 0;
+    }
+    &.active {
+      color: $darkblue;
+      font-weight: 700;
+    }
+    &.disabled {
+      color: #ccc;
+    }
+  }
+  &-pane-body {
+    .am-tabpane {
+      padding: 8px;
+      display: none;
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
