@@ -4,7 +4,7 @@ import { classNames } from '../utils'
 import './style'
 
 type TabPaneProps = {
-  tab?: string
+  tab: React.ReactNode
   key?: string
   active?: boolean
   className?: string
@@ -13,23 +13,26 @@ type TabPaneProps = {
 type TabPaneState = {}
 const componentName = 'TabPane'
 class TabPane extends React.Component<TabPaneProps, TabPaneState> {
-  public static defaultProps = {}
   public static propTypes = {
+    tab: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
+    active: PropTypes.bool,
     className: PropTypes.string,
     style: PropTypes.object
   }
-  constructor(props: TabPaneProps) {
-    super(props)
-  }
-
   renderPane = () => {
-    const { className, style, active, children, ...rest } = this.props
+    const { className, style, active, key, children, ...rest } = this.props
     const styles = Object.assign({}, { ...style })
     const classes = classNames(componentName, [className], {
       active
     })
     return (
-      <li data-role="tabPane" className={classes} style={styles} {...rest}>
+      <li
+        data-role="tabPane"
+        key={key}
+        className={classes}
+        style={styles}
+        {...rest}
+      >
         {children}
       </li>
     )

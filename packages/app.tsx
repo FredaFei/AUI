@@ -8,25 +8,29 @@ import TabPane from './tabs/tabPane'
 import './index.scss'
 class App extends Component {
   state = {
-    activeKey: 'art'
+    activeKey: 'art',
+    direction: 'horizontal'
   }
   onClick = (e: React.MouseEvent) => {
     console.log(e)
   }
   callback1 = (key, e) => {
     console.log(key, e)
-    
   }
   callback2 = (key, e) => {
     console.log(key, e)
+  }
+  onClick1 = () => {
     this.setState({
-      activeKey: key
+      activeKey: 'music'
     })
-
   }
   render() {
     return (
       <div className="app">
+        <Button icon="settings" onClick={this.onClick1}>
+          change
+        </Button>
         <Tabs onChange={this.callback1}>
           <TabPane tab="tab 1" key="1">
             Content of Tab Pane 1
@@ -39,7 +43,11 @@ class App extends Component {
           </TabPane>
         </Tabs>
 
-        <Tabs onChange={this.callback2} activeKey={this.state.activeKey}>
+        <Tabs
+          onChange={this.callback2}
+          direction="vertical"
+          activeKey={this.state.activeKey}
+        >
           <TabPane tab="sport" key="sport">
             Content of Tab Pane 1
           </TabPane>
@@ -50,6 +58,7 @@ class App extends Component {
             Content of Tab Pane 3
           </TabPane>
         </Tabs>
+
         <Row>
           <Col span={12}>
             <div style={{ background: '#ccc' }}>col-12</div>

@@ -15,7 +15,7 @@ type TabsState = {
   defaultKey: string
 }
 type TabPaneProps = {
-  tab?: string
+  tab: React.ReactNode
   key?: string
   active?: boolean
   className?: string
@@ -35,12 +35,10 @@ class Tabs extends React.Component<TabsProps, TabsState> {
   }
   private lineElement: React.RefObject<HTMLDivElement>
   private tabsHeadElement: React.RefObject<HTMLDivElement>
-  private navItemElement: React.RefObject<HTMLDivElement>
   constructor(props: TabsProps) {
     super(props)
     this.lineElement = React.createRef()
     this.tabsHeadElement = React.createRef()
-    this.navItemElement = React.createRef()
     this.state = {
       defaultKey: props.activeKey || ''
     }
@@ -64,23 +62,28 @@ class Tabs extends React.Component<TabsProps, TabsState> {
         defaultKey: this.keys[0]
       })
     } else {
-      console.log(this.navItemElement)
-      const index: number = this.keys.indexOf(this.state.defaultKey) || 0
-      const navItemElement = this.tabsHeadElement.current.children[index]
-      this.calculateLineStyle(navItemElement)
+      this.calculateLineStyle(this._getNavItemElement())
     }
   }
   public componentDidUpdate(prevProps: TabsProps, prevState: TabsState) {
     if (this.state.defaultKey !== prevState.defaultKey) {
-      const index: number = this.keys.indexOf(this.state.defaultKey) || 0
-      const navItemElement = this.tabsHeadElement.current.children[index]
-      this.calculateLineStyle(navItemElement)
+      this.calculateLineStyle(this._getNavItemElement())
     }
   }
-  public calculateLineStyle(el) {
+  public _getNavItemElement = () => {
+    if (!this.tabsHeadElement.current) {
+      return false
+    }
+    const index: number = this.keys.indexOf(this.state.defaultKey) || 0
+    return this.tabsHeadElement.current.children[index]
+  }
+  public calculateLineStyle(el): any {
     const { direction } = this.props
     const lineElement = this.lineElement.current
     const tabsHeadElement = this.tabsHeadElement.current
+    if (!lineElement || !tabsHeadElement) {
+      return false
+    }
     let { left: left1, top: top1 } = tabsHeadElement.getBoundingClientRect()
     let { width, left: left2, height, top: top2 } = el.getBoundingClientRect()
     if (direction === 'horizontal') {
@@ -92,40 +95,51 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     }
   }
 
-  public handleClick = (key: string, e: React.MouseEvent): any => {
+  public handleClick = (
+    key: string,
+    disabled: boolean,
+    e: React.MouseEvent
+  ): any => {
+    if (disabled) {
+      return false
+    }
     this.setState({
       defaultKey: key
     })
-    const index: number = this.keys.indexOf(key) || 0
-    const navItemElement = this.tabsHeadElement.current.children[index]
-    this.calculateLineStyle(navItemElement)
     const { onChange } = this.props
     onChange && onChange(key)
   }
   public renderTabsNav = (): React.ReactNode[] => {
-    const { children } = this.props
+    const { children, direction } = this.props
     const { defaultKey } = this.state
-    return React.Children.map(
-      children,
-      (child: React.ReactElement<TabPaneProps>) => {
-        if (!child) {
-          return null
-        }
-        const key = child.key as string
-        this.keys.push(key)
-        const active = defaultKey === key
-        return (
-          <div
-            data-role="tabsNavItem"
-            className={classNames('', ['am-tabs-nav-item'], { active })}
-            onClick={(e: React.MouseEvent) => this.handleClick(key, e)}
-            ref={this.navItemElement}
-          >
-            {child.props.tab}
-          </div>
-        )
+    return React.Children.map(children, (child: React.ReactElement) => {
+      if (!child) {
+        return null
       }
-    )
+      const key = child.key as string
+      this.keys.push(key)
+      const active = defaultKey === key
+      return (
+        <div
+          data-role="tabsNavItem"
+          key={key}
+          className={classNames(
+            '',
+            [
+              'am-tabs-nav-item',
+              direction === 'vertical' && 'vertical',
+              child.props.disabled && 'disabled'
+            ],
+            { active }
+          )}
+          onClick={(e: React.MouseEvent) =>
+            this.handleClick(key, child.props.disabled, e)
+          }
+        >
+          {child.props.tab}
+        </div>
+      )
+    })
   }
   public renderTabsPane = (): React.ReactNode[] => {
     const { children } = this.props
@@ -146,12 +160,19 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     )
   }
   renderTabs = () => {
-    const { className, style, children, ...rest } = this.props
+    const { className, style, direction, children, ...rest } = this.props
     const styles = Object.assign({}, { ...style })
-    const tabsClasses = classNames(componentName, 'wrapper', [className])
+    const tabsClasses = classNames(componentName, 'wrapper', [
+      className,
+      direction === 'vertical' && 'vertical'
+    ])
+    const tabsNavClasses = classNames('', [
+      'am-tabs-nav',
+      direction === 'vertical' && 'vertical'
+    ])
     return (
       <div data-role="tabs" className={tabsClasses} style={styles} {...rest}>
-        <div className="am-tabs-nav" ref={this.tabsHeadElement}>
+        <div className={tabsNavClasses} ref={this.tabsHeadElement}>
           {this.renderTabsNav()}
           <div className="line" ref={this.lineElement} />
         </div>
