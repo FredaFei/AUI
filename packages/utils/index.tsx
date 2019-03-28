@@ -1,2 +1,3 @@
 import classNames from './classnames'
-export { classNames}
+import isSimpleArrayEqual from './isSimpleArrayEqual'
+export { classNames, isSimpleArrayEqual}

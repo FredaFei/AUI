@@ -5,7 +5,15 @@ import Col from './grid/col'
 import Icon from './icon/icon'
 import Tabs from './tabs/tabs'
 import TabPane from './tabs/tabPane'
+import Collapse from './collapse/collapse'
+import Pane from './collapse/pane'
 import './index.scss'
+
+const text = `
+  A dog is a type of domesticated animal.
+  Known for its loyalty and faithfulness,
+  it can be found as a welcome guest in many households across the world.
+`
 class App extends Component {
   state = {
     activeKey: 'art',
@@ -14,9 +22,9 @@ class App extends Component {
   onClick = (e: React.MouseEvent) => {
     console.log(e)
   }
-  callback2 = (key:string) => {
+  callback2 = (key: string) => {
     // this.setState({
-      // activeKey: key
+    // activeKey: key
     // })
   }
   onClick1 = () => {
@@ -27,47 +35,95 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <Button icon="settings" onClick={this.onClick1}>
-          change
-        </Button>
-        <Tabs>
-          <TabPane tab="tab 1" key="1">
-            Content of Tab Pane 1
-          </TabPane>
-          <TabPane tab="Tab 2" key="2">
-            Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="Tab 3" key="3">
-            Content of Tab Pane 3
-          </TabPane>
-        </Tabs>
+        <div className="labels">
+          <Collapse accordion>
+            <Pane header="This is panel header 1" key="1">
+              <p>{text}</p>
+            </Pane>
+            <Pane header="This is panel header 2" key="2">
+              <p>{text}</p>
+            </Pane>
+            <Pane header="This is panel header 3" key="3" disabled>
+              <p>{text}</p>
+            </Pane>
+          </Collapse>
+          <Collapse defaultActiveKey={['2', '3']}>
+            <Pane header="This is panel header 1" key="1">
+              <p>{text}</p>
+            </Pane>
+            <Pane header="This is panel header 2" key="2">
+              <p>{text}</p>
+            </Pane>
+            <Pane header="This is panel header 3" key="3">
+              <p>{text}</p>
+            </Pane>
+          </Collapse>
 
-        <Tabs direction="vertical">
-          <TabPane tab="sport" key="sport">
-            Content of Tab Pane 1
-          </TabPane>
-          <TabPane tab="music" key="music">
-            Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="art" key="art">
-            Content of Tab Pane 3
-          </TabPane>
-        </Tabs>
-        <Tabs
-          // onChange={this.callback2}
-          // activeKey={this.state.activeKey}
-          defaultActiveKey="music"
-        >
-          <TabPane tab="sport" key="sport">
-            Content of Tab Pane 1
-          </TabPane>
-          <TabPane tab="music" key="music">
-            Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="art" key="art">
-            Content of Tab Pane 3
-          </TabPane>
-        </Tabs>
+          <Collapse
+            activeKey={['1', '3']}
+            expandIcon={active => (
+              <Icon
+                name="upload"
+                rotate={active ? 90 : 0}
+                className="am-icon-animation"
+              />
+            )}
+          >
+            <Pane
+              header="This is panel header 1"
+              visibleIcon={false}
+              key="1"
+            >
+              <p>{text}</p>
+            </Pane>
+            <Pane header="This is panel header 2" key="2">
+              <p>{text}</p>
+            </Pane>
+            <Pane header="This is panel header 3" key="3">
+              <p>{text}</p>
+            </Pane>
+          </Collapse>
+        </div>
+        
+        <div className="labels">
+          <Button icon="settings" onClick={this.onClick1}>
+            change
+          </Button>
+          <Tabs>
+            <TabPane tab="tab 1" key="1">
+              Content of Tab Pane 1
+            </TabPane>
+            <TabPane tab="Tab 2" key="2">
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab="Tab 3" key="3">
+              Content of Tab Pane 3
+            </TabPane>
+          </Tabs>
+
+          <Tabs direction="vertical">
+            <TabPane tab="sport" key="sport">
+              Content of Tab Pane 1
+            </TabPane>
+            <TabPane tab="music" key="music">
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab="art" key="art">
+              Content of Tab Pane 3
+            </TabPane>
+          </Tabs>
+          <Tabs defaultActiveKey="music">
+            <TabPane tab="sport" key="sport">
+              Content of Tab Pane 1
+            </TabPane>
+            <TabPane tab="music" key="music">
+              Content of Tab Pane 2
+            </TabPane>
+            <TabPane tab="art" key="art">
+              Content of Tab Pane 3
+            </TabPane>
+          </Tabs>
+        </div>
 
         <Row>
           <Col span={12}>

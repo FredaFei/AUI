@@ -1,51 +1,74 @@
-*{margin: 0;padding: 0;box-sizing: border-box;}
-*, *::before, *::after {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  box-sizing: border-box;
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB',
+    'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
+  -moz-osx-font-smoothing: grayscale;
+}
 
-ul, ol {
-  list-style: none; }
+ul,
+ol {
+  list-style: none;
+}
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 500;
   margin-bottom: 20px;
   margin-top: 8px;
-  color: rgba(0, 0, 0, 0.85); }
+  color: rgba(0, 0, 0, 0.85);
+}
 
 h1 {
   font-size: 30px;
-  line-height: 38px; }
+  line-height: 38px;
+}
 
 h2 {
   font-size: 24px;
-  line-height: 32px; }
+  line-height: 32px;
+}
 
 h3 {
   font-size: 18px;
-  line-height: 26px; }
+  line-height: 26px;
+}
 
 h4 {
   font-size: 14px;
-  line-height: 22px; }
+  line-height: 22px;
+}
 
 a {
   text-decoration: none;
-  color: #1890ff; }
+  color: #1890ff;
+}
 
 p {
   margin: 14px 0;
-  line-height: 2em; }
+  line-height: 2em;
+}
 
 img {
   vertical-align: top;
-  border: none; }
+  border: none;
+}
 
-.app{
+.app {
   margin: 20px;
   width: 800px;
 }
@@ -68,6 +91,18 @@ img {
     background-color: rgba(225, 0, 80, 0.08);
   }
 }
-.am-row{
+.am-row {
   margin: 10px 0;
+}
+.labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 1200px;
+  > div {
+    flex: 1;
+  }
+  > div + div {
+    margin-left: 30px;
+  }
 }
