@@ -14,11 +14,10 @@ class App extends Component {
   onClick = (e: React.MouseEvent) => {
     console.log(e)
   }
-  callback1 = (key, e) => {
-    console.log(key, e)
-  }
-  callback2 = (key, e) => {
-    console.log(key, e)
+  callback2 = (key:string) => {
+    // this.setState({
+      // activeKey: key
+    // })
   }
   onClick1 = () => {
     this.setState({
@@ -31,7 +30,7 @@ class App extends Component {
         <Button icon="settings" onClick={this.onClick1}>
           change
         </Button>
-        <Tabs onChange={this.callback1}>
+        <Tabs>
           <TabPane tab="tab 1" key="1">
             Content of Tab Pane 1
           </TabPane>
@@ -43,10 +42,21 @@ class App extends Component {
           </TabPane>
         </Tabs>
 
+        <Tabs direction="vertical">
+          <TabPane tab="sport" key="sport">
+            Content of Tab Pane 1
+          </TabPane>
+          <TabPane tab="music" key="music">
+            Content of Tab Pane 2
+          </TabPane>
+          <TabPane tab="art" key="art">
+            Content of Tab Pane 3
+          </TabPane>
+        </Tabs>
         <Tabs
-          onChange={this.callback2}
-          direction="vertical"
-          activeKey={this.state.activeKey}
+          // onChange={this.callback2}
+          // activeKey={this.state.activeKey}
+          defaultActiveKey="music"
         >
           <TabPane tab="sport" key="sport">
             Content of Tab Pane 1

@@ -40,7 +40,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     this.lineElement = React.createRef()
     this.tabsHeadElement = React.createRef()
     this.state = {
-      defaultKey: props.activeKey || ''
+      defaultKey: props.activeKey || props.defaultActiveKey || ''
     }
   }
   private keys: string[] = []
@@ -81,7 +81,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     const { direction } = this.props
     const lineElement = this.lineElement.current
     const tabsHeadElement = this.tabsHeadElement.current
-    if (!lineElement || !tabsHeadElement) {
+    if (!lineElement || !tabsHeadElement || !el) {
       return false
     }
     let { left: left1, top: top1 } = tabsHeadElement.getBoundingClientRect()
@@ -160,7 +160,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     )
   }
   renderTabs = () => {
-    const { className, style, direction, children, ...rest } = this.props
+    const { className, style, direction } = this.props
     const styles = Object.assign({}, { ...style })
     const tabsClasses = classNames(componentName, 'wrapper', [
       className,
@@ -171,7 +171,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
       direction === 'vertical' && 'vertical'
     ])
     return (
-      <div data-role="tabs" className={tabsClasses} style={styles} {...rest}>
+      <div data-role="tabs" className={tabsClasses} style={styles}>
         <div className={tabsNavClasses} ref={this.tabsHeadElement}>
           {this.renderTabsNav()}
           <div className="line" ref={this.lineElement} />
