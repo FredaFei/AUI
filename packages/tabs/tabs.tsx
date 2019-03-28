@@ -9,7 +9,7 @@ type TabsProps = {
   direction?: string
   className?: string
   style?: React.CSSProperties
-  onChange?: (key: string) => any
+  onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
 }
 type TabsState = {
   defaultKey: string
@@ -97,8 +97,8 @@ class Tabs extends React.Component<TabsProps, TabsState> {
 
   public handleClick = (
     key: string,
-    disabled: boolean,
-    e: React.MouseEvent
+    e: React.MouseEvent<HTMLElement>,
+    disabled: boolean
   ): any => {
     if (disabled) {
       return false
@@ -107,7 +107,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
       defaultKey: key
     })
     const { onChange } = this.props
-    onChange && onChange(key)
+    onChange && onChange(key, e)
   }
   public renderTabsNav = (): React.ReactNode[] => {
     const { children, direction } = this.props
@@ -132,8 +132,8 @@ class Tabs extends React.Component<TabsProps, TabsState> {
             ],
             { active }
           )}
-          onClick={(e: React.MouseEvent) =>
-            this.handleClick(key, child.props.disabled, e)
+          onClick={(e: React.MouseEvent<HTMLElement>) =>
+            this.handleClick(key, e, child.props.disabled)
           }
         >
           {child.props.tab}
