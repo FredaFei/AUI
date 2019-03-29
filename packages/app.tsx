@@ -7,6 +7,7 @@ import Tabs from './tabs/tabs'
 import TabPane from './tabs/tabPane'
 import Collapse from './collapse/collapse'
 import Pane from './collapse/pane'
+import Radio from './radio/radio'
 import './index.scss'
 
 const text = `
@@ -32,9 +33,16 @@ class App extends Component {
       activeKey: 'music'
     })
   }
+  onChange = () => {
+    console.log(1)
+  }
   render() {
     return (
       <div className="app">
+        <Radio checked name="fruite" value="apple" />
+        <Radio name="fruite" value="peach" />
+        <Radio name="fruite" onChange={this.onChange} value="orange" />
+
         <div className="labels">
           <Collapse accordion>
             <Pane header="This is panel header 1" key="1">
@@ -84,7 +92,7 @@ class App extends Component {
             </Pane>
           </Collapse>
         </div>
-        
+
         <div className="labels">
           <Button icon="settings" onClick={this.onClick1}>
             change
