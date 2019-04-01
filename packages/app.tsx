@@ -24,7 +24,7 @@ class App extends Component {
     radio1: 'orange'
   }
   onClick = (e: React.MouseEvent) => {
-    console.log(e)
+    // console.log(e)
   }
   callback2 = (key: string) => {
     // this.setState({
@@ -39,8 +39,11 @@ class App extends Component {
   onChange = () => {
     console.log(1)
   }
+  oo=()=>{
+    console.log('oo')
+  }
   radioGroup = value => {
-    // console.log(value)
+    console.log(value)
     this.setState({ radio1: value })
   }
   render() {
@@ -190,18 +193,14 @@ class App extends Component {
         <ButtonGroup>
           <Button>首页</Button>
           <Button icon="upload">upload</Button>
-          <Button icon="upload" onClick={this.onClick}>
-            download
-          </Button>
+          <Button icon="upload">download</Button>
         </ButtonGroup>
 
         <Button>normal</Button>
         <Button>首页</Button>
         <Button icon="upload">upload</Button>
-        <Button icon="upload" onClick={this.onClick}>
-          下载APP
-        </Button>
-        <Button icon="settings" onClick={this.onClick} className="custom">
+        <Button icon="left">下载APP</Button>
+        <Button icon="settings" onClick={this.oo} className="custom">
           设置权限
         </Button>
         <Button icon="right" iconPosition="right" disabled>
