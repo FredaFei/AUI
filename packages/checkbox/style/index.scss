@@ -1,0 +1,8 @@
+@import '../../style/var.scss';
+@import '../../style/mixin.scss';
+.am-checkbox {
+  &-wrapper {
+    position: relative;
+    cursor: pointer;
+  }
+}

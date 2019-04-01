@@ -10,6 +10,8 @@ import Collapse from './collapse/collapse'
 import Pane from './collapse/pane'
 import Radio from './radio/radio'
 import RadioGroup from './radio/radioGroup'
+import CheckBox from './checkbox/checkbox'
+import CheckBoxGroup from './checkbox/group'
 import './index.scss'
 
 const text = `
@@ -39,7 +41,7 @@ class App extends Component {
   onChange = () => {
     console.log(1)
   }
-  oo=()=>{
+  oo = () => {
     console.log('oo')
   }
   radioGroup = value => {
@@ -48,7 +50,12 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="app">
+      <div className="app" defaultValue={['A']}>
+        <CheckBoxGroup>
+          <CheckBox value="A" />
+          <CheckBox value="B" />
+          <CheckBox value="C" />
+        </CheckBoxGroup>
         <RadioGroup
           name="fruite"
           onChange={this.radioGroup}
@@ -95,7 +102,11 @@ class App extends Component {
               />
             )}
           >
-            <Pane header="This is panel header 1" visibleIcon={false} key="1">
+            <Pane
+              header="This is panel header 1"
+              visibleIcon={false}
+              key="1"
+            >
               <p>{text}</p>
             </Pane>
             <Pane header="This is panel header 2" key="2">
@@ -195,7 +206,6 @@ class App extends Component {
           <Button icon="upload">upload</Button>
           <Button icon="upload">download</Button>
         </ButtonGroup>
-
         <Button>normal</Button>
         <Button>首页</Button>
         <Button icon="upload">upload</Button>
