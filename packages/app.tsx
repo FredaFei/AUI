@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Button from './button/button'
+import ButtonGroup from './button/buttonGroup'
 import Row from './grid/row'
 import Col from './grid/col'
 import Icon from './icon/icon'
@@ -54,7 +55,6 @@ class App extends Component {
           <Radio value="peach" />
           <Radio value="orange">hahah</Radio>
         </RadioGroup>
-
         <Radio value="12" name="age" checkedValue="12" disabled>
           123
         </Radio>
@@ -92,11 +92,7 @@ class App extends Component {
               />
             )}
           >
-            <Pane
-              header="This is panel header 1"
-              visibleIcon={false}
-              key="1"
-            >
+            <Pane header="This is panel header 1" visibleIcon={false} key="1">
               <p>{text}</p>
             </Pane>
             <Pane header="This is panel header 2" key="2">
@@ -191,6 +187,14 @@ class App extends Component {
           onClick={this.onClick}
         />
         <Icon name="right" className="haha" onClick={this.onClick} />
+        <ButtonGroup>
+          <Button>首页</Button>
+          <Button icon="upload">upload</Button>
+          <Button icon="upload" onClick={this.onClick}>
+            download
+          </Button>
+        </ButtonGroup>
+
         <Button>normal</Button>
         <Button>首页</Button>
         <Button icon="upload">upload</Button>
