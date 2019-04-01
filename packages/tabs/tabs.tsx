@@ -1,9 +1,10 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import { classNames } from '../utils'
+import { IProps as IPaneProps } from './tabPane'
 import './style'
 
-type TabsProps = {
+interface IProps {
   activeKey?: string
   defaultActiveKey?: string
   direction?: string
@@ -11,18 +12,11 @@ type TabsProps = {
   style?: React.CSSProperties
   onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
 }
-type TabsState = {
+interface IState {
   defaultKey: string
 }
-type TabPaneProps = {
-  tab: React.ReactNode
-  key?: string
-  active?: boolean
-  className?: string
-  style?: React.CSSProperties
-}
 const componentName = 'Tabs'
-class Tabs extends React.Component<TabsProps, TabsState> {
+class Tabs extends React.Component<IProps, IState> {
   public static defaultProps = {
     direction: 'horizontal'
   }
@@ -35,7 +29,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
   }
   private lineElement: React.RefObject<HTMLDivElement>
   private tabsHeadElement: React.RefObject<HTMLDivElement>
-  constructor(props: TabsProps) {
+  constructor(props: IProps) {
     super(props)
     this.lineElement = React.createRef()
     this.tabsHeadElement = React.createRef()
@@ -44,10 +38,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     }
   }
   private keys: string[] = []
-  public static getDerivedStateFromProps(
-    nextProps: TabsProps,
-    prevState: TabsState
-  ) {
+  public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     if (
       'activeKey' in nextProps &&
       nextProps.activeKey !== prevState.defaultKey
@@ -65,7 +56,7 @@ class Tabs extends React.Component<TabsProps, TabsState> {
       this.calculateLineStyle(this._getNavItemElement())
     }
   }
-  public componentDidUpdate(prevProps: TabsProps, prevState: TabsState) {
+  public componentDidUpdate(nextProps: IProps, prevState: IState) {
     if (this.state.defaultKey !== prevState.defaultKey) {
       this.calculateLineStyle(this._getNavItemElement())
     }
@@ -146,14 +137,14 @@ class Tabs extends React.Component<TabsProps, TabsState> {
     const { defaultKey } = this.state
     return React.Children.map(
       children,
-      (child: React.ReactElement<TabPaneProps>) => {
+      (child: React.ReactElement<IPaneProps>) => {
         if (!child) {
           return null
         }
         const key = child.key as string
         this.keys.push(key)
         const active = defaultKey === key
-        return React.cloneElement(child as React.ReactElement<TabPaneProps>, {
+        return React.cloneElement(child as React.ReactElement<IPaneProps>, {
           active
         })
       }
@@ -162,14 +153,11 @@ class Tabs extends React.Component<TabsProps, TabsState> {
   renderTabs = () => {
     const { className, style, direction } = this.props
     const styles = Object.assign({}, { ...style })
-    const tabsClasses = classNames(componentName, 'wrapper', [
-      className,
-      direction === 'vertical' && 'vertical'
+    const vertical = direction === 'vertical'
+    const tabsClasses = classNames(componentName, 'wrapper', { vertical }, [
+      className
     ])
-    const tabsNavClasses = classNames('', [
-      'am-tabs-nav',
-      direction === 'vertical' && 'vertical'
-    ])
+    const tabsNavClasses = classNames('', ['am-tabs-nav'], { vertical })
     return (
       <div data-role="tabs" className={tabsClasses} style={styles}>
         <div className={tabsNavClasses} ref={this.tabsHeadElement}>

@@ -4,7 +4,7 @@ import { classNames } from '../utils/'
 import './svg.js'
 import './style'
 
-interface IIconProps {
+interface IProps {
   name: string
   style?: React.CSSProperties
   rotate?: number
@@ -14,11 +14,11 @@ interface IIconProps {
 }
 const componentName = 'Icon'
 
-const Icon: React.SFC<IIconProps> = (props: IIconProps) => {
+const Icon: React.SFC<IProps> = (props: IProps) => {
   const { name, style, rotate, spin, className, onClick } = props
   const classes = classNames(componentName, [
     className,
-    spin || name === 'loading' && 'icon-spin' 
+    spin || (name === 'loading' && 'icon-spin')
   ])
   const styles = Object.assign(
     {},

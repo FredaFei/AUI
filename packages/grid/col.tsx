@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types'
 import { classNames } from '../utils'
 import './style'
 
-type ColProps = {
+export interface IProps {
   gutter?: number
   span?: number
   offset?: number
@@ -11,7 +11,7 @@ type ColProps = {
   className?: string
 }
 const componentName = 'Col'
-class Col extends React.Component<ColProps> {
+class Col extends React.Component<IProps> {
   public static defaultProps = {
     span: 0,
     offset: 0,
@@ -24,19 +24,11 @@ class Col extends React.Component<ColProps> {
     style: PropTypes.object,
     className: PropTypes.string
   }
-  constructor(props: ColProps) {
+  constructor(props: IProps) {
     super(props)
   }
   renderCol = () => {
-    const {
-      gutter,
-      span,
-      offset,
-      className,
-      style,
-      children,
-      ...rest
-    } = this.props
+    const { gutter, span, offset, className, style, children } = this.props
     const styles = Object.assign(
       {},
       {
@@ -51,7 +43,7 @@ class Col extends React.Component<ColProps> {
       `col-offset-${offset}`
     ])
     return (
-      <div data-role="col" style={styles} className={colWrapClass} {...rest}>
+      <div data-role={componentName} style={styles} className={colWrapClass}>
         {children}
       </div>
     )

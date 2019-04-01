@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types'
 import { classNames } from '../utils'
 import './style'
 
-type PaneProps = {
+export interface IProps {
   header: React.ReactNode
   key: string
   active?: boolean
@@ -13,7 +13,7 @@ type PaneProps = {
   style?: React.CSSProperties
 }
 // const componentName = 'Pane'
-class Pane extends React.Component<PaneProps> {
+class Pane extends React.Component<IProps> {
   public static defaultProps = {
     visibleIcon: true,
     disabled: false,

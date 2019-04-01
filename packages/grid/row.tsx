@@ -1,22 +1,16 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import { classNames } from '../utils'
+import { IProps as IColProps } from './col'
 import './style'
 
-type ColProps = {
-  gutter?: number
-  span?: number
-  offset?: number
-  style?: React.CSSProperties
-  className?: string
-}
-type RowProps = {
+interface IProps {
   className?: string
   style?: React.CSSProperties
   gutter?: number
 }
 const componentName = 'Row'
-class Row extends React.Component<RowProps> {
+class Row extends React.Component<IProps> {
   public static defaultProps = {
     gutter: 0
   }
@@ -25,11 +19,11 @@ class Row extends React.Component<RowProps> {
     style: PropTypes.object,
     className: PropTypes.string
   }
-  constructor(props: RowProps) {
+  constructor(props: IProps) {
     super(props)
   }
   render() {
-    const { style, gutter, className, children, ...rest } = this.props
+    const { style, gutter, className, children } = this.props
     const styles = Object.assign(
       {},
       {
@@ -41,9 +35,9 @@ class Row extends React.Component<RowProps> {
     const rowWrapClass = classNames(componentName, [className])
 
     return (
-      <div data-role="row" style={styles} className={rowWrapClass} {...rest}>
+      <div data-role={componentName} style={styles} className={rowWrapClass}>
         {React.Children.map(children, child => {
-          return React.cloneElement(child as React.ReactElement<ColProps>, {
+          return React.cloneElement(child as React.ReactElement<IColProps>, {
             gutter
           })
         })}

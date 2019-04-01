@@ -3,16 +3,15 @@ import * as PropTypes from 'prop-types'
 import { classNames } from '../utils'
 import './style'
 
-type TabPaneProps = {
+export interface IProps {
   tab: React.ReactNode
   key?: string
   active?: boolean
   className?: string
   style?: React.CSSProperties
 }
-type TabPaneState = {}
 const componentName = 'TabPane'
-class TabPane extends React.Component<TabPaneProps, TabPaneState> {
+class TabPane extends React.Component<IProps> {
   public static propTypes = {
     tab: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     active: PropTypes.bool,

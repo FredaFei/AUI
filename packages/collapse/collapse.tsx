@@ -2,9 +2,10 @@ import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import { isSimpleArrayEqual, classNames } from '../utils'
 import Icon from '../icon/icon'
+import { IProps as IPaneProps } from './pane'
 import './style'
 
-type CollapseProps = {
+interface IProps {
   activeKey?: string[]
   defaultActiveKey?: string[]
   accordion?: boolean
@@ -13,21 +14,12 @@ type CollapseProps = {
   style?: React.CSSProperties
   onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
 }
-type CollapseState = {
+interface IState {
   defaultKeys: string[]
   open: boolean
 }
-type PaneProps = {
-  header: React.ReactNode
-  key: string
-  active?: boolean
-  visibleIcon?: boolean
-  disabled?: boolean
-  className?: string
-  style?: React.CSSProperties
-}
 const componentName = 'Collapse'
-class Collapse extends React.Component<CollapseProps, CollapseState> {
+class Collapse extends React.Component<IProps, IState> {
   public static defaultProps = {
     accordion: false,
     disabled: false
@@ -39,7 +31,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     className: PropTypes.string,
     style: PropTypes.object
   }
-  constructor(props: CollapseProps) {
+  constructor(props: IProps) {
     super(props)
     this.state = {
       open: false,
@@ -47,10 +39,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     }
   }
   private keys: string[] = []
-  public static getDerivedStateFromProps(
-    nextProps: CollapseProps,
-    prevState: CollapseState
-  ) {
+  public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     const { activeKey } = nextProps
     const { defaultKeys } = prevState
     if (!('activeKey' in nextProps)) {
@@ -70,10 +59,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
       })
     }
   }
-  public componentDidUpdate(
-    prevProps: CollapseProps,
-    prevState: CollapseState
-  ) {
+  public componentDidUpdate(nextProps: IProps, prevState: IState) {
     // todo
   }
 
@@ -118,11 +104,11 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
     return IconContent
   }
   renderCollapseHead = () => {
-    const { accordion, children } = this.props
+    const { children } = this.props
     const { defaultKeys } = this.state
     return React.Children.map(
       children,
-      (child: React.ReactElement<PaneProps>) => {
+      (child: React.ReactElement<IPaneProps>) => {
         if (!child) {
           return false
         }
@@ -149,10 +135,7 @@ class Collapse extends React.Component<CollapseProps, CollapseState> {
             </div>
             <div className="am-collapse-item-content">
               {!disabled &&
-                React.cloneElement(
-                  child as React.ReactElement<PaneProps>,
-                  {}
-                )}
+                React.cloneElement(child as React.ReactElement<IPaneProps>, {})}
             </div>
           </div>
         )
