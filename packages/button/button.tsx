@@ -4,7 +4,7 @@ import { classNames } from '../utils/'
 import Icon from '../icon/icon'
 import './style'
 
-type ButtonProps = {
+type IProps = {
   icon?: string
   className?: string
   style?: React.CSSProperties
@@ -12,17 +12,17 @@ type ButtonProps = {
   disabled?: boolean
   onClick?: React.MouseEventHandler
 }
-type ButtonState = {
+type IState = {
   position: object
 }
 const componentName = 'Button'
-class Button extends React.Component<ButtonProps, ButtonState> {
+class Button extends React.Component<IProps, IState> {
   public static defaultProps = {
     icon: '',
     iconPosition: 'left',
     disabled: false
   }
-  public static propTypes = {
+  static propTypes = {
     icon: PropTypes.string,
     className: PropTypes.string,
     iconPosition: PropTypes.string,
@@ -32,7 +32,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
   }
   private rippleElement: React.RefObject<HTMLDivElement>
   private buttonElement: React.RefObject<HTMLButtonElement>
-  constructor(props: ButtonProps) {
+  constructor(props: IProps) {
     super(props)
     this.rippleElement = React.createRef()
     this.buttonElement = React.createRef()
@@ -44,6 +44,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     if (!targetEl) {
       return false
     }
+    console.log(rippleEl)
     rippleEl && rippleEl.classList.remove('active')
     const { pageX, pageY } = e
     const { top, left, width, height } = targetEl.getBoundingClientRect()
@@ -58,7 +59,7 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     })
     rippleEl && rippleEl.classList.add('active')
   }
-  public handleClick = (e: React.MouseEvent): any => {
+  handleClick = (e: React.MouseEvent): any => {
     const { disabled, onClick } = this.props
     if (disabled) {
       return false
@@ -99,12 +100,12 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     }
     return (
       <button
-        data-role="button"
+        {...rest}
+        data-role={componentName}
         style={styles}
         className={buttonWrapClass}
         onClick={this.handleClick}
         ref={this.buttonElement}
-        {...rest}
       >
         {renderButtonBody()}
         <div className="ripple" style={position} ref={this.rippleElement} />
