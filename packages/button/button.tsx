@@ -44,7 +44,6 @@ class Button extends React.Component<IProps, IState> {
     if (!targetEl) {
       return false
     }
-    console.log(rippleEl)
     rippleEl && rippleEl.classList.remove('active')
     const { pageX, pageY } = e
     const { top, left, width, height } = targetEl.getBoundingClientRect()
