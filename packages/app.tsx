@@ -8,6 +8,7 @@ import TabPane from './tabs/tabPane'
 import Collapse from './collapse/collapse'
 import Pane from './collapse/pane'
 import Radio from './radio/radio'
+import RadioGroup from './radio/radioGroup'
 import './index.scss'
 
 const text = `
@@ -18,7 +19,8 @@ const text = `
 class App extends Component {
   state = {
     activeKey: 'art',
-    direction: 'horizontal'
+    direction: 'horizontal',
+    radio1: 'orange'
   }
   onClick = (e: React.MouseEvent) => {
     console.log(e)
@@ -36,13 +38,26 @@ class App extends Component {
   onChange = () => {
     console.log(1)
   }
+  radioGroup = value => {
+    // console.log(value)
+    this.setState({ radio1: value })
+  }
   render() {
     return (
       <div className="app">
-        <Radio checked name="fruite" value="apple" />
-        <Radio name="fruite" value="peach" />
-        <Radio name="fruite" onChange={this.onChange} value="orange" />
+        <RadioGroup
+          name="fruite"
+          onChange={this.radioGroup}
+          defaultValue={this.state.radio1}
+        >
+          <Radio value="apple" />
+          <Radio value="peach" />
+          <Radio value="orange">hahah</Radio>
+        </RadioGroup>
 
+        <Radio value="12" name="age" checkedValue="12" disabled>
+          123
+        </Radio>
         <div className="labels">
           <Collapse accordion>
             <Pane header="This is panel header 1" key="1">
@@ -92,7 +107,6 @@ class App extends Component {
             </Pane>
           </Collapse>
         </div>
-
         <div className="labels">
           <Button icon="settings" onClick={this.onClick1}>
             change
@@ -132,7 +146,6 @@ class App extends Component {
             </TabPane>
           </Tabs>
         </div>
-
         <Row>
           <Col span={12}>
             <div style={{ background: '#ccc' }}>col-12</div>

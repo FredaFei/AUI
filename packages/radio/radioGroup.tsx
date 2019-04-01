@@ -25,16 +25,25 @@ class RadioGroup extends React.Component<IProps, IState> {
   }
   constructor(props: IProps) {
     super(props)
-    this.state = { checkedValue: props.defaultValue || '' }
+    this.state = { checkedValue: props.value || props.defaultValue || '' }
   }
   public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+    if (
+      'defaultValue' in nextProps &&
+      nextProps.defaultValue !== prevState.checkedValue
+    ) {
+      return { checkedValue: nextProps.defaultValue }
+    }
+    if ('value' in nextProps && nextProps.value !== prevState.checkedValue) {
+      return { checkedValue: nextProps.value }
+    }
     return null
   }
-  public componentDidMount() {}
 
-  public onGroupClick = (e: React.MouseEvent) => {
+  public onGroupClick = (value: any) => {
     const { onChange } = this.props
-    onChange && onChange(e)
+    this.setState({ checkedValue: value })
+    onChange && onChange(value)
   }
   renderRadioGroup = () => {
     const { style, className, name, children } = this.props

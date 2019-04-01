@@ -3,8 +3,6 @@
 .am-radio {
   &-wrapper {
     position: relative;
-    display: inline-block;
-    white-space: nowrap;
     cursor: pointer;
   }
   & + .am-radio {
@@ -45,7 +43,7 @@
         background-color: $blue;
         opacity: 1;
       }
-      >.ripple.active{
+      > .ripple.active {
         @include ripple;
       }
     }
@@ -81,5 +79,11 @@
   > .am-radio-inner {
     line-height: 1em;
     margin-left: 8px;
+    vertical-align: middle;
+    &.disabled {
+      cursor: not-allowed;
+      background-color: #f5f5f5;
+      border-color: #d9d9d9;
+    }
   }
 }

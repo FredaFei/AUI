@@ -6,16 +6,15 @@ import './style'
 export interface IProps {
   className?: string
   style?: React.CSSProperties
-  checked?: boolean
   disabled?: boolean
   checkedValue?: any
   value?: any
   name?: string
   onClick?: React.MouseEventHandler
+  children?: any
 }
 interface IState {
   position: object
-  selected: boolean
 }
 const componentName = 'Radio'
 class Radio extends React.Component<IProps, IState> {
@@ -34,9 +33,11 @@ class Radio extends React.Component<IProps, IState> {
     super(props)
     this.rippleElement = React.createRef()
     this.radioBodyElement = React.createRef()
-    this.state = { position: {}, selected: props.checked || false }
+    this.state = {
+      position: {}
+    }
   }
-  public onRippleEffect = (e: React.MouseEvent): any => {
+  public onRippleEffect = (): any => {
     const targetEl = this.radioBodyElement.current
     const rippleEl = this.rippleElement.current
     if (!targetEl) {
@@ -53,55 +54,60 @@ class Radio extends React.Component<IProps, IState> {
     })
     rippleEl && rippleEl.classList.add('active')
   }
-  public onRadioClick = (e: React.MouseEvent): any => {
+  public onRadioClick = (value: any): any => {
     const { disabled, onClick } = this.props
     if (disabled) {
       return false
     }
-    this.onRippleEffect(e)
-    console.log(e.target)
-    // this.setState(state => ({ selected: !state.selected }))
-    onClick && (onClick as React.MouseEventHandler)(e)
+    this.onRippleEffect()
+    onClick && (onClick as React.MouseEventHandler)(value)
   }
-  public onInputChange = (e: React.MouseEvent) => {
+  public onInputChange = (value: any, e): any => {
     e.preventDefault()
-    if (this.state.selected) {
+    const rippleEl = this.rippleElement.current
+    rippleEl && rippleEl.classList.remove('active')
+    const { disabled, onClick } = this.props
+    if (disabled) {
       return false
     }
-    console.log(e.target)
-    this.setState(state => ({ selected: !state.selected }))
+    onClick && (onClick as React.MouseEventHandler)(value)
   }
   renderRadio = () => {
-    const { position, selected } = this.state
-    const { disabled, style, className, value, name, checkedValue } = this.props
+    const { position } = this.state
+    const {
+      disabled,
+      style,
+      className,
+      value,
+      name,
+      checkedValue,
+      children
+    } = this.props
     const styles = Object.assign({}, { ...style })
-    const radioWrapClass = classNames(componentName, 'wrapper', [className], {
-      disabled
-    })
-    const buttonBodyClass = classNames('radio-body', [selected && 'active'])
+    const active = value === checkedValue
+    const radioWrapClass = classNames(componentName, 'wrapper', [className])
+    const buttonBodyClass = classNames('radio-body', { active, disabled })
     return (
       <label
         data-role={componentName}
         style={styles}
         className={radioWrapClass}
       >
-        <span
-          className={buttonBodyClass}
-          ref={this.radioBodyElement}
-          onClick={this.onRadioClick}
-        >
-          <input type="radio" value={value} name={name} checked={value === checkedValue} />
-          <span
-            className="ripple"
-            style={position}
-            ref={this.rippleElement}
+        <span className={buttonBodyClass} ref={this.radioBodyElement}>
+          <input
+            type="radio"
+            value={value}
+            name={name}
+            defaultChecked={active}
+            onClick={e => this.onRadioClick(value)}
           />
+          <span className="ripple" style={position} ref={this.rippleElement} />
         </span>
         <span
-          className={classNames('radio-inner')}
-          onClick={this.onInputChange}
+          className={classNames('radio-inner', { disabled })}
+          onClick={e => this.onInputChange(value, e)}
         >
-          {value}
+          {children ? children : value}
         </span>
       </label>
     )
