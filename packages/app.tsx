@@ -23,7 +23,8 @@ class App extends Component {
   state = {
     activeKey: 'art',
     direction: 'horizontal',
-    radio1: 'orange'
+    radio1: 'orange',
+    checkbox: ['A', 'D']
   }
   onClick = (e: React.MouseEvent) => {
     // console.log(e)
@@ -48,13 +49,24 @@ class App extends Component {
     console.log(value)
     this.setState({ radio1: value })
   }
+  onCheckbox=(values)=>{
+    console.log(values)
+  }
+  onCheck=()=>{
+    this.setState({ checkbox: ['B'] })
+  }
   render() {
     return (
-      <div className="app" defaultValue={['A']}>
-        <CheckBoxGroup>
+      <div className="app">
+      <Button onClick={this.onCheck}>checkbox</Button>
+        <CheckBoxGroup
+          defaultValue={this.state.checkbox}
+          // onChange={this.onCheckbox}
+        >
           <CheckBox value="A" />
           <CheckBox value="B" />
           <CheckBox value="C" />
+          <CheckBox value="D" disabled />
         </CheckBoxGroup>
         <RadioGroup
           name="fruite"
@@ -102,11 +114,7 @@ class App extends Component {
               />
             )}
           >
-            <Pane
-              header="This is panel header 1"
-              visibleIcon={false}
-              key="1"
-            >
+            <Pane header="This is panel header 1" visibleIcon={false} key="1">
               <p>{text}</p>
             </Pane>
             <Pane header="This is panel header 2" key="2">

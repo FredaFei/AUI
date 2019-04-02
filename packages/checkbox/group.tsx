@@ -9,7 +9,7 @@ interface IProps {
   style?: React.CSSProperties
   value?: string[]
   defaultValue?: string[]
-  onChange?: React.MouseEventHandler
+  onChange?: (key: string) => any
 }
 interface IState {
   checkedValue: string[]
@@ -23,28 +23,28 @@ class CheckboxGroup extends React.Component<IProps, IState> {
   }
   constructor(props: IProps) {
     super(props)
-    this.state = { checkedValue: props.value || props.defaultValue || [] }
+    this.state = { checkedValue: props.defaultValue || props.value || [] }
   }
   public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    const { value } = nextProps
-    const { checkedValue } = prevState
-    if (!('value' in nextProps)) {
-      return null
-    }
-    if (Array.isArray(value) && Array.isArray(checkedValue)) {
-      if (!isSimpleArrayEqual(value, checkedValue)) {
-        return null
+    if ('value' in nextProps) {
+      return {
+        value: nextProps.value || []
       }
     }
-    return { checkedValue: value }
+    return null
   }
-
-  public onGroupClick = (value: string) => {
+  public componentDidUpdate(nextProps: IProps, prevState: IState) {
+    const { defaultValue } = nextProps
+    const { checkedValue } = prevState
+    console.log(defaultValue)
+    console.log(checkedValue)
+  }
+  public onGroupClick = value => {
     const { onChange } = this.props
     const copyValue = [...this.state.checkedValue]
     const index = copyValue.indexOf(value)
     if (index >= 0) {
-      copyValue.splice(index,1)
+      copyValue.splice(index, 1)
     } else {
       copyValue.push(value)
     }
@@ -52,7 +52,7 @@ class CheckboxGroup extends React.Component<IProps, IState> {
     onChange && onChange(copyValue)
   }
   renderGroup = () => {
-    const { style, className,children } = this.props
+    const { style, className, children } = this.props
     const { checkedValue } = this.state
     const styles = Object.assign({}, { ...style })
     const classes = classNames(componentName, 'wrapper', [className])
@@ -61,9 +61,10 @@ class CheckboxGroup extends React.Component<IProps, IState> {
         {React.Children.map(
           children,
           (child: React.ReactElement<ICheckboxProps>) => {
+            console.log(child)
             return React.cloneElement(child, {
               onChange: this.onGroupClick,
-              checkedValue
+              checked: checkedValue.includes(child.props.value)
             })
           }
         )}

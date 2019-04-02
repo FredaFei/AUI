@@ -1,17 +1,18 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import { classNames } from '../utils'
+import Icon from '../icon/icon'
 import './style'
 
 export interface IProps {
   className?: string
   style?: React.CSSProperties
   disabled?: boolean
-  checkedValue?: any
+  checked?: boolean
   value?: any
   name?: string
   indeterminate?: boolean
-  onChange?: React.MouseEventHandler
+  onChange?: any
 }
 interface IState {
   position: object
@@ -40,10 +41,10 @@ class Checkbox extends React.Component<IProps, IState> {
   public onRippleEffect = (): any => {
     const targetEl = this.radioBodyElement.current
     const rippleEl = this.rippleElement.current
-    if (!targetEl) {
+    if (!targetEl || !rippleEl) {
       return false
     }
-    rippleEl && rippleEl.classList.remove('active')
+    rippleEl.classList.remove('active')
     const { width, height } = targetEl.getBoundingClientRect()
     const R = width < height ? height : width
     this.setState({
@@ -52,7 +53,7 @@ class Checkbox extends React.Component<IProps, IState> {
         height: `${R * 2}px`
       }
     })
-    rippleEl && rippleEl.classList.add('active')
+    rippleEl.classList.add('active')
   }
   public onRadioClick = (value: any): any => {
     const { disabled, onChange } = this.props
@@ -74,33 +75,28 @@ class Checkbox extends React.Component<IProps, IState> {
   }
   renderCheckbox = () => {
     const { position } = this.state
-    const {
-      disabled,
-      style,
-      className,
-      value,
-      checkedValue,
-      children
-    } = this.props
+    const { disabled, style, className, value, checked, children } = this.props
+    const iconName = checked ? 'check' : 'line'
     const styles = Object.assign({}, { ...style })
-    const active = value === checkedValue
-    const radioWrapClass = classNames(componentName, 'wrapper', [className])
-    const buttonBodyClass = classNames('checkbox-body', {
-      active,
+    const wrapClass = classNames(componentName, 'wrapper', [
+      { disabled },
+      className
+    ])
+    const bodyClass = classNames('checkbox-body', {
       disabled
     })
     return (
-      <label
-        data-role={componentName}
-        style={styles}
-        className={radioWrapClass}
-      >
-        <span className={buttonBodyClass} ref={this.radioBodyElement}>
+      <label data-role={componentName} style={styles} className={wrapClass}>
+        <span className={bodyClass} ref={this.radioBodyElement}>
+          <Icon
+            name={iconName}
+            className={classNames('', ['icon-checkbox'], { checked, disabled })}
+          />
           <input
             type="checkBox"
             value={value}
-            defaultChecked={active}
-            onClick={e => this.onRadioClick(value)}
+            defaultChecked={checked}
+            onChange={e => this.onRadioClick(value)}
           />
           <span className="ripple" style={position} ref={this.rippleElement} />
         </span>
