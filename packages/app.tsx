@@ -12,6 +12,7 @@ import Radio from './radio/radio'
 import RadioGroup from './radio/radioGroup'
 import CheckBox from './checkbox/checkbox'
 import CheckBoxGroup from './checkbox/group'
+import Switch from './switch/switch'
 import './index.scss'
 
 const text = `
@@ -49,20 +50,29 @@ class App extends Component {
     console.log(value)
     this.setState({ radio1: value })
   }
-  onCheckbox=(values)=>{
+  onCheckbox = values => {
     console.log(values)
+    this.setState({ checkbox: values })
   }
-  onCheck=()=>{
+  onCheck = () => {
     this.setState({ checkbox: ['B'] })
+  }
+  xc = v => {
+    console.log(v)
+  }
+  switchFn = (c,e)=>{
+    console.log(e)
   }
   render() {
     return (
       <div className="app">
-      <Button onClick={this.onCheck}>checkbox</Button>
-        <CheckBoxGroup
-          defaultValue={this.state.checkbox}
-          // onChange={this.onCheckbox}
-        >
+        <div style={{ margin: '30px', background:'#ddd'}}>
+        <Switch defaultChecked onChange={this.switchFn} />
+        <Switch defaultChecked disabled />
+      </div>
+        <Button onClick={this.onCheck}>checkbox</Button>
+        <CheckBox value="A" checked onChange={this.xc} />
+        <CheckBoxGroup value={this.state.checkbox} onChange={this.onCheckbox}>
           <CheckBox value="A" />
           <CheckBox value="B" />
           <CheckBox value="C" />
