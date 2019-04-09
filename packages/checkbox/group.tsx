@@ -9,7 +9,7 @@ interface IProps {
   style?: React.CSSProperties
   value?: string[]
   defaultValue?: string[]
-  onChange?: (key: string) => any
+  onChange?: (values: string, e: React.MouseEvent<HTMLElement>) => any
 }
 interface IState {
   checkedValue: string[]
@@ -26,20 +26,18 @@ class CheckboxGroup extends React.Component<IProps, IState> {
     this.state = { checkedValue: props.defaultValue || props.value || [] }
   }
   public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    if ('value' in nextProps) {
-      return {
-        value: nextProps.value || []
+    const { value } = nextProps
+    const { checkedValue } = prevState
+    if (!('value' in nextProps)) {
+      return null
+    } else if (value instanceof Array && checkedValue instanceof Array) {
+      if (!isSimpleArrayEqual(value, checkedValue)) {
+        return { checkedValue: value }
       }
     }
     return null
   }
-  public componentDidUpdate(nextProps: IProps, prevState: IState) {
-    const { defaultValue } = nextProps
-    const { checkedValue } = prevState
-    console.log(defaultValue)
-    console.log(checkedValue)
-  }
-  public onGroupClick = value => {
+  public onToggle = (value: string) => {
     const { onChange } = this.props
     const copyValue = [...this.state.checkedValue]
     const index = copyValue.indexOf(value)
@@ -62,8 +60,9 @@ class CheckboxGroup extends React.Component<IProps, IState> {
           children,
           (child: React.ReactElement<ICheckboxProps>) => {
             console.log(child)
+            console.log(children)
             return React.cloneElement(child, {
-              onChange: this.onGroupClick,
+              onChange: this.onToggle,
               checked: checkedValue.includes(child.props.value)
             })
           }

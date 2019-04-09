@@ -12,7 +12,7 @@ export interface IProps {
   value?: any
   name?: string
   indeterminate?: boolean
-  onChange?: any
+  onChange?: (value: string, e: React.MouseEvent<HTMLElement>) => any
 }
 interface IState {
   position: object
@@ -20,7 +20,8 @@ interface IState {
 const componentName = 'Checkbox'
 class Checkbox extends React.Component<IProps, IState> {
   public static defaultProps = {
-    disabled: false
+    disabled: false,
+    indeterminate: false
   }
   public static propTypes = {
     className: PropTypes.string,
@@ -50,12 +51,15 @@ class Checkbox extends React.Component<IProps, IState> {
     this.setState({
       position: {
         width: `${R * 2}px`,
-        height: `${R * 2}px`
+        height: `${R * 2}px`,
+        marginLeft: `-${R}px`,
+        marginTop: `-${R}px`
       }
     })
     rippleEl.classList.add('active')
   }
-  public onRadioClick = (value: any): any => {
+  public onChange = (e, value) => {
+    console.log(value)
     const { disabled, onChange } = this.props
     if (disabled) {
       return false
@@ -63,7 +67,7 @@ class Checkbox extends React.Component<IProps, IState> {
     this.onRippleEffect()
     onChange && (onChange as React.MouseEventHandler)(value)
   }
-  public onInputChange = (value: any, e): any => {
+  public onLabelClick = (value: any, e): any => {
     e.preventDefault()
     const rippleEl = this.rippleElement.current
     rippleEl && rippleEl.classList.remove('active')
@@ -75,8 +79,20 @@ class Checkbox extends React.Component<IProps, IState> {
   }
   renderCheckbox = () => {
     const { position } = this.state
-    const { disabled, style, className, value, checked, children } = this.props
-    const iconName = checked ? 'check' : 'line'
+    const {
+      disabled,
+      style,
+      className,
+      value,
+      checked,
+      indeterminate,
+      children
+    } = this.props
+    let iconName = checked ? 'check' : ''
+    // todo
+    if (indeterminate && !checked) {
+      iconName = 'line'
+    }
     const styles = Object.assign({}, { ...style })
     const wrapClass = classNames(componentName, 'wrapper', [
       { disabled },
@@ -90,19 +106,22 @@ class Checkbox extends React.Component<IProps, IState> {
         <span className={bodyClass} ref={this.radioBodyElement}>
           <Icon
             name={iconName}
-            className={classNames('', ['icon-checkbox'], { checked, disabled })}
+            className={classNames('', ['icon-checkbox'], {
+              checked,
+              disabled
+            })}
           />
           <input
             type="checkBox"
             value={value}
             defaultChecked={checked}
-            onChange={e => this.onRadioClick(value)}
+            onChange={e => this.onChange(e, value)}
           />
           <span className="ripple" style={position} ref={this.rippleElement} />
         </span>
         <span
           className={classNames('checkbox-inner', { disabled })}
-          onClick={e => this.onInputChange(value, e)}
+          onClick={e => this.onLabelClick(value, e)}
         >
           {children ? children : value}
         </span>
