@@ -6,15 +6,15 @@
   width: 40px;
   height: 14px;
   border-radius: 8px;
-  background: rgba(0, 0, 0, 0.38);
+  background: rgba($color, 0.14);
   cursor: pointer;
   position: relative;
   transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   &.active {
-    background: rgba(#2196f3, 0.5);
+    background: rgba(#2196f3, 0.6);
   }
   &.disabled {
-    background: rgba($color, 0.2);
+    opacity: 0.45;
   }
   &-core {
     position: absolute;
@@ -32,11 +32,18 @@
       background: $blue;
       transform: translateX(100%);
     }
-    &.disabled {
-      background: #ccc;
+    .am-switch-ripple {
+      position: absolute;
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: scale(0);
+      pointer-events: none;
+      opacity: 1;
+      background: inherit;
+      &.active {
+        @include ripple;
+      }
     }
-  }
-  &.icon-spin {
-    @include spin;
   }
 }
