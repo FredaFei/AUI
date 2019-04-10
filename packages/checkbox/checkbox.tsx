@@ -58,24 +58,27 @@ class Checkbox extends React.Component<IProps, IState> {
     })
     rippleEl.classList.add('active')
   }
-  public onChange = (e, value) => {
+  public onChange = (value, event: React.MouseEvent<HTMLElement>): any => {
     console.log(value)
     const { disabled, onChange } = this.props
     if (disabled) {
       return false
     }
     this.onRippleEffect()
-    onChange && (onChange as React.MouseEventHandler)(value)
+    onChange && (onChange as React.MouseEventHandler)(value, event)
   }
-  public onLabelClick = (value: any, e): any => {
-    e.preventDefault()
+  public onLabelClick = (
+    value: any,
+    event: React.MouseEvent<HTMLElement>
+  ): any => {
+    event.preventDefault()
     const rippleEl = this.rippleElement.current
     rippleEl && rippleEl.classList.remove('active')
     const { disabled, onChange } = this.props
     if (disabled) {
       return false
     }
-    onChange && (onChange as React.MouseEventHandler)(value)
+    onChange && (onChange as React.MouseEventHandler)(value, event)
   }
   renderCheckbox = () => {
     const { position } = this.state
@@ -115,7 +118,7 @@ class Checkbox extends React.Component<IProps, IState> {
             type="checkBox"
             value={value}
             defaultChecked={checked}
-            onChange={e => this.onChange(e, value)}
+            onChange={e => this.onChange(value, e)}
           />
           <span className="ripple" style={position} ref={this.rippleElement} />
         </span>
