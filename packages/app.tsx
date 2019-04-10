@@ -25,6 +25,7 @@ class App extends Component {
     activeKey: 'art',
     direction: 'horizontal',
     radio1: 'orange',
+    switch: false,
     checkbox: ['A', 'D']
   }
   onClick = (e: React.MouseEvent) => {
@@ -55,24 +56,29 @@ class App extends Component {
     this.setState({ checkbox: values })
   }
   onCheck = () => {
-    this.setState({ checkbox: ['B'] })
+    this.setState({ checkbox: ['B'], switch: !this.state.switch })
   }
   xc = v => {
     console.log(v)
   }
-  switchFn = (c,e)=>{
-    console.log(e)
+  switchFn = (checked, e) => {
+    this.setState({ switch: checked })
   }
   render() {
     return (
       <div className="app">
-        <div style={{ margin: '30px', background:'#ddd'}}>
-        <Switch defaultChecked onChange={this.switchFn} />
-        <Switch defaultChecked disabled />
-      </div>
+        <div style={{ margin: '30px' }}>
+          <Switch defaultChecked />
+          <Switch defaultChecked disabled />
+          <Switch disabled />
+          <Switch checked={this.state.switch} onChange={this.switchFn} />
+        </div>
         <Button onClick={this.onCheck}>checkbox</Button>
         <CheckBox value="A" checked onChange={this.xc} />
-        <CheckBoxGroup value={this.state.checkbox} onChange={this.onCheckbox}>
+        <CheckBoxGroup
+          value={this.state.checkbox}
+          onChange={this.onCheckbox}
+        >
           <CheckBox value="A" />
           <CheckBox value="B" />
           <CheckBox value="C" />
@@ -124,7 +130,11 @@ class App extends Component {
               />
             )}
           >
-            <Pane header="This is panel header 1" visibleIcon={false} key="1">
+            <Pane
+              header="This is panel header 1"
+              visibleIcon={false}
+              key="1"
+            >
               <p>{text}</p>
             </Pane>
             <Pane header="This is panel header 2" key="2">
