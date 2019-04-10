@@ -25,6 +25,14 @@ class CheckboxGroup extends React.Component<IProps, IState> {
     super(props)
     this.state = { checkedValue: props.defaultValue || props.value || [] }
   }
+  getChildContext() {
+    return {
+      checkboxGroup: { value: this.state.checkedValue, parent: componentName }
+    }
+  }
+  static childContextTypes = {
+    checkboxGroup: PropTypes.any
+  }
   public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     const { value } = nextProps
     const { checkedValue } = prevState

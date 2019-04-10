@@ -39,6 +39,9 @@ class Checkbox extends React.Component<IProps, IState> {
       position: {}
     }
   }
+  static contextType = {
+    checkboxGroup: PropTypes.any
+  }
   public onRippleEffect = (): any => {
     const targetEl = this.radioBodyElement.current
     const rippleEl = this.rippleElement.current
@@ -59,7 +62,7 @@ class Checkbox extends React.Component<IProps, IState> {
     rippleEl.classList.add('active')
   }
   public onChange = (value, event: React.MouseEvent<HTMLElement>): any => {
-    console.log(value)
+    // console.log(value)
     const { disabled, onChange } = this.props
     if (disabled) {
       return false
@@ -104,6 +107,7 @@ class Checkbox extends React.Component<IProps, IState> {
     const bodyClass = classNames('checkbox-body', {
       disabled
     })
+    console.log(this.context)
     return (
       <label data-role={componentName} style={styles} className={wrapClass}>
         <span className={bodyClass} ref={this.radioBodyElement}>
