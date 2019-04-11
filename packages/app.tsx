@@ -13,6 +13,7 @@ import RadioGroup from './radio/radioGroup'
 import CheckBox from './checkbox/checkbox'
 import CheckBoxGroup from './checkbox/group'
 import Switch from './switch/switch'
+import Message from './message/message'
 import './index.scss'
 
 const text = `
@@ -26,7 +27,9 @@ class App extends Component {
     direction: 'horizontal',
     radio1: 'orange',
     switch: false,
-    checkbox: ['A', 'D']
+    checkbox: ['A', 'D'],
+    plainOptions: ['Apple', 'Pear', 'Orange'],
+    defaultCheckedList: ['Apple', 'Orange']
   }
   onClick = (e: React.MouseEvent) => {
     // console.log(e)
@@ -64,9 +67,16 @@ class App extends Component {
   switchFn = (checked, e) => {
     this.setState({ switch: checked })
   }
+  onToggleMessage=()=>{
+    // console.log(Message.info({ content: 'info test'}))
+    // message.info('This is a normal message')
+    Message.info({ content: 'info test' + `${Math.random(1, 10)}` })
+  }
   render() {
     return (
       <div className="app">
+        <Message content="first constent" duration={0} />
+        <Button onClick={this.onToggleMessage}>message</Button>
         <div style={{ margin: '30px' }}>
           <Switch defaultChecked />
           <Switch defaultChecked disabled />
@@ -79,10 +89,21 @@ class App extends Component {
           value={this.state.checkbox}
           onChange={this.onCheckbox}
         >
-          <CheckBox value="A" />
+          <CheckBox value="A" indeterminate />
           <CheckBox value="B" />
           <CheckBox value="C" />
           <CheckBox value="D" disabled />
+        </CheckBoxGroup>
+        <CheckBoxGroup defaultValue={['A']}>
+          <CheckBox value="A" indeterminate={{}} />
+        </CheckBoxGroup>
+        <CheckBoxGroup
+          defaultValue={this.state.checkbox}
+          onChange={this.onCheckbox}
+        >
+          {this.state.plainOptions.map(i => (
+            <CheckBox value={i} />
+          ))}
         </CheckBoxGroup>
         <RadioGroup
           name="fruite"
