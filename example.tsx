@@ -1,13 +1,48 @@
 import React, { Component } from 'react'
 import * as ReactDOM from 'react-dom'
+import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import Home from './examples/home'
 import ButtonExample from './examples/button.example'
 
 class App extends Component {
   render() {
-    return <ButtonExample />
+    return (
+      <Router>
+        <div className="site-doc-wrapper">
+          <header className="site-doc-header">
+            <img src="" alt="" className="avator" />
+            <nav className="site-nav">
+              <div>文档</div>
+            </nav>
+          </header>
+          <aside className="site-doc-aside">
+            <h2>入门</h2>
+            <ol>
+              <li>
+                <Link to="/">快速上手</Link>
+              </li>
+              <li>
+                <Link to="/">安装</Link>
+              </li>
+              <li>
+                <Link to="/">配置</Link>
+              </li>
+            </ol>
+            <h2>组件</h2>
+            <ol>
+              <li>
+                <Link to="/button">Button</Link>
+              </li>
+            </ol>
+          </aside>
+          <main className="site-doc-main">
+            <Route path="/" exact={true} component={Home} />
+            <Route path="/button" component={ButtonExample} />
+          </main>
+        </div>
+      </Router>
+    )
   }
 }
 
-
 ReactDOM.render(<App />, document.getElementById('root'))
-
