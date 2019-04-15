@@ -10,8 +10,8 @@ module.exports = {
   moduleDirectories: ['node_modules'],
   moduleNameMapper: {
     '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/__mocks__/fileMock.js',
-    '\\.(css|less|scss)$': '<rootDir>/__mocks__/styleMock.js'
+      '<rootDir>/test/__mocks__/fileMock.js',
+    '\\.(css|less|scss)$': '<rootDir>/test/__mocks__/styleMock.js'
   },
   testMatch: ['<rootDir>/**/__tests__/**/*.unit.(js|jsx|ts|tsx)'],
   transform: {
