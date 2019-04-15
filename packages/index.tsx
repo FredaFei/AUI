@@ -1,5 +1,3 @@
-import * as React from 'react'
-import * as ReactDOM from 'react-dom'
-import App from './app'
 
-ReactDOM.render(<App />, document.getElementById('root'))
+export { default as Button } from './button/button';
+export { default as ButtonGroup } from './button/buttonGroup';
