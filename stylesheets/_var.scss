@@ -17,6 +17,7 @@ $input-border-color-hover: #999;
 $error-color: #f1453d;
 $info-color: #67c23a;
 
+$prefix: 'am';
 
 @keyframes spin {
   0% {
@@ -37,4 +38,24 @@ $info-color: #67c23a;
 }
 @mixin ripple {
   animation: ripple 0.65s ease-out;
+}
+@mixin component ($name){
+  .#{$prefix}-#{$name}{
+    @content;
+  }
+}
+
+@function component($name,$modifier){
+  @if $modifier == null {
+    @return ".#{$prefix}-#{$name}"  
+  }@else{
+    @return ".#{$prefix}-#{$name}-#{$modifier}"
+  }
+}
+@function componentWithoutDot($name,$modifier){
+  @if $modifier == null {
+    @return "#{$prefix}-#{$name}"  
+  }@else{
+    @return "#{$prefix}-#{$name}-#{$modifier}"
+  }
 }
