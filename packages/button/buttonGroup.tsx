@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils/'
+import classes, { createScopedClasses } from '../utils/classnames'
 import './style'
 
 interface IProps {
@@ -10,12 +10,13 @@ interface IProps {
   children?: any
 }
 const componentName = 'ButtonGroup'
+const sc = createScopedClasses(componentName)
 const ButtonGroup: React.SFC<IProps> = (props: IProps) => {
   const { style, className, children } = props
   const styles = Object.assign({}, { ...style })
-  const classes = classNames(componentName, [className])
+  const wrapClasses = classes(sc(), className)
   return (
-    <div data-role={componentName} style={styles} className={classes}>
+    <div data-role={componentName} style={styles} className={wrapClasses}>
       {children}
     </div>
   )

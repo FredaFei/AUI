@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils/'
+import classes, { createScopedClasses } from '../utils/classnames'
 import './svg.js'
 import './style'
 
@@ -13,13 +13,11 @@ interface IProps {
   onClick?: React.MouseEventHandler
 }
 const componentName = 'Icon'
+const sc = createScopedClasses(componentName)
 
 const Icon: React.SFC<IProps> = (props: IProps) => {
   const { name, style, rotate, spin, className, onClick } = props
-  const classes = classNames(componentName, [
-    className,
-    spin || (name === 'loading' && 'icon-spin')
-  ])
+  const wrapClasses = classes(sc(), [spin || (name === 'loading' && 'icon-spin')], className)
   const styles = Object.assign(
     {},
     style,
@@ -29,7 +27,7 @@ const Icon: React.SFC<IProps> = (props: IProps) => {
     }
   )
   return (
-    <svg className={classes} style={styles}>
+    <svg className={wrapClasses} style={styles}>
       <use xlinkHref={`#i-${name}`} onClick={onClick} />
     </svg>
   )

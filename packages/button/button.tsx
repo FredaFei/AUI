@@ -1,9 +1,11 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils/'
+import classes, { createScopedClasses } from '../utils/classnames'
 import Icon from '../icon/icon'
 import './style'
 
+const componentName = 'Button'
+const sc = createScopedClasses(componentName)
 type IProps = {
   icon?: string
   className?: string
@@ -15,7 +17,6 @@ type IProps = {
 type IState = {
   position: object
 }
-const componentName = 'Button'
 class Button extends React.Component<IProps, IState> {
   public static defaultProps = {
     icon: '',
@@ -46,6 +47,8 @@ class Button extends React.Component<IProps, IState> {
     }
     rippleEl && rippleEl.classList.remove('active')
     const { pageX, pageY } = e
+    console.log(e)
+    console.log(pageX, pageY)
     const { top, left, width, height } = targetEl.getBoundingClientRect()
     const R = width < height ? height : width
     this.setState({
@@ -78,23 +81,20 @@ class Button extends React.Component<IProps, IState> {
       ...rest
     } = this.props
     const styles = Object.assign({}, { ...style })
-    const buttonWrapClass = classNames(componentName, [
-      className,
-      disabled && 'icon-disabled'
-    ])
-    const buttonBodyClass = classNames('button-body', [
+    const buttonWrapClass = classes(sc('wrapper'), className, { 'icon-disabled': disabled})
+    const buttonBodyClass = classes(sc('body'), [
       icon && iconPosition && `icon-${iconPosition}`
     ])
     let renderButtonBody = () => {
       if (icon) {
         return (
           <div className={buttonBodyClass}>
-            <Icon name={icon} className="button-icon-name" />
-            <span className="am-button-content">{children}</span>
+            <Icon name={icon} className="icon-name" />
+            <span className={sc('content')}>{children}</span>
           </div>
         )
       } else {
-        return <span className="am-button-content">{children}</span>
+        return <span className={sc('content')}>{children}</span>
       }
     }
     return (
