@@ -6,15 +6,13 @@ import './style'
 
 const componentName = 'Button'
 const sc = createScopedClasses(componentName)
-type IProps = {
+interface IProps extends IStyledProps {
   icon?: string
-  className?: string
-  style?: React.CSSProperties
   iconPosition?: string
   disabled?: boolean
   onClick?: React.MouseEventHandler
 }
-type IState = {
+interface IState {
   position: object
 }
 class Button extends React.Component<IProps, IState> {
@@ -47,8 +45,6 @@ class Button extends React.Component<IProps, IState> {
     }
     rippleEl && rippleEl.classList.remove('active')
     const { pageX, pageY } = e
-    console.log(e)
-    console.log(pageX, pageY)
     const { top, left, width, height } = targetEl.getBoundingClientRect()
     const R = width < height ? height : width
     this.setState({
@@ -80,8 +76,11 @@ class Button extends React.Component<IProps, IState> {
       children,
       ...rest
     } = this.props
+    console.log(this.props)
     const styles = Object.assign({}, { ...style })
-    const buttonWrapClass = classes(sc('wrapper'), className, { 'icon-disabled': disabled})
+    const buttonWrapClass = classes(sc('wrapper'), className, {
+      'icon-disabled': disabled
+    })
     const buttonBodyClass = classes(sc('body'), [
       icon && iconPosition && `icon-${iconPosition}`
     ])

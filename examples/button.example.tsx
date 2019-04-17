@@ -7,7 +7,7 @@ export default function (props:any) {
   return (
     <div className="exp-box">
       <ButtonGroup>
-        <Button icon="left" className="haha">upload</Button>
+        <Button icon="left" className="red">upload</Button>
         <Button>1</Button>
         <Button>2</Button>
         <Button icon="loading">download</Button>

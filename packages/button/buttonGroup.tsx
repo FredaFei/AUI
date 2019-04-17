@@ -3,9 +3,7 @@ import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
 import './style'
 
-interface IProps {
-  className?: string
-  style?: React.CSSProperties
+interface IProps extends IStyledProps {
   onClick?: React.MouseEventHandler
   children?: any
 }
