@@ -45,14 +45,14 @@ $prefix: 'am';
   }
 }
 
-@function component($name,$modifier){
+@function component($name,$modifier:null){
   @if $modifier == null {
     @return ".#{$prefix}-#{$name}"  
   }@else{
     @return ".#{$prefix}-#{$name}-#{$modifier}"
   }
 }
-@function componentWithoutDot($name,$modifier){
+@function componentWithoutDot($name,$modifier:null){
   @if $modifier == null {
     @return "#{$prefix}-#{$name}"  
   }@else{

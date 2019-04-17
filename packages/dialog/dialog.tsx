@@ -1,38 +1,49 @@
 import * as React from 'react'
+import { ReactElement, ReactFragment } from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils/'
+import classes, { createScopedClasses } from '../utils/classnames'
 import Icon from '../icon/icon'
 import './style'
 
+const componentName = 'dialog'
+const sc = createScopedClasses(componentName)
 interface IProps extends IStyledProps {
   visible: boolean
-  title: string
-  footer: string | React.ReactNode
+  title?: string
+  footer?: ReactFragment | ReactElement
   onClose?: React.MouseEventHandler
 }
-const componentName = 'dialog'
 
-const Dialog: AFC<IProps> = props => {
-  const { visible, title,style } = props
-  return visible ? (
-    <div className={classNames(componentName)} style={style}>
-      <div className="dialog-mask" />
-      <div className="dialog-content">
-        <div className="dialog-head">
-          <div className="title">{title}</div>
-          <Icon name="close" />
-        </div>
-        <div className="dialog-body">{props.children}</div>
-        <div className="dialog-footer">{props.footer}</div>
-      </div>
-    </div>
-  ) : null
+class Dialog extends React.Component<IProps> {
+  static defaultProps = {
+    visible: false
+  }
+  static propTypes = {
+    onClose: PropTypes.func
+  }
+  constructor(props: IProps) {
+    super(props)
+  }
+  render() {
+    const { visible, title, style, footer, children } = this.props
+    return (
+      visible && (
+        <React.Fragment>
+          <div className={sc('wrapper')} style={style}>
+            <div className={sc('mask')} />
+            <div className={sc('')}>
+              <div className={sc('close')}>
+                <Icon name="close"  />
+              </div>
+              <div className={sc('header')}>{title}</div>
+              <div className={sc('body')}>{children}</div>
+              <div className={sc('footer')}>{footer}</div>
+            </div>
+          </div>
+        </React.Fragment>
+      )
+    )
+  }
 }
 
-Dialog.defaultProps = {
-  visible: false
-}
-Dialog.propTypes = {
-  onClose: PropTypes.func
-}
 export default Dialog
