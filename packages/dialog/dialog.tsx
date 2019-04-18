@@ -79,95 +79,14 @@ class Dialog extends React.Component<IProps> {
   }
 }
 
-export const alert = (content: string, onNo) => {
+const createModal = (content, buttons, ...rest) => {
   const onClose = () => {
     React.cloneElement(component, { visible: false })
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
   }
   const component = (
-    <Dialog
-      visible={true}
-      onClose={onClose}
-      footer={
-        <Button
-          onClick={() => {
-            onClose()
-            onNo()
-          }}
-        >
-          确定
-        </Button>
-      }
-    >
-      {content}
-    </Dialog>
-  )
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  ReactDOM.render(component, div)
-}
-export const confirm = (content, onYes, onNo) => {
-  const onClose = () => {
-    React.cloneElement(component, { visible: false })
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-  }
-  const onCancel = () => {
-    onClose()
-    onNo()
-  }
-  const onConfirm = () => {
-    onClose()
-    onYes()
-  }
-  const component = (
-    <Dialog
-      visible={true}
-      onClose={onClose}
-      footer={
-        <React.Fragment>
-          <Button onClick={onCancel}>取消</Button>
-          <Button onClick={onConfirm} className={sc('btn-confirm')}>
-            确定
-          </Button>
-        </React.Fragment>
-      }
-    >
-      {content}
-    </Dialog>
-  )
-  const div = document.createElement('div')
-  document.body.appendChild(div)
-  ReactDOM.render(component, div)
-}
-export const modal = (content, onYes, onNo) => {
-  const onClose = () => {
-    React.cloneElement(component, { visible: false })
-    ReactDOM.unmountComponentAtNode(div)
-    div.remove()
-  }
-  const onCancel = () => {
-    onClose()
-    onNo()
-  }
-  const onConfirm = () => {
-    onClose()
-    onYes()
-  }
-  const component = (
-    <Dialog
-      visible={true}
-      onClose={onClose}
-      footer={
-        <React.Fragment>
-          <Button onClick={onCancel}>取消</Button>
-          <Button onClick={onConfirm} className={sc('btn-confirm')}>
-            确定
-          </Button>
-        </React.Fragment>
-      }
-    >
+    <Dialog visible={true} onClose={onClose} footer={buttons} {...rest}>
       {content}
     </Dialog>
   )
@@ -175,6 +94,56 @@ export const modal = (content, onYes, onNo) => {
   document.body.appendChild(div)
   ReactDOM.render(component, div)
   return onClose
+}
+export const alert = (content: string, buttons, onNo) => {
+  const onOk = () => {
+    close()
+    onNo && onNo()
+  }
+  const buttons = (
+    <Button onClick={onOk} className={sc('btn-confirm')}>
+      确定
+    </Button>
+  )
+  const close = createModal(content, buttons)
+}
+export const confirm = (content, onYes, onNo) => {
+  const onCancel = () => {
+    closer()
+    onNo()
+  }
+  const onConfirm = () => {
+    closer()
+    onYes()
+  }
+  const buttons = (
+    <React.Fragment>
+      <Button onClick={onCancel}>取消</Button>
+      <Button onClick={onConfirm} className={sc('btn-confirm')}>
+        确定
+      </Button>
+    </React.Fragment>
+  )
+  const closer = createModal(content, buttons)
+}
+export const modal = (content, onYes, onNo) => {
+  const onCancel = () => {
+    closer()
+    onNo && onNo()
+  }
+  const onConfirm = () => {
+    closer()
+    onYes && onYes()
+  }
+  const buttons = (
+    <React.Fragment>
+      <Button onClick={onCancel}>取消</Button>
+      <Button onClick={onConfirm} className={sc('btn-confirm')}>
+        确定
+      </Button>
+    </React.Fragment>
+  )
+  const closer = createModal(content, buttons, onYes, onNo)
 }
 
 export default Dialog
