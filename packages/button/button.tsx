@@ -76,7 +76,6 @@ class Button extends React.Component<IProps, IState> {
       children,
       ...rest
     } = this.props
-    console.log(this.props)
     const styles = Object.assign({}, { ...style })
     const buttonWrapClass = classes(sc('wrapper'), className, {
       'icon-disabled': disabled
