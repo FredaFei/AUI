@@ -1,26 +1,29 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
-import { ReactElement, ReactFragment } from 'react'
+import { ReactNode, ReactElement, ReactFragment, Fragment } from 'react'
 import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
-import Icon from '../icon/icon'
-import Button from '../button/button'
+import { Icon, Button} from '../index'
+// import Icon from '../icon/icon'
+// import Button from '../button/button'
 import './style'
 
 const componentName = 'dialog'
 const sc = createScopedClasses(componentName)
-interface IProps extends IStyledProps {
-  visible: boolean
+interface IBaseProps extends IStyledProps {
   mask?: {
     visible?: boolean
     closable?: boolean
   }
-  title?: string
+  title?: ReactNode
   footer?: ReactFragment | ReactElement
   onClose?: React.MouseEventHandler
-  onConfirm?: React.MouseEventHandler
+  onYes?: React.MouseEventHandler
+  onNo?: React.MouseEventHandler
 }
-
+interface IProps extends IBaseProps{
+  visible: boolean
+}
 class Dialog extends React.Component<IProps> {
   static defaultProps = {
     visible: false,
@@ -39,11 +42,11 @@ class Dialog extends React.Component<IProps> {
     const { onClose } = this.props
     onClose && onClose(e)
   }
-  onOk: React.MouseEventHandler = e => {
-    const { onClose, onConfirm } = this.props
-    onClose && onClose(e)
-    onConfirm && onConfirm(e)
-  }
+  // onOk: React.MouseEventHandler = e => {
+  //   const { onClose, onYes } = this.props
+  //   onClose && onClose(e)
+  //   onYes && onYes(e)
+  // }
   render() {
     const {
       visible,
@@ -79,44 +82,72 @@ class Dialog extends React.Component<IProps> {
   }
 }
 
-const createModal = (content, buttons, ...rest) => {
+interface IModalProps extends IBaseProps {
+  content: ReactNode
+}
+const createModal = (params: IModalProps) => {
+  const { content, ...rest } = params
+  const render = (props: IProps, children: ReactNode) => {
+    ReactDOM.render(React.createElement(Dialog, props, children), div)
+  }
   const onClose = () => {
-    React.cloneElement(component, { visible: false })
+    render({ ...props, visible: false }, content)
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
+    return true
   }
-  const component = (
-    <Dialog visible={true} onClose={onClose} footer={buttons} {...rest}>
-      {content}
-    </Dialog>
-  )
+  const props = {
+    visible: true,
+    onClose,
+    ...rest
+  }
   const div = document.createElement('div')
   document.body.appendChild(div)
-  ReactDOM.render(component, div)
+  render(props, content)
   return onClose
 }
-export const alert = (content: string, buttons, onNo) => {
-  const onOk = () => {
-    close()
-    onNo && onNo()
+
+export const alert = ({ content, onYes, ...rest }: IModalProps) => {
+  const onOk: React.MouseEventHandler = e => {
+    closer()
+    onYes && onYes(e)
   }
-  const buttons = (
+  const footer = (
     <Button onClick={onOk} className={sc('btn-confirm')}>
       确定
     </Button>
   )
-  const close = createModal(content, buttons)
+  const closer = createModal({ content, footer, ...rest })
 }
-export const confirm = (content, onYes, onNo) => {
-  const onCancel = () => {
+export const confirm = ({ content, onYes, onNo, ...rest }: IModalProps) => {
+  const onCancel: React.MouseEventHandler = e => {
     closer()
-    onNo()
+    onNo && onNo(e)
   }
-  const onConfirm = () => {
+  const onConfirm: React.MouseEventHandler = e => {
     closer()
-    onYes()
+    onYes && onYes(e)
   }
-  const buttons = (
+  const footer = (
+    <Fragment>
+      <Button onClick={onCancel}>取消</Button>
+      <Button onClick={onConfirm} className={sc('btn-confirm')}>
+        确定
+      </Button>
+    </Fragment>
+  )
+  const closer = createModal({ content, footer, ...rest })
+}
+export const modal = ({ content, onYes, onNo, ...rest }: IModalProps) => {
+  const onCancel: React.MouseEventHandler = e => {
+    closer()
+    onNo && onNo(e)
+  }
+  const onConfirm: React.MouseEventHandler = e => {
+    closer()
+    onYes && onYes(e)
+  }
+  const footer = (
     <React.Fragment>
       <Button onClick={onCancel}>取消</Button>
       <Button onClick={onConfirm} className={sc('btn-confirm')}>
@@ -124,26 +155,8 @@ export const confirm = (content, onYes, onNo) => {
       </Button>
     </React.Fragment>
   )
-  const closer = createModal(content, buttons)
-}
-export const modal = (content, onYes, onNo) => {
-  const onCancel = () => {
-    closer()
-    onNo && onNo()
-  }
-  const onConfirm = () => {
-    closer()
-    onYes && onYes()
-  }
-  const buttons = (
-    <React.Fragment>
-      <Button onClick={onCancel}>取消</Button>
-      <Button onClick={onConfirm} className={sc('btn-confirm')}>
-        确定
-      </Button>
-    </React.Fragment>
-  )
-  const closer = createModal(content, buttons, onYes, onNo)
+  const closer = createModal({ content, footer, onYes, onNo, ...rest })
+  return closer
 }
 
 export default Dialog

@@ -19,4 +19,5 @@ declare global {
 
 export { default as Button } from './button/button'
 export { default as ButtonGroup } from './button/buttonGroup'
+export { default as Icon } from './icon/icon'
 export { default as Dialog } from './dialog/dialog'
