@@ -1,6 +1,6 @@
 @import 'var';
 %padding {
-  padding: 8px 12px;
+  padding: 8px 24px;
 }
 #{component(dialog)} {
   &-mask {
@@ -23,8 +23,9 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   &-close {
     position: absolute;
-    top: -6%;
-    right: -3%;
+    bottom: 100%;
+    left: 100%;
+    transform: translate(-50%, 50%);
     width: 20px;
     line-height: 20px;
     text-align: center;
@@ -39,7 +40,7 @@
     &:hover {
       color: $color;
       border-color: $light-color;
-      transform: scale(1.3);
+      transform: translate(-50%, 50%) scale(1.3);
     }
     > svg {
       transition: transform 250ms;
@@ -63,7 +64,7 @@
     border-bottom: 1px solid $gray;
   }
   &-body {
-    @extend %padding;
+    padding: 24px;
     font-size: 14px;
     line-height: 1.5;
     word-wrap: break-word;

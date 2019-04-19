@@ -4,8 +4,6 @@ import { ReactNode, ReactElement, ReactFragment, Fragment } from 'react'
 import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
 import { Icon, Button} from '../index'
-// import Icon from '../icon/icon'
-// import Button from '../button/button'
 import './style'
 
 const componentName = 'dialog'
@@ -42,11 +40,6 @@ class Dialog extends React.Component<IProps> {
     const { onClose } = this.props
     onClose && onClose(e)
   }
-  // onOk: React.MouseEventHandler = e => {
-  //   const { onClose, onYes } = this.props
-  //   onClose && onClose(e)
-  //   onYes && onYes(e)
-  // }
   render() {
     const {
       visible,
