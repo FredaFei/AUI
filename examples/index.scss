@@ -46,8 +46,8 @@ body {
     padding: 0 48px;
     align-items: center;
     background: #fdf9f3;
-    border-bottom: 1px solid rgba(0,0,0,0.33);
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.13);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.33);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
     .site-nav {
       display: flex;
       color: $color;
@@ -71,7 +71,7 @@ body {
     box-shadow: 3px 3px 0px #bababa;
     h2 {
       margin: 0.5em 0 0.2em;
-      padding-left: .5em;
+      padding-left: 0.5em;
       color: rgba(0, 0, 0, 0.45);
       font-size: 18px;
     }
@@ -82,12 +82,13 @@ body {
         line-height: 40px;
         font-size: 14px;
         color: $site-color;
-        a{
-          &:hover{
+        a {
+          color: $site-color;
+          &:hover {
             color: $focus-color;
           }
         }
-        &.active{
+        &.active {
           color: $focus-color;
           background: rgb(102, 226, 213);
         }
@@ -104,6 +105,28 @@ body {
     box-shadow: 3px 3px 0px #bababa;
     h2 {
       margin: 1em 0;
+    }
+  }
+}
+.exp-section {
+  padding-bottom: 30px;
+  h3 {
+    font-size: 18px;
+    padding-bottom: 10px;
+  }
+  & + .exp-section {
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+}
+.exp-section {
+  &-btn {
+    background: #66e2d5;
+    border-color: #000;
+    color: #000;
+    &:hover {
+      border-color: #000;
+      background: rgba(#66e2d5, 0.9);
     }
   }
 }

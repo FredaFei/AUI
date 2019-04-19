@@ -4,98 +4,115 @@ import Button from '../packages/button/button'
 import Dialog, { alert, confirm, modal } from '../packages/dialog/dialog'
 
 export default function(props: any) {
-  const [state, setState] = useState({ visible: false })
   const [x, setX] = useState(false)
-  const onClose = () => {
-    setState({ visible: !state.visible })
-  }
-  const onClose2 = () => {
+  const [y, setY] = useState(false)
+  const onClose1 = () => {
     setX(!x)
   }
+  const onClose2 = () => {
+    setY(!y)
+  }
   const onAlert = () => {
-    alert('haha',()=>{
-      console.log('alert no')
+    alert({
+      content: <h3>this is a content</h3>,
+      onYes() {
+        console.log('alert yes')
+      }
     })
   }
   const onConfirm = () => {
-    confirm(
-      'confirm content',
-      () => {
+    confirm({
+      content: (
+        <div>
+          <h3>this is a content</h3>
+        </div>
+      ),
+      title: 'this is a title',
+      onYes() {
         console.log('confirm yes')
       },
-      () => {
+      onNo() {
         console.log('confirm no')
       }
-    )
+    })
   }
   const onModal = () => {
-    const close = modal(
-      <div>
-        <h4>haha</h4>
-        <button onClick={() => { close()}}>close</button>
-      </div>,
-      () => {
-        console.log('confirm yes')
+    const close = modal({
+      content: (
+        <div>
+          <h3>this is a content</h3>
+          <Button
+            onClick={e => {
+              close()
+            }}
+          >
+            close
+          </Button>
+        </div>
+      ),
+      title: 'this is a title',
+      onYes() {
+        console.log('modal yes')
       },
-      () => {
-        console.log('confirm no')
+      onNo() {
+        console.log('modal no')
       }
-    )
+    })
   }
   return (
-    <div className="exp-box">
-      <Button onClick={onModal}>modal</Button>
-      <Button onClick={onAlert}>alert</Button>
-      <Button onClick={onConfirm}>confirm</Button>
-      <Button onClick={onClose}>click me</Button>
-      <Button onClick={onClose2}>click me 2</Button>
-      <Dialog
-        className="l"
-        visible={x}
-        // title="this is a title"
-        onClose={onClose2}
-        onConfirm={() => {
-          alert('confirm')
-        }}
-        mask={{ visible: false }}
-        footer={null}
-      >
-        <h3>content 1</h3>
-        <h3>content 2</h3>
-        <h1>...</h1>
-      </Dialog>
-      <Dialog
-        visible={state.visible}
-        title="this is a title"
-        mask={{ closable: false, visible: true }}
-        onClose={onClose}
-        footer={
-          <React.Fragment>
-            <Button
-              onClick={() => {
-                onClose()
-                console.log('no')
-              }}
-            >
-              no
-            </Button>
-            <Button
-              onClick={() => {
-                onClose()
-                console.log('yes')
-              }}
-            >
-              yes
-            </Button>
-          </React.Fragment>
-        }
-      >
-        <h3>content 1</h3>
-        <h3>content 2</h3>
-        <h3>content 3</h3>
-        <h3>content 4</h3>
-        <h1>...</h1>
-      </Dialog>
+    <div className="exp-sections-wrapper">
+      <div className="exp-section">
+        <h3>基础调用</h3>
+        <Button onClick={() => setX(true)}>open Dialog</Button>
+        <Button onClick={() => setY(true)}>
+          Open Dialog with customized footer
+        </Button>
+        <Dialog visible={x} title="温馨提示" onClose={onClose1}>
+          <div>打雷啦...</div>
+          <div>下雨啦...</div>
+          <div>收衣服啦...</div>
+          <div>Some contents...</div>
+          <div>Some contents...</div>
+        </Dialog>
+
+        <Dialog
+          visible={y}
+          title="编辑志愿表"
+          onClose={onClose2}
+          footer={
+            <React.Fragment>
+              <Button
+                onClick={() => {
+                  onClose2()
+                }}
+              >
+                取消
+              </Button>
+              <Button
+                className="exp-section-btn"
+                onClick={() => {
+                  onClose2()
+                  console.log('我已经提交了')
+                }}
+              >
+                提交
+              </Button>
+            </React.Fragment>
+          }
+        >
+          <div>打雷啦...</div>
+          <div>下雨啦...</div>
+          <div>收衣服啦...</div>
+          <div>Some contents...</div>
+          <div>Some contents...</div>
+        </Dialog>
+      </div>
+      <div className="exp-section">
+        <h3>动态调用</h3>
+        <Button onClick={onModal}>modal</Button>
+        <Button onClick={onAlert}>alert</Button>
+        <Button onClick={onConfirm}>confirm</Button>
+      </div>
     </div>
   )
 }
