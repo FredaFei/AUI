@@ -15,7 +15,27 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 10;
   transition: all 0.3s ease;
-  .message-close{
+  >span{
+    display: inline-block;
+  }
+  .icon-type {
+    margin-right: 4px;
+    font-size: 20px;
+    &.info{
+      color: $info-color;
+    }
+    &.error{
+      color: $error-color;
+    }
+    &.loading,
+    &.success{
+      color: $blue;
+    }
+    &.warning{
+      // color: $warning-color;
+    }
+  }
+  .message-close {
     position: relative;
     left: 10px;
     cursor: pointer;
