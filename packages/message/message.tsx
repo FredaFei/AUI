@@ -1,24 +1,21 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as PropTypes from 'prop-types'
-import { classNames, uniqueId } from '../utils'
-import Icon from '../icon/icon'
+import classes, { createScopedClasses } from '../utils/classnames'
+import { Icon } from '../index'
 import './style/index'
-
-interface IProp {
-  style?: React.CSSProperties
-  className?: string
-  messageId?: string
-  content?: React.ReactNode | string
-  mode: 'info' | 'success' | 'warning' | 'error'
-  duration?: number
+const componentName = 'Message'
+const sc = createScopedClasses(componentName)
+interface IProp extends IStyledProps {
+  content: React.ReactNode | string
+  duration?: number | undefined
+  mode?: string
   position?: string
   onClose?: () => any
 }
 interface IState {
   visible: boolean
 }
-const componentName = 'Message'
 class Message extends React.Component<IProp, IState> {
   public static defaultProps = {
     position: 'top',
@@ -28,10 +25,8 @@ class Message extends React.Component<IProp, IState> {
     position: PropTypes.string,
     duration: PropTypes.number,
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    mode: PropTypes.oneOf(['info', 'success', 'warning', 'error']),
-    onClose: PropTypes.func,
-    className: PropTypes.string,
-    style: PropTypes.object
+    mode: PropTypes.oneOf(['info', 'success', 'warning', 'error', 'loading']),
+    onClose: PropTypes.func
   }
   constructor(props: IProp) {
     super(props)
@@ -39,8 +34,6 @@ class Message extends React.Component<IProp, IState> {
       visible: true
     }
   }
-  public static removeMessage: (id: string) => any = removeMessage
-  public static info: (options: IProp) => any = info
   private timer: any
   public componentDidMount() {
     const { duration } = this.props
@@ -52,105 +45,71 @@ class Message extends React.Component<IProp, IState> {
   }
   public componentWillUnmount() {
     const { timer } = this
-    const { messageId } = this.props
     if (timer) {
       window.clearTimeout(timer)
     }
-    console.log(4)
-    console.log(messageId)
-    messageId && Message.removeMessage(messageId)
   }
 
   onCloseClick = () => {
     const { onClose } = this.props
-    this.setState(
-      state => ({
-        visible: false
-      }),
-      onClose && onClose()
-    )
+    this.setState(state => ({ visible: false }))
+    onClose && onClose()
   }
   render() {
     const { visible } = this.state
-    const { content, position, className, style, duration } = this.props
+    const { content, position, className, style, duration, mode } = this.props
     return (
-      visible && (
-        <div
-          className={classNames(componentName, [
-            className,
-            `position-${position}`
-          ])}
-          style={style}
-        >
+      visible &&
+      ReactDOM.createPortal(
+        <div className={sc([className, `position-${position}`])} style={style}>
+          {mode && (
+            <span className={classes('icon-type',`${mode}`)}>
+              <Icon name={mode} />
+            </span>
+          )}
           {content}
           {duration === 0 && (
-            <Icon
-              name="close"
-              className="message-close"
-              onClick={this.onCloseClick}
-            />
+            <span className={classes('message-close')} onClick={this.onCloseClick}>
+              <Icon name="close" />
+            </span>
           )}
-        </div>
+        </div>,
+        document.body
       )
     )
   }
 }
-
-const messageContainerMap = {}
-
-function addMessageContainer(id: string, container: HTMLDivElement) {
-  messageContainerMap[id] = container
-}
-function uniqueMessage(id: string) {
-  if (messageContainerMap[id]) {
-    throw new Error('message id 重复了')
-    return false
+const message = {
+  open(params: IProp) {
+    const div = document.createElement('div')
+    document.body.appendChild(div)
+    const { onClose } = params
+    const close = () => {
+      onClose && onClose()
+      ReactDOM.unmountComponentAtNode(div)
+      div.remove()
+      return true
+    }
+    const messageInstance = React.createElement(Message, {
+      ...params,
+      onClose: close
+    })
+    ReactDOM.render(messageInstance, div)
   }
 }
-function openMessage(
-  options: IProp,
-  mode: 'info' | 'success' | 'warning' | 'error'
-) {
-  const id = uniqueId('$am-message')
-  uniqueMessage(id)
-  const {
-    position,
-    duration = 3,
-    content,
-    // mode,
-    onClose,
-    className,
-    style
-  } = options
-  const container = document.createElement('div')
-  document.body.append(container)
-  const instance = React.createElement(
-    Message as React.ComponentClass,
-    {
-      position,
-      duration,
-      content,
-      // mode,
-      messageId: id,
-      onClose,
-      className,
-      style
-    } as React.ClassAttributes<any>
-  )
-  ReactDOM.render(instance, container)
-  addMessageContainer(id, container)
-}
-function removeMessage(id: string): any {
-  const container = messageContainerMap[id]
-  if (!container) {
-    return false
+const modeArr = ['info', 'success', 'warning', 'error', 'loading']
+modeArr.forEach(mode => {
+  message[mode] = (
+    content: React.ReactNode | string,
+    duration?: number | (() => any),
+    onClose?: () => any,
+    ...rest: any
+  ) => {
+    if (typeof duration === 'function') {
+      onClose = duration
+      duration = undefined
+    }
+    return message.open({ content, duration, mode, onClose, ...rest })
   }
-  ReactDOM.unmountComponentAtNode(container)
-  console.log(container)
-  container.remove()
-  delete messageContainerMap[id]
-}
-function info(options: IProp) {
-  openMessage(options, 'info')
-}
-export default Message
+})
+export default message
