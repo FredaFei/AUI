@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom'
 import { HashRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './examples/home'
 import ButtonExample from './examples/button.example'
+import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
 import 'examples/index.scss'
 
@@ -37,6 +38,9 @@ class App extends Component {
                   <Link to="/button">Button</Link>
                 </li>
                 <li>
+                  <Link to="/message">Message</Link>
+                </li>
+                <li>
                   <Link to="/dialog">Dialog</Link>
                 </li>
               </ol>
@@ -44,6 +48,7 @@ class App extends Component {
             <main className="site-doc-main">
               <Route path="/" exact={true} component={Home} />
               <Route path="/button" component={ButtonExample} />
+              <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
             </main>
           </div>
