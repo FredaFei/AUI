@@ -62,7 +62,7 @@ export default function(props: any) {
   return (
     <div className="exp-sections-wrapper">
       <div className="exp-section">
-        <h3>基础调用</h3>
+        <h3>基础应用</h3>
         <Button onClick={() => setX(true)}>open Dialog</Button>
         <Button onClick={() => setY(true)}>
           Open Dialog with customized footer
