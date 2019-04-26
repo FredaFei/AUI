@@ -1,9 +1,11 @@
 import * as React from 'react'
+import ReactMarkdown from 'react-markdown'
+import md from '!!raw-loader!./home.md'
 
-export default function (props: any) {
+export default function(props: any) {
   return (
-    <div className="exp-box">
-      快速上手
+    <div>
+      <ReactMarkdown source={md} escapeHtml={false} />
     </div>
   )
 }

@@ -7,13 +7,15 @@ import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
 import 'examples/index.scss'
 
+const logo = require('./packages/logo.jpg')
+console.log(logo)
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="site-doc-wrapper">
           <header className="site-doc-header">
-            <img src="" alt="" className="logo" />
+            <img src={logo} alt="" className="logo" />
             <nav className="site-nav">
               <div>文档</div>
             </nav>
