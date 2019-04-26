@@ -1,21 +1,21 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils'
+import classes, { createScopedClasses } from '../utils/classnames'
 import './style'
 
-interface IProps {
+const componentName = 'Switch'
+const sc = createScopedClasses(componentName)
+
+interface IProps extends IStyledProps {
   defaultChecked?: boolean
   checked?: boolean
   disabled?: boolean
-  style?: React.CSSProperties
-  className?: string
   onChange?: (checked: boolean, e: React.MouseEvent<HTMLElement>) => any
 }
 interface IState {
   checked: boolean
   position: object
 }
-const componentName = 'Switch'
 
 class Switch extends React.Component<IProps, IState> {
   public static defaultProps = {
@@ -79,16 +79,16 @@ class Switch extends React.Component<IProps, IState> {
     const { disabled, style, className } = this.props
     const isActive = checked && 'active'
     const isDisabled = disabled && 'disabled'
-    const classes = classNames(componentName, [className, isActive, isDisabled])
+    const wrapperClass = classes(sc(''),[className, isActive, isDisabled])
     const styles = Object.assign({}, style)
     return (
-      <label className={classes} style={styles} onClick={this.onClick}>
+      <label className={wrapperClass} style={styles} onClick={this.onClick}>
         <span
-          className={classNames('switch-core', [isActive])}
+          className={classes(sc('core'), [isActive])}
           ref={this.rippleParentElement}
         >
           <span
-            className={classNames('switch-ripple', [isActive])}
+            className={classes(sc('ripple'), [isActive])}
             style={position}
             ref={this.rippleElement}
           />
