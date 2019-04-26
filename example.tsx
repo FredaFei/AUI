@@ -5,10 +5,10 @@ import Home from './examples/home'
 import ButtonExample from './examples/button.example'
 import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
+import SwitchExample from './examples/switch.example'
 import 'examples/index.scss'
 
 const logo = require('./packages/logo.jpg')
-console.log(logo)
 class App extends Component {
   render() {
     return (
@@ -45,6 +45,9 @@ class App extends Component {
                 <li>
                   <Link to="/dialog">Dialog</Link>
                 </li>
+                <li>
+                  <Link to="/switch">Switch</Link>
+                </li>
               </ol>
             </aside>
             <main className="site-doc-main">
@@ -52,6 +55,7 @@ class App extends Component {
               <Route path="/button" component={ButtonExample} />
               <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
+              <Route path="/switch" component={SwitchExample} />
             </main>
           </div>
         </div>
