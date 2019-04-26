@@ -6,6 +6,7 @@ import ButtonExample from './examples/button.example'
 import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
 import SwitchExample from './examples/switch.example'
+import CollapseExample from './examples/collapse.example'
 import 'examples/index.scss'
 
 const logo = require('./packages/logo.jpg')
@@ -48,6 +49,9 @@ class App extends Component {
                 <li>
                   <Link to="/switch">Switch</Link>
                 </li>
+                <li>
+                  <Link to="/collapse">Collapse</Link>
+                </li>
               </ol>
             </aside>
             <main className="site-doc-main">
@@ -56,6 +60,7 @@ class App extends Component {
               <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
               <Route path="/switch" component={SwitchExample} />
+              <Route path="/collapse" component={CollapseExample} />
             </main>
           </div>
         </div>
