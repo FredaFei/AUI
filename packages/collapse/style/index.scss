@@ -4,48 +4,48 @@
   &-wrapper {
     border-top: 1px solid $border-color;
   }
-  .am-collapse-item {
-    &-name {
-      font-size: $font-size;
-      color: $color;
-      line-height: 40px;
-      cursor: pointer;
-      border-bottom: 1px solid $border-color;
-      transition: border-bottom-color 0.25s;
-      .am-icon-animation {
-        margin-right: 0.3em;
-        transition: transform 0.25s;
-        &.active {
-          transform: rotate(90deg);
-        }
-      }
-    }
+  &-item {
     &.active {
-      .am-collapse-item-name{
+      .am-collapse-item-name {
         border-bottom-color: transparent;
       }
-      .am-collapse-item-content{
+      .am-collapse-item-content {
         display: block;
       }
     }
-    &.disabled{
-      .am-collapse-item-name{
+    &.disabled {
+      .am-collapse-item-name {
         color: #ccc;
         cursor: not-allowed;
         border-bottom-color: $gray;
       }
     }
-    &-content {
-      display: none;
-      transition: all 0.25s;
-      background-color: #fff;
-      overflow: hidden;
-      box-sizing: border-box;
-      border-bottom: 1px solid $border-color;
-      .content-inner {
-        padding: 4px 0;
-        font-size: 15px;
+  }
+  &-item-name {
+    font-size: $font-size;
+    color: $color;
+    line-height: 40px;
+    cursor: pointer;
+    border-bottom: 1px solid $border-color;
+    transition: border-bottom-color 0.25s;
+    .am-icon-animation {
+      margin-right: 0.3em;
+      transition: transform 0.25s;
+      &.active {
+        transform: rotate(90deg);
       }
+    }
+  }
+  &-item-content {
+    display: none;
+    transition: all 0.25s;
+    background-color: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid $border-color;
+    .content-inner {
+      padding: 4px 0;
+      font-size: 15px;
     }
   }
 }

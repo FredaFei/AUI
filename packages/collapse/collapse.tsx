@@ -1,24 +1,24 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { isSimpleArrayEqual, classNames } from '../utils'
+import { isSimpleArrayEqual } from '../utils'
+import classes, { createScopedClasses } from '../utils/classnames'
 import Icon from '../icon/icon'
-import { IProps as IPaneProps } from './pane'
 import './style'
+import { IProps as IPaneProps } from './pane'
 
-interface IProps {
+const componentName = 'Collapse'
+const sc = createScopedClasses(componentName)
+interface IProps extends IStyledProps {
   activeKey?: string[]
   defaultActiveKey?: string[]
   accordion?: boolean
   expandIcon?: (panelProps: any) => React.ReactNode
-  className?: string
-  style?: React.CSSProperties
   onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
 }
 interface IState {
   defaultKeys: string[]
   open: boolean
 }
-const componentName = 'Collapse'
 class Collapse extends React.Component<IProps, IState> {
   public static defaultProps = {
     accordion: false,
@@ -98,7 +98,7 @@ class Collapse extends React.Component<IProps, IState> {
     ) : (
       <Icon
         name="right"
-        className={classNames('', ['am-icon-animation', active && 'active'])}
+        className={classes(['am-icon-animation', active && 'active'])}
       />
     )
     return IconContent
@@ -119,13 +119,13 @@ class Collapse extends React.Component<IProps, IState> {
         return (
           <div
             key={key}
-            className={classNames(componentName, 'item', {
+            className={classes(sc('item'), {
               disabled,
               active
             })}
           >
             <div
-              className="am-collapse-item-name"
+              className={sc('item-name')}
               onClick={(e: React.MouseEvent<HTMLElement>) =>
                 this.handleClick(key, e, disabled || false)
               }
@@ -133,7 +133,7 @@ class Collapse extends React.Component<IProps, IState> {
               {visibleIcon && this.renderExpandIcon(active)}
               {header}
             </div>
-            <div className="am-collapse-item-content">
+            <div className={sc('item-content')}>
               {!disabled &&
                 React.cloneElement(child as React.ReactElement<IPaneProps>, {})}
             </div>
@@ -145,7 +145,7 @@ class Collapse extends React.Component<IProps, IState> {
   renderCollapse = () => {
     const { className, style } = this.props
     const styles = Object.assign({}, { ...style })
-    const collapseClasses = classNames(componentName, 'wrapper', [className])
+    const collapseClasses = classes(sc('wrapper'), [className])
     return (
       <div data-role={componentName} className={collapseClasses} style={styles}>
         {this.renderCollapseHead()}

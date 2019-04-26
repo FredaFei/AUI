@@ -1,18 +1,15 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils'
+import classes from '../utils/classnames'
 import './style'
 
-export interface IProps {
+export interface IProps extends IStyledProps {
   header: React.ReactNode
   key: string
   active?: boolean
   visibleIcon?: boolean
   disabled?: boolean
-  className?: string
-  style?: React.CSSProperties
 }
-// const componentName = 'Pane'
 class Pane extends React.Component<IProps> {
   public static defaultProps = {
     visibleIcon: true,
@@ -30,9 +27,9 @@ class Pane extends React.Component<IProps> {
   renderPane = () => {
     const { className, style, children } = this.props
     const styles = Object.assign({}, { ...style })
-    const classes = classNames('', ['content-inner', className])
+    const wrapperClasses = classes(['content-inner', className])
     return (
-      <div className={classes} style={styles}>
+      <div className={wrapperClasses} style={styles}>
         {children}
       </div>
     )
