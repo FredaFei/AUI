@@ -5,8 +5,8 @@ import Pane from '../packages/collapse/pane'
 import Icon from '../packages/icon/icon'
 
 export default function (props: any) {
-  const [selected1, setSelected1] = useState(['1'])
-  const onChange = checked => {
+  const [selected1] = useState(['1'])
+  const onChange = (checked: string): any => {
     console.log(`我是${checked}`)
   }
   return (
@@ -43,9 +43,6 @@ export default function (props: any) {
         <h3>自定义状态</h3>
         <Collapse
           activeKey={['1', '3']}
-          // style={{
-          //   background: 'rgb(247, 247, 247)'
-          // }}
           className="custom-desk"
           expandIcon={active => (
             <Icon
