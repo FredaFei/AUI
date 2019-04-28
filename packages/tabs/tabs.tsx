@@ -53,28 +53,25 @@ class Tabs extends React.Component<IProps, IState> {
         defaultKey: this.keys[0]
       })
     } else {
-      this.calculateLineStyle(this._getNavItemElement())
+      this.calculateLineStyle(this._getNavItemIndex())
     }
   }
   public componentDidUpdate(nextProps: IProps, prevState: IState) {
     if (this.state.defaultKey !== prevState.defaultKey) {
-      this.calculateLineStyle(this._getNavItemElement())
+      this.calculateLineStyle(this._getNavItemIndex())
     }
   }
-  public _getNavItemElement = () => {
-    if (!this.tabsHeadElement.current) {
-      return false
-    }
-    const index: number = this.keys.indexOf(this.state.defaultKey) || 0
-    return this.tabsHeadElement.current.children[index]
+  public _getNavItemIndex = (): number => {
+    return this.keys.indexOf(this.state.defaultKey) || 0
   }
-  public calculateLineStyle(el): any {
+  public calculateLineStyle(index: number): any {
     const { direction } = this.props
     const lineElement = this.lineElement.current
     const tabsHeadElement = this.tabsHeadElement.current
-    if (!lineElement || !tabsHeadElement || !el) {
+    if (!lineElement || !tabsHeadElement || !tabsHeadElement.children) {
       return false
     }
+    const el = tabsHeadElement.children[index]
     let { left: left1, top: top1 } = tabsHeadElement.getBoundingClientRect()
     let { width, left: left2, height, top: top2 } = el.getBoundingClientRect()
     if (direction === 'horizontal') {
@@ -101,42 +98,44 @@ class Tabs extends React.Component<IProps, IState> {
     onChange && onChange(key, e)
   }
   public renderTabsNav = (): React.ReactNode[] => {
-    const { children, direction } = this.props
-    const { defaultKey } = this.state
-    return React.Children.map(children, (child: React.ReactElement) => {
-      if (!child) {
-        return null
-      }
-      const key = child.key as string
-      this.keys.push(key)
-      const active = defaultKey === key
-      return (
-        <div
-          data-role="tabsNavItem"
-          key={key}
-          className={classNames(
-            '',
-            [
-              'am-tabs-nav-item',
-              direction === 'vertical' && 'vertical',
-              child.props.disabled && 'disabled'
-            ],
-            { active }
-          )}
-          onClick={(e: React.MouseEvent<HTMLElement>) =>
-            this.handleClick(key, e, child.props.disabled)
-          }
-        >
-          {child.props.tab}
-        </div>
-      )
-    })
-  }
-  public renderTabsPane = (): React.ReactNode[] => {
-    const { children } = this.props
+    const { direction } = this.props
     const { defaultKey } = this.state
     return React.Children.map(
-      children,
+      this.props.children as any[],
+      (child: React.ReactElement) => {
+        if (!child) {
+          return null
+        }
+        const key = child.key as string
+        this.keys.push(key)
+        const active = defaultKey === key
+        return (
+          <div
+            data-role="tabsNavItem"
+            key={key}
+            className={classNames(
+              '',
+              [
+                'am-tabs-nav-item',
+                direction === 'vertical' && 'vertical',
+                child.props.disabled && 'disabled'
+              ],
+              { active }
+            )}
+            onClick={(e: React.MouseEvent<HTMLElement>) =>
+              this.handleClick(key, e, child.props.disabled)
+            }
+          >
+            {child.props.tab}
+          </div>
+        )
+      }
+    )
+  }
+  public renderTabsPane = (): React.ReactNode[] => {
+    const { defaultKey } = this.state
+    return React.Children.map(
+      this.props.children as any[],
       (child: React.ReactElement<IPaneProps>) => {
         if (!child) {
           return null
