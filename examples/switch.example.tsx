@@ -5,10 +5,10 @@ import Button from '../packages/button/button'
 
 export default function(props: any) {
   const [checked, setChecked] = useState(true)
-  const onChange = checked => {
+  const onChange = (checked:boolean): any => {
     console.log(`我是${checked}`)
   }
-  const onToggleSwitch = () => {
+  const onToggleSwitch = ():any => {
     setChecked(!checked)
   }
   return (
