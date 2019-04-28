@@ -46,14 +46,14 @@ class RadioGroup extends React.Component<IProps, IState> {
     onChange && onChange(value)
   }
   renderRadioGroup = () => {
-    const { style, className, name, children } = this.props
+    const { style, className, name } = this.props
     const { checkedValue } = this.state
     const styles = Object.assign({}, { ...style })
     const classes = classNames(componentName, 'wrapper', [className])
     return (
       <div data-role={componentName} style={styles} className={classes}>
         {React.Children.map(
-          children,
+          this.props.children as any[],
           (child: React.ReactElement<RadioProps>) => {
             return React.cloneElement(child, {
               onClick: this.onGroupClick,

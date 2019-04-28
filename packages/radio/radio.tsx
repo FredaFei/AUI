@@ -62,7 +62,7 @@ class Radio extends React.Component<IProps, IState> {
     this.onRippleEffect()
     onClick && (onClick as React.MouseEventHandler)(value)
   }
-  public onInputChange = (value: any, e): any => {
+  public onInputChange = (value: any, e: React.MouseEvent<HTMLElement>): any => {
     e.preventDefault()
     const rippleEl = this.rippleElement.current
     rippleEl && rippleEl.classList.remove('active')
