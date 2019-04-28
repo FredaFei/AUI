@@ -1,15 +1,14 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils'
+import classes, { createScopedClasses } from '../utils/classnames'
 import { IProps as IColProps } from './col'
 import './style'
 
-interface IProps {
-  className?: string
-  style?: React.CSSProperties
+const componentName = 'Row'
+const sc = createScopedClasses(componentName)
+interface IProps extends IStyledProps {
   gutter?: number
 }
-const componentName = 'Row'
 class Row extends React.Component<IProps> {
   public static defaultProps = {
     gutter: 0
@@ -32,7 +31,7 @@ class Row extends React.Component<IProps> {
         ...style
       }
     )
-    const rowWrapClass = classNames(componentName, [className])
+    const rowWrapClass = classes(sc(''), className)
 
     return (
       <div data-role={componentName} style={styles} className={rowWrapClass}>
