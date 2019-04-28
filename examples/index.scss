@@ -129,29 +129,52 @@ body {
       background: rgba(#66e2d5, 0.9);
     }
   }
-  .custom{
+  .custom {
     color: rgb(225, 0, 80);
     border: 1px solid rgba(225, 0, 80, 0.5);
-    .ripple{
+    .ripple {
       background: rgb(225, 0, 80);
     }
   }
-  .custom-desk{
+  .custom-desk {
     border: none;
-    .am-collapse-item{
+    .am-collapse-item {
       background: rgb(247, 247, 247);
       margin-bottom: 20px;
-      &-name{
+      &-name {
         border: none;
         padding-left: 10px;
-        color:#66e2d5;
+        color: #66e2d5;
       }
     }
-    .am-collapse-item-content{
+    .am-collapse-item-content {
       background: rgb(247, 247, 247);
       .content-inner {
         padding-left: 26px;
         font-size: 18px;
+      }
+    }
+  }
+  .custom-grid {
+    .am-row {
+      font-size: 16px;
+      color: #fff;
+      text-align: center;
+      > div:not(.row-gutter) {
+        background: rgba(#4e57ef, 0.8);
+        padding: 16px 0;
+        &:nth-child(2n + 1) {
+          background: #cfd7ff;
+        }
+      }
+      & + .am-row {
+        margin-top: 14px;
+      }
+      > .row-gutter {
+        > div {
+          background: rgba(#4e57ef, 0.8);
+          padding: 16px 0;
+        }
       }
     }
   }
