@@ -104,14 +104,14 @@ class Collapse extends React.Component<IProps, IState> {
     return IconContent
   }
   renderCollapseHead = () => {
-    const { children } = this.props
     const { defaultKeys } = this.state
     return React.Children.map(
-      children,
+      this.props.children as any[],
       (child: React.ReactElement<IPaneProps>) => {
         if (!child) {
           return false
         }
+        console.log(child)
         const key = child.key as string
         this.keys.push(key)
         const active = defaultKeys.includes(key)
@@ -135,7 +135,10 @@ class Collapse extends React.Component<IProps, IState> {
             </div>
             <div className={sc('item-content')}>
               {!disabled &&
-                React.cloneElement(child as React.ReactElement<IPaneProps>, {})}
+                React.cloneElement(
+                  child as React.ReactElement<IPaneProps>,
+                  {}
+                )}
             </div>
           </div>
         )
