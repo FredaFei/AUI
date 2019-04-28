@@ -12,7 +12,7 @@ export interface IProps {
   value?: any
   name?: string
   indeterminate?: boolean
-  onChange?: (value: string, e: React.MouseEvent<HTMLElement>) => any
+  onChange?: (value: string) => any
 }
 interface IState {
   position: object
@@ -39,9 +39,6 @@ class Checkbox extends React.Component<IProps, IState> {
       position: {}
     }
   }
-  static contextType = {
-    checkboxGroup: PropTypes.any
-  }
   public onRippleEffect = (): any => {
     const targetEl = this.radioBodyElement.current
     const rippleEl = this.rippleElement.current
@@ -61,14 +58,14 @@ class Checkbox extends React.Component<IProps, IState> {
     })
     rippleEl.classList.add('active')
   }
-  public onChange = (value, event: React.MouseEvent<HTMLElement>): any => {
+  public onChange = (value: string): any => {
     // console.log(value)
     const { disabled, onChange } = this.props
     if (disabled) {
       return false
     }
     this.onRippleEffect()
-    onChange && (onChange as React.MouseEventHandler)(value, event)
+    onChange && onChange(value)
   }
   public onLabelClick = (
     value: any,
@@ -81,7 +78,7 @@ class Checkbox extends React.Component<IProps, IState> {
     if (disabled) {
       return false
     }
-    onChange && (onChange as React.MouseEventHandler)(value, event)
+    onChange && onChange(value)
   }
   renderCheckbox = () => {
     const { position } = this.state
@@ -95,7 +92,6 @@ class Checkbox extends React.Component<IProps, IState> {
       children
     } = this.props
     let iconName = checked ? 'check' : ''
-    // todo
     if (indeterminate && !checked) {
       iconName = 'line'
     }
@@ -107,7 +103,6 @@ class Checkbox extends React.Component<IProps, IState> {
     const bodyClass = classNames('checkbox-body', {
       disabled
     })
-    console.log(this.context)
     return (
       <label data-role={componentName} style={styles} className={wrapClass}>
         <span className={bodyClass} ref={this.radioBodyElement}>
@@ -122,7 +117,7 @@ class Checkbox extends React.Component<IProps, IState> {
             type="checkBox"
             value={value}
             defaultChecked={checked}
-            onChange={e => this.onChange(value, e)}
+            onChange={e => this.onChange(value)}
           />
           <span className="ripple" style={position} ref={this.rippleElement} />
         </span>

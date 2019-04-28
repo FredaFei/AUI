@@ -9,7 +9,7 @@ interface IProps {
   style?: React.CSSProperties
   value?: string[]
   defaultValue?: string[]
-  onChange?: (values: string, e: React.MouseEvent<HTMLElement>) => any
+  onChange?: (values: string) => any
 }
 interface IState {
   checkedValue: string[]
@@ -58,17 +58,15 @@ class CheckboxGroup extends React.Component<IProps, IState> {
     onChange && onChange(copyValue)
   }
   renderGroup = () => {
-    const { style, className, children } = this.props
+    const { style, className } = this.props
     const { checkedValue } = this.state
     const styles = Object.assign({}, { ...style })
     const classes = classNames(componentName, 'wrapper', [className])
     return (
       <div data-role={componentName} style={styles} className={classes}>
         {React.Children.map(
-          children,
+          this.props.children as any[],
           (child: React.ReactElement<ICheckboxProps>) => {
-            console.log(child)
-            console.log(children)
             return React.cloneElement(child, {
               onChange: this.onToggle,
               checked: checkedValue.includes(child.props.value)
