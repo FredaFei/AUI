@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Button from '../packages/button/button'
 import Row from '../packages/grid/row'
 import Col from '../packages/grid/col'
 
