@@ -5,7 +5,7 @@ import Button from '../packages/button/button'
 
 export default function(props: any) {
   const [formData, setFormData] = useState<FormValue>({
-    name: 'freda',
+    name: '',
     password: 'xxxxx'
   })
   const [fields] = useState([
