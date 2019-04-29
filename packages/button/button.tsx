@@ -10,6 +10,7 @@ interface IProps extends IStyledProps {
   icon?: string
   iconPosition?: string
   disabled?: boolean
+  type?: string
   onClick?: React.MouseEventHandler
 }
 interface IState {
