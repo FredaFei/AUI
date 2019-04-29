@@ -1,7 +1,8 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-// import { ReactFragment, Fragment } from 'react'
+import { ReactFragment } from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
+import validator from './validator'
 import './style'
 
 const componentName = 'Form'
@@ -13,7 +14,7 @@ export interface FormValue {
 interface IProps extends IStyledProps {
   value: FormValue
   fields: Array<{ name: string; label: string; input: { type: string } }>
-  buttons: any
+  buttons: ReactFragment
   onSubmit: React.FormEventHandler<HTMLFormElement>
   onChange: (value: FormValue) => void
 }
@@ -27,6 +28,21 @@ const Form: React.FunctionComponent<IProps> = props => {
   }
   const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const rules = [
+      { key: 'username', required: true },
+      { key: 'username', minLength: 6 },
+      { key: 'username', maxLength: 16 },
+      { key: 'password', required: true },
+      { key: 'password', minLength: 6 },
+      { key: 'password', maxLength: 16 },
+      { key: 'password', pattern: /^[a-zA-Z0-9]+$/ }
+    ]
+    const errors = validator(value, rules)
+    console.log('errors')
+    console.log(errors)
+    // if (Object.keys(errors).length > 0) {
+    //   return
+    // }
     onSubmit(e)
   }
   return (
