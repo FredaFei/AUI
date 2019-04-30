@@ -29,6 +29,7 @@
     "noEmit": true
   },
   "include": [
+    "example.tsx",
     "packages/**/*",
     "types/**/*",
     "example/**/*"
