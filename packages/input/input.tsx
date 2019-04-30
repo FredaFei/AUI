@@ -1,7 +1,5 @@
 import * as React from 'react'
-// import * as PropTypes from 'prop-types'
-// import { ReactFragment } from 'react'
-// import Button from '../button/button'
+import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
 
 import './style'
@@ -14,6 +12,7 @@ export interface IProps
   label?: string
   labelPosition?: 'left' | 'top'
   error?: string
+  length?: number | string
   errorPosition?: 'right' | 'bottom'
   size?: 'big' | 'small'
   type?:
@@ -42,13 +41,23 @@ const Input: React.FunctionComponent<IProps> = props => {
     className,
     ...rest
   } = props
+  const class1 = {
+    'label-left': labelPosition === 'left',
+    'label-top': labelPosition === 'top'
+  }
+  const class2 = {
+    'error-bottom': errorPosition === 'bottom',
+    'label-right': errorPosition === 'right'
+  }
   return (
-    <div className={classes(sc('wrapper'), className)}>
-      {label && <div className={sc('label', 'labelPosition')}>{label}</div>}
-      <div className={sc('content', 'size')}>
-        <input type={type} style={style} {...rest} />
+    <div className={classes(sc('wrapper', class1, size), className)}>
+      {label && <div className={sc('label')}>{label}</div>}
+      <div className={sc('inputAndError')}>
+        <div className={sc('content')}>
+          <input className={sc('')} type={type} style={style} {...rest} />
+        </div>
+        {error && <span className={sc('error', class2)}>{error}</span>}
       </div>
-      {error && <div className={sc('error', errorPosition)}>{error}</div>}
     </div>
   )
 }

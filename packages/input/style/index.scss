@@ -1,6 +1,65 @@
 @import 'var';
 %padding {
-  padding: 8px 24px;
+  padding: 4px 12px;
 }
 #{component(input)} {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 100%;
+  @extend %padding;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #fff;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  // transition: all 0.3s;
+  &-small {
+    #{component(input)} {
+      font-size: 12px;
+      line-height: 1.2;
+    }
+  }
+  &-big {
+    #{component(input)} {
+      line-height: 2;
+      font-size: 20px;
+    }
+  }
+  &-wrapper {
+    border: 1px solid red;
+    display: flex;
+  }
+  &-label-top {
+    flex-direction: column;
+    .am-input-label {
+      margin-bottom: 8px;
+    }
+  }
+  &-label-left {
+    flex-direction: row;
+    .am-input-label {
+      margin-right: 8px;
+    }
+  }
+  &-inputAndError {
+    #{component(input)} {
+      &-error {
+        display: inline-block;
+        font-size: 14px;
+        line-height: 32px;
+        color: $error-color;
+        &-bottom {
+          width: 100%;
+        }
+        &-right {
+          margin-left: 0.5em;
+        }
+      }
+      &-content {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
 }
