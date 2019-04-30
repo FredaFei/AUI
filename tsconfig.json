@@ -29,7 +29,9 @@
     "noEmit": true
   },
   "include": [
-    "./packages"
+    "packages/**/*",
+    "types/**/*",
+    "example/**/*"
   ],
   "exclude": [
     "node_modules",
