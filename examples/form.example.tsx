@@ -17,7 +17,7 @@ export default function(props: any) {
   const onChange = (value: FormValue) => {
     setFormData(value)
   }
-  const onSubmit = () => {
+  const onSubmit = ():any => {
     const rules = [
       { key: 'username', required: true, label: '用户名' },
       { key: 'username', minLength: 6, label: '用户名' },
