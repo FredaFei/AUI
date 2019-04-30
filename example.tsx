@@ -6,6 +6,7 @@ import Home from './examples/home'
 import ButtonExample from './examples/button.example'
 import GridExample from './examples/grid.example'
 import LayoutExample from './examples/layout.example'
+import InputExample from './examples/input.example'
 import FormExample from './examples/form.example'
 import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
@@ -51,6 +52,9 @@ class App extends Component {
                   <Link to="/layout">Layout</Link>
                 </li>
                 <li>
+                  <Link to="/input">Input 输入框</Link>
+                </li>
+                <li>
                   <Link to="/form">Form 表单</Link>
                 </li>
                 <li>
@@ -72,6 +76,7 @@ class App extends Component {
               <Route path="/button" component={ButtonExample} />
               <Route path="/grid" component={GridExample} />
               <Route path="/layout" component={LayoutExample} />
+              <Route path="/Input" component={InputExample} />
               <Route path="/form" component={FormExample} />
               <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
