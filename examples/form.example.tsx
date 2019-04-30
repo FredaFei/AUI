@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { useState, Fragment } from 'react'
 import Form, { FormValue } from '../packages/form/form'
+import validator,{ noErrors} from '../packages/form/validator'
 import Button from '../packages/button/button'
 
 export default function(props: any) {
@@ -9,14 +10,31 @@ export default function(props: any) {
     password: 'xxxxx'
   })
   const [fields] = useState([
-    { name: 'name', label: '用户名', input: { type: 'text' } },
+    { name: 'username', label: '用户名', input: { type: 'text' } },
     { name: 'password', label: '密码', input: { type: 'password' } }
   ])
+  const [errors, setErrors] = useState({})
   const onChange = (value: FormValue) => {
     setFormData(value)
   }
   const onSubmit = () => {
-    console.log(formData)
+    const rules = [
+      { key: 'username', required: true, label: '用户名' },
+      { key: 'username', minLength: 6, label: '用户名' },
+      { key: 'username', maxLength: 16, label: '用户名' },
+      { key: 'password', required: true, label: '密码' },
+      { key: 'password', minLength: 6, label: '密码' },
+      { key: 'password', maxLength: 16, label: '密码' },
+      { key: 'password', pattern: /^[a-zA-Z0-9]+$/, label: '密码' }
+    ]
+    const errors = validator(formData, rules)
+    console.log('errors')
+    console.log(errors)
+    if (noErrors(errors)){
+      // todo
+      return false
+    }
+    setErrors(errors)
   }
   return (
     <div className="exp-box">
@@ -25,6 +43,7 @@ export default function(props: any) {
         <Form
           value={formData}
           fields={fields}
+          errors={errors}
           onChange={onChange}
           onSubmit={onSubmit}
           buttons={
