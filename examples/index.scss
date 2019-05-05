@@ -196,4 +196,14 @@ body {
       background: #ddd;
     }
   }
+  .custom-input{
+    .am-input-wrapper + .am-input-wrapper{
+      margin-top: 14px;
+    }
+    &-search {
+      & + .am-input-after {
+        background: #66e2d5;
+      }
+    }
+  }
 }
