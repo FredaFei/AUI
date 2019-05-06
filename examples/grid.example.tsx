@@ -70,58 +70,88 @@ export default function(props: any) {
       </div>
       <div className="exp-section">
         <h3>自定义Flex对齐</h3>
-        <p>Align Top</p>
+        <p>vertical + align = top + center</p>
         <div className="custom-grid">
-          <Row style={{ justifyContent: 'center', alignItems: 'flex-start' }}>
+          <Row align="center">
             <Col span={4}>
-              <div style={{ height: '100px' }}>col-4</div>
+              <div style={{ height: '100px' }}>col-4-1</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '50px' }}>col-4</div>
+              <div style={{ height: '50px' }}>col-4-2</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '120px' }}>col-4</div>
+              <div style={{ height: '120px' }}>col-4-3</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '80px' }}>col-4</div>
+              <div style={{ height: '80px' }}>col-4-4</div>
             </Col>
           </Row>
         </div>
-        <p>Align center</p>
+        <p>vertical + align = center + center</p>
         <div className="custom-grid">
-          <Row
-            style={{ justifyContent: 'space-around', alignItems: 'center' }}
-          >
+          <Row align="spaceAround" verticalAlign="center">
             <Col span={4}>
-              <div style={{ height: '100px' }}>col-4</div>
+              <div style={{ height: '100px' }}>col-4-1</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '50px' }}>col-4</div>
+              <div style={{ height: '50px' }}>col-4-2</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '120px' }}>col-4</div>
+              <div style={{ height: '120px' }}>col-4-3</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '80px' }}>col-4</div>
+              <div style={{ height: '80px' }}>col-4-4</div>
             </Col>
           </Row>
         </div>
-        <p>Align Bottom</p>
+        <p>vertical + align = center + right</p>
         <div className="custom-grid">
-          <Row
-            style={{ justifyContent: 'space-around', alignItems: 'flex-end' }}
-          >
+          <Row align="right" verticalAlign="center">
             <Col span={4}>
-              <div style={{ height: '100px' }}>col-4</div>
+              <div style={{ height: '100px' }}>col-4-1</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '50px' }}>col-4</div>
+              <div style={{ height: '50px' }}>col-4-2</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '120px' }}>col-4</div>
+              <div style={{ height: '120px' }}>col-4-3</div>
             </Col>
             <Col span={4}>
-              <div style={{ height: '80px' }}>col-4</div>
+              <div style={{ height: '80px' }}>col-4-4</div>
+            </Col>
+          </Row>
+        </div>
+        <p>vertical + align = bottom + center</p>
+        <div className="custom-grid">
+          <Row align="spaceAround" verticalAlign="bottom">
+            <Col span={4}>
+              <div style={{ height: '100px' }}>col-4-1</div>
+            </Col>
+            <Col span={4}>
+              <div style={{ height: '50px' }}>col-4-2</div>
+            </Col>
+            <Col span={4}>
+              <div style={{ height: '120px' }}>col-4-3</div>
+            </Col>
+            <Col span={4}>
+              <div style={{ height: '80px' }}>col-4-4</div>
+            </Col>
+          </Row>
+        </div>
+        <p>vertical + align = center + spaceBetween</p>
+        <div className="custom-grid">
+          <Row align="spaceBetween" verticalAlign="center">
+            <Col span={4}>
+              <div style={{ height: '100px' }}>col-4-1</div>
+            </Col>
+            <Col span={4}>
+              <div style={{ height: '50px' }}>col-4-2</div>
+            </Col>
+            <Col span={4}>
+              <div style={{ height: '120px' }}>col-4-3</div>
+            </Col>
+            <Col span={4}>
+              <div style={{ height: '80px' }}>col-4-4</div>
             </Col>
           </Row>
         </div>
