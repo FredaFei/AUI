@@ -78,19 +78,19 @@ body {
     > ol {
       flex-shrink: 0;
       li {
-        padding-left: 1.5em;
         line-height: 40px;
         font-size: 14px;
         color: $site-color;
         a {
+          display: block;
+          padding-left: 1.5em;
           color: $site-color;
+          &.active {
+            background: rgb(102, 226, 213);
+          }
           &:hover {
             color: $focus-color;
           }
-        }
-        &.active {
-          color: $focus-color;
-          background: rgb(102, 226, 213);
         }
       }
     }
@@ -196,8 +196,8 @@ body {
       background: #ddd;
     }
   }
-  .custom-input{
-    .am-input-wrapper + .am-input-wrapper{
+  .custom-input {
+    .am-input-wrapper + .am-input-wrapper {
       margin-top: 14px;
     }
     &-search {

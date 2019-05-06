@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import { Component } from 'react'
-import { HashRouter as Router, Route, Link } from 'react-router-dom'
+import { HashRouter as Router, Route, NavLink } from 'react-router-dom'
 import Home from './examples/home'
 import ButtonExample from './examples/button.example'
 import GridExample from './examples/grid.example'
@@ -30,49 +30,43 @@ class App extends Component {
             <aside className="site-doc-aside">
               <h2>入门</h2>
               <ol>
-                <li className="active">
-                  <Link to="/">快速上手</Link>
-                </li>
                 <li>
-                  <Link to="/">安装</Link>
-                </li>
-                <li>
-                  <Link to="/">配置</Link>
+                  <NavLink to="/guide">快速上手</NavLink>
                 </li>
               </ol>
               <h2>组件</h2>
               <ol>
                 <li>
-                  <Link to="/button">Button</Link>
+                  <NavLink to="/button">Button</NavLink>
                 </li>
                 <li>
-                  <Link to="/grid">Grid</Link>
+                  <NavLink to="/grid">Grid</NavLink>
                 </li>
                 <li>
-                  <Link to="/layout">Layout</Link>
+                  <NavLink to="/layout">Layout</NavLink>
                 </li>
                 <li>
-                  <Link to="/input">Input 输入框</Link>
+                  <NavLink to="/input">Input 输入框</NavLink>
                 </li>
                 <li>
-                  <Link to="/form">Form 表单</Link>
+                  <NavLink to="/form">Form 表单</NavLink>
                 </li>
                 <li>
-                  <Link to="/message">Message</Link>
+                  <NavLink to="/message">Message</NavLink>
                 </li>
                 <li>
-                  <Link to="/dialog">Dialog</Link>
+                  <NavLink to="/dialog">Dialog</NavLink>
                 </li>
                 <li>
-                  <Link to="/switch">Switch</Link>
+                  <NavLink to="/switch">Switch</NavLink>
                 </li>
                 <li>
-                  <Link to="/collapse">Collapse</Link>
+                  <NavLink to="/collapse">Collapse</NavLink>
                 </li>
               </ol>
             </aside>
             <main className="site-doc-main">
-              <Route path="/" exact={true} component={Home} />
+              <Route path="/guide" exact={true} component={Home} />
               <Route path="/button" component={ButtonExample} />
               <Route path="/grid" component={GridExample} />
               <Route path="/layout" component={LayoutExample} />
