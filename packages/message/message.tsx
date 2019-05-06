@@ -10,7 +10,6 @@ interface IProp extends IStyledProps {
   content: React.ReactNode | string
   duration?: number | undefined
   mode?: string
-  position?: string
   onClose?: () => any
 }
 interface IState {
@@ -18,11 +17,9 @@ interface IState {
 }
 class Message extends React.Component<IProp, IState> {
   public static defaultProps = {
-    position: 'top',
     duration: 3
   }
   public static propTypes = {
-    position: PropTypes.string,
     duration: PropTypes.number,
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     mode: PropTypes.oneOf(['info', 'success', 'warning', 'error', 'loading']),
@@ -57,19 +54,22 @@ class Message extends React.Component<IProp, IState> {
   }
   render() {
     const { visible } = this.state
-    const { content, position, className, style, duration, mode } = this.props
+    const { content, className, style, duration, mode } = this.props
     return (
       visible &&
       ReactDOM.createPortal(
-        <div className={sc([className, `position-${position}`])} style={style}>
+        <div
+          className={classes(sc('wrapper'), className)}
+          style={style}
+        >
           {mode && (
-            <span className={classes('icon-type',`${mode}`)}>
+            <span className={sc('icon-type', `${mode}`)}>
               <Icon name={mode} />
             </span>
           )}
           {content}
           {duration === 0 && (
-            <span className={classes('message-close')} onClick={this.onCloseClick}>
+            <span className={sc('close')} onClick={this.onCloseClick}>
               <Icon name="close" />
             </span>
           )}
