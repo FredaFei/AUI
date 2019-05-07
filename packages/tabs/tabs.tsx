@@ -17,6 +17,7 @@ interface IState {
 }
 const componentName = 'Tabs'
 class Tabs extends React.Component<IProps, IState> {
+  static displayName = componentName
   public static defaultProps = {
     direction: 'horizontal'
   }

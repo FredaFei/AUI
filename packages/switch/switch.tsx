@@ -18,6 +18,7 @@ interface IState {
 }
 
 class Switch extends React.Component<IProps, IState> {
+  static displayName = componentName
   public static defaultProps = {
     disabled: false,
     defaultChecked: false
@@ -79,7 +80,7 @@ class Switch extends React.Component<IProps, IState> {
     const { disabled, style, className } = this.props
     const isActive = checked && 'active'
     const isDisabled = disabled && 'disabled'
-    const wrapperClass = classes(sc(''),[className, isActive, isDisabled])
+    const wrapperClass = classes(sc(''), [className, isActive, isDisabled])
     const styles = Object.assign({}, style)
     return (
       <label className={wrapperClass} style={styles} onClick={this.onClick}>

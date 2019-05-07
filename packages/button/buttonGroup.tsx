@@ -24,4 +24,5 @@ ButtonGroup.propTypes = {
   onClick: PropTypes.func,
   style: PropTypes.object
 }
+ButtonGroup.displayName = componentName
 export default ButtonGroup

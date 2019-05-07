@@ -20,6 +20,7 @@ interface IState {
   open: boolean
 }
 class Collapse extends React.Component<IProps, IState> {
+  static displayName = componentName;
   public static defaultProps = {
     accordion: false,
     disabled: false

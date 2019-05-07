@@ -17,6 +17,7 @@ interface IState {
   position: object
 }
 class Button extends React.Component<IProps, IState> {
+  static displayName = componentName
   public static defaultProps = {
     icon: '',
     iconPosition: 'left',

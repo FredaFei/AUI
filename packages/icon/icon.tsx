@@ -38,4 +38,5 @@ Icon.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object
 }
+Icon.displayName = componentName
 export default Icon

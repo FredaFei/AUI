@@ -12,6 +12,7 @@ export interface IProps {
 }
 const componentName = 'TabPane'
 class TabPane extends React.Component<IProps> {
+  static displayName = componentName
   public static propTypes = {
     tab: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     active: PropTypes.bool,

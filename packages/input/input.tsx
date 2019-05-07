@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
+// import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
 
 import './style'

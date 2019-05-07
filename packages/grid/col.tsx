@@ -11,6 +11,7 @@ export interface IProps extends IStyledProps {
   offset?: number
 }
 class Col extends React.Component<IProps> {
+  static displayName = componentName
   public static defaultProps = {
     span: 0,
     offset: 0,

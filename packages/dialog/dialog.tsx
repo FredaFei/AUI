@@ -23,6 +23,7 @@ interface IProps extends IBaseProps{
   visible: boolean
 }
 class Dialog extends React.Component<IProps> {
+  static displayName = componentName;
   static defaultProps = {
     visible: false,
     mask: {

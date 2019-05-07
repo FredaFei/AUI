@@ -16,6 +16,7 @@ interface IState {
   visible: boolean
 }
 class Message extends React.Component<IProp, IState> {
+  static displayName = componentName
   public static defaultProps = {
     duration: 3
   }
@@ -58,10 +59,7 @@ class Message extends React.Component<IProp, IState> {
     return (
       visible &&
       ReactDOM.createPortal(
-        <div
-          className={classes(sc('wrapper'), className)}
-          style={style}
-        >
+        <div className={classes(sc('wrapper'), className)} style={style}>
           {mode && (
             <span className={sc('icon-type', `${mode}`)}>
               <Icon name={mode} />

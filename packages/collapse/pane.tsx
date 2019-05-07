@@ -10,7 +10,9 @@ export interface IProps extends IStyledProps {
   visibleIcon?: boolean
   disabled?: boolean
 }
+const componentName = 'Pane'
 class Pane extends React.Component<IProps> {
+  static displayName = componentName;
   public static defaultProps = {
     visibleIcon: true,
     disabled: false,

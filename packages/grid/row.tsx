@@ -12,6 +12,7 @@ interface IProps extends IStyledProps {
   verticalAlign?: 'top' | 'center' | 'bottom'
 }
 class Row extends React.Component<IProps> {
+  static displayName = componentName
   public static defaultProps = {
     gutter: 0,
     align: 'left',
