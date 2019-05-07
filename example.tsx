@@ -7,6 +7,7 @@ import ButtonExample from './examples/button.example'
 import GridExample from './examples/grid.example'
 import LayoutExample from './examples/layout.example'
 import InputExample from './examples/input.example'
+import CheckboxExample from './examples/checkbox.example'
 import FormExample from './examples/form.example'
 import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
@@ -49,6 +50,9 @@ class App extends Component {
                   <NavLink to="/input">Input 输入框</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/checkbox">Checkbox 多选框</NavLink>
+                </li>
+                <li>
                   <NavLink to="/form">Form 表单</NavLink>
                 </li>
                 <li>
@@ -71,6 +75,7 @@ class App extends Component {
               <Route path="/grid" component={GridExample} />
               <Route path="/layout" component={LayoutExample} />
               <Route path="/Input" component={InputExample} />
+              <Route path="/Checkbox" component={CheckboxExample} />
               <Route path="/form" component={FormExample} />
               <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
