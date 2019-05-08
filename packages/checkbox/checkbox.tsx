@@ -1,5 +1,4 @@
 import * as React from 'react'
-// import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
 import './style'
 
@@ -31,4 +30,5 @@ const Checkbox: React.FunctionComponent<IProps> = props => {
     </label>
   )
 }
+Checkbox.displayName = componentName
 export default Checkbox
