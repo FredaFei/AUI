@@ -6,12 +6,10 @@ import './style'
 
 const componentName = 'Tabs'
 const sc = createScopedClasses(componentName)
-interface IProps {
+interface IProps extends IStyledProps {
   activeKey?: string
   defaultActiveKey?: string
   direction?: string
-  className?: string
-  style?: React.CSSProperties
   onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
 }
 interface IState {
@@ -110,19 +108,16 @@ class Tabs extends React.Component<IProps, IState> {
         }
         const key = child.key as string
         this.keys.push(key)
-        const active = defaultKey === key
+        const itemClass = {
+          vertical: direction === 'vertical',
+          disabled: child.props.disabled,
+          active: defaultKey === key
+        }
         return (
           <div
             data-role="tabsNavItem"
             key={key}
-            className={sc(
-              'nav-item',
-              [
-                direction === 'vertical' && 'vertical',
-                child.props.disabled && 'disabled'
-              ],
-              { active }
-            )}
+            className={sc('nav-item', itemClass)}
             onClick={(e: React.MouseEvent<HTMLElement>) =>
               this.handleClick(key, e, child.props.disabled)
             }
@@ -152,14 +147,14 @@ class Tabs extends React.Component<IProps, IState> {
   }
   renderTabs = () => {
     const { className, style, direction } = this.props
-    const vertical = direction === 'vertical'
-    const tabsClasses = classes(sc('wrapper', { vertical }), className)
-    const tabsNavClasses = sc('nav', { vertical })
+    const vertical = { vertical: direction === 'vertical' }
+    const tabsClasses = classes(sc('wrapper', vertical), className)
+    const tabsNavClasses = sc('nav', vertical)
     return (
       <div data-role="tabs" className={tabsClasses} style={style}>
         <div className={tabsNavClasses} ref={this.tabsHeadElement}>
           {this.renderTabsNav()}
-          <div className="line" ref={this.lineElement} />
+          <div className={sc('nav-line')} ref={this.lineElement} />
         </div>
         <ul className="am-tabs-pane-body">{this.renderTabsPane()}</ul>
       </div>

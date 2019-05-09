@@ -1,6 +1,5 @@
-@import '../../style/var.scss';
-@import '../../style/mixin.scss';
-.am-tabs {
+@import 'var';
+#{component(tabs)} {
   &-wrapper {
     position: relative;
     &.vertical {
@@ -15,22 +14,23 @@
     justify-content: flex-start;
     flex-shrink: 0;
     border-bottom: 1px solid #ddd;
-    > .line {
+    &-line {
       position: absolute;
       bottom: -1px;
       border-bottom: 2px solid #1890ff;
       box-sizing: border-box;
       transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
-    &.vertical {
-      flex-direction: column;
-      border-right: 1px solid #ddd;
-      border-bottom: none;
-      > .line {
-        right: -1px;
-        border-right: 2px solid #1890ff;
-      }
-    }
+  }
+
+  &-vertical {
+    flex-direction: column;
+    border-right: 1px solid #ddd;
+    border-bottom: none;
+  }
+  &-line {
+    right: -1px;
+    border-right: 2px solid #1890ff;
   }
   &-nav-item {
     padding: 12px 16px;
@@ -47,25 +47,25 @@
     & + .am-tabs-item {
       margin-left: 10px;
     }
-    &.vertical + .am-tabs-item {
-      margin-top: 10px;
-      margin-left: 0;
-    }
-    &.active {
-      color: $darkblue;
-      font-weight: 700;
-    }
-    &.disabled {
-      color: #ccc;
-    }
   }
-  &-pane-body {
-    .am-tabpane {
-      padding: 8px;
-      display: none;
-      &.active {
-        display: block;
-      }
-    }
+  &-vertical + .am-tabs-item {
+    margin-top: 10px;
+    margin-left: 0;
+  }
+  &-active {
+    color: $darkblue;
+    font-weight: 700;
+  }
+  &-disabled {
+    color: #ccc;
+  }
+}
+#{component(tabPane)} {
+  &-pane-item {
+    padding: 8px;
+    display: none;
+  }
+  &-active {
+    display: block;
   }
 }

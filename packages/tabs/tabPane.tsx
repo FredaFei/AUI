@@ -5,12 +5,10 @@ import './style'
 
 const componentName = 'TabPane'
 const sc = createScopedClasses(componentName)
-export interface IProps {
+export interface IProps extends IStyledProps {
   tab: React.ReactNode
   key?: string
   active?: boolean
-  className?: string
-  style?: React.CSSProperties
 }
 class TabPane extends React.Component<IProps> {
   static displayName = componentName
@@ -22,7 +20,7 @@ class TabPane extends React.Component<IProps> {
   }
   renderPane = () => {
     const { className, style, active, key, children, ...rest } = this.props
-    const paneClasses = classes(sc('', { active }), className)
+    const paneClasses = classes(sc('pane-item', { active }), className)
     return (
       <li
         data-role="tabPane"
