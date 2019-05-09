@@ -1,9 +1,11 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils'
+import classes, { createScopedClasses } from '../utils/classnames'
 import { IProps as IPaneProps } from './tabPane'
 import './style'
 
+const componentName = 'Tabs'
+const sc = createScopedClasses(componentName)
 interface IProps {
   activeKey?: string
   defaultActiveKey?: string
@@ -15,7 +17,6 @@ interface IProps {
 interface IState {
   defaultKey: string
 }
-const componentName = 'Tabs'
 class Tabs extends React.Component<IProps, IState> {
   static displayName = componentName
   public static defaultProps = {
@@ -114,10 +115,9 @@ class Tabs extends React.Component<IProps, IState> {
           <div
             data-role="tabsNavItem"
             key={key}
-            className={classNames(
-              '',
+            className={sc(
+              'nav-item',
               [
-                'am-tabs-nav-item',
                 direction === 'vertical' && 'vertical',
                 child.props.disabled && 'disabled'
               ],
@@ -152,14 +152,11 @@ class Tabs extends React.Component<IProps, IState> {
   }
   renderTabs = () => {
     const { className, style, direction } = this.props
-    const styles = Object.assign({}, { ...style })
     const vertical = direction === 'vertical'
-    const tabsClasses = classNames(componentName, 'wrapper', { vertical }, [
-      className
-    ])
-    const tabsNavClasses = classNames('', ['am-tabs-nav'], { vertical })
+    const tabsClasses = classes(sc('wrapper', { vertical }), className)
+    const tabsNavClasses = sc('nav', { vertical })
     return (
-      <div data-role="tabs" className={tabsClasses} style={styles}>
+      <div data-role="tabs" className={tabsClasses} style={style}>
         <div className={tabsNavClasses} ref={this.tabsHeadElement}>
           {this.renderTabsNav()}
           <div className="line" ref={this.lineElement} />

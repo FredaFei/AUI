@@ -1,8 +1,10 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { classNames } from '../utils'
+import classes, { createScopedClasses } from '../utils/classnames'
 import './style'
 
+const componentName = 'TabPane'
+const sc = createScopedClasses(componentName)
 export interface IProps {
   tab: React.ReactNode
   key?: string
@@ -10,7 +12,6 @@ export interface IProps {
   className?: string
   style?: React.CSSProperties
 }
-const componentName = 'TabPane'
 class TabPane extends React.Component<IProps> {
   static displayName = componentName
   public static propTypes = {
@@ -21,16 +22,13 @@ class TabPane extends React.Component<IProps> {
   }
   renderPane = () => {
     const { className, style, active, key, children, ...rest } = this.props
-    const styles = Object.assign({}, { ...style })
-    const classes = classNames(componentName, [className], {
-      active
-    })
+    const paneClasses = classes(sc('', { active }), className)
     return (
       <li
         data-role="tabPane"
         key={key}
-        className={classes}
-        style={styles}
+        className={paneClasses}
+        style={style}
         {...rest}
       >
         {children}
