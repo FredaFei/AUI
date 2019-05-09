@@ -1,5 +1,61 @@
 @import 'var';
-#{component(Pager)} {
-  &-wrapper {
+#{component(pager)} {
+  &-wrapper{
+    margin: 10px 0;
+  }
+  &-wrapper,
+  &-list {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    text-align: center;
+  }
+  &-prev,
+  &-next,
+  &-list-item {
+    min-width: 32px;
+    line-height: 1.8;
+    color: $color;
+    vertical-align: middle;
+    background: #fff;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    cursor: pointer;
+    &:not(.am-pager-disabled):hover {
+      border-color: $darkblue;
+      color: $darkblue;
+    }
+  }
+  &-split {
+    border: none;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-list-item-active {
+    color: $darkblue;
+    border-color: $darkblue;
+  }
+  &-disabled {
+    border-color: darken($gray, 20%);
+    color: darken($gray, 30%);
+    cursor: not-allowed;
+  }
+  &-quick-jump {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1em;
+  }
+  &-input-page {
+    width: 5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+  }
+  &-list-item + &-list-item {
+    margin-left: 0.5em;
+  }
+  &-list {
+    margin: 0 0.5em;
   }
 }
