@@ -11,6 +11,7 @@ import RadioExample from './examples/radio.example'
 import CheckboxExample from './examples/checkbox.example'
 import FormExample from './examples/form.example'
 import PagerExample from './examples/pager.example'
+import TabsExample from './examples/tabs.example'
 import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
 import SwitchExample from './examples/switch.example'
@@ -64,6 +65,9 @@ class App extends Component {
                   <NavLink to="/pager">Pager 分页</NavLink>
                 </li>
                 <li>
+                  <NavLink to="/tabs">Tabs 标签页</NavLink>
+                </li>
+                <li>
                   <NavLink to="/message">Message</NavLink>
                 </li>
                 <li>
@@ -87,6 +91,7 @@ class App extends Component {
               <Route path="/Checkbox" component={CheckboxExample} />
               <Route path="/form" component={FormExample} />
               <Route path="/pager" component={PagerExample} />
+              <Route path="/tabs" component={TabsExample} />
               <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
               <Route path="/switch" component={SwitchExample} />
