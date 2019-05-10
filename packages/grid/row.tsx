@@ -33,6 +33,7 @@ class Row extends React.Component<IProps> {
     super(props)
   }
   render() {
+    console.log(this.props.children)
     const { style, gutter, align, verticalAlign, className } = this.props
     const styles = Object.assign(
       {},
@@ -50,16 +51,14 @@ class Row extends React.Component<IProps> {
       ),
       className
     )
-    const children = React.Children.map(this.props.children, child => {
-      const element = child as React.ReactElement<IColProps>
-      return (
-        element.type === Col &&
-        React.cloneElement(element, {
-          gutter
-        })
-      )
-    })
-    const col = children.filter(i => i)
+    const col = React.Children.map(this.props.children, child => {
+      const element = child as React.ReactElement<IColProps | {}>
+      return element.type === Col
+        ? React.cloneElement(element, {
+            gutter
+          })
+        : element
+    }).filter(i => i)
     return (
       <div data-role={componentName} style={styles} className={rowWrapClass}>
         {col}
