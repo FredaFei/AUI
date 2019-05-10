@@ -9,6 +9,7 @@ export interface IProps extends IStyledProps {
   tab: React.ReactNode
   key?: string
   active?: boolean
+  disabled?: boolean
 }
 class TabPane extends React.Component<IProps> {
   static displayName = componentName

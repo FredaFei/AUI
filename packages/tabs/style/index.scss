@@ -2,11 +2,6 @@
 #{component(tabs)} {
   &-wrapper {
     position: relative;
-    &.vertical {
-      display: flex;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
   }
   &-nav {
     position: relative;
@@ -24,19 +19,24 @@
   }
 
   &-vertical {
-    flex-direction: column;
-    border-right: 1px solid #ddd;
-    border-bottom: none;
-  }
-  &-line {
-    right: -1px;
-    border-right: 2px solid #1890ff;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    #{component(tabs)} {
+      &-nav {
+        border-bottom: none;
+        flex-direction: column;
+        border-right: 1px solid #ddd;
+      }
+      &-nav-item{text-align: right;}
+      &-nav-line {
+        right: -1px;
+        border-right: 2px solid #1890ff;
+      }
+    }
   }
   &-nav-item {
     padding: 12px 16px;
-    display: flex;
-    align-items: center;
-    flex-shrink: 0;
     height: 100%;
     box-sizing: border-box;
     cursor: pointer;
@@ -48,16 +48,15 @@
       margin-left: 10px;
     }
   }
-  &-vertical + .am-tabs-item {
-    margin-top: 10px;
-    margin-left: 0;
-  }
   &-active {
     color: $darkblue;
     font-weight: 700;
   }
   &-disabled {
     color: #ccc;
+    &:hover {
+      color: #ccc;
+    }
   }
 }
 #{component(tabPane)} {

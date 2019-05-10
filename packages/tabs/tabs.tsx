@@ -98,7 +98,6 @@ class Tabs extends React.Component<IProps, IState> {
     onChange && onChange(key, e)
   }
   public renderTabsNav = (): React.ReactNode[] => {
-    const { direction } = this.props
     const { defaultKey } = this.state
     return React.Children.map(
       this.props.children as any[],
@@ -109,7 +108,6 @@ class Tabs extends React.Component<IProps, IState> {
         const key = child.key as string
         this.keys.push(key)
         const itemClass = {
-          vertical: direction === 'vertical',
           disabled: child.props.disabled,
           active: defaultKey === key
         }
@@ -145,11 +143,11 @@ class Tabs extends React.Component<IProps, IState> {
       }
     )
   }
-  renderTabs = () => {
+  render() {
     const { className, style, direction } = this.props
     const vertical = { vertical: direction === 'vertical' }
     const tabsClasses = classes(sc('wrapper', vertical), className)
-    const tabsNavClasses = sc('nav', vertical)
+    const tabsNavClasses = sc('nav')
     return (
       <div data-role="tabs" className={tabsClasses} style={style}>
         <div className={tabsNavClasses} ref={this.tabsHeadElement}>
@@ -159,9 +157,6 @@ class Tabs extends React.Component<IProps, IState> {
         <ul className="am-tabs-pane-body">{this.renderTabsPane()}</ul>
       </div>
     )
-  }
-  render() {
-    return this.renderTabs()
   }
 }
 export default Tabs
