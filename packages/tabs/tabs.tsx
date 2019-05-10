@@ -38,33 +38,34 @@ class Tabs extends React.Component<IProps, IState> {
     this.lineElement = React.createRef()
     this.tabsHeadElement = React.createRef()
     this.state = {
-      activeTabKey: this.props.defaultActiveKey || ''
+      activeTabKey:
+        this.props.defaultActiveKey || this.props.activeKey || this.keys[0]
     }
   }
   componentDidMount() {
-    this.calculateLineStyle(this.getCurrentTabsIndex(this.activeTabKey))
-  }
-  get activeTabKey() {
-    if ('defaultActiveKey' in this.props) {
-      return this.state.activeTabKey
-    } else {
-      return this.props.activeKey || this.keys[0]
+    if(!this.state.activeTabKey){
+      this.setState({
+        activeTabKey:
+          this.props.defaultActiveKey || this.props.activeKey || this.keys[0]
+      })
     }
+    this.calculateLineStyle(this.getCurrentTabsIndex(this.state.activeTabKey))
   }
-  set activeTabKey(value) {
-    if ('defaultActiveKey' in this.props) {
-      this.setState({ activeTabKey: value })
+  public componentDidUpdate(nextProps: IProps, prevState: IState) {
+    if (this.state.activeTabKey !== prevState.activeTabKey) {
+      this.calculateLineStyle(
+        this.getCurrentTabsIndex(this.state.activeTabKey)
+      )
     }
-    this.calculateLineStyle(this.getCurrentTabsIndex(value))
-    const { onChange } = this.props
-    onChange && onChange(value)
   }
   private keys: string[] = []
   public getCurrentTabsIndex = (value: string): number => {
     return this.keys.indexOf(value) || 0
   }
   public calculateLineStyle(index: number): any {
-    // debugger
+    if (index < 0) {
+      return false
+    }
     const { direction } = this.props
     const lineElement = this.lineElement.current
     const tabsHeadElement = this.tabsHeadElement.current
@@ -87,7 +88,11 @@ class Tabs extends React.Component<IProps, IState> {
     if (disabled) {
       return false
     }
-    this.activeTabKey = key
+    this.setState({
+      activeTabKey: key
+    })
+    this.calculateLineStyle(this.getCurrentTabsIndex(key))
+    this.props.onChange && this.props.onChange(key)
   }
   public renderTabsNav = (child: React.ReactElement, options: ILayout) => {
     const itemClass = {
@@ -97,7 +102,7 @@ class Tabs extends React.Component<IProps, IState> {
     return (
       <div
         data-role="tabsNavItem"
-        key={options.key}
+        key={`nav-${options.key}`}
         className={sc('nav-item', itemClass)}
         onClick={() => this.handleClick(options.key, child.props.disabled)}
       >

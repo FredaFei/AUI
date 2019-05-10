@@ -13,13 +13,13 @@ export interface IProps extends IStyledProps {
 }
 class TabPane extends React.Component<IProps> {
   static displayName = componentName
+  public static defaultProps = {}
   public static propTypes = {
     tab: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     active: PropTypes.bool,
-    className: PropTypes.string,
-    style: PropTypes.object
+    disabled: PropTypes.bool
   }
-  renderPane = () => {
+  render() {
     const { className, style, active, key, children, ...rest } = this.props
     const paneClasses = classes(sc('pane-item', { active }), className)
     return (
@@ -33,9 +33,6 @@ class TabPane extends React.Component<IProps> {
         {children}
       </li>
     )
-  }
-  render() {
-    return this.renderPane()
   }
 }
 export default TabPane
