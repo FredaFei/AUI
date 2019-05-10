@@ -4,7 +4,7 @@ import Input from '../packages/input/input'
 import Icon from '../packages/icon/icon'
 
 export default function(props: any) {
-  const [error, setError] = useState('用户名不能为空')
+  const [error] = useState('用户名不能为空')
   const [value, setValue] = useState('')
   const onChange = (e: React.FormEvent) => {
     setValue((e.target as HTMLInputElement).value)
