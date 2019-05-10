@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import classes, { createScopedClasses } from '../utils/classnames'
-import { IProps as IPaneProps } from './tabPane'
+import TabPane, { IProps as IPaneProps } from './tabPane'
 import './style'
 
 const componentName = 'Tabs'
@@ -10,10 +10,16 @@ interface IProps extends IStyledProps {
   activeKey?: string
   defaultActiveKey?: string
   direction?: string
-  onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
+  onChange?: (key: string) => any
 }
+interface ILayout {
+  key: string
+  active?: boolean
+}
+
+type TLayout = (a: React.ReactElement<IPaneProps>, b: ILayout) => {}
 interface IState {
-  defaultKey: string
+  activeTabKey: string
 }
 class Tabs extends React.Component<IProps, IState> {
   static displayName = componentName
@@ -23,9 +29,7 @@ class Tabs extends React.Component<IProps, IState> {
   public static propTypes = {
     activeKey: PropTypes.string,
     defaultActiveKey: PropTypes.string,
-    direction: PropTypes.string,
-    className: PropTypes.string,
-    style: PropTypes.object
+    direction: PropTypes.string
   }
   private lineElement: React.RefObject<HTMLDivElement>
   private tabsHeadElement: React.RefObject<HTMLDivElement>
@@ -34,37 +38,33 @@ class Tabs extends React.Component<IProps, IState> {
     this.lineElement = React.createRef()
     this.tabsHeadElement = React.createRef()
     this.state = {
-      defaultKey: props.activeKey || props.defaultActiveKey || ''
+      activeTabKey: this.props.defaultActiveKey || ''
     }
-  }
-  private keys: string[] = []
-  public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    if (
-      'activeKey' in nextProps &&
-      nextProps.activeKey !== prevState.defaultKey
-    ) {
-      return { defaultKey: nextProps.activeKey }
-    }
-    return null
   }
   componentDidMount() {
-    if (!('defaultActiveKey' in this.props) && !('activeKey' in this.props)) {
-      this.setState({
-        defaultKey: this.keys[0]
-      })
+    this.calculateLineStyle(this.getCurrentTabsIndex(this.activeTabKey))
+  }
+  get activeTabKey() {
+    if ('defaultActiveKey' in this.props) {
+      return this.state.activeTabKey
     } else {
-      this.calculateLineStyle(this._getNavItemIndex())
+      return this.props.activeKey || this.keys[0]
     }
   }
-  public componentDidUpdate(nextProps: IProps, prevState: IState) {
-    if (this.state.defaultKey !== prevState.defaultKey) {
-      this.calculateLineStyle(this._getNavItemIndex())
+  set activeTabKey(value) {
+    if ('defaultActiveKey' in this.props) {
+      this.setState({ activeTabKey: value })
     }
+    this.calculateLineStyle(this.getCurrentTabsIndex(value))
+    const { onChange } = this.props
+    onChange && onChange(value)
   }
-  public _getNavItemIndex = (): number => {
-    return this.keys.indexOf(this.state.defaultKey) || 0
+  private keys: string[] = []
+  public getCurrentTabsIndex = (value: string): number => {
+    return this.keys.indexOf(value) || 0
   }
   public calculateLineStyle(index: number): any {
+    // debugger
     const { direction } = this.props
     const lineElement = this.lineElement.current
     const tabsHeadElement = this.tabsHeadElement.current
@@ -83,78 +83,60 @@ class Tabs extends React.Component<IProps, IState> {
     }
   }
 
-  public handleClick = (
-    key: string,
-    e: React.MouseEvent<HTMLElement>,
-    disabled: boolean
-  ): any => {
+  public handleClick = (key: string, disabled: boolean): any => {
     if (disabled) {
       return false
     }
-    this.setState({
-      defaultKey: key
+    this.activeTabKey = key
+  }
+  public renderTabsNav = (child: React.ReactElement, options: ILayout) => {
+    const itemClass = {
+      disabled: child.props.disabled,
+      active: options.active
+    }
+    return (
+      <div
+        data-role="tabsNavItem"
+        key={options.key}
+        className={sc('nav-item', itemClass)}
+        onClick={() => this.handleClick(options.key, child.props.disabled)}
+      >
+        {child.props.tab}
+      </div>
+    )
+  }
+  public renderTabsPane = (child: React.ReactElement, options: ILayout) => {
+    return React.cloneElement(child, {
+      active: options.active
     })
-    const { onChange } = this.props
-    onChange && onChange(key, e)
   }
-  public renderTabsNav = (): React.ReactNode[] => {
-    const { defaultKey } = this.state
-    return React.Children.map(
-      this.props.children as any[],
-      (child: React.ReactElement) => {
-        if (!child) {
-          return null
-        }
-        const key = child.key as string
-        this.keys.push(key)
-        const itemClass = {
-          disabled: child.props.disabled,
-          active: defaultKey === key
-        }
-        return (
-          <div
-            data-role="tabsNavItem"
-            key={key}
-            className={sc('nav-item', itemClass)}
-            onClick={(e: React.MouseEvent<HTMLElement>) =>
-              this.handleClick(key, e, child.props.disabled)
-            }
-          >
-            {child.props.tab}
-          </div>
-        )
+  renderLayout = (layout: TLayout) => {
+    const children = React.Children.map(this.props.children, child => {
+      const element = child as React.ReactElement<IPaneProps>
+      if (element.type !== TabPane) {
+        console.error('Tabs 组件的子组件只能是 TabPane组件')
+        return null
       }
-    )
-  }
-  public renderTabsPane = (): React.ReactNode[] => {
-    const { defaultKey } = this.state
-    return React.Children.map(
-      this.props.children as any[],
-      (child: React.ReactElement<IPaneProps>) => {
-        if (!child) {
-          return null
-        }
-        const key = child.key as string
-        this.keys.push(key)
-        const active = defaultKey === key
-        return React.cloneElement(child as React.ReactElement<IPaneProps>, {
-          active
-        })
-      }
-    )
+      const key = element.key as string
+      this.keys.push(key)
+      const active = this.state.activeTabKey === key
+      return element.type === TabPane && layout(element, { key, active })
+    })
+    return children.filter(i => i)
   }
   render() {
     const { className, style, direction } = this.props
     const vertical = { vertical: direction === 'vertical' }
     const tabsClasses = classes(sc('wrapper', vertical), className)
-    const tabsNavClasses = sc('nav')
     return (
       <div data-role="tabs" className={tabsClasses} style={style}>
-        <div className={tabsNavClasses} ref={this.tabsHeadElement}>
-          {this.renderTabsNav()}
+        <div className={sc('nav')} ref={this.tabsHeadElement}>
+          {this.renderLayout(this.renderTabsNav)}
           <div className={sc('nav-line')} ref={this.lineElement} />
         </div>
-        <ul className="am-tabs-pane-body">{this.renderTabsPane()}</ul>
+        <ul className="am-tabs-pane-body">
+          {this.renderLayout(this.renderTabsPane)}
+        </ul>
       </div>
     )
   }
