@@ -4,7 +4,7 @@ import Pager from '../packages/pager/pager'
 
 export default function(props: any) {
   const [page1, setPage1] = useState(2)
-  const [page2, setPage2] = useState(3)
+  const [page2, setPage2] = useState(1)
   return (
     <div className="exp-box">
       <div className="exp-section">
@@ -23,7 +23,7 @@ export default function(props: any) {
         <Pager
           visibleQuickJumper
           current={page2}
-          total={50}
+          total={10}
           onChange={page => setPage2(page)}
         />
       </div>

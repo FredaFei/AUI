@@ -16,11 +16,11 @@ export default function (props:any) {
       <div className="exp-section">
         <h3>按钮组合</h3>
         <ButtonGroup>
-          <Button icon="left">upload</Button>
+          <Button icon="left"></Button>
           <Button>1</Button>
           <Button>2</Button>
-          <Button icon="loading">download</Button>
-          <Button icon="right">download</Button>
+          <Button icon="loading"></Button>
+          <Button icon="right"></Button>
         </ButtonGroup>
       </div>
       <div className="exp-section">

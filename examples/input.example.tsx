@@ -13,18 +13,11 @@ export default function(props: any) {
     <div className="exp-box">
       <div className="exp-section">
         <h3>基础应用</h3>
-        <p>三种尺寸</p>
+        <h3>三种尺寸</h3>
         <div className="custom-input">
           <Input value={value} onChange={onChange} type="text" size="big" />
           <Input value={value} onChange={onChange} type="text" />
           <Input value={value} onChange={onChange} type="text" size="small" />
-          <Input
-            label="用户名"
-            labelPosition="left"
-            size="small"
-            type="text"
-          />
-          <Input label="用户名" labelPosition="left" size="big" type="text" />
         </div>
       </div>
       <div className="exp-section">

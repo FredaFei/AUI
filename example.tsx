@@ -20,67 +20,78 @@ import 'examples/index.scss'
 
 const logo = require('./packages/logo.jpg')
 class App extends Component {
+  state = {
+    visibleMenu: true
+  }
   render() {
+    let asideClass = 'site-doc-aside-wrapper'
+    if (this.state.visibleMenu){
+      asideClass += ' active'
+    }
     return (
       <Router>
         <div className="site-doc-wrapper">
           <header className="site-doc-header">
             <img src={logo} alt="" className="logo" />
-            <nav className="site-nav">
+            <nav className="site-nav" >
+              <div onClick={() => this.setState({ visibleMenu: !this.state.visibleMenu})}>菜单</div>
               <div>文档</div>
             </nav>
           </header>
           <div className="site-doc-body">
-            <aside className="site-doc-aside">
-              <h2>入门</h2>
-              <ol>
-                <li>
-                  <NavLink to="/">快速上手</NavLink>
-                </li>
-              </ol>
-              <h2>组件</h2>
-              <ol>
-                <li>
-                  <NavLink to="/button">Button</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/grid">Grid</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/layout">Layout</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/input">Input 输入框</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/radio">Radio 单选框</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/checkbox">Checkbox 多选框</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/form">Form 表单</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/pager">Pager 分页</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/tabs">Tabs 标签页</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/message">Message</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dialog">Dialog</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/switch">Switch</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/collapse">Collapse</NavLink>
-                </li>
-              </ol>
-            </aside>
+            <div className={asideClass}>
+              <div className="site-doc-mask" onClick={() => this.setState({ visibleMenu: !this.state.visibleMenu })}></div>
+              <aside className="site-doc-aside">
+                <h2>入门</h2>
+                <ol>
+                  <li>
+                    <NavLink to="/">快速上手</NavLink>
+                  </li>
+                </ol>
+                <h2>组件</h2>
+                <ol>
+                  <li>
+                    <NavLink to="/button">Button</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/grid">Grid</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/layout">Layout</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/input">Input 输入框</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/radio">Radio 单选框</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/checkbox">Checkbox 多选框</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/form">Form 表单</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/pager">Pager 分页</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/tabs">Tabs 标签页</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/message">Message</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dialog">Dialog</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/switch">Switch</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/collapse">Collapse</NavLink>
+                  </li>
+                </ol>
+              </aside>
+            </div>
             <main className="site-doc-main">
               <Route path="/" exact component={Home} />
               <Route path="/button" component={ButtonExample} />

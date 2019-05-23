@@ -80,6 +80,7 @@
     }
   }
   &-inputAndError {
+    flex: 1;
     #{component(input)} {
       &-error {
         display: inline-block;

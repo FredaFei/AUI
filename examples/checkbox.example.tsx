@@ -7,8 +7,8 @@ const groups = [
   { name: 'fruit', value: 'apple' },
   { name: 'fruit', value: 'peach' },
   { name: 'fruit', value: 'orange' },
-  { name: 'fruit', value: 'banana' },
-  { name: 'fruit', value: 'pear' }
+  { name: 'fruit', value: 'pear' },
+  { name: 'fruit', value: 'banana' }
 ]
 interface IState {
   selected: string[]
