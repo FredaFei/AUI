@@ -35,7 +35,7 @@ class App extends Component {
               <h2>入门</h2>
               <ol>
                 <li>
-                  <NavLink to="/guide">快速上手</NavLink>
+                  <NavLink to="/">快速上手</NavLink>
                 </li>
               </ol>
               <h2>组件</h2>
@@ -82,7 +82,7 @@ class App extends Component {
               </ol>
             </aside>
             <main className="site-doc-main">
-              <Route path="/guide" exact={true} component={Home} />
+              <Route path="/" exact component={Home} />
               <Route path="/button" component={ButtonExample} />
               <Route path="/grid" component={GridExample} />
               <Route path="/layout" component={LayoutExample} />
