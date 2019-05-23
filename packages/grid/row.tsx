@@ -33,7 +33,6 @@ class Row extends React.Component<IProps> {
     super(props)
   }
   render() {
-    console.log(this.props.children)
     const { style, gutter, align, verticalAlign, className } = this.props
     const styles = Object.assign(
       {},

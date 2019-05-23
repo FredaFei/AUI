@@ -112,7 +112,6 @@ class Collapse extends React.Component<IProps, IState> {
         if (!child) {
           return false
         }
-        console.log(child)
         const key = child.key as string
         this.keys.push(key)
         const active = defaultKeys.includes(key)
