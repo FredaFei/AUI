@@ -18,10 +18,12 @@ import SwitchExample from './examples/switch.example'
 import CollapseExample from './examples/collapse.example'
 import 'examples/index.scss'
 
-const logo = require('./packages/logo.jpg')
 class App extends Component {
   state = {
-    visibleMenu: true
+    visibleMenu: false
+  }
+  onToggleMenu = ()=>{
+    this.setState(({ visibleMenu: !this.state.visibleMenu }))
   }
   render() {
     let asideClass = 'site-doc-aside-wrapper'
@@ -32,24 +34,26 @@ class App extends Component {
       <Router>
         <div className="site-doc-wrapper">
           <header className="site-doc-header">
-            <img src={logo} alt="" className="logo" />
-            <nav className="site-nav" >
-              <div onClick={() => this.setState({ visibleMenu: !this.state.visibleMenu})}>菜单</div>
-              <div>文档</div>
+            <div className="site-doc-menu-icon" onClick={this.onToggleMenu}></div>
+            <nav className="site-logo-github" >
+              <div className="site-nav-item">
+                <img src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/stack-206941f66389b4bc8f476591664d9d3e43f70e55cd841a98d06312ff85da7dc9.svg" alt="" className="logo" />
+              </div>
+              <div className="site-nav-item">github</div>
             </nav>
           </header>
           <div className="site-doc-body">
             <div className={asideClass}>
-              <div className="site-doc-mask" onClick={() => this.setState({ visibleMenu: !this.state.visibleMenu })}></div>
+              <div className="site-doc-mask" onClick={this.onToggleMenu}></div>
               <aside className="site-doc-aside">
                 <h2>入门</h2>
-                <ol>
+                <ol onClick={this.onToggleMenu}>
                   <li>
-                    <NavLink to="/">快速上手</NavLink>
+                    <NavLink to="/guide">快速上手</NavLink>
                   </li>
                 </ol>
                 <h2>组件</h2>
-                <ol>
+                <ol onClick={this.onToggleMenu}>
                   <li>
                     <NavLink to="/button">Button</NavLink>
                   </li>
@@ -93,7 +97,7 @@ class App extends Component {
               </aside>
             </div>
             <main className="site-doc-main">
-              <Route path="/" exact component={Home} />
+              <Route path="/guide" exact component={Home} />
               <Route path="/button" component={ButtonExample} />
               <Route path="/grid" component={GridExample} />
               <Route path="/layout" component={LayoutExample} />
