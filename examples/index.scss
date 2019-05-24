@@ -49,17 +49,15 @@ body {
     border-bottom: 1px solid rgba(0, 0, 0, 0.33);
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.13);
     position: relative;
+  }
+  &-logo-github {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: $color;
     .logo {
       height: 44px;
-    }
-    .site-logo-github {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
-      color: $color;
-      > .site-nav-item {
-      }
     }
   }
   &-body {
@@ -123,27 +121,33 @@ body {
       flex-direction: column;
     }
     &-menu-icon {
-      position: relative;
-      margin-right: 10px;
-      &,
-      &:before,
-      &:after {
-        width: 16px;
-        height: 2px;
-        border-radius: 1px;
-        background: #0a0a0a;
+      .menu-icon-line {
+        position: relative;
+        display: block;
+        margin: 10px 0;
+        &,
+        &:before,
+        &:after {
+          width: 16px;
+          height: 2px;
+          border-radius: 1px;
+          background: #0a0a0a;
+        }
+        &:before,
+        &:after {
+          content: '';
+          position: absolute;
+        }
+        &:before {
+          top: -6px;
+        }
+        &:after {
+          top: 6px;
+        }
       }
-      &:before,
-      &:after {
-        content: '';
-        position: absolute;
-      }
-      &:before {
-        bottom: 6px;
-      }
-      &:after {
-        top: 6px;
-      }
+    }
+    &-logo-github {
+      margin-left: 10px;
     }
     &-aside-wrapper {
       position: fixed;

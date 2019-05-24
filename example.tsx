@@ -26,16 +26,14 @@ class App extends Component {
     this.setState(({ visibleMenu: !this.state.visibleMenu }))
   }
   render() {
-    let asideClass = 'site-doc-aside-wrapper'
-    if (this.state.visibleMenu){
-      asideClass += ' active'
-    }
     return (
       <Router>
         <div className="site-doc-wrapper">
           <header className="site-doc-header">
-            <div className="site-doc-menu-icon" onClick={this.onToggleMenu}></div>
-            <nav className="site-logo-github" >
+            <div className="site-doc-menu-icon" onClick={this.onToggleMenu}>
+              <div className="menu-icon-line" onClick={this.onToggleMenu}></div>
+            </div>
+            <nav className="site-doc-logo-github" >
               <div className="site-nav-item">
                 <img src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/stack-206941f66389b4bc8f476591664d9d3e43f70e55cd841a98d06312ff85da7dc9.svg" alt="" className="logo" />
               </div>
@@ -43,7 +41,7 @@ class App extends Component {
             </nav>
           </header>
           <div className="site-doc-body">
-            <div className={asideClass}>
+            <div className={['site-doc-aside-wrapper', this.state.visibleMenu && 'active'].join(' ')}>
               <div className="site-doc-mask" onClick={this.onToggleMenu}></div>
               <aside className="site-doc-aside">
                 <h2>入门</h2>
