@@ -17,10 +17,10 @@ interface IState {
 }
 class Message extends React.Component<IProp, IState> {
   static displayName = componentName
-  public static defaultProps = {
+  static defaultProps = {
     duration: 3
   }
-  public static propTypes = {
+  static propTypes = {
     duration: PropTypes.number,
     content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     mode: PropTypes.oneOf(['info', 'success', 'warning', 'error', 'loading']),
@@ -32,19 +32,19 @@ class Message extends React.Component<IProp, IState> {
       visible: true
     }
   }
-  private timer: any
-  public componentDidMount() {
+  _timer: any
+  componentDidMount() {
     const { duration } = this.props
     if (duration) {
-      this.timer = setTimeout(() => {
+      this._timer = setTimeout(() => {
         this.onCloseClick()
       }, duration * 1000)
     }
   }
-  public componentWillUnmount() {
-    const { timer } = this
-    if (timer) {
-      window.clearTimeout(timer)
+  componentWillUnmount() {
+    const { _timer } = this
+    if (_timer) {
+      window.clearTimeout(_timer)
     }
   }
 

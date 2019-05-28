@@ -23,46 +23,46 @@ interface IState {
 }
 class Tabs extends React.Component<IProps, IState> {
   static displayName = componentName
-  public static defaultProps = {
+  static defaultProps = {
     direction: 'horizontal'
   }
-  public static propTypes = {
+  static propTypes = {
     activeKey: PropTypes.string,
     defaultActiveKey: PropTypes.string,
     direction: PropTypes.string
   }
-  private lineElement: React.RefObject<HTMLDivElement>
-  private tabsHeadElement: React.RefObject<HTMLDivElement>
+   lineElement: React.RefObject<HTMLDivElement>
+   tabsHeadElement: React.RefObject<HTMLDivElement>
   constructor(props: IProps) {
     super(props)
     this.lineElement = React.createRef()
     this.tabsHeadElement = React.createRef()
     this.state = {
       activeTabKey:
-        this.props.defaultActiveKey || this.props.activeKey || this.keys[0]
+        this.props.defaultActiveKey || this.props.activeKey || this._keys[0]
     }
   }
   componentDidMount() {
     if(!this.state.activeTabKey){
       this.setState({
         activeTabKey:
-          this.props.defaultActiveKey || this.props.activeKey || this.keys[0]
+          this.props.defaultActiveKey || this.props.activeKey || this._keys[0]
       })
     }
     this.calculateLineStyle(this.getCurrentTabsIndex(this.state.activeTabKey))
   }
-  public componentDidUpdate(nextProps: IProps, prevState: IState) {
+  componentDidUpdate(nextProps: IProps, prevState: IState) {
     if (this.state.activeTabKey !== prevState.activeTabKey) {
       this.calculateLineStyle(
         this.getCurrentTabsIndex(this.state.activeTabKey)
       )
     }
   }
-  private keys: string[] = []
-  public getCurrentTabsIndex = (value: string): number => {
-    return this.keys.indexOf(value) || 0
+  _keys: string[] = []
+  getCurrentTabsIndex = (value: string): number => {
+    return this._keys.indexOf(value) || 0
   }
-  public calculateLineStyle(index: number): any {
+  calculateLineStyle(index: number): any {
     if (index < 0) {
       return false
     }
@@ -84,7 +84,7 @@ class Tabs extends React.Component<IProps, IState> {
     }
   }
 
-  public handleClick = (key: string, disabled: boolean): any => {
+  handleClick = (key: string, disabled: boolean): any => {
     if (disabled) {
       return false
     }
@@ -94,7 +94,7 @@ class Tabs extends React.Component<IProps, IState> {
     this.calculateLineStyle(this.getCurrentTabsIndex(key))
     this.props.onChange && this.props.onChange(key)
   }
-  public renderTabsNav = (child: React.ReactElement, options: ILayout) => {
+  renderTabsNav = (child: React.ReactElement, options: ILayout) => {
     const itemClass = {
       disabled: child.props.disabled,
       active: options.active
@@ -110,7 +110,7 @@ class Tabs extends React.Component<IProps, IState> {
       </div>
     )
   }
-  public renderTabsPane = (child: React.ReactElement, options: ILayout) => {
+  renderTabsPane = (child: React.ReactElement, options: ILayout) => {
     return React.cloneElement(child, {
       active: options.active
     })
@@ -123,7 +123,7 @@ class Tabs extends React.Component<IProps, IState> {
         return null
       }
       const key = element.key as string
-      this.keys.push(key)
+      this._keys.push(key)
       const active = this.state.activeTabKey === key
       return element.type === TabPane && layout(element, { key, active })
     })

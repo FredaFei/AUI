@@ -19,13 +19,14 @@ interface IState {
   defaultKeys: string[]
   open: boolean
 }
+
 class Collapse extends React.Component<IProps, IState> {
   static displayName = componentName;
-  public static defaultProps = {
+  static defaultProps = {
     accordion: false,
     disabled: false
   }
-  public static propTypes = {
+  static propTypes = {
     activeKey: PropTypes.array,
     defaultActiveKey: PropTypes.array,
     accordion: PropTypes.bool,
@@ -39,8 +40,8 @@ class Collapse extends React.Component<IProps, IState> {
       defaultKeys: props.activeKey || props.defaultActiveKey || []
     }
   }
-  private keys: string[] = []
-  public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+   _keys: string[] = []
+  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     const { activeKey } = nextProps
     const { defaultKeys } = prevState
     if (!('activeKey' in nextProps)) {
@@ -56,15 +57,15 @@ class Collapse extends React.Component<IProps, IState> {
   componentDidMount() {
     if (!('activeKey' in this.props) && !('defaultActiveKey' in this.props)) {
       this.setState({
-        defaultKeys: [this.keys[0]]
+        defaultKeys: [this._keys[0]]
       })
     }
   }
-  public componentDidUpdate(nextProps: IProps, prevState: IState) {
+  componentDidUpdate(nextProps: IProps, prevState: IState) {
     // todo
   }
 
-  public handleClick = (
+  handleClick = (
     key: string,
     e: React.MouseEvent<HTMLElement>,
     disabled: boolean
@@ -113,7 +114,7 @@ class Collapse extends React.Component<IProps, IState> {
           return false
         }
         const key = child.key as string
-        this.keys.push(key)
+        this._keys.push(key)
         const active = defaultKeys.includes(key)
         const { visibleIcon, disabled, header } = child.props
         return (

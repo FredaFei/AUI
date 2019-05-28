@@ -13,12 +13,12 @@ export interface IProps extends IStyledProps {
 const componentName = 'Pane'
 class Pane extends React.Component<IProps> {
   static displayName = componentName;
-  public static defaultProps = {
+  static defaultProps = {
     visibleIcon: true,
     disabled: false,
     active: false
   }
-  public static propTypes = {
+  static propTypes = {
     key: PropTypes.string,
     visibleIcon: PropTypes.bool,
     disabled: PropTypes.bool,

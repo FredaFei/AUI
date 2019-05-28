@@ -20,19 +20,19 @@ interface IState {
 }
 class Pager extends React.Component<IProps, IState> {
   static displayName = componentName
-  public static defaultProps = {}
+  static defaultProps = {}
   state = { current: this.props.defaultCurrent || 1 }
-  public static propTypes = {
+  static propTypes = {
     current: PropTypes.number,
     total: PropTypes.number,
     defaultCurrent: PropTypes.number
   }
-  public onClickItem(page: number) {
+  onClickItem(page: number) {
     if (page <= this.props.total && page >= 1) {
       this.current = page
     }
   }
-  public onInputEnter(e: React.KeyboardEvent<HTMLInputElement>): any {
+  onInputEnter(e: React.KeyboardEvent<HTMLInputElement>): any {
     const input = e.target as HTMLInputElement
     const page = input.value
     input.value = ''

@@ -13,8 +13,8 @@ export interface IProps extends IStyledProps {
 }
 class TabPane extends React.Component<IProps> {
   static displayName = componentName
-  public static defaultProps = {}
-  public static propTypes = {
+  static defaultProps = {}
+  static propTypes = {
     tab: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     active: PropTypes.bool,
     disabled: PropTypes.bool

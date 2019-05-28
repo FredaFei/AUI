@@ -18,7 +18,7 @@ interface IState {
 }
 class Button extends React.Component<IProps, IState> {
   static displayName = componentName
-  public static defaultProps = {
+  static defaultProps = {
     icon: '',
     iconPosition: 'left',
     disabled: false
@@ -31,17 +31,17 @@ class Button extends React.Component<IProps, IState> {
     onClick: PropTypes.func,
     style: PropTypes.object
   }
-  private rippleElement: React.RefObject<HTMLDivElement>
-  private buttonElement: React.RefObject<HTMLButtonElement>
+  _rippleElement: React.RefObject<HTMLDivElement>
+  _buttonElement: React.RefObject<HTMLButtonElement>
   constructor(props: IProps) {
     super(props)
-    this.rippleElement = React.createRef()
-    this.buttonElement = React.createRef()
+    this._rippleElement = React.createRef()
+    this._buttonElement = React.createRef()
     this.state = { position: {} }
   }
-  public onRippleEffect = (e: React.MouseEvent): any => {
-    const targetEl = this.buttonElement.current
-    const rippleEl = this.rippleElement.current
+  onRippleEffect = (e: React.MouseEvent): any => {
+    const targetEl = this._buttonElement.current
+    const rippleEl = this._rippleElement.current
     if (!targetEl) {
       return false
     }
@@ -104,10 +104,10 @@ class Button extends React.Component<IProps, IState> {
         style={styles}
         className={buttonWrapClass}
         onClick={this.handleClick}
-        ref={this.buttonElement}
+        ref={this._buttonElement}
       >
         {renderButtonBody()}
-        <div className="ripple" style={position} ref={this.rippleElement} />
+        <div className="ripple" style={position} ref={this._rippleElement} />
       </button>
     )
   }

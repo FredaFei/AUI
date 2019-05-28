@@ -19,37 +19,37 @@ interface IState {
 
 class Switch extends React.Component<IProps, IState> {
   static displayName = componentName
-  public static defaultProps = {
+  static defaultProps = {
     disabled: false,
     defaultChecked: false
   }
-  public static propTypes = {
+  static propTypes = {
     disabled: PropTypes.bool,
     checked: PropTypes.bool,
     onChange: PropTypes.func,
     className: PropTypes.string,
     style: PropTypes.object
   }
-  private rippleElement: React.RefObject<HTMLSpanElement>
-  private rippleParentElement: React.RefObject<HTMLLabelElement>
+   _rippleElement: React.RefObject<HTMLSpanElement>
+   _rippleParentElement: React.RefObject<HTMLLabelElement>
   constructor(props: IProps) {
     super(props)
-    this.rippleElement = React.createRef()
-    this.rippleParentElement = React.createRef()
+    this._rippleElement = React.createRef()
+    this._rippleParentElement = React.createRef()
     this.state = {
       checked: props.defaultChecked || false,
       position: {}
     }
   }
-  public static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
+  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
     if ('checked' in nextProps && nextProps.checked !== prevState.checked) {
       return { checked: nextProps.checked }
     }
     return null
   }
-  public onRippleEffect = (): any => {
-    const targetEl = this.rippleParentElement.current
-    const rippleEl = this.rippleElement.current
+  onRippleEffect = (): any => {
+    const targetEl = this._rippleParentElement.current
+    const rippleEl = this._rippleElement.current
     if (!targetEl || !rippleEl) {
       return false
     }
@@ -66,7 +66,7 @@ class Switch extends React.Component<IProps, IState> {
     })
     rippleEl.classList.add('active')
   }
-  public onClick = (event: React.MouseEvent<HTMLElement>): any => {
+  onClick = (event: React.MouseEvent<HTMLElement>): any => {
     const { disabled, onChange } = this.props
     if (disabled) {
       return false
@@ -86,12 +86,12 @@ class Switch extends React.Component<IProps, IState> {
       <label className={wrapperClass} style={styles} onClick={this.onClick}>
         <span
           className={classes(sc('core'), [isActive])}
-          ref={this.rippleParentElement}
+          ref={this._rippleParentElement}
         >
           <span
             className={classes(sc('ripple'), [isActive])}
             style={position}
-            ref={this.rippleElement}
+            ref={this._rippleElement}
           />
         </span>
       </label>

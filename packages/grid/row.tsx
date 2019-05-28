@@ -13,12 +13,12 @@ interface IProps extends IStyledProps {
 }
 class Row extends React.Component<IProps> {
   static displayName = componentName
-  public static defaultProps = {
+  static defaultProps = {
     gutter: 0,
     align: 'left',
     verticalAlign: 'top'
   }
-  public static propTypes = {
+  static propTypes = {
     gutter: PropTypes.number,
     align: PropTypes.oneOf([
       'left',
