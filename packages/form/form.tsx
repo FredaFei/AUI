@@ -22,8 +22,8 @@ interface IProps extends IStyledProps {
   onSubmit: React.FormEventHandler<HTMLFormElement>
   onChange: (value: FormValue) => void
 }
-class Form extends React.Component<IProps>{
-  static displayName = componentName;
+class Form extends React.Component<IProps> {
+  static displayName = componentName
   static propTypes = {
     value: PropTypes.object.isRequired,
     fields: PropTypes.array.isRequired,
@@ -31,19 +31,24 @@ class Form extends React.Component<IProps>{
     onChange: PropTypes.func.isRequired,
     onSubmit: PropTypes.func.isRequired
   }
-  onInputChange=(
-    name: string,
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  onInputChange = (name: string, e: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onChange({ ...this.props.value, [name]: e.target.value })
   }
-  onFormSubmit=(e: React.FormEvent<HTMLFormElement>) => {
+  onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-  const { onSubmit} = this.props
-    onSubmit&&onSubmit(e)
+    const { onSubmit } = this.props
+    onSubmit && onSubmit(e)
   }
-  render(){
-    const { value, errors,fields, buttons, onChange, onSubmit, ...rest } = this.props
+  render() {
+    const {
+      value,
+      errors,
+      fields,
+      buttons,
+      onChange,
+      onSubmit,
+      ...rest
+    } = this.props
     return (
       <form className={classes(sc(''))} {...rest} onSubmit={this.onFormSubmit}>
         {fields.map(f => (

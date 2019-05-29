@@ -28,12 +28,11 @@ export default function(props: any) {
       { key: 'password', pattern: /^[a-zA-Z0-9]+$/, label: '密码' }
     ]
     const errors = validator(formData, rules)
-    console.log('errors')
-    console.log(errors)
     if (noErrors(errors)){
       // todo
       return false
     }
+    console.log(errors)
     setErrors(errors)
   }
   return (
