@@ -7,7 +7,7 @@ import Button from '../packages/button/button'
 export default function(props: any) {
   const [formData, setFormData] = useState<FormValue>({
     name: '',
-    password: 'xxxxx'
+    password: '111'
   })
   const [fields] = useState([
     { name: 'username', label: '用户名', input: { type: 'text' } },
@@ -55,6 +55,7 @@ export default function(props: any) {
       </div>
       <div className="exp-section">
         <h3>按钮组合</h3>
+        
       </div>
       <div className="exp-section">
         <h3>不可用状态</h3>
