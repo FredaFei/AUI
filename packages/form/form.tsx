@@ -1,5 +1,5 @@
 import * as React from 'react'
-// import * as PropTypes from 'prop-types'
+import * as PropTypes from 'prop-types'
 import { ReactFragment } from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
 
@@ -22,39 +22,46 @@ interface IProps extends IStyledProps {
   onSubmit: React.FormEventHandler<HTMLFormElement>
   onChange: (value: FormValue) => void
 }
-const Form: React.FunctionComponent<IProps> = props => {
-  const { value, fields, buttons, onChange, onSubmit, ...rest } = props
-  const onInputChange = (
+class Form extends React.Component<IProps>{
+  static displayName = componentName;
+  static propTypes = {
+    value: PropTypes.object.isRequired,
+    fields: PropTypes.array.isRequired,
+    errors: PropTypes.object.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired
+  }
+  onInputChange=(
     name: string,
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    onChange({ ...value, [name]: e.target.value })
+    this.props.onChange({ ...this.props.value, [name]: e.target.value })
   }
-  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  onFormSubmit=(e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    onSubmit(e)
+  const { onSubmit} = this.props
+    onSubmit&&onSubmit(e)
   }
-  return (
-    <form className={classes(sc(''))} {...rest} onSubmit={onFormSubmit}>
-      <div>
+  render(){
+    const { value, errors,fields, buttons, onChange, onSubmit, ...rest } = this.props
+    return (
+      <form className={classes(sc(''))} {...rest} onSubmit={this.onFormSubmit}>
         {fields.map(f => (
           <div key={f.name}>
             <label htmlFor="">{f.label}</label>
             <input
               type={f.input.type}
               value={value[f.name]}
-              onChange={onInputChange.bind(null, f.name)}
+              onChange={this.onInputChange.bind(null, f.name)}
             />
-            {props.errors[f.name] && (
-              <span className={sc('error')}>{props.errors[f.name]}</span>
+            {errors[f.name] && (
+              <span className={sc('error')}>{errors[f.name][0]}</span>
             )}
           </div>
         ))}
-      </div>
-      <div>{buttons}</div>
-    </form>
-  )
+        <div>{buttons}</div>
+      </form>
+    )
+  }
 }
-Form.displayName = componentName
-Form.propTypes = {}
 export default Form
