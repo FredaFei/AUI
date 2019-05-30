@@ -55,13 +55,40 @@ export default function(props: any) {
       </div>
       <div className="exp-section">
         <h3>按钮组合</h3>
-        
+        <Form
+          layout="vertical"
+          value={formData}
+          fields={fields}
+          errors={errors}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          buttons={
+            <Fragment>
+              <Button type="submit">提交</Button>
+              <Button type="reset">取消</Button>
+            </Fragment>
+          }
+        />
       </div>
       <div className="exp-section">
         <h3>不可用状态</h3>
       </div>
       <div className="exp-section">
         <h3>自定义样式</h3>
+        <Form
+          layout="inline"
+          value={formData}
+          fields={fields}
+          errors={errors}
+          onChange={onChange}
+          onSubmit={onSubmit}
+          buttons={
+            <Fragment>
+              <Button type="submit">提交</Button>
+              <Button type="reset">取消</Button>
+            </Fragment>
+          }
+        />
       </div>
     </div>
   )
