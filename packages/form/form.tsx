@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { ReactFragment } from 'react'
+import { ReactFragment, Fragment } from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
 import Input from '../input/input'
 import './style'
@@ -14,12 +14,17 @@ export interface FormValue {
 export interface FormErrors {
   [K: string]: any
 }
-type Layout = 'vertical' | 'inline' | 'horizontal'
+// type Layout = 'vertical' | 'inline' | 'horizontal'
+// type Type = 'text' | 'password'
 interface IProps extends IStyledProps {
-  layout?: Layout
+  layout?: 'vertical' | 'inline' | 'horizontal'
   value: FormValue
   errors: FormErrors
-  fields: Array<{ name: string; label: string; input: { type: string } }>
+  fields: Array<{
+    name: string
+    label: string
+    input: { type: 'text' | 'password' }
+  }>
   buttons: ReactFragment
   onSubmit: React.FormEventHandler<HTMLFormElement>
   onChange: (value: FormValue) => void
@@ -27,7 +32,7 @@ interface IProps extends IStyledProps {
 class Form extends React.Component<IProps> {
   static displayName = componentName
   static defaultProps = {
-    layout: 'vertical'
+    layout: 'horizontal'
   }
   static propTypes = {
     value: PropTypes.object.isRequired,
@@ -44,65 +49,82 @@ class Form extends React.Component<IProps> {
     const { onSubmit } = this.props
     onSubmit && onSubmit(e)
   }
-  renderInput = (field)=>{
+  renderInput = field => {
     return (
-      <Input value={this.props.value[field.name]} type={field.input.type} 
-          onChange={this.onInputChange.bind(null, field.name)} />
+      <Input
+        value={this.props.value[field.name]}
+        type={field.input.type}
+        onChange={this.onInputChange.bind(null, field.name)}
+      />
     )
   }
-  renderButtons= ()=>{
+  renderButtons = () => {
     return <div>{this.props.buttons}</div>
   }
   verticalLayout = () => {
     const { value, errors, fields } = this.props
-    return <div className="item">
-      {fields.map(f => (
-        <div key={f.name}>
-          <Input
+    return (
+      <Fragment>
+        {fields.map(f => (
+          <div className={sc('item')} key={f.name}>
+            <Input
               label={f.label}
               labelPosition="top"
-              error={errors[f.name]&&errors[f.name][0]}
+              error={errors[f.name] && errors[f.name][0]}
               errorPosition="bottom"
               type={f.input.type}
               value={value[f.name]}
-              onChange={this.onInputChange.bind(null, f.name)} 
+              onChange={this.onInputChange.bind(null, f.name)}
             />
-        </div>
-        ))
-      }
-      {this.renderButtons()}
-    </div>
-  }
-  inlineLayout = () => {
-    return 'inlineLayout'
-  }
-  horizontalLayout = () => {
-    const {errors, fields } = this.props
-    return (
-      <table>
-        <tbody>
-          {fields.map(f => (
-            <tr key={f.name}>
-              <td>
-                <label>{f.label}</label>
-              </td>
-              <td>{this.renderInput(f)}</td>
-              <td>
-                {errors[f.name] && (
-                  <span className={sc('error')}>{errors[f.name][0]}</span>
-                )}
-              </td>
-            </tr>
-          }
-          <tr>
-            <td></td>
-            <td>{this.renderButtons()}</td>
-          </tr>
-        </tbody>
-      </table>
+          </div>
+        ))}
+        {this.renderButtons()}
+      </Fragment>
     )
   }
-  layoutMap = (key: string) => {
+  inlineLayout = () => {
+    const { value, errors, fields } = this.props
+    return (
+      <Fragment>
+        {fields.map(f => (
+          <div className={sc('item')} key={f.name}>
+            <Input
+              label={f.label}
+              labelPosition="left"
+              error={errors[f.name] && errors[f.name][0]}
+              errorPosition="bottom"
+              type={f.input.type}
+              value={value[f.name]}
+              onChange={this.onInputChange.bind(null, f.name)}
+            />
+          </div>
+        ))}
+        {this.renderButtons()}
+      </Fragment>
+    )
+  }
+  horizontalLayout = () => {
+    const { value, errors, fields } = this.props
+    return (
+      <Fragment>
+        {fields.map(f => (
+          <div className={sc('item')} key={f.name}>
+            <Input
+              label={f.label}
+              labelPosition="left"
+              error={errors[f.name] && errors[f.name][0]}
+              errorPosition="right"
+              type={f.input.type}
+              value={value[f.name]}
+              onChange={this.onInputChange.bind(null, f.name)}
+            />
+          </div>
+        ))}
+        {this.renderButtons()}
+      </Fragment>
+    )
+  }
+  layoutMap = key => {
     const map = {
       vertical: this.verticalLayout(),
       inline: this.inlineLayout(),
@@ -112,7 +134,7 @@ class Form extends React.Component<IProps> {
   }
   render() {
     return (
-      <form className={classes(sc(''))} onSubmit={this.onFormSubmit}>
+      <form className={classes(sc('wrapper'))} onSubmit={this.onFormSubmit}>
         {this.layoutMap(this.props.layout)}
       </form>
     )
