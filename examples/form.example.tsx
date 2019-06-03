@@ -1,15 +1,28 @@
 import * as React from 'react'
 import { useState, Fragment } from 'react'
-import Form, { FormValue } from '../packages/form/form'
+import Form, { FormValue, FormFields } from '../packages/form/form'
 import validator,{ noErrors} from '../packages/form/validator'
 import Button from '../packages/button/button'
 
+const names = ['jan','lily','bob','jerry']
+
+function checkName(value: string, success: () => void, fail: () => void) {
+  setTimeout(() => {
+    console.log('我已经知道结果了')
+    if (!names.includes(value)) {
+      success()
+    } else {
+      fail()
+    }
+  }, 3000)
+}
+
 export default function(props: any) {
   const [formData, setFormData] = useState<FormValue>({
-    name: '',
-    password: '111'
+    username: '',
+    password: ''
   })
-  const [fields] = useState([
+  const [fields] = useState<FormFields[]>([
     { name: 'username', label: '用户名', input: { type: 'text' } },
     { name: 'password', label: '密码', input: { type: 'password' } }
   ])
@@ -20,6 +33,14 @@ export default function(props: any) {
   const onSubmit = ():any => {
     const rules = [
       { key: 'username', required: true, label: '用户名' },
+      { key: 'username', validator: {
+        validate: (value:string)=>{
+          console.log('我要调用 validate')
+          return new Promise<void>((resolve, reject)=>{
+            checkName(value,resolve,reject)
+          })
+        }
+      }, label: '用户名' },
       { key: 'username', minLength: 6, label: '用户名' },
       { key: 'username', maxLength: 16, label: '用户名' },
       { key: 'password', required: true, label: '密码' },
@@ -27,13 +48,16 @@ export default function(props: any) {
       { key: 'password', maxLength: 16, label: '密码' },
       { key: 'password', pattern: /^[a-zA-Z0-9]+$/, label: '密码' }
     ]
-    const errors = validator(formData, rules)
-    if (noErrors(errors)){
-      // todo
-      return false
-    }
-    console.log(errors)
-    setErrors(errors)
+    validator(formData, rules,(errors:any):any=>{
+      if (noErrors(errors)) {
+        // todo
+        return false
+      }
+      console.log('验证结束，结果是')
+      console.log(errors)
+      setErrors(errors)
+    })
+    
   }
   return (
     <div className="exp-box">
