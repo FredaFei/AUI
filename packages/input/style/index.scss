@@ -89,6 +89,7 @@
         color: $error-color;
         &-bottom {
           width: 100%;
+          display: block;
         }
         &-right {
           margin-left: 0.5em;
