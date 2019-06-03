@@ -3,5 +3,15 @@
   padding: 8px 24px;
 }
 #{component(form)} {
-  &-item{}
+  &-item {
+  }
+  &-inline {
+    .am-form-item {
+      display: inline-block;
+      vertical-align: top;
+      &+.am-form-item{
+        margin-left: 16px;
+      }
+    }
+  }
 }
