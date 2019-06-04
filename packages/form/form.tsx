@@ -40,7 +40,8 @@ interface IProps extends IStyledProps {
 class Form extends React.Component<IProps> {
   static displayName = componentName
   static defaultProps = {
-    layout: 'horizontal'
+    layout: 'horizontal',
+    errorDisplayMode: 'first'
   }
   static propTypes = {
     value: PropTypes.object.isRequired,
@@ -91,7 +92,7 @@ class Form extends React.Component<IProps> {
     )
   }
   inlineLayout = () => {
-    const { value, errors, fields } = this.props
+    const { errors, fields } = this.props
     return (
       <Fragment>
         {fields.map(f => (
@@ -117,8 +118,8 @@ class Form extends React.Component<IProps> {
       <table>
         <tbody>
           {fields.map(f => (
-            <Fragment>
-              <tr key={f.name}>
+            <Fragment key={f.name}>
+              <tr>
                 <td
                   style={{ width: this.props.labelWidth || '6em' }}
                   className={sc('item-label', 'item-label-require')}
@@ -130,7 +131,10 @@ class Form extends React.Component<IProps> {
               <tr>
                 <td />
                 <td className={sc('item-error')}>
-                  {errors[f.name] && errors[f.name][0]}
+                  {errors[f.name] &&
+                    (this.props.errorDisplayMode === 'first'
+                      ? errors[f.name][0]
+                      : errors[f.name].join(''))}
                 </td>
               </tr>
             </Fragment>
