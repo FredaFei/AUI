@@ -4,13 +4,71 @@
 }
 #{component(form)} {
   &-item {
+    margin-bottom: 28px;
+    font-size: 16px;
+  }
+  &-item-label-require {
+    position: relative;
+    &:before {
+      display: inline-block;
+      margin-right: 4px;
+      color: #f5222d;
+      font-size: 14px;
+      font-family: SimSun, sans-serif;
+      line-height: 1;
+      content: '*';
+    }
+  }
+  &-item-error {
+    color: $error-color;
+    font-size: 0.8em;
+  }
+  &-vertical {
+    position: relative;
+    .am-form-item-error {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      padding-top: 4px;
+    }
+    .am-form-item-label {
+      display: block;
+      margin-bottom: 4px;
+    }
+  }
+  &-horizontal {
+    .am-form-item-error {
+      line-height: 28px;
+      height: 28px;
+    }
+    .am-form-item-label {
+      padding-right: 8px;
+      text-align: right;
+    }
   }
   &-inline {
     .am-form-item {
-      display: inline-block;
-      vertical-align: top;
-      &+.am-form-item{
+      & + .am-form-item {
         margin-left: 16px;
+      }
+    }
+    .am-form-item,
+    .am-form-item-label,
+    .am-form-item-input-error,
+    .am-input-wrapper {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .am-form-item-label {
+      padding-right: 8px;
+    }
+    .am-form-item-input-error {
+      position: relative;
+      .am-form-item-error {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding-top: 4px;
       }
     }
   }
