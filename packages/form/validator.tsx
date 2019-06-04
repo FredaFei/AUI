@@ -13,17 +13,27 @@ interface FormRules {
   maxLength?: number
   pattern?: RegExp
   validator?: {
-    validate: (value: string) => Promise<void>
+    validate: (value: string, callback: (error?: string) => any) => any
+  }
+  asyncValidator?: {
+    validate: (
+      value: string,
+      callback: (error?: string) => any
+    ) => Promise<void>
   }
 }
 interface OneError {
-  message: string
+  message?: string
   promise?: Promise<void>
 }
 export const noErrors = (value: any) => {
   return Object.values(value).length === 0
 }
-const validator = (formValue: FormValue, rules: rules,callback:(errors:any)=>any) => {
+const validator = (
+  formValue: FormValue,
+  rules: rules,
+  callback: (errors: any) => any
+) => {
   const result: any = {}
   const addErrors = (key: string, error: OneError) => {
     if (!result[key]) {
@@ -34,8 +44,24 @@ const validator = (formValue: FormValue, rules: rules,callback:(errors:any)=>any
   rules.map(r => {
     let value = formValue[r.key]
     if (r.validator) {
-      const promise = r.validator.validate(value)
-      addErrors(r.key, { message: '用户名已存在', promise })
+      r.validator.validate(value, message => {
+        message &&
+          addErrors(r.key, {
+            message
+          })
+      })
+    }
+    if (r.asyncValidator) {
+      const promise = r.asyncValidator.validate(value, message => {
+        console.log('async')
+        message &&
+          addErrors(r.key, {
+            message
+          })
+      })
+      addErrors(r.key, {
+        promise
+      })
     }
     if (isEmpty(value) && r.required) {
       addErrors(r.key, { message: `${r.label}不能为空` })
@@ -48,29 +74,30 @@ const validator = (formValue: FormValue, rules: rules,callback:(errors:any)=>any
         message: `${r.label}的最大长度为${r.maxLength!}`
       })
     }
-    if (!isEmpty(value) && r.pattern && r.pattern.test(value)) {
+    if (!isEmpty(value) && r.pattern && !r.pattern.test(value)) {
       addErrors(r.key, { message: `${r.label}的格式不正确` })
     }
   })
 
   console.log(result)
-  console.log(flat(Object.values(result))
-  .filter(i => i.promise)
-  .map(i=> i.promise)
-  )
-  const x = ()=>{
+  const x = () => {
     const newErrors = flat(Object.keys(result))
       // key:string
       // result[key]: [{message,promise}]
-      .map(key => [key, result[key].map((i: OneError) => i.message)])
-    console.log(fromEntries(newErrors))
+      .map(key => [
+        key,
+        result[key]
+          .filter((i: OneError) => i.message && i.message)
+          .map((i: OneError) => i.message)
+      ])
     callback(fromEntries(newErrors))
   }
-  
-  Promise.all(flat(Object.values(result))
+
+  Promise.all(
+    flat(Object.values(result))
       .filter(i => i.promise)
       .map(i => i.promise)
-  ).then(x,x)
+  ).then(x, x)
 }
 
 function flat(array: any[]) {
@@ -85,10 +112,12 @@ function flat(array: any[]) {
   return result
 }
 
-function fromEntries(array:any[]) {
+function fromEntries(array: any[]) {
   const result = {}
-  array.forEach(item=>{
-    result[item[0]] = item[1]
+  array.forEach(item => {
+    if (item[1].length>0) {
+      result[item[0]] = item[1]
+    }
   })
   return result
 }
