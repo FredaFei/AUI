@@ -72,6 +72,9 @@ class Form extends React.Component<IProps> {
   renderButtons = () => {
     return <div className={sc('item')}>{this.props.buttons}</div>
   }
+  displayError = (errors: any[]) => {
+    return this.props.errorDisplayMode === 'first' ? errors[0] : errors.join()
+  }
   verticalLayout = () => {
     const { errors, fields } = this.props
     return (
@@ -83,7 +86,9 @@ class Form extends React.Component<IProps> {
             </label>
             {this.renderInput(f)}
             {errors[f.name] && (
-              <div className={sc('item-error')}>{errors[f.name][0]}</div>
+              <div className={sc('item-error')}>
+                {this.displayError(errors[f.name])}
+              </div>
             )}
           </div>
         ))}
@@ -103,7 +108,9 @@ class Form extends React.Component<IProps> {
             <div className={sc('item-input-error')}>
               {this.renderInput(f)}
               {errors[f.name] && (
-                <div className={sc('item-error')}>{errors[f.name][0]}</div>
+                <div className={sc('item-error')}>
+                  {this.displayError(errors[f.name])}
+                </div>
               )}
             </div>
           </div>
@@ -131,10 +138,7 @@ class Form extends React.Component<IProps> {
               <tr>
                 <td />
                 <td className={sc('item-error')}>
-                  {errors[f.name] &&
-                    (this.props.errorDisplayMode === 'first'
-                      ? errors[f.name][0]
-                      : errors[f.name].join(''))}
+                  {errors[f.name] && this.displayError(errors[f.name])}
                 </td>
               </tr>
             </Fragment>
