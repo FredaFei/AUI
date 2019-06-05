@@ -1,5 +1,5 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
+// import * as PropTypes from 'prop-types'
 import { ReactFragment, Fragment, ReactNode } from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
 import Input from '../input/input'
@@ -36,138 +36,127 @@ interface IProps extends IStyledProps {
 /**
  * TODO:
  * 1.必填和非必填字段样式
+ * 2.input 组件 type类型范围
  */
-class Form extends React.Component<IProps> {
-  static displayName = componentName
-  static defaultProps = {
-    layout: 'horizontal',
-    errorDisplayMode: 'first'
+
+const Form: React.FunctionComponent<IProps> = props => {
+  const onInputChange = (
+    name: string,
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    props.onChange({ ...props.value, [name]: e.target.value })
   }
-  static propTypes = {
-    value: PropTypes.object.isRequired,
-    fields: PropTypes.array.isRequired,
-    errors: PropTypes.object.isRequired,
-    onChange: PropTypes.func.isRequired,
-    onSubmit: PropTypes.func.isRequired
-  }
-  onInputChange = (name: string, e: React.ChangeEvent<HTMLInputElement>) => {
-    this.props.onChange({ ...this.props.value, [name]: e.target.value })
-  }
-  onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const { onSubmit } = this.props
-    onSubmit && onSubmit(e)
+    props.onSubmit && props.onSubmit(e)
   }
-  renderInput = (field: FormFields) => {
-    return typeof field.input === 'function' ? (
+  const renderInput = (field: FormFields) => {
+    return field.input instanceof Function ? (
       field.input()
     ) : (
       <Input
-        value={this.props.value[field.name]}
+        value={props.value[field.name]}
         type="text"
-        onChange={this.onInputChange.bind(null, field.name)}
+        onChange={onInputChange.bind(null, field.name)}
       />
     )
   }
-  renderButtons = () => {
-    return <div className={sc('item')}>{this.props.buttons}</div>
+  const renderButtons = () => {
+    return <div className={sc('item')}>{props.buttons}</div>
   }
-  displayError = (errors: any[]) => {
-    return this.props.errorDisplayMode === 'first' ? errors[0] : errors.join()
+  const displayError = (errors: any[]) => {
+    return props.errorDisplayMode === 'first' ? errors[0] : errors.join()
   }
-  verticalLayout = () => {
-    const { errors, fields } = this.props
-    return (
-      <Fragment>
-        {fields.map(f => (
-          <div className={sc('item', 'vertical')} key={f.name}>
-            <label className={sc('item-label', 'item-label-require')}>
-              {f.label}
-            </label>
-            {this.renderInput(f)}
-            {errors[f.name] && (
+  const verticalLayout = (
+    <Fragment>
+      {props.fields.map(f => (
+        <div className={sc('item', 'vertical')} key={f.name}>
+          <label className={sc('item-label', 'item-label-require')}>
+            {f.label}
+          </label>
+          {renderInput(f)}
+          {props.errors[f.name] && (
+            <div className={sc('item-error')}>
+              {displayError(props.errors[f.name])}
+            </div>
+          )}
+        </div>
+      ))}
+      {renderButtons()}
+    </Fragment>
+  )
+  const inlineLayout = (
+    <Fragment>
+      {props.fields.map(f => (
+        <div className={sc('item')} key={f.name}>
+          <label className={sc('item-label', 'item-label-require')}>
+            {f.label}
+          </label>
+          <div className={sc('item-input-error')}>
+            {renderInput(f)}
+            {props.errors[f.name] && (
               <div className={sc('item-error')}>
-                {this.displayError(errors[f.name])}
+                {displayError(props.errors[f.name])}
               </div>
             )}
           </div>
+        </div>
+      ))}
+      {renderButtons()}
+    </Fragment>
+  )
+  const horizontalLayout = (
+    <table>
+      <tbody>
+        {props.fields.map(f => (
+          <Fragment key={f.name}>
+            <tr>
+              <td
+                style={{ width: props.labelWidth || '6em' }}
+                className={sc('item-label', 'item-label-require')}
+              >
+                {f.label}
+              </td>
+              <td>{renderInput(f)}</td>
+            </tr>
+            <tr>
+              <td />
+              <td className={sc('item-error')}>
+                {props.errors[f.name] && displayError(props.errors[f.name])}
+              </td>
+            </tr>
+          </Fragment>
         ))}
-        {this.renderButtons()}
-      </Fragment>
-    )
-  }
-  inlineLayout = () => {
-    const { errors, fields } = this.props
-    return (
-      <Fragment>
-        {fields.map(f => (
-          <div className={sc('item')} key={f.name}>
-            <label className={sc('item-label', 'item-label-require')}>
-              {f.label}
-            </label>
-            <div className={sc('item-input-error')}>
-              {this.renderInput(f)}
-              {errors[f.name] && (
-                <div className={sc('item-error')}>
-                  {this.displayError(errors[f.name])}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
-        {this.renderButtons()}
-      </Fragment>
-    )
-  }
-  horizontalLayout = () => {
-    const { errors, fields } = this.props
-    return (
-      <table>
-        <tbody>
-          {fields.map(f => (
-            <Fragment key={f.name}>
-              <tr>
-                <td
-                  style={{ width: this.props.labelWidth || '6em' }}
-                  className={sc('item-label', 'item-label-require')}
-                >
-                  {f.label}
-                </td>
-                <td>{this.renderInput(f)}</td>
-              </tr>
-              <tr>
-                <td />
-                <td className={sc('item-error')}>
-                  {errors[f.name] && this.displayError(errors[f.name])}
-                </td>
-              </tr>
-            </Fragment>
-          ))}
-          <tr>
-            <td />
-            <td colSpan={2}>{this.renderButtons()}</td>
-          </tr>
-        </tbody>
-      </table>
-    )
-  }
-  layoutMap = (key: string) => {
+        <tr>
+          <td />
+          <td colSpan={2}>{renderButtons()}</td>
+        </tr>
+      </tbody>
+    </table>
+  )
+  const layoutMap = (key: string) => {
     const map = {
-      vertical: this.verticalLayout(),
-      inline: this.inlineLayout(),
-      horizontal: this.horizontalLayout()
+      vertical: verticalLayout,
+      inline: inlineLayout,
+      horizontal: horizontalLayout
     }
     return map[key]
   }
-  render() {
-    return (
-      <form
-        className={classes(sc('wrapper', this.props.layout))}
-        onSubmit={this.onFormSubmit}
-      >
-        {this.layoutMap(this.props.layout!)}
-      </form>
-    )
-  }
+  return (
+    <form
+      className={classes(sc('wrapper', props.layout || 'horizontal'))}
+      onSubmit={onFormSubmit}
+    >
+      {layoutMap(props.layout || 'horizontal')}
+    </form>
+  )
 }
+
 export default Form
+
+Form.displayName = componentName
+Form.defaultProps = {
+  layout: 'horizontal',
+  errorDisplayMode: 'first'
+}
+Form.propTypes = {}
