@@ -3,6 +3,8 @@ import { useState, Fragment } from 'react'
 import Form, { FormValue, FormFields } from '../packages/form/form'
 import Button from '../packages/button/button'
 import ButtonGroup from '../packages/button/buttonGroup'
+import Radio from '../packages/radio/radio'
+import Switch from '../packages/switch/switch'
 import validator, { noErrors } from '../packages/form/validator'
 
 const names = ['jan', 'lily', 'bob', 'jerry']
@@ -114,18 +116,6 @@ function validateFormExample(props: any) {
   const onSubmit = (): any => {
     const rules = [
       { key: 'username', required: true, label: '用户名' },
-      {
-        key: 'username',
-        validator: {
-          validate: (value: string) => {
-            console.log('我要调用 validate')
-            return new Promise<void>((resolve, reject) => {
-              checkName(value, resolve, reject)
-            })
-          }
-        },
-        label: '用户名'
-      },
       { key: 'username', minLength: 6, label: '用户名' },
       { key: 'username', maxLength: 16, label: '用户名' },
       { key: 'password', required: true, label: '密码' },
@@ -141,8 +131,6 @@ function validateFormExample(props: any) {
           // todo
           return false
         }
-        console.log('验证结束，结果是')
-        console.log(errors)
         setErrors(errors)
       }
     )
@@ -165,11 +153,38 @@ function validateFormExample(props: any) {
     />
   )
 }
+function radioGroupExample() {
+  const [checked, setChecked] = useState([''])
+  const onChange = (e: React.FormEvent) => {
+    setChecked([(e.target as HTMLInputElement).value])
+  }
+  const groups = [
+    { name: 'gender', value: 'boy' },
+    { name: 'gender', value: 'girl' }
+  ]
+  return (
+    <Fragment>
+      {groups.map(i => (
+        <Radio
+          key={i.value}
+          value={i.value}
+          checked={checked.includes(i.value)}
+          onChange={onChange}
+          name={i.name}
+        >
+          {i.value}
+        </Radio>
+      ))}
+    </Fragment>
+  )
+}
 
 function customFormExample(props: any) {
   const [formData, setFormData] = useState<FormValue>({
     username: 'jerry',
     age: '',
+    gender: '',
+    switch: '',
     password: '',
     password2: ''
   })
@@ -177,7 +192,17 @@ function customFormExample(props: any) {
     { name: 'username', label: '用户名', input: { type: 'text' } },
     { name: 'age', label: '年龄', input: { type: 'number' } },
     { name: 'password', label: '密码', input: { type: 'password' } },
-    { name: 'password2', label: '确认密码', input: { type: 'password' } }
+    { name: 'password2', label: '确认密码', input: { type: 'password' } },
+    {
+      name: 'gender',
+      label: '性别',
+      input: radioGroupExample
+    },
+    {
+      name: 'switch',
+      label: 'switch',
+      input: () => <Switch />
+    }
   ])
   const [errors, setErrors] = useState({})
   const onChange = (value: FormValue) => {
@@ -190,14 +215,16 @@ function customFormExample(props: any) {
         key: 'username',
         asyncValidator: {
           validate: (value: string, callback: (error?: string) => any) => {
-            console.log('我要调用 validate username')
             return new Promise<void>((resolve, reject) => {
               checkName(value, resolve, reject)
-            }).then(()=>{
-              callback()
-            },(val)=>{
-              callback(val)
-            })
+            }).then(
+              () => {
+                callback()
+              },
+              val => {
+                callback(val)
+              }
+            )
           }
         },
         label: '用户名'
@@ -274,7 +301,7 @@ export default function(props: any) {
         {validateFormExample(props)}
       </div>
       <div className="exp-section">
-        <h3>自定义表单验证</h3>
+        <h3>自定义表单元素和验证</h3>
         {customFormExample(props)}
       </div>
     </div>
