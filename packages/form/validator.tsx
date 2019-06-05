@@ -12,15 +12,11 @@ interface FormRules {
   minLength?: number
   maxLength?: number
   pattern?: RegExp
-  validator?: {
-    validate: (value: string, callback: (error?: string) => any) => any
-  }
-  asyncValidator?: {
-    validate: (
-      value: string,
-      callback: (error?: string) => any
-    ) => Promise<void>
-  }
+  validator?: (value: string, callback: (error?: string) => any) => any
+  asyncValidator?: (
+    value: string,
+    callback: (error?: string) => any
+  ) => Promise<void>
 }
 interface OneError {
   message?: string
@@ -44,7 +40,7 @@ const validator = (
   rules.map(r => {
     let value = formValue[r.key]
     if (r.validator) {
-      r.validator.validate(value, message => {
+      r.validator(value, message => {
         message &&
           addErrors(r.key, {
             message
@@ -52,7 +48,7 @@ const validator = (
       })
     }
     if (r.asyncValidator) {
-      const promise = r.asyncValidator.validate(value, message => {
+      const promise = r.asyncValidator(value, message => {
         console.log('async')
         message &&
           addErrors(r.key, {
@@ -115,7 +111,7 @@ function flat(array: any[]) {
 function fromEntries(array: any[]) {
   const result = {}
   array.forEach(item => {
-    if (item[1].length>0) {
+    if (item[1].length > 0) {
       result[item[0]] = item[1]
     }
   })
