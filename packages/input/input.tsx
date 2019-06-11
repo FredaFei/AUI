@@ -17,8 +17,7 @@ export interface IProps
   length?: number | string
   errorPosition?: 'right' | 'bottom'
   size?: 'big' | 'small'
-  type?:
-    | 'text'
+  type?: 'text'
     | 'number'
     | 'password'
     | 'email'
