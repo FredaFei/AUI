@@ -9,27 +9,29 @@ const componentName = 'Form'
 const sc = createScopedClasses(componentName)
 
 interface IFormFieldInput {
-  type: 'text' | 'password' | 'textarea' | 'number'
+  type: 'text' | 'password' | 'number'
 }
 export interface FormValue {
   [K: string]: string
 }
 export interface FormErrors {
-  [K: string]: any
+  [K: string]: string[]
 }
 export interface FormFields {
   name: string
   label: string
   input: (() => ReactNode) | IFormFieldInput
 }
+type Layout = 'horizontal'|'inline'|'vertical'
+
 interface IProps extends IStyledProps {
-  layout?: 'vertical' | 'inline' | 'horizontal'
   value: FormValue
   errors: FormErrors
   fields: FormFields[]
   buttons: ReactFragment
   onSubmit: React.FormEventHandler<HTMLFormElement>
   onChange: (value: FormValue) => void
+  layout?: Layout
   errorDisplayMode?: 'first' | 'all'
   labelWidth?: string
 }
@@ -56,7 +58,7 @@ const Form: React.FunctionComponent<IProps> = props => {
     ) : (
       <Input
         value={props.value[field.name]}
-        type="text"
+        type={field.input.type}
         onChange={onInputChange.bind(null, field.name)}
       />
     )
@@ -134,20 +136,20 @@ const Form: React.FunctionComponent<IProps> = props => {
       </tbody>
     </table>
   )
-  const layoutMap = (key: string) => {
+  const layoutMap = () => {
     const map = {
       vertical: verticalLayout,
       inline: inlineLayout,
       horizontal: horizontalLayout
     }
-    return map[key]
+    return map[props.layout!]
   }
   return (
     <form
-      className={classes(sc('wrapper', props.layout || 'horizontal'))}
+      className={classes(sc('wrapper', props.layout!))}
       onSubmit={onFormSubmit}
     >
-      {layoutMap(props.layout || 'horizontal')}
+      {layoutMap()}
     </form>
   )
 }

@@ -12,27 +12,21 @@ interface FormRules {
   minLength?: number
   maxLength?: number
   pattern?: RegExp
-  validator?: (value: string, callback: (error?: string) => any) => any
-  asyncValidator?: (
-    value: string,
-    callback: (error?: string) => any
-  ) => Promise<void>
+  validator?: (value: string) => OneError
 }
-interface OneError {
-  message?: string
-  promise?: Promise<void>
-}
+type OneError = string | Promise<string>
+
 export const noErrors = (value: any) => {
   return Object.values(value).length === 0
 }
 const validator = (
   formValue: FormValue,
   rules: rules,
-  callback: (errors: any) => any
+  callback: (errors: any) => void
 ) => {
   const result: any = {}
   const addErrors = (key: string, error: OneError) => {
-    if (!result[key]) {
+    if (result[key]===undefined) {
       result[key] = []
     }
     result[key].push(error)
@@ -40,60 +34,30 @@ const validator = (
   rules.map(r => {
     let value = formValue[r.key]
     if (r.validator) {
-      r.validator(value, message => {
-        message &&
-          addErrors(r.key, {
-            message
-          })
-      })
-    }
-    if (r.asyncValidator) {
-      const promise = r.asyncValidator(value, message => {
-        console.log('async')
-        message &&
-          addErrors(r.key, {
-            message
-          })
-      })
-      addErrors(r.key, {
-        promise
-      })
+      const promise = r.validator(value)
+      addErrors(r.key, promise)
     }
     if (isEmpty(value) && r.required) {
-      addErrors(r.key, { message: `${r.label}不能为空` })
+      addErrors(r.key, `${r.label}不能为空`)
     }
     if (!isEmpty(value) && value.length < r.minLength!) {
-      addErrors(r.key, { message: `${r.label}的最小长度为${r.minLength!}` })
+      addErrors(r.key, `${r.label}的最小长度为${r.minLength!}`)
     }
     if (!isEmpty(value) && value.length > r.maxLength!) {
-      addErrors(r.key, {
-        message: `${r.label}的最大长度为${r.maxLength!}`
-      })
+      addErrors(r.key, `${r.label}的最大长度为${r.maxLength!}`)
     }
     if (!isEmpty(value) && r.pattern && !r.pattern.test(value)) {
-      addErrors(r.key, { message: `${r.label}的格式不正确` })
+      addErrors(r.key, `${r.label}的格式不正确`)
     }
   })
 
-  console.log(result)
-  const x = () => {
-    const newErrors = flat(Object.keys(result))
-      // key:string
-      // result[key]: [{message,promise}]
-      .map(key => [
-        key,
-        result[key]
-          .filter((i: OneError) => i.message && i.message)
-          .map((i: OneError) => i.message)
-      ])
-    callback(fromEntries(newErrors))
-  }
-
-  Promise.all(
-    flat(Object.values(result))
-      .filter(i => i.promise)
-      .map(i => i.promise)
-  ).then(x, x)
+  const errors = Object.keys(result).map(k=>result[k].map((promise:OneError)=> [k,promise] ))
+  const newPromises = flat(errors).map(([key,promiseOrString])=>(promiseOrString instanceof Promise ? promiseOrString : Promise.reject(promiseOrString))
+          .then(()=>[key,undefined],reason=>[key,reason]))
+  Promise.all(newPromises).then(results=>{
+    console.log(results)
+    callback(zip(results.filter(i=>i[1])))
+  })
 }
 
 function flat(array: any[]) {
@@ -108,12 +72,11 @@ function flat(array: any[]) {
   return result
 }
 
-function fromEntries(array: any[]) {
+function zip(list: Array<string[]>) {
   const result = {}
-  array.forEach(item => {
-    if (item[1].length > 0) {
-      result[item[0]] = item[1]
-    }
+  list.map(([key,value])=>{
+    result[key] = result[key] || []
+    result[key].push(value)
   })
   return result
 }
