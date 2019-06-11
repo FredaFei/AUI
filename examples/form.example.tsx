@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState, Fragment } from 'react'
-import Form, { FormValue, FormFields } from '../packages/form/form'
+import Form, { FormValue, FormFields,FormErrors } from '../packages/form/form'
 import Button from '../packages/button/button'
 import ButtonGroup from '../packages/button/buttonGroup'
 import Radio from '../packages/radio/radio'
@@ -63,9 +63,9 @@ function layoutFormExample(props: any) {
     { name: 'username', label: '用户名', input: { type: 'text' } },
     { name: 'password', label: '密码', input: { type: 'password' } }
   ])
-  const [errors] = useState({})
+  const [errors] = useState<FormErrors>({})
   const [layout, setLayout] = useState('vertical')
-  const [layouts] = useState(['horizontal', 'vertical', 'inline'])
+  const [layouts] = useState<string[]>(['horizontal', 'vertical', 'inline'])
   const onChange = (value: FormValue) => {
     setFormData(value)
   }
@@ -73,7 +73,7 @@ function layoutFormExample(props: any) {
   return (
     <div>
       <ButtonGroup style={{ marginBottom: '20px' }}>
-        {layouts.map(i => (
+        {layouts.map((i) => (
           <Button
             key={i}
             style={layout === i ? { background: '#66e2d5', color: '#fff' } : {}}
@@ -213,25 +213,16 @@ function customFormExample(props: any) {
       { key: 'username', required: true, label: '用户名' },
       {
         key: 'username',
-        asyncValidator: {
-          validate: (value: string, callback: (error?: string) => any) => {
-            return new Promise<void>((resolve, reject) => {
-              checkName(value, resolve, reject)
-            }).then(
-              () => {
-                callback()
-              },
-              val => {
-                callback(val)
-              }
-            )
-          }
+        validator: (value: string) => {
+            return new Promise<string>((resolve, reject) => {
+                checkName(value, resolve, (message:string)=>reject(message))
+            })
         },
         label: '用户名'
       },
       { key: 'username', minLength: 6, label: '用户名' },
       { key: 'password', required: true, label: '密码' },
-      { key: 'password', minLength: 6, label: '密码' },
+      { key: 'password', minLength: 3, label: '密码' },
       { key: 'password', maxLength: 8, label: '密码' },
       { key: 'password', pattern: /^[a-zA-Z0-9]+$/, label: '密码' },
       { key: 'password2', required: true, label: '确认密码' },
@@ -240,13 +231,11 @@ function customFormExample(props: any) {
       { key: 'password2', pattern: /^[a-zA-Z0-9]+$/, label: '确认密码' },
       {
         key: 'password2',
-        validator: {
-          validate: (value: string, callback: (error?: string) => any) => {
+        validator: (value: string) => {
             if (value !== formData['password']) {
-              callback('两次的密码不一致')
+                return '两次的密码不一致'
             }
-            callback()
-          }
+            return ''
         },
         label: '确认密码'
       }
