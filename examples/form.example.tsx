@@ -64,7 +64,7 @@ function layoutFormExample(props: any) {
     { name: 'password', label: '密码', input: { type: 'password' } }
   ])
   const [errors] = useState<FormErrors>({})
-  const [layout, setLayout] = useState('vertical')
+  const [layout, setLayout] = useState()
   const [layouts] = useState<string[]>(['horizontal', 'vertical', 'inline'])
   const onChange = (value: FormValue) => {
     setFormData(value)
