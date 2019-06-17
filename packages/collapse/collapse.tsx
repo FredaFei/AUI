@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as PropTypes from 'prop-types'
-import { isSimpleArrayEqual } from '../utils'
+import isSimpleArrayEqual  from '../utils/isSimpleArrayEqual'
 import classes, { createScopedClasses } from '../utils/classnames'
 import Icon from '../icon/icon'
 import './style'
