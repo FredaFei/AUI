@@ -16,6 +16,7 @@ import MessageExample from './examples/message.example'
 import DialogExample from './examples/dialog.example'
 import SwitchExample from './examples/switch.example'
 import CollapseExample from './examples/collapse.example'
+import MenuExample from './examples/menu.example'
 import 'examples/index.scss'
 
 class App extends Component {
@@ -71,10 +72,16 @@ class App extends Component {
                     <NavLink to="/checkbox">Checkbox 多选框</NavLink>
                   </li>
                   <li>
+                    <NavLink to="/switch">Switch</NavLink>
+                  </li>
+                  <li>
                     <NavLink to="/form">Form 表单</NavLink>
                   </li>
                   <li>
                     <NavLink to="/pager">Pager 分页</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/menu">Menu 导航菜单</NavLink>
                   </li>
                   <li>
                     <NavLink to="/tabs">Tabs 标签页</NavLink>
@@ -84,9 +91,6 @@ class App extends Component {
                   </li>
                   <li>
                     <NavLink to="/dialog">Dialog</NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/switch">Switch</NavLink>
                   </li>
                   <li>
                     <NavLink to="/collapse">Collapse</NavLink>
@@ -104,6 +108,7 @@ class App extends Component {
               <Route path="/Checkbox" component={CheckboxExample} />
               <Route path="/form" component={FormExample} />
               <Route path="/pager" component={PagerExample} />
+              <Route path="/menu" component={MenuExample} />
               <Route path="/tabs" component={TabsExample} />
               <Route path="/message" component={MessageExample} />
               <Route path="/dialog" component={DialogExample} />
