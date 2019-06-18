@@ -54,13 +54,13 @@ class App extends Component {
                 <h2>组件</h2>
                 <ol onClick={this.onToggleMenu}>
                   <li>
-                    <NavLink to="/button">Button</NavLink>
+                    <NavLink to="/button">Button 按钮</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/grid">Grid</NavLink>
+                    <NavLink to="/grid">Grid 栅格</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/layout">Layout</NavLink>
+                    <NavLink to="/layout">Layout 布局</NavLink>
                   </li>
                   <li>
                     <NavLink to="/input">Input 输入框</NavLink>
@@ -72,7 +72,7 @@ class App extends Component {
                     <NavLink to="/checkbox">Checkbox 多选框</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/switch">Switch</NavLink>
+                    <NavLink to="/switch">Switch 开关</NavLink>
                   </li>
                   <li>
                     <NavLink to="/form">Form 表单</NavLink>
@@ -87,13 +87,13 @@ class App extends Component {
                     <NavLink to="/tabs">Tabs 标签页</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/message">Message</NavLink>
+                    <NavLink to="/collapse">Collapse 折叠面板</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/dialog">Dialog</NavLink>
+                    <NavLink to="/message">Message 全局提示</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/collapse">Collapse</NavLink>
+                    <NavLink to="/dialog">Dialog 对话框</NavLink>
                   </li>
                 </ol>
               </aside>
