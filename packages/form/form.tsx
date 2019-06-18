@@ -146,7 +146,7 @@ const Form: React.FunctionComponent<IProps> = props => {
   }
   return (
     <form
-      className={classes(sc('wrapper', props.layout!))}
+      className={classes(sc('wrapper', props.layout!),props.className)}
       onSubmit={onFormSubmit}
     >
       {layoutMap()}
