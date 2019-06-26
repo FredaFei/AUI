@@ -9,7 +9,7 @@ const sc = createScopedClasses(componentName)
 export interface IProps extends IStyledProps {
     selected: string
     layout?: 'horizontal' | 'inline' | 'vertical'
-    onSelect?: (value: string | undefined) => any
+    onSelect?: (value: string) => any
 }
 
 const Menu: React.FunctionComponent<IProps> = props => {

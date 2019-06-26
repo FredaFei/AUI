@@ -9,15 +9,15 @@ const sc = createScopedClasses(componentName)
 export interface IProps extends IStyledProps {
     key: string
     disabled?: boolean
-    onSelect?: (value:string|undefined)=>any
+    onSelect?: (value: string) => any
 }
 
 const MenuItem: React.FunctionComponent<IProps> = props => {
-    const onMenuItemClick = ()=>{
-        props.onSelect(props.key)
+    const onMenuItemClick = () => {
+        props.onSelect && props.onSelect(props.key)
     }
     return (
-        <div className={classes(sc(''),props.className)} style={props.style} onClick={onMenuItemClick}>
+        <div className={classes(sc(''), props.className)} style={props.style} onClick={onMenuItemClick}>
             {props.children}
         </div>
     )
