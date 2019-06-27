@@ -1,10 +1,10 @@
 import * as React from 'react'
 import {createScopedClasses} from '../utils/classnames'
 import Icon from '../icon/icon'
-import Date2, {IReadonlyDate, pad} from '../utils/date'
+import Date2, {IReadonlyDate} from '../utils/date'
 import {range} from '../utils/collection'
 
-const componentName = 'DayPanel'
+const componentName = 'YearPanel'
 const sc = createScopedClasses(componentName)
 
 function normalize(n: number, base: number): number {
@@ -30,9 +30,8 @@ interface IState {
     displayPanel?: 'day' | 'month' | 'year'
 }
 
-const weeksMap: string[] = ["日", "一", "二", "三", "四", "五", "六"]
 
-class DayPanel extends React.PureComponent<IProps, IState> {
+class YearPanel extends React.PureComponent<IProps, IState> {
     static displayName = componentName
     static defaultProps = {
         firstDayOfWeek: 1
@@ -53,17 +52,8 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     onClickPrevYear = () => {
         this.setState({display: this.state.display.clone.addYear(-1)});
     }
-    onClickPrevMonth = () => {
-        this.setState({display: this.state.display.clone.addMonth(-1)});
-    }
     onClickYear = () => {
         this.props.onChangePanel!('year')
-    }
-    onClickMonth = () => {
-        this.props.onChangePanel!('month')
-    }
-    onClickNextMonth = () => {
-        this.setState({display: this.state.display.clone.addMonth(+1)});
     }
     onClickNextYear = () => {
         this.setState({display: this.state.display.clone.addYear(+1)});
@@ -74,14 +64,11 @@ class DayPanel extends React.PureComponent<IProps, IState> {
             <div className={sc('nav')}>
                 <div className={sc('col')}>
                     <Icon name="left" onClick={this.onClickPrevYear}/>
-                    <Icon name="left" onClick={this.onClickPrevMonth}/>
                 </div>
                 <div className={sc('col')}>
                     <span className={sc('year')} onClick={this.onClickYear}>{this.state.display.year}年</span>
-                    <span className={sc('month')} onClick={this.onClickMonth}>{pad(this.state.display.month)}月</span>
                 </div>
                 <div className={sc('col')}>
-                    <Icon name="right" onClick={this.onClickNextMonth}/>
                     <Icon name="right" onClick={this.onClickNextYear}/>
                 </div>
             </div>
@@ -94,7 +81,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
                 <table>
                     <thead>
                     <tr>
-                        {weeksMap.map(i => <th key={i}>{i}</th>)}
+                        2012
                     </tr>
                     </thead>
                     {this.renderDays()}
@@ -133,19 +120,14 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         )
     }
 
-    renderActions() {
-        return (<div className={sc('actions')}>今天</div>)
-    }
-
     render() {
         return (
             <React.Fragment>
                 {this.renderNav()}
                 {this.renderBody()}
-                {this.renderActions()}
             </React.Fragment>
         )
     }
 }
 
-export default DayPanel
+export default YearPanel

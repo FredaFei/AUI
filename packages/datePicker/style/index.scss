@@ -1,8 +1,139 @@
 @import 'var';
+
 %padding {
   padding: 4px 8px;
 }
 
-#{component(date-picker)} {
+#{component(datePicker)} {
   margin: 20px;
+  &-body {
+    width: 20em;
+    border: 1px solid red;
+  }
+}
+#{component(dayPanel)} {
+  &-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+    #{component(datePicker)} {
+      &-col {
+        & > svg, & > span {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  &-main {
+    table {
+      width: 100%;
+      text-align: center;
+
+      td, th {
+        font-size: 14px;
+      }
+
+      th {
+        font-weight: normal;
+        padding: 6px 0;
+      }
+
+      td {
+        cursor: pointer;
+      }
+
+      #{component(dayPanel)} {
+        &-day {
+          color: #999;
+        }
+
+        &-day-currentMonth {
+          color: #333;
+        }
+
+        &-day-selected {
+          #{component(dayPanel)} {
+            &-cell {
+              color: #fff;
+              background: $blue;
+            }
+          }
+        }
+
+        &-cell {
+          width: 28px;
+          line-height: 28px;
+          margin: auto;
+        }
+      }
+    }
+  }
+
+  &-actions {
+    padding: 8px;
+    border-top: 1px solid #eee;
+  }
+}
+#{component(monthPanel)} {
+  &-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 40px;
+    border-bottom: 1px solid #eee;
+    #{component(monthPanel)} {
+      &-col {
+        & > svg, & > span {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &-main {
+    table {
+      width: 100%;
+      text-align: center;
+
+      td, th {
+        font-size: 14px;
+      }
+
+      th {
+        font-weight: normal;
+        padding: 6px 0;
+      }
+
+      td {
+        cursor: pointer;
+      }
+
+      #{component(dayPanel)} {
+        &-day {
+          color: #999;
+        }
+
+        &-day-currentMonth {
+          color: #333;
+        }
+
+        &-day-selected {
+          #{component(dayPanel)} {
+            &-cell {
+              color: #fff;
+              background: $blue;
+            }
+          }
+        }
+
+        &-cell {
+          width: 28px;
+          line-height: 28px;
+          margin: auto;
+        }
+      }
+    }
+  }
 }
