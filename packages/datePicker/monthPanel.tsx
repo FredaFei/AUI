@@ -4,7 +4,7 @@ import Icon from '../icon/icon'
 import Date2, {IReadonlyDate} from '../utils/date'
 import {range} from '../utils/collection'
 
-const componentName = 'DayPanel'
+const componentName = 'MonthPanel'
 const sc = createScopedClasses(componentName)
 
 type IPanel = 'day' | 'month' | 'year'
@@ -64,13 +64,13 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         return (
             <div className={sc('nav')}>
                 <div className={sc('col')}>
-                    <Icon name="left" onClick={this.onClickPrevYear}/>
+                    <Icon name="double-left" onClick={this.onClickPrevYear}/>
                 </div>
                 <div className={sc('col')}>
                     <span className={sc('year')} onClick={this.onNavMonthClick}>{this.state.display.year}年</span>
                 </div>
                 <div className={sc('col')}>
-                    <Icon name="right" onClick={this.onClickNextYear}/>
+                    <Icon name="double-right" onClick={this.onClickNextYear}/>
                 </div>
             </div>
         )
@@ -94,9 +94,11 @@ class DayPanel extends React.PureComponent<IProps, IState> {
             </tr>
         ))
         return (
-            <table>
-                <tbody>{month}</tbody>
-            </table>
+            <div className={sc('main')}>
+                <table>
+                    <tbody>{month}</tbody>
+                </table>
+            </div>
         )
     }
 

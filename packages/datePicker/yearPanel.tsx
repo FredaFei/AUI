@@ -30,10 +30,6 @@ class YearPanel extends React.PureComponent<IProps, IState> {
         display: this.props.display.clone
     }
 
-    get date2Value() {
-        return new Date2(this.props.value)
-    }
-
     get visibleYears() {
         let start = Math.floor(this.state.display.year / 10) * 10
         return Array.from({length: 12}, (val, index) => start - 1 + index)
@@ -58,14 +54,14 @@ class YearPanel extends React.PureComponent<IProps, IState> {
         return (
             <div className={sc('nav')}>
                 <div className={sc('col')}>
-                    <Icon name="left" onClick={this.onClickPrevYear}/>
+                    <Icon name="double-left" onClick={this.onClickPrevYear}/>
                 </div>
                 <div className={sc('col')}>
                     <span className={sc('year')}
                           onClick={this.onClickNavYear}>{this.visibleYears[1]}-{this.visibleYears[this.visibleYears.length - 2]}</span>
                 </div>
                 <div className={sc('col')}>
-                    <Icon name="right" onClick={this.onClickNextYear}/>
+                    <Icon name="double-right" onClick={this.onClickNextYear}/>
                 </div>
             </div>
         )
@@ -83,6 +79,7 @@ class YearPanel extends React.PureComponent<IProps, IState> {
 
     renderYears() {
         const {display} = this.props
+        const currentYearIndex:number = this.visibleYears.indexOf(this.state.display.year)
         const years = range(0, 3).map(row => (
             <tr key={`year-${row}`}>
                 {range(1, 3).map(col => {
@@ -90,9 +87,9 @@ class YearPanel extends React.PureComponent<IProps, IState> {
                     const d = display.clone.setYear(this.visibleYears[index])
                     return (
                         <td
-                            className={sc('day', {
-                                'year-firstYear': index === 0 || index === this.visibleYears.length - 1,
-                                'year-selected': d.year === this.date2Value.year
+                            className={sc('year', {
+                                'firstOrLastYear': index === 0 || index === this.visibleYears.length - 1,
+                                'year-selected': index === currentYearIndex
                             })}
                             onClick={() => this.onClickYear(d)}
                             key={d.timestamp}>

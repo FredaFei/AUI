@@ -7,6 +7,7 @@ import YearPanel from "./yearPanel";
 import Date2, {IReadonlyDate} from '../utils/date'
 
 import './style'
+import {ReactNode} from "react";
 
 const componentName = 'DatePicker'
 const sc = createScopedClasses(componentName)
@@ -15,6 +16,7 @@ interface IProps extends IStyledProps {
     value?: Date | string
     firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
     onChange?: (date: Date) => void
+    extraFooter?: (() => ReactNode)
 }
 
 type IPanel = 'day' | 'month' | 'year'
@@ -32,7 +34,7 @@ class DatePicker
     }
     static propTypes = {}
     state: IState = {
-        displayPanel: 'year',
+        displayPanel: 'day',
         display: this.date2Value.clone
     }
 
@@ -65,6 +67,7 @@ class DatePicker
                               firstDayOfWeek={this.props.firstDayOfWeek}
                               onChangePanel={this.onChangePanel}
                               display={this.state.display}
+                              extraFooter={this.props.extraFooter}
                               onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
                         <MonthPanel value={this.props.value}
                                     onChange={this.onChange}

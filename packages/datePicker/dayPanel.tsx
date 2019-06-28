@@ -3,6 +3,7 @@ import {createScopedClasses} from '../utils/classnames'
 import Icon from '../icon/icon'
 import Date2, {IReadonlyDate, pad} from '../utils/date'
 import {range} from '../utils/collection'
+import {ReactNode} from "react";
 
 const componentName = 'DayPanel'
 const sc = createScopedClasses(componentName)
@@ -21,6 +22,7 @@ interface IProps extends IStyledProps {
     value?: Date | string
     display: IReadonlyDate
     firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
+    extraFooter?: (() => ReactNode)
     onChange?: (date: Date) => void
     onChangePanel?: (panel: IPanel) => void
     onChangeDisplay?: (date: Date2) => void
@@ -58,12 +60,12 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         this.props.onChange!.call(null, day.toDate())
     }
     onClickPrevYear = () => {
-        this.setState(()=>({display: this.state.display.clone.addYear(-1)}), () => {
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}), () => {
             this.props.onChangeDisplay!(this.state.display.clone)
         });
     }
     onClickPrevMonth = () => {
-        this.setState(() => ({display: this.state.display.clone.addMonth(-1)}), () => {
+        this.setState((prevState) => ({display: prevState.display.clone.addMonth(-1)}), () => {
             this.props.onChangeDisplay!(this.state.display.clone)
         });
     }
@@ -74,13 +76,20 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         this.props.onChangePanel!('month')
     }
     onClickNextMonth = () => {
-        this.setState(()=>({display: this.state.display.clone.addMonth(+1)}), () => {
+        this.setState((prevState) => ({display: prevState.display.clone.addMonth(+1)}), () => {
             this.props.onChangeDisplay!(this.state.display.clone)
         });
     }
     onClickNextYear = () => {
-        this.setState(()=>({display: this.state.display.clone.addYear(+1)}), () => {
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}), () => {
             this.props.onChangeDisplay!(this.state.display.clone)
+        });
+    }
+    onClickToDay = () => {
+        const today = new Date2(new Date())
+        this.setState(() => ({display: today}), () => {
+            this.props.onChange!.call(null, today.toDate())
+            this.props.onChangeDisplay!(today)
         });
     }
 
@@ -88,7 +97,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         return (
             <div className={sc('nav')}>
                 <div className={sc('col')}>
-                    <Icon name="left" onClick={this.onClickPrevYear}/>
+                    <Icon name="double-left" onClick={this.onClickPrevYear}/>
                     <Icon name="left" onClick={this.onClickPrevMonth}/>
                 </div>
                 <div className={sc('col')}>
@@ -97,7 +106,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
                 </div>
                 <div className={sc('col')}>
                     <Icon name="right" onClick={this.onClickNextMonth}/>
-                    <Icon name="right" onClick={this.onClickNextYear}/>
+                    <Icon name="double-right" onClick={this.onClickNextYear}/>
                 </div>
             </div>
         )
@@ -131,8 +140,10 @@ class DayPanel extends React.PureComponent<IProps, IState> {
                     return (
                         <td
                             className={sc('day', {
-                                'day-currentMonth': d.month === display.month,
-                                'day-selected': d.isSameDayAs(this.date2Value)
+                                'currentMonth': d.month === display.month,
+                                'selected': d.isSameDayAs(this.date2Value),
+                                'isToday': d.isSameDayAs(new Date2(new Date())),
+                                'isSame': d.day === this.date2Value.day && display.month === d.month
                             })}
                             onClick={() => this.onClickDay(d)}
                             key={d.timestamp}>
@@ -149,7 +160,12 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     renderActions() {
-        return (<div className={sc('actions')}>今天</div>)
+        return (
+            <React.Fragment>
+                {this.props.extraFooter && this.props.extraFooter()}
+                <div className={sc('actions')} onClick={this.onClickToDay}>今天</div>
+            </React.Fragment>
+        )
     }
 
     render() {
