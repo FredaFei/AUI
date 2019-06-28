@@ -10,7 +10,6 @@ const sc = createScopedClasses(componentName)
 type IPanel = 'day' | 'month' | 'year'
 
 interface IProps extends IStyledProps {
-    value?: Date | string
     display: IReadonlyDate
     onChange?: (date: Date) => void
     onChangePanel?: (panel: IPanel) => void
@@ -19,7 +18,7 @@ interface IProps extends IStyledProps {
 
 interface IState {
     display: IReadonlyDate
-    displayPanel?: 'day' | 'month' | 'year'
+    displayPanel?: IPanel
 }
 
 const monthMap = [
@@ -42,7 +41,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     static propTypes = {}
     state: IState = {
         displayPanel: 'day',
-        display: this.props.display.clone
+        display: this.props.display && this.props.display.clone || new Date2(new Date()).clone
     }
 
     onClickPrevYear = () => {

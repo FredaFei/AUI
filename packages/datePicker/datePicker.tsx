@@ -30,11 +30,12 @@ class DatePicker
     extends React.PureComponent <IProps, IState> {
     static displayName = componentName
     static defaultProps = {
+        // value: new Date(),
         firstDayOfWeek: 1
     }
     static propTypes = {}
     state: IState = {
-        displayPanel: 'day',
+        displayPanel: 'month',
         display: this.date2Value.clone
     }
 
@@ -43,6 +44,9 @@ class DatePicker
     }
 
     get formattedValue() {
+        if (!this.props.value) {
+            return ''
+        }
         return this.date2Value.toDateString()
     }
 
@@ -69,14 +73,12 @@ class DatePicker
                               display={this.state.display}
                               extraFooter={this.props.extraFooter}
                               onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
-                        <MonthPanel value={this.props.value}
+                        <MonthPanel display={this.state.display}
                                     onChange={this.onChange}
                                     onChangePanel={this.onChangePanel}
-                                    display={this.state.display}
-                                    onChangeDisplay={this.onChangeDisplay}/> : <YearPanel value={this.props.value}
+                                    onChangeDisplay={this.onChangeDisplay}/> : <YearPanel display={this.state.display}
                                                                                           onChange={this.onChange}
                                                                                           onChangePanel={this.onChangePanel}
-                                                                                          display={this.state.display}
                                                                                           onChangeDisplay={this.onChangeDisplay}/>}
             </div>
         )
@@ -85,6 +87,7 @@ class DatePicker
     render() {
         const {props} = this
         console.log('datepicker')
+        console.log(this.date2Value)
         console.log(this.state.display.year)
         console.log(this.state.display.month)
         return (

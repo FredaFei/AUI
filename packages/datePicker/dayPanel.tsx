@@ -30,7 +30,7 @@ interface IProps extends IStyledProps {
 
 interface IState {
     display: IReadonlyDate
-    displayPanel?: 'day' | 'month' | 'year'
+    displayPanel?: IPanel
 }
 
 const weeksMap: string[] = ["日", "一", "二", "三", "四", "五", "六"]
