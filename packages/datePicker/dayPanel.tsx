@@ -23,6 +23,7 @@ interface IProps extends IStyledProps {
     firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
     onChange?: (date: Date) => void
     onChangePanel?: (panel: IPanel) => void
+    onChangeDisplay?: (date: Date2) => void
 }
 
 interface IState {
@@ -40,21 +41,31 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     static propTypes = {}
     state: IState = {
         displayPanel: 'day',
-        display: new Date2(this.props.value)
+        display: this.props.display.clone
     }
 
     get date2Value() {
         return new Date2(this.props.value)
     }
 
+    get weekdayNames() {
+        const before = weeksMap.slice(0, this.props.firstDayOfWeek)
+        const after = weeksMap.slice(this.props.firstDayOfWeek)
+        return [...after, ...before]
+    }
+
     onClickDay = (day: Date2) => {
-        this.props.onChange && this.props.onChange.call(null, day.toDate())
+        this.props.onChange!.call(null, day.toDate())
     }
     onClickPrevYear = () => {
-        this.setState({display: this.state.display.clone.addYear(-1)});
+        this.setState(()=>({display: this.state.display.clone.addYear(-1)}), () => {
+            this.props.onChangeDisplay!(this.state.display.clone)
+        });
     }
     onClickPrevMonth = () => {
-        this.setState({display: this.state.display.clone.addMonth(-1)});
+        this.setState(() => ({display: this.state.display.clone.addMonth(-1)}), () => {
+            this.props.onChangeDisplay!(this.state.display.clone)
+        });
     }
     onClickYear = () => {
         this.props.onChangePanel!('year')
@@ -63,10 +74,14 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         this.props.onChangePanel!('month')
     }
     onClickNextMonth = () => {
-        this.setState({display: this.state.display.clone.addMonth(+1)});
+        this.setState(()=>({display: this.state.display.clone.addMonth(+1)}), () => {
+            this.props.onChangeDisplay!(this.state.display.clone)
+        });
     }
     onClickNextYear = () => {
-        this.setState({display: this.state.display.clone.addYear(+1)});
+        this.setState(()=>({display: this.state.display.clone.addYear(+1)}), () => {
+            this.props.onChangeDisplay!(this.state.display.clone)
+        });
     }
 
     renderNav() {
@@ -94,7 +109,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
                 <table>
                     <thead>
                     <tr>
-                        {weeksMap.map(i => <th key={i}>{i}</th>)}
+                        {this.weekdayNames.map(i => <th key={i}>{i}</th>)}
                     </tr>
                     </thead>
                     {this.renderDays()}
@@ -138,6 +153,8 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     render() {
+        console.log('daypanel')
+        console.log(this.state.display.month)
         return (
             <React.Fragment>
                 {this.renderNav()}

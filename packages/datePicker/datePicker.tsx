@@ -32,7 +32,7 @@ class DatePicker
     }
     static propTypes = {}
     state: IState = {
-        displayPanel: 'month',
+        displayPanel: 'year',
         display: this.date2Value.clone
     }
 
@@ -46,6 +46,9 @@ class DatePicker
 
     onChange = (date: Date) => {
         this.props.onChange && this.props.onChange(date)
+    }
+    onChangeDisplay = (display: Date2) => {
+        this.setState({display})
     }
     onFocusInput = () => {
     }
@@ -61,13 +64,26 @@ class DatePicker
                               onChange={this.onChange}
                               firstDayOfWeek={this.props.firstDayOfWeek}
                               onChangePanel={this.onChangePanel}
-                              display={this.state.display}/> : this.state.displayPanel === 'month' ? <MonthPanel /> : <YearPanel />}
+                              display={this.state.display}
+                              onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
+                        <MonthPanel value={this.props.value}
+                                    onChange={this.onChange}
+                                    onChangePanel={this.onChangePanel}
+                                    display={this.state.display}
+                                    onChangeDisplay={this.onChangeDisplay}/> : <YearPanel value={this.props.value}
+                                                                                          onChange={this.onChange}
+                                                                                          onChangePanel={this.onChangePanel}
+                                                                                          display={this.state.display}
+                                                                                          onChangeDisplay={this.onChangeDisplay}/>}
             </div>
         )
     }
 
     render() {
         const {props} = this
+        console.log('datepicker')
+        console.log(this.state.display.year)
+        console.log(this.state.display.month)
         return (
             <div className={classes(sc('wrapper'), props.className)} style={props.style}>
                 <Input value={this.formattedValue} onFocus={this.onFocusInput} readOnly={true}/>

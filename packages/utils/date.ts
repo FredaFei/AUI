@@ -133,9 +133,16 @@ class Date2 implements IReadonlyDate {
     set day(value) {
         this.value.setDate(value)
     }
-
     setDay(value: number) {
         this.day = value;
+        return this
+    }
+    setMonth(value: number) {
+        this.month = value;
+        return this
+    }
+    setYear(value: number) {
+        this.year = value;
         return this
     }
 
