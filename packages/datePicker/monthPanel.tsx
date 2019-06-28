@@ -46,18 +46,19 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     onClickPrevYear = () => {
-        this.setState({display: this.state.display.clone.addYear(-1)});
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}));
     }
     onNavMonthClick = () => {
         this.props.onChangePanel!('year')
     }
     onClickMonth = (day: Date2) => {
-        this.setState({display: day})
-        this.props.onChangeDisplay!(day)
-        this.props.onChangePanel!('day')
+        this.setState(() => ({display: day}), () => {
+            this.props.onChangeDisplay!(day)
+            this.props.onChangePanel!('day')
+        })
     }
     onClickNextYear = () => {
-        this.setState({display: this.state.display.clone.addYear(+1)});
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}));
     }
 
     renderNav() {
@@ -77,7 +78,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     renderBody() {
-        const {display} = this.props
+        const {display} = this.state
         const month = range(0, 3).map(row => (
             <tr key={`month-${row}`}>
                 {range(1, 3).map(col => {
@@ -104,6 +105,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
 
     render() {
         console.log('monthpanel')
+        console.log(this.state.display.year)
         console.log(this.state.display.month)
         return (
             <React.Fragment>
