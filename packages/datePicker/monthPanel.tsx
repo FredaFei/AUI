@@ -41,7 +41,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     static propTypes = {}
     state: IState = {
         displayPanel: 'day',
-        display: this.props.display && this.props.display.clone || new Date2(new Date()).clone
+        display: this.props.display.clone
     }
 
     onClickPrevYear = () => {

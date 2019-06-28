@@ -15,7 +15,7 @@ const sc = createScopedClasses(componentName)
 interface IProps extends IStyledProps {
     value?: Date | string
     firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
-    onChange?: (date: Date) => void
+    onChange?: (date: Date|string) => void
     extraFooter?: (() => ReactNode)
 }
 
@@ -40,7 +40,7 @@ class DatePicker
     }
 
     get date2Value() {
-        return new Date2(this.props.value)
+        return new Date2(this.props.value || new Date())
     }
 
     get formattedValue() {
@@ -49,9 +49,16 @@ class DatePicker
         }
         return this.date2Value.toDateString()
     }
+    set formattedValue(value:Date | string) {
+        if ('value' in this.props) {
+            this.setState({ display: new Date2(value) })
+        }
+        this.props.onChange && this.props.onChange(value)
+    }
 
     onChange = (date: Date) => {
-        this.props.onChange && this.props.onChange(date)
+        this.formattedValue = date
+        // this.props.onChange && this.props.onChange(date)
     }
     onChangeDisplay = (display: Date2) => {
         this.setState({display})
@@ -87,7 +94,7 @@ class DatePicker
     render() {
         const {props} = this
         console.log('datepicker')
-        console.log(this.date2Value)
+        console.log(this.formattedValue)
         console.log(this.state.display.year)
         console.log(this.state.display.month)
         return (
