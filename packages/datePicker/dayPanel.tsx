@@ -47,7 +47,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     get date2Value() {
-        return new Date2(this.props.value)
+        return new Date2(this.props.value || this.props.display.clone)
     }
 
     get weekdayNames() {
@@ -57,6 +57,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     onClickDay = (day: Date2) => {
+        this.setState({display: day})
         this.props.onChange!.call(null, day.toDate())
     }
     onClickPrevYear = () => {
@@ -170,7 +171,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
 
     render() {
         console.log('daypanel')
-        console.log(this.state.display.month)
+        console.log(this.state.display)
         return (
             <React.Fragment>
                 {this.renderNav()}

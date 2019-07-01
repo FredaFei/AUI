@@ -24,41 +24,39 @@ type IPanel = 'day' | 'month' | 'year'
 interface IState {
     display: IReadonlyDate
     displayPanel: IPanel
+    defaultValue: IReadonlyDate
 }
 
 class DatePicker
     extends React.PureComponent <IProps, IState> {
     static displayName = componentName
     static defaultProps = {
-        // value: new Date(),
         firstDayOfWeek: 1
     }
     static propTypes = {}
-    state: IState = {
-        displayPanel: 'month',
-        display: this.date2Value.clone
-    }
 
-    get date2Value() {
-        return new Date2(this.props.value || new Date())
+    state: IState = {
+        displayPanel: 'day',
+        display: this.display || this.date2Value,
+        defaultValue : this.date2Value
+    }
+    get date2Value(){
+        return new Date2(this.props.value).clone
+    }
+    get display() {
+        return isNaN(this.date2Value.day) && new Date2(new Date()).clone
     }
 
     get formattedValue() {
-        if (!this.props.value) {
+        if (!this.props.value && isNaN(this.state.defaultValue.day)) {
             return ''
         }
-        return this.date2Value.toDateString()
+        return this.state.defaultValue.toDateString()
     }
-    set formattedValue(value:Date | string) {
-        if ('value' in this.props) {
-            this.setState({ display: new Date2(value) })
-        }
-        this.props.onChange && this.props.onChange(value)
-    }
-
     onChange = (date: Date) => {
-        this.formattedValue = date
-        // this.props.onChange && this.props.onChange(date)
+        this.onChangeDisplay(new Date2(date))
+        this.setState({defaultValue:new Date2(date)})
+        this.props.onChange && this.props.onChange(date)
     }
     onChangeDisplay = (display: Date2) => {
         this.setState({display})

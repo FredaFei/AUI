@@ -77,7 +77,7 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     renderBody() {
-        const {display} = this.state
+        const {display} = this.props
         const month = range(0, 3).map(row => (
             <tr key={`month-${row}`}>
                 {range(1, 3).map(col => {
