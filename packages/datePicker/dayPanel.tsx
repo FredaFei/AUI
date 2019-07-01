@@ -21,6 +21,7 @@ type IPanel = 'day' | 'month' | 'year'
 interface IProps extends IStyledProps {
     value?: Date | string
     display: IReadonlyDate
+    defaultValue: IReadonlyDate
     firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
     extraFooter?: (() => ReactNode)
     onChange?: (date: Date) => void
@@ -43,13 +44,12 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     static propTypes = {}
     state: IState = {
         displayPanel: 'day',
-        display: this.props.display.clone
+        display: this.props.display.clone,
     }
 
     get date2Value() {
-        return new Date2(this.props.value || this.props.display.clone)
+        return new Date2(this.props.value || this.props.defaultValue.clone)
     }
-
     get weekdayNames() {
         const before = weeksMap.slice(0, this.props.firstDayOfWeek)
         const after = weeksMap.slice(this.props.firstDayOfWeek)
@@ -138,14 +138,15 @@ class DayPanel extends React.PureComponent<IProps, IState> {
             <tr key={firstDayThisMonth.clone.addDay(row * 7).timestamp}>
                 {range(0, 6).map(col => {
                     const d = firstDayThisPanel.clone.addDay(row * 7 + col)
+                    const colClasses = {
+                        'currentMonth': d.month === display.month,
+                        'isToday': d.isSameDayAs(new Date2(new Date())),
+                        'selected': d.isSameDayAs(this.date2Value ),
+                        'isSame': d.day === this.date2Value.day && display.month === d.month
+                    }
                     return (
                         <td
-                            className={sc('day', {
-                                'currentMonth': d.month === display.month,
-                                'selected': d.isSameDayAs(this.date2Value),
-                                'isToday': d.isSameDayAs(new Date2(new Date())),
-                                'isSame': d.day === this.date2Value.day && display.month === d.month
-                            })}
+                            className={sc('day', colClasses)}
                             onClick={() => this.onClickDay(d)}
                             key={d.timestamp}>
                             <div className={sc('cell')}>{d.day}</div>
@@ -170,8 +171,6 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     render() {
-        console.log('daypanel')
-        console.log(this.state.display)
         return (
             <React.Fragment>
                 {this.renderNav()}

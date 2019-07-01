@@ -103,9 +103,9 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     render() {
-        console.log('monthpanel')
-        console.log(this.state.display.year)
-        console.log(this.state.display.month)
+        // console.log('monthpanel')
+        // console.log(this.state.display.year)
+        // console.log(this.state.display.month)
         return (
             <React.Fragment>
                 {this.renderNav()}

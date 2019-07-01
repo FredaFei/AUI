@@ -77,6 +77,10 @@
               background: $blue;
               border-color: $blue;
             }
+            &-noValueIsSame{
+              background: lighten($blue,30%);
+              border-color: lighten($blue,30%);
+            }
           }
         }
 

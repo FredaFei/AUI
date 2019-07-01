@@ -41,7 +41,6 @@ class YearPanel extends React.PureComponent<IProps, IState> {
         this.props.onChangePanel!('month')
     }
     onClickYear = (date: Date2) => {
-        // debugger;
         this.setState({display: date})
         this.props.onChangeDisplay!(date)
         this.props.onChangePanel!('month')
@@ -106,7 +105,7 @@ class YearPanel extends React.PureComponent<IProps, IState> {
     }
 
     render() {
-        console.log(this.visibleYears)
+        // console.log(this.visibleYears)
         return (
             <React.Fragment>
                 {this.renderNav()}

@@ -76,6 +76,7 @@ class DatePicker
                               firstDayOfWeek={this.props.firstDayOfWeek}
                               onChangePanel={this.onChangePanel}
                               display={this.state.display}
+                              defaultValue={this.state.defaultValue}
                               extraFooter={this.props.extraFooter}
                               onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
                         <MonthPanel display={this.state.display}
@@ -91,10 +92,6 @@ class DatePicker
 
     render() {
         const {props} = this
-        console.log('datepicker')
-        console.log(this.formattedValue)
-        console.log(this.state.display.year)
-        console.log(this.state.display.month)
         return (
             <div className={classes(sc('wrapper'), props.className)} style={props.style}>
                 <Input value={this.formattedValue} onFocus={this.onFocusInput} readOnly={true}/>
