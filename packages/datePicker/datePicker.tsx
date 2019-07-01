@@ -88,7 +88,6 @@ class DatePicker
                         <MonthPanel display={this.state.display}
                                     onChangePanel={this.onChangePanel}
                                     onChangeDisplay={this.onChangeDisplay}/> : <YearPanel display={this.state.display}
-                                                                                          onChange={this.onChange}
                                                                                           onChangePanel={this.onChangePanel}
                                                                                           onChangeDisplay={this.onChangeDisplay}/>}
             </div>

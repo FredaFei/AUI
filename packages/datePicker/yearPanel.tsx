@@ -11,7 +11,6 @@ type IPanel = 'day' | 'month' | 'year'
 
 interface IProps extends IStyledProps {
     display: IReadonlyDate
-    onChange?: (date: Date) => void
     onChangePanel?: (panel: IPanel) => void
     onChangeDisplay?: (date: Date2) => void
 }
