@@ -18,6 +18,7 @@ import SwitchExample from './examples/switch.example'
 import CollapseExample from './examples/collapse.example'
 import MenuExample from './examples/menu.example'
 import DatePickerExample from './examples/datePicker.example'
+import PopoverExample from './examples/popover.example'
 import 'examples/index.scss'
 
 class App extends Component {
@@ -100,6 +101,9 @@ class App extends Component {
                                         <NavLink to="/dialog">Dialog 对话框</NavLink>
                                     </li>
                                     <li>
+                                        <NavLink to="/popover">Popover 气泡卡片</NavLink>
+                                    </li>
+                                    <li>
                                         <NavLink to="/datePicker">DatePicker 日期选择器</NavLink>
                                     </li>
                                 </ol>
@@ -119,6 +123,7 @@ class App extends Component {
                             <Route path="/tabs" component={TabsExample}/>
                             <Route path="/message" component={MessageExample}/>
                             <Route path="/dialog" component={DialogExample}/>
+                            <Route path="/popover" component={PopoverExample}/>
                             <Route path="/datePicker" component={DatePickerExample}/>
                             <Route path="/switch" component={SwitchExample}/>
                             <Route path="/collapse" component={CollapseExample}/>
