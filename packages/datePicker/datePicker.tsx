@@ -86,7 +86,6 @@ class DatePicker
                               extraFooter={this.props.extraFooter}
                               onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
                         <MonthPanel display={this.state.display}
-                                    onChange={this.onChange}
                                     onChangePanel={this.onChangePanel}
                                     onChangeDisplay={this.onChangeDisplay}/> : <YearPanel display={this.state.display}
                                                                                           onChange={this.onChange}

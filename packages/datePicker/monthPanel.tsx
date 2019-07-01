@@ -11,7 +11,6 @@ type IPanel = 'day' | 'month' | 'year'
 
 interface IProps extends IStyledProps {
     display: IReadonlyDate
-    onChange?: (date: Date) => void
     onChangePanel?: (panel: IPanel) => void
     onChangeDisplay?: (date: Date2) => void
 }
@@ -45,7 +44,9 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     onClickPrevYear = () => {
-        this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}));
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}),()=>{
+            this.props.onChangeDisplay!(this.state.display.clone)
+        });
     }
     onNavMonthClick = () => {
         this.props.onChangePanel!('year')
@@ -57,7 +58,9 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         })
     }
     onClickNextYear = () => {
-        this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}));
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}),()=>{
+            this.props.onChangeDisplay!(this.state.display.clone)
+        });
     }
 
     renderNav() {

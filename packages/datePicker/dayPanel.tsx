@@ -61,14 +61,10 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         this.props.onChange!.call(null, day.toDate())
     }
     onClickPrevYear = () => {
-        this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}), () => {
-            this.props.onChangeDisplay!(this.state.display.clone)
-        });
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}));
     }
     onClickPrevMonth = () => {
-        this.setState((prevState) => ({display: prevState.display.clone.addMonth(-1)}), () => {
-            this.props.onChangeDisplay!(this.state.display.clone)
-        });
+        this.setState((prevState) => ({display: prevState.display.clone.addMonth(-1)}));
     }
     onClickYear = () => {
         this.props.onChangePanel!('year')
@@ -77,20 +73,15 @@ class DayPanel extends React.PureComponent<IProps, IState> {
         this.props.onChangePanel!('month')
     }
     onClickNextMonth = () => {
-        this.setState((prevState) => ({display: prevState.display.clone.addMonth(+1)}), () => {
-            this.props.onChangeDisplay!(this.state.display.clone)
-        });
+        this.setState((prevState) => ({display: prevState.display.clone.addMonth(+1)}));
     }
     onClickNextYear = () => {
-        this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}), () => {
-            this.props.onChangeDisplay!(this.state.display.clone)
-        });
+        this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}));
     }
     onClickToDay = () => {
         const today = new Date2(new Date())
         this.setState(() => ({display: today}), () => {
             this.props.onChange!.call(null, today.toDate())
-            this.props.onChangeDisplay!(today)
         });
     }
 
@@ -129,7 +120,8 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     renderDays() {
-        const {display} = this.props
+        const {display} = this.state
+        console.log(display)
         const firstDayThisMonth = display.clone.setDay(1)
         const n = firstDayThisMonth.dayOfWeek
         const delta = normalize(n - this.props.firstDayOfWeek!, 7)
@@ -171,6 +163,8 @@ class DayPanel extends React.PureComponent<IProps, IState> {
     }
 
     render() {
+        console.log('daypanel')
+        console.log(this.state.display)
         return (
             <React.Fragment>
                 {this.renderNav()}
