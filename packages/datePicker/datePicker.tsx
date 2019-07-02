@@ -78,11 +78,11 @@ class DatePicker
             <div className={sc('body')}>
                 {this.state.displayPanel === 'day' ?
                     <DayPanel value={this.props.value}
-                              onChange={this.onChange}
-                              firstDayOfWeek={this.props.firstDayOfWeek}
-                              onChangePanel={this.onChangePanel}
                               display={this.state.display}
                               defaultValue={this.state.defaultValue}
+                              firstDayOfWeek={this.props.firstDayOfWeek}
+                              onChange={this.onChange}
+                              onChangePanel={this.onChangePanel}
                               extraFooter={this.props.extraFooter}
                               onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
                         <MonthPanel display={this.state.display}
