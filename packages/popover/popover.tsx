@@ -98,7 +98,6 @@ class Popover extends PureComponent<IProps, IState> {
         const {left, top, width, height} = trigger!.getBoundingClientRect()
         const {width: contentWidth, height: contentHeight} = content!.getBoundingClientRect()
         const {left: containerLeft, top: containerTop} = this.container.getBoundingClientRect()
-        console.log(contentHeight)
         switch (this.props.position) {
             case 'top':
                 content!.style.top = top - containerTop - contentHeight - 8 + 'px'
@@ -117,7 +116,7 @@ class Popover extends PureComponent<IProps, IState> {
                 content!.style.left = left - containerLeft + width + 8 + 'px';
                 break;
             case 'topLeft':
-                content!.style.top = top - containerTop - contentHeight + 'px';
+                content!.style.top = top - containerTop - contentHeight - 8 + 'px';
                 content!.style.left = left - containerLeft + 'px';
                 break;
             case 'topRight':
