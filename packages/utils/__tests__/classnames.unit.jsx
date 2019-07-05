@@ -1,9 +1,12 @@
-import classes from '../classnames.ts'
+import classes, { createScopedClasses } from '../classnames'
 describe('classes', () => {
-  it('first test', () => {
+  it('接受1个className', () => {
     const result = classes('button')
-    console.log(result)
-    // expect(result).toEqual('am-button')
-    expect(1).toEqual(1)
+    expect(result).toEqual('button')
+  })
+  it('接受1个className,返回作用域类名', () => {
+    const result = createScopedClasses('Button')
+    expect(result('')).toEqual('am-button')
+    expect(result('disabled')).toEqual('am-button-disabled')
   })
 })
