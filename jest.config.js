@@ -2,7 +2,7 @@ module.exports = {
   verbose: true,
   clearMocks: false,
   collectCoverage: false,
-  reporters: ['default'],
+  reporters: ['default','jest-junit'],
   // globals: {
   //   __DEV__: true
   // },
