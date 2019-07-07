@@ -1,6 +1,6 @@
-const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const devMode = process.env.NODE_ENV !== 'production'
+const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
   entry: {
@@ -26,11 +26,15 @@ module.exports = {
         loader: 'awesome-typescript-loader'
       },
       {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+      },
+      {
         test: /\.(png|jpe?g|gif)$/,
         use: [
           {
             loader: 'file-loader',
-            options: { name: '[path][name].[ext]' }
+            options: {name: '[path][name].[ext]'}
           }
         ]
       },
@@ -44,8 +48,8 @@ module.exports = {
           devMode
             ? 'style-loader'
             : {
-                loader: MiniCssExtractPlugin.loader
-              },
+              loader: MiniCssExtractPlugin.loader
+            },
           'css-loader',
           {
             loader: 'sass-loader',
@@ -57,4 +61,4 @@ module.exports = {
       }
     ]
   }
-}
+};
