@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "dist/lib/index",
   "types": "dist/lib/index",
+  "files": [
+    "/dist/**/*"
+  ],
   "repository": "git@github.com:FredaFei/react-typeScript-ui.git",
   "author": "FredaFei <964959033@qq.com>",
   "scripts": {
