@@ -10,13 +10,10 @@ interface IProps extends IStyledProps {
   icon?: string
   iconPosition?: string
   disabled?: boolean
-  type?: string
+  type?: 'submit' | 'reset' | 'button'
   onClick?: React.MouseEventHandler
 }
-interface IState {
-  position: object
-}
-class Button extends React.Component<IProps, IState> {
+class Button extends React.Component<IProps> {
   static displayName = componentName
   static defaultProps = {
     icon: '',
@@ -31,44 +28,14 @@ class Button extends React.Component<IProps, IState> {
     onClick: PropTypes.func,
     style: PropTypes.object
   }
-  _rippleElement: React.RefObject<HTMLDivElement>
-  _buttonElement: React.RefObject<HTMLButtonElement>
-  constructor(props: IProps) {
-    super(props)
-    this._rippleElement = React.createRef()
-    this._buttonElement = React.createRef()
-    this.state = { position: {} }
-  }
-  onRippleEffect = (e: React.MouseEvent): any => {
-    const targetEl = this._buttonElement.current
-    const rippleEl = this._rippleElement.current
-    if (!targetEl) {
-      return false
-    }
-    rippleEl && rippleEl.classList.remove('active')
-    const { pageX, pageY } = e
-    const { top, left, width, height } = targetEl.getBoundingClientRect()
-    const R = width < height ? height : width
-    this.setState({
-      position: {
-        top: `${pageY - top - R}px`,
-        left: `${pageX - left - R}px`,
-        width: `${R * 2}px`,
-        height: `${R * 2}px`
-      }
-    })
-    rippleEl && rippleEl.classList.add('active')
-  }
   handleClick = (e: React.MouseEvent): any => {
     const { disabled, onClick } = this.props
     if (disabled) {
       return false
     }
-    this.onRippleEffect(e)
     onClick && (onClick as React.MouseEventHandler)(e)
   }
   renderButton = () => {
-    const { position } = this.state
     const {
       icon,
       iconPosition,
@@ -104,10 +71,8 @@ class Button extends React.Component<IProps, IState> {
         style={styles}
         className={buttonWrapClass}
         onClick={this.handleClick}
-        ref={this._buttonElement}
       >
         {renderButtonBody()}
-        <div className="ripple" style={position} ref={this._rippleElement} />
       </button>
     )
   }
