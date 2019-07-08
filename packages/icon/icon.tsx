@@ -2,7 +2,6 @@ import * as React from 'react'
 import * as PropTypes from 'prop-types'
 import classes, {createScopedClasses} from '../utils/classnames'
 import './importSvgs'
-// import settings from '../svgs/settings.svg'
 import './style'
 
 interface IProps extends IStyledProps {
@@ -28,15 +27,14 @@ const Icon: React.FunctionComponent<IProps> = (props: IProps) => {
   )
   return (
     <svg className={wrapClasses} style={styles} onClick={onClick} {...rest}>
-      {/*<use xlinkHref="settings" />*/}
       <use xlinkHref={`#${name}`}/>
     </svg>
   )
 }
+Icon.displayName = componentName
 Icon.propTypes = {
   name: PropTypes.string.isRequired,
   className: PropTypes.string,
   style: PropTypes.object
 }
-Icon.displayName = componentName
 export default Icon
