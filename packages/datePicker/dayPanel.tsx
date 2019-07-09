@@ -122,7 +122,6 @@ class DayPanel extends React.PureComponent<IProps, IState> {
 
   renderDays() {
     const {display} = this.state
-    console.log(display)
     const firstDayThisMonth = display.clone.setDay(1)
     const n = firstDayThisMonth.dayOfWeek
     const delta = normalize(n - this.props.firstDayOfWeek!, 7)
@@ -164,8 +163,6 @@ class DayPanel extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    console.log('daypanel')
-    console.log(this.state.display)
     return (
       <React.Fragment>
         {this.renderNav()}

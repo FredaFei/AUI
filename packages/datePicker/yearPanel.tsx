@@ -104,7 +104,6 @@ class YearPanel extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    // console.log(this.visibleYears)
     return (
       <React.Fragment>
         {this.renderNav()}
