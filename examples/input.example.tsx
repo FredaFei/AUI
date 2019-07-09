@@ -68,9 +68,12 @@ export default function(props: any) {
       <div className="exp-section">
         <h3>自定义样式</h3>
         <div className="custom-input">
-          <Input before="Http://" after=".com" />
-          <Input after={<Icon name="settings" />} />
-          <Input after="搜索" className="custom-input-search" />
+          <Input addOnBefore="Http://" addOnAfter=".com" />
+          <Input addOnAfter={<Icon name="settings" />} />
+          <Input addOnAfter="搜索" className="custom-input-search" />
+          <Input before={<Icon name="settings" />} />
+          <Input after={<Icon name="thumbs-up" />} />
+          <Input before={<Icon name="date"/>} after={<Icon name="error" />} />
         </div>
       </div>
       <div className="exp-section">
