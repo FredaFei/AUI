@@ -1,75 +1,73 @@
 @import 'var';
-
 %padding {
   padding: 4px 8px;
 }
-
-#{component(datePicker)} {
-  margin: 20px;
-  &-body {
-    width: 20em;
-    border: 1px solid red;
+table {
+  width: 100%;
+  text-align: center;
+  td, th {
+    font-size: 14px;
+  }
+  th {
+    font-weight: normal;
+    padding: 6px 0;
+  }
+  td {
+    cursor: pointer;
   }
 }
-#{component(dayPanel)} {
-  &-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 40px;
-    border-bottom: 1px solid #eee;
-    #{component(datePicker)} {
-      &-col {
-        & > svg, & > span {
-          cursor: pointer;
-        }
+.am-datePicker-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 40px;
+  padding: 0 8px;
+  border-bottom: 1px solid #eee;
+  #{component(datePicker)} {
+    &-col {
+      & > svg, & > span {
+        cursor: pointer;
       }
     }
   }
+}
+.am-datePicker-main {
+  padding: 0 12px;
+}
+#{component(datePicker)} {
+  margin: 20px;
+  &-body {
+    min-width: 16em;
+    min-height: 300px;
+  }
+}
+#{component(dayPanel)} {
   &-main {
     table {
-      width: 100%;
-      text-align: center;
-
-      td, th {
-        font-size: 14px;
-      }
-
-      th {
-        font-weight: normal;
-        padding: 6px 0;
-      }
-
-      td {
-        cursor: pointer;
-      }
-
       #{component(dayPanel)} {
         &-day {
           color: #999;
         }
-
         &-currentMonth {
           color: #333;
         }
-
-        &-isSame{
+        &-isSame {
           #{component(dayPanel)} {
             &-cell {
-              background: lighten($blue,30%);
-              border-color: lighten($blue,30%);
+              background: lighten($blue, 30%);
+              border-color: lighten($blue, 30%);
             }
           }
         }
-        &-isToday{
-           #{component(dayPanel)} {
-             &-cell {
-               color: $blue;
-               border: 1px solid $blue;
-               background: #fff;
-             }
-           }
-         }
+        &-isToday {
+          #{component(dayPanel)} {
+            &-cell {
+              color: $blue;
+              border: 1px solid $blue;
+              background: #fff;
+            }
+          }
+        }
         &-selected {
           #{component(dayPanel)} {
             &-cell {
@@ -79,57 +77,33 @@
             }
           }
         }
-
         &-cell {
           width: 28px;
           line-height: 26px;
           margin: auto;
           border: 1px solid transparent;
+          &:hover {
+            background: lighten($blue, 30%);
+            border-color: lighten($blue, 30%);
+          }
         }
       }
     }
   }
-
   &-actions {
     padding: 8px;
     text-align: center;
     color: $blue;
     border-top: 1px solid #eee;
+    cursor: pointer;
   }
 }
 #{component(monthPanel)} {
-  &-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 40px;
-    border-bottom: 1px solid #eee;
-    #{component(monthPanel)} {
-      &-col {
-        & > svg, & > span {
-          cursor: pointer;
-        }
-      }
-    }
-  }
   &-main {
     table {
-      width: 100%;
-      text-align: center;
-
-      td, th {
-        font-size: 14px;
+      tr > td {
+        padding: 16px 0;
       }
-
-      th {
-        font-weight: normal;
-        padding: 6px 0;
-      }
-
-      td {
-        cursor: pointer;
-      }
-
       #{component(monthPanel)} {
         &-month {
           color: #333;
@@ -142,7 +116,6 @@
             }
           }
         }
-
         &-cell {
           width: 56px;
           line-height: 28px;
@@ -153,38 +126,11 @@
   }
 }
 #{component(yearPanel)} {
-  &-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    line-height: 40px;
-    border-bottom: 1px solid #eee;
-    #{component(monthPanel)} {
-      &-col {
-        & > svg, & > span {
-          cursor: pointer;
-        }
-      }
-    }
-  }
   &-main {
     table {
-      width: 100%;
-      text-align: center;
-
-      td, th {
-        font-size: 14px;
+      tr > td {
+        padding: 16px 0;
       }
-
-      th {
-        font-weight: normal;
-        padding: 6px 0;
-      }
-
-      td {
-        cursor: pointer;
-      }
-
       #{component(yearPanel)} {
         &-year {
           color: #333;
@@ -192,7 +138,6 @@
         &-firstOrLastYear {
           color: #999;
         }
-
         &-year-selected {
           #{component(yearPanel)} {
             &-cell {
