@@ -43,8 +43,8 @@
   &-small {
     #{component(input)} {
       &,
-      &-before,
-      &-after,
+      &-add-on-before,
+      &-add-on-after,
       &-label {
         font-size: 12px;
         height: 24px;
@@ -55,8 +55,8 @@
   &-big {
     #{component(input)} {
       &,
-      &-before,
-      &-after,
+      &-add-on-before,
+      &-add-on-after,
       &-label {
         height: 48px;
         line-height: 48px;
@@ -99,8 +99,8 @@
         display: inline-block;
         vertical-align: top;
       }
-      &-before,
-      &-after {
+      &-add-on-before,
+      &-add-on-after {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -112,16 +112,43 @@
         background-color: #fff;
         border: 1px solid $input-border-color;
       }
-      &-before {
+      &-add-on-before {
         border-right: none;
         border-top-left-radius: $border-radius;
         border-bottom-left-radius: $border-radius;
       }
-      &-after {
+      &-add-on-after {
         border-left: none;
         border-top-right-radius: $border-radius;
         border-bottom-right-radius: $border-radius;
       }
     }
   }
+
+  &-before-or-after{
+    position: relative;
+    #{component(input)} {
+      border-radius: $border-radius;
+      &:not(:first-child) {
+        padding-left: 30px;
+      }
+      &:not(:last-child) {
+        padding-right: 30px;
+      }
+      &-before,&-after{
+        position: absolute;
+        top: 50%;
+        z-index: 2;
+        color: #bbb;
+        transform: translateY(-50%);
+      }
+      &-before{
+        left: 10px;
+      }
+      &-after{
+        right: 10px;
+      }
+    }
+  }
+
 }
