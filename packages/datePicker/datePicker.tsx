@@ -33,9 +33,6 @@ interface IState {
 /**
  * TODOS:
  * 日期格式自定义
- * 输入框一键删除
- * 日期样式统一高度
- * 关闭选择日期层（类似popover层）
  */
 class DatePicker
   extends React.PureComponent <IProps, IState> {
