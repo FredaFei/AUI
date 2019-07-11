@@ -15,7 +15,7 @@ export default function(props: any) {
         <h3>基础应用</h3>
         <h3>三种尺寸</h3>
         <div className="custom-input">
-          <Input value={value} onChange={onChange} type="text" size="big" />
+          <Input value={value} onChange={onChange} type="text" size="big" className="ha" />
           <Input value={value} onChange={onChange} type="text" />
           <Input value={value} onChange={onChange} type="text" size="small" />
         </div>
