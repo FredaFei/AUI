@@ -6,31 +6,18 @@ import './style'
 const componentName = 'Button'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps {
+interface IProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, ''> {
   icon?: string
-  iconPosition?: string
-  disabled?: boolean
-  type?: 'submit' | 'reset' | 'button'
+  iconPosition?: 'left' | 'right'
   onClick?: React.MouseEventHandler
 }
 
 const Button: React.FunctionComponent<IProps> = props => {
   const handleClick = (e: React.MouseEvent): any => {
-    const {disabled, onClick} = props
-    if (disabled) {
-      return false
-    }
+    const {onClick} = props
     onClick && (onClick as React.MouseEventHandler)(e)
   }
-  const {
-    icon,
-    iconPosition,
-    disabled,
-    style,
-    className,
-    children,
-    ...rest
-  } = props
+  const {icon, iconPosition, style, className, children, ...rest} = props
   let renderButtonBody = () => {
     return icon ? (
       <div className={classes(sc('body'), [
@@ -44,10 +31,8 @@ const Button: React.FunctionComponent<IProps> = props => {
   return <button
     {...rest}
     data-role={componentName}
-    style={Object.assign({}, {...style})}
-    className={classes(sc('wrapper'), className, {
-      'icon-disabled': disabled
-    })}
+    style={style}
+    className={classes(sc('wrapper'), className)}
     onClick={handleClick}
   >
     {renderButtonBody()}
@@ -55,8 +40,6 @@ const Button: React.FunctionComponent<IProps> = props => {
 }
 Button.displayName = componentName
 Button.defaultProps = {
-  icon: '',
-  iconPosition: 'left',
-  disabled: false
+  iconPosition: 'left'
 }
 export default Button
