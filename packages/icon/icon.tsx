@@ -1,5 +1,4 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
 import classes, {createScopedClasses} from '../utils/classnames'
 import './importSvgs'
 import './style'
@@ -16,7 +15,7 @@ const sc = createScopedClasses(componentName)
 
 const Icon: React.FunctionComponent<IProps> = (props: IProps) => {
   const {name, style, rotate, spin, className, onClick, ...rest} = props
-  const wrapClasses = classes(sc(''), [spin || (name === 'loading' && 'icon-spin')], className)
+  const wrapClasses = classes(sc('', {'spin': spin || name === 'loading'}), className)
   const styles = Object.assign(
     {},
     style,
@@ -32,9 +31,4 @@ const Icon: React.FunctionComponent<IProps> = (props: IProps) => {
   )
 }
 Icon.displayName = componentName
-Icon.propTypes = {
-  name: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  style: PropTypes.object
-}
 export default Icon
