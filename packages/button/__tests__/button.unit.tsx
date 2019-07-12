@@ -1,28 +1,24 @@
 import * as renderer from 'react-test-renderer'
 import React from 'react'
-import {configure, render, shallow} from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16';
+import {shallow,mount} from 'enzyme'
 
-configure({
-  adapter: new Adapter(),
-});
 import Button from '../button'
 
-describe('Button', () => {
+describe('测试 Button 以下行为', () => {
   it('Button 存在', () => {
     const json = renderer.create(<Button>hello</Button>).toJSON()
     expect(json).toMatchSnapshot()
   })
   it('Button 带 icon,iconPosition默认left', () => {
-    const wrapper = render(<Button icon="settings">设置</Button>)
-    console.log(wrapper)
-    // expect(wrapper.props().icon).toBe('settings')
-    // expect(wrapper.props().iconPosition).toBe('left')
+    const wrapper = mount(<Button icon="settings">设置</Button>)
+    expect(wrapper.props().icon).toBe('settings')
+    expect(wrapper.props().iconPosition).toBe('left')
+    expect(wrapper.props().children).toEqual('设置')
   })
   it('Button 带 icon,iconPosition可设置', () => {
-    const wrapper = shallow(<Button iconPosition="right">设置</Button>)
-    console.log(wrapper)
-    expect(wrapper.props().iconPosition).toBe('right')
+    const wrapper = mount(<Button iconPosition="right">设置</Button>)
+    expect(wrapper.props().iconPosition).toEqual('right')
+    expect(wrapper.props().children).toEqual('设置')
   })
   it('Button 设置 onClick', () => {
     const mockCallBack = jest.fn();
