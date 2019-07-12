@@ -14,7 +14,6 @@ const ButtonGroup: React.SFC<IProps> = (props: IProps) => {
       ? React.cloneElement(element)
       : null
   })
-  console.log(children)
   return (
     <div data-role={componentName} style={props.style} className={classes(sc(), props.className)}>
       {children}
