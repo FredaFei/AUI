@@ -4,6 +4,7 @@ import {Component} from 'react'
 import {HashRouter as Router, Route, NavLink} from 'react-router-dom'
 import Home from './examples/home'
 import ButtonExample from './examples/button.example'
+import IconExample from './examples/icon.example'
 import GridExample from './examples/grid.example'
 import LayoutExample from './examples/layout.example'
 import InputExample from './examples/input.example'
@@ -62,6 +63,9 @@ class App extends Component {
                                         <NavLink to="/button">Button 按钮</NavLink>
                                     </li>
                                     <li>
+                                        <NavLink to="/icon">Icon 按钮</NavLink>
+                                    </li>
+                                    <li>
                                         <NavLink to="/grid">Grid 栅格</NavLink>
                                     </li>
                                     <li>
@@ -112,6 +116,7 @@ class App extends Component {
                         <main className="site-doc-main">
                             <Route path="/guide" exact component={Home}/>
                             <Route path="/button" component={ButtonExample}/>
+                            <Route path="/icon" component={IconExample}/>
                             <Route path="/grid" component={GridExample}/>
                             <Route path="/layout" component={LayoutExample}/>
                             <Route path="/Input" component={InputExample}/>

@@ -1,5 +1,4 @@
 @import 'var';
-
 * {
   margin: 0;
   padding: 0;
@@ -23,7 +22,6 @@ a {
   text-decoration: none;
   color: black;
 }
-
 $site-color: #314659;
 $focus-color: #1890ff;
 $site-border-color: #e8e8e8;
@@ -36,7 +34,6 @@ body {
   background: #fff;
   transition: background 1s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-
 .site-doc {
   &-wrapper {
     min-height: 100vh;
@@ -109,7 +106,6 @@ body {
     }
   }
 }
-
 // 移动端
 @media (max-width: 750px) {
   .site-doc {
@@ -285,4 +281,7 @@ body {
       }
     }
   }
+}
+.exp-box {
+  &.custom-icon {font-size: 28px;}
 }
