@@ -1,10 +1,10 @@
 import * as React from 'react'
-// import * as PropTypes from 'prop-types'
-import classes, { createScopedClasses } from '../utils/classnames'
+import classes, {createScopedClasses} from '../utils/classnames'
 import './style'
 
 const componentName = 'Col'
 const sc = createScopedClasses(componentName)
+
 export interface IProps extends IStyledProps {
   gutter?: number
   span?: number
@@ -12,21 +12,18 @@ export interface IProps extends IStyledProps {
 }
 
 const Col: React.FunctionComponent<IProps> = props => {
-  const { gutter, span, offset, className, style, children } = props
+  const {gutter, span, offset, className, style, children} = props
   const styles = Object.assign(
-    {},
     {
       paddingLeft: `${gutter! / 2}px`,
       paddingRight: `${gutter! / 2}px`,
       ...style
     }
   )
-  const colWrapClass = classes(sc(''), [
-    className,
-    gutter && `row-gutter`,
-    `col-span-${span}`,
-    `col-offset-${offset}`
-  ])
+  const colWrapClass = classes(sc('', {'gutter': gutter}, [
+    `span-${span}`,
+    `offset-${offset}`
+  ]), className)
   return (
     <div data-role={componentName} style={styles} className={colWrapClass}>
       {children}

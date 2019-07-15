@@ -1,4 +1,5 @@
-.am-row {
+@import "var";
+#{component(row)} {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -14,28 +15,28 @@
   &-align-spaceAround {
     justify-content: space-around;
   }
-  &-verticalAlign-center{
+  &-verticalAlign-center {
     align-items: center
   }
-  &-verticalAlign-bottom{
+  &-verticalAlign-bottom {
     align-items: flex-end
   }
 }
-.am-col {
+#{component(col)} {
   height: 100%;
-  $class-prefix: col-offset-;
+  $class-prefix: am-col-offset-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
       margin-left: ($n/24) * 100%;
     }
   }
-  $class-prefix: col-span-;
+  $class-prefix: am-col-span-;
   @for $n from 1 through 24 {
     &.#{$class-prefix}#{$n} {
       width: ($n/24) * 100%;
     }
   }
-  &.col-span-0 {
+  &.am-col-span-0 {
     display: none;
   }
 }
