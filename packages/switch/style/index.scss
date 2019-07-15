@@ -1,5 +1,5 @@
 @import 'var';
-.am-switch {
+#{component(switch)} {
   display: inline-flex;
   vertical-align: middle;
   width: 40px;
@@ -9,10 +9,10 @@
   cursor: pointer;
   position: relative;
   transition: background 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  &.active {
+  &-active {
     background: rgba(#2196f3, 0.6);
   }
-  &.disabled {
+  &-disabled {
     opacity: 0.45;
   }
   &-core {
