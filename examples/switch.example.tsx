@@ -18,7 +18,7 @@ export default function(props: any) {
         <Switch defaultChecked onChange={onChange} />
       </div>
       <div className="exp-section">
-        <h3>按钮组合</h3>
+        <h3>手动触发 onChange</h3>
         <Switch checked={checked} style={{ marginRight: '30px' }} />
         <Button onClick={onToggleSwitch}>toggle</Button>
       </div>
