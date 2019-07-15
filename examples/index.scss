@@ -235,7 +235,7 @@ body {
       font-size: 16px;
       color: #fff;
       text-align: center;
-      > div:not(.row-gutter) {
+      > div:not(.am-col-row-gutter) {
         background: rgba(#4e57ef, 0.8);
         padding: 16px 0;
         &:nth-child(2n + 1) {
@@ -245,7 +245,7 @@ body {
       & + .am-row {
         margin-top: 14px;
       }
-      > .row-gutter {
+      > .am-col-gutter {
         > div {
           background: rgba(#4e57ef, 0.8);
           padding: 16px 0;
