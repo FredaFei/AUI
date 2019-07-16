@@ -3,7 +3,6 @@ import React from 'react'
 import {shallow, mount} from 'enzyme'
 
 import Switch from '../switch'
-import Button from "../../button/button";
 
 describe('测试 Switch 以下行为', () => {
   it('Switch 存在', () => {
@@ -22,16 +21,10 @@ describe('测试 Switch 以下行为', () => {
     expect(wrapper.find('.am-switch').hasClass('am-switch-active')).toEqual(true)
   })
   it('Switch 手动触发 onChange', () => {
-    const checked = true
-    const onToggleSwitch = jest.fn();
-    const wrapper = mount(
-      <div>
-        <Switch checked={checked}/>
-        <Button onClick={onToggleSwitch}>toggle</Button>
-      </div>
-    )
-    wrapper.find('.am-button').simulate('click');
-    expect(onToggleSwitch.mock.calls.length).toEqual(1);
+    const wrapper = mount(<Switch checked={true}/>)
+    wrapper.setProps({ checked: false });
+    expect(wrapper.props().checked).toEqual(false)
+    expect(wrapper.find('.am-switch').hasClass('am-switch-active')).toEqual(false)
   })
   it('Switch 设置 disabled', () => {
     const wrapper = mount(<Switch disabled/>)
