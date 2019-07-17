@@ -45,7 +45,8 @@ describe('测试 Input 以下行为', () => {
     expect(wrapper.props().error).toEqual('')
   })
 
-  it('Input 设置 onEnter 事件', () => {
+  // TODO： 事件待完善
+  it('Input 设置 onEnter、onKeyDown、onChange 事件', () => {
     const onChange = jest.fn()
     const onEnter = jest.fn()
     const onKeyDown = jest.fn()
