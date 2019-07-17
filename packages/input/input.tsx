@@ -15,7 +15,6 @@ export interface IProps
   label?: string
   labelPosition?: 'left' | 'top'
   error?: string
-  length?: number | string
   errorPosition?: 'right' | 'bottom'
   size?: 'big' | 'small'
   type?: 'text'
