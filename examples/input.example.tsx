@@ -6,8 +6,16 @@ import Icon from '../packages/icon/icon'
 export default function(props: any) {
   const [error] = useState('用户名不能为空')
   const [value, setValue] = useState('')
+  const [enterVal, setEnterVal] = useState('')
+  const [keyDownVal, setKeyDownVal] = useState('')
   const onChange = (e: React.FormEvent) => {
     setValue((e.target as HTMLInputElement).value)
+  }
+  const onEnter = (e: React.FormEvent) => {
+    setEnterVal((e.target as HTMLInputElement).value)
+  }
+  const onKeyDown = (e: React.FormEvent) => {
+    setKeyDownVal((e.target as HTMLInputElement).value)
   }
   return (
     <div className="exp-box">
@@ -15,54 +23,24 @@ export default function(props: any) {
         <h3>基础应用</h3>
         <h3>三种尺寸</h3>
         <div className="custom-input">
-          <Input value={value} onChange={onChange} type="text" size="big" className="ha" />
-          <Input value={value} onChange={onChange} type="text" />
-          <Input value={value} onChange={onChange} type="text" size="small" />
+          <Input value={value} onChange={onChange} size="big" />
+          <Input value={value} onChange={onChange}  />
+          <Input value={value} onChange={onChange} size="small" />
         </div>
       </div>
       <div className="exp-section">
         <h3>错误提示</h3>
         <div className="custom-input">
-          <Input
-            label="用户名："
-            labelPosition="top"
-            error={error}
-            errorPosition="right"
-            type="text"
-          />
-          <Input
-            label="用户名："
-            labelPosition="left"
-            error={error}
-            errorPosition="right"
-            type="text"
-          />
-          <Input
-            label="用户名："
-            labelPosition="left"
-            error={error}
-            errorPosition="bottom"
-            type="text"
-          />
+          <Input label="用户名：" labelPosition="top" error={error} errorPosition="right" type="text"/>
+          <Input label="用户名：" labelPosition="left" error={error} errorPosition="right" type="text"/>
+          <Input label="用户名：" labelPosition="left" error={error} errorPosition="bottom" type="text"/>
         </div>
       </div>
       <div className="exp-section">
         <h3>不可用状态</h3>
         <div className="custom-input">
-          <Input
-            label="用户名"
-            labelPosition="top"
-            value="hello"
-            disabled
-            type="text"
-          />
-          <Input
-            label="密码"
-            labelPosition="top"
-            value="123456"
-            disabled
-            type="password"
-          />
+          <Input label="用户名" labelPosition="top" value="hello" disabled type="text"/>
+          <Input label="密码" labelPosition="top" value="123456" disabled type="password"/>
         </div>
       </div>
       <div className="exp-section">
@@ -74,6 +52,17 @@ export default function(props: any) {
           <Input before={<Icon name="settings" />} />
           <Input after={<Icon name="thumbs-up" />} />
           <Input before={<Icon name="date"/>} after={<Icon name="error" />} />
+        </div>
+      </div>
+      <div className="exp-section">
+        <h3>自定义触发事件</h3>
+        <div className="custom-input">
+          <Input onEnter={onEnter} />
+          <div>enter event value: {enterVal}</div>
+        </div>
+        <div className="custom-input">
+          <Input onKeyDown={onKeyDown} />
+          <div>enter event value: {keyDownVal}</div>
         </div>
       </div>
       <div className="exp-section">
