@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classes, {createScopedClasses} from '../utils/classnames'
 import Icon from '../icon/icon'
-import './style'
+import './style.tsx'
 
 const componentName = 'Button'
 const sc = createScopedClasses(componentName)
