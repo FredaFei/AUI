@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
 import Button,{ IProps as IButtonProps} from './button'
-import './style/index.scss'
+import './style'
 
 interface IProps extends IStyledProps {
   children?: any
