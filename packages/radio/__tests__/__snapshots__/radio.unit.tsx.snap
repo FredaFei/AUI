@@ -8,7 +8,6 @@ exports[`测试 Radio 以下行为 Radio 存在 1`] = `
     className="am-radio-input"
   >
     <input
-      checked={true}
       className="am-radio"
       type="radio"
     />
