@@ -17,9 +17,12 @@ export default function(props: any) {
     setChecked1((e.target as HTMLInputElement).checked)
   }
   const onChange2 = (e: React.FormEvent) => {
+    console.log(e)
     setChecked2([(e.target as HTMLInputElement).value])
   }
-  const onChange3 = () => {}
+  const onChange3 = (e:React.FormEvent) => {
+    console.log(e)
+  }
   return (
     <div className="exp-box">
       <div className="exp-section">
@@ -49,6 +52,9 @@ export default function(props: any) {
         <h3>不可用状态</h3>
         <Radio checked disabled onChange={onChange3}>
           apple
+        </Radio>
+        <Radio checked={false} disabled onChange={onChange3}>
+          peach
         </Radio>
       </div>
     </div>
