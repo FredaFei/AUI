@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 ButtonGroup 以下行为 ButtonGroup 存在 1`] = `
+<div
+  className="am-buttonGroup "
+  data-role="ButtonGroup"
+>
+  <button
+    className="am-button-wrapper "
+    data-role="Button"
+    onClick={[Function]}
+  >
+    <div
+      className="am-button-body icon-left"
+    >
+      <svg
+        className="am-icon icon-name"
+        style={Object {}}
+      >
+        <use
+          xlinkHref="#left"
+        />
+      </svg>
+      <span
+        className="am-button-content"
+      />
+    </div>
+  </button>
+  <button
+    className="am-button-wrapper "
+    data-role="Button"
+    onClick={[Function]}
+  >
+    <span
+      className="am-button-content"
+    >
+      1
+    </span>
+  </button>
+  <button
+    className="am-button-wrapper "
+    data-role="Button"
+    onClick={[Function]}
+  >
+    <div
+      className="am-button-body icon-left"
+    >
+      <svg
+        className="am-icon icon-name"
+        style={Object {}}
+      >
+        <use
+          xlinkHref="#right"
+        />
+      </svg>
+      <span
+        className="am-button-content"
+      />
+    </div>
+  </button>
+</div>
+`;
+
+exports[`测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义样式 1`] = `
+<div
+  className="am-buttonGroup hello"
+  data-role="ButtonGroup"
+  style={
+    Object {
+      "borderColor": "red",
+    }
+  }
+>
+  <button
+    className="am-button-wrapper "
+    data-role="Button"
+    onClick={[Function]}
+  >
+    <div
+      className="am-button-body icon-left"
+    >
+      <svg
+        className="am-icon icon-name"
+        style={Object {}}
+      >
+        <use
+          xlinkHref="#left"
+        />
+      </svg>
+      <span
+        className="am-button-content"
+      />
+    </div>
+  </button>
+  <button
+    className="am-button-wrapper "
+    data-role="Button"
+    onClick={[Function]}
+  >
+    <span
+      className="am-button-content"
+    >
+      1
+    </span>
+  </button>
+  <button
+    className="am-button-wrapper "
+    data-role="Button"
+    onClick={[Function]}
+  >
+    <div
+      className="am-button-body icon-left"
+    >
+      <svg
+        className="am-icon icon-name"
+        style={Object {}}
+      >
+        <use
+          xlinkHref="#right"
+        />
+      </svg>
+      <span
+        className="am-button-content"
+      />
+    </div>
+  </button>
+</div>
+`;

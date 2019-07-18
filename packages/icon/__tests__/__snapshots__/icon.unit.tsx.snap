@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 Icon 以下行为 Icon 存在 1`] = `
+<svg
+  className="am-icon "
+  style={Object {}}
+>
+  <use
+    xlinkHref="#settings"
+  />
+</svg>
+`;
+
+exports[`测试 Icon 以下行为 Icon 设置 自定义样式 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "class": "am-icon ",
+      "style": "color:red",
+    },
+    "children": Array [
+      Object {
+        "attribs": Object {
+          "href": "#left",
+        },
+        "children": Array [],
+        "name": "use",
+        "namespace": "http://www.w3.org/2000/svg",
+        "next": null,
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "href": "http://www.w3.org/1999/xlink",
+        },
+        "x-attribsPrefix": Object {
+          "href": "xlink",
+        },
+      },
+    ],
+    "name": "svg",
+    "namespace": "http://www.w3.org/2000/svg",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+      "style": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+      "style": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;
