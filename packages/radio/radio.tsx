@@ -15,7 +15,7 @@ const Radio: React.FunctionComponent<IProps> = props => {
   return (
     <label className={classes(sc('wrapper', {disabled, checked}), className)}>
       <span className={sc('input')}>
-        <input type="radio" className={sc('')} checked={checked} {...rest} />
+        <input type="radio" className={sc('')} disabled={disabled} {...rest} />
       </span>
       <span className={sc('label')}>{children}</span>
     </label>
