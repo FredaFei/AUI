@@ -21,15 +21,15 @@ interface IAction {
   checkAll?: boolean
 }
 
-function reducer(state: IState, action: IAction) {
+function reducer(state: IState, action: IAction):IState {
   switch (action.type) {
     case 'add':
-      const selected1 = [...state.selected, action.value]
+      const selected1 = [...state.selected, action.value!]
       return {
         selected: selected1,
         checkAll: selected1.length === groups.length,
         indeterminate:
-          selected1.length && selected1.length < groups.length
+          selected1.length!< groups.length
       }
       break
     case 'remove':
@@ -38,7 +38,7 @@ function reducer(state: IState, action: IAction) {
         selected: selected2,
         checkAll: selected2.length === groups.length,
         indeterminate:
-          selected2.length && selected2.length < groups.length
+          selected2.length! < groups.length
       }
       break
     case 'toggleAll':
@@ -46,7 +46,7 @@ function reducer(state: IState, action: IAction) {
       groups.forEach(i => result.push(i.value))
       return {
         selected: action.checkAll ? result : [],
-        checkAll: action.checkAll,
+        checkAll: action.checkAll!,
         indeterminate: false
       }
       break
