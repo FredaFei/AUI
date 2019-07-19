@@ -1,5 +1,6 @@
 const path = require('path');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const {CheckerPlugin} = require('awesome-typescript-loader')
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -48,7 +49,8 @@ module.exports = {
           devMode
             ? 'style-loader'
             : {
-              loader: MiniCssExtractPlugin.loader
+              loader: MiniCssExtractPlugin.loader,
+              options: {}
             },
           'css-loader',
           {
@@ -59,6 +61,19 @@ module.exports = {
           }
         ]
       }
+    ]
+  },
+  plugins: [
+    new CheckerPlugin(),
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    })
+  ],
+  resolveLoader: {
+    modules: [
+      'node_modules',
+      path.resolve(__dirname, 'loaders')
     ]
   }
 };
