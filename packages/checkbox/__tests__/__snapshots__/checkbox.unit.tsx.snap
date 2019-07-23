@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 Checkbox 以下行为 Checkbox 存在 1`] = `
+<label
+  className="am-checkbox-wrapper "
+>
+  <span
+    className="am-checkbox-input"
+  >
+    <input
+      checked={false}
+      className="am-checkbox"
+      onChange={[Function]}
+      type="checkbox"
+    />
+  </span>
+  <span
+    className="am-checkbox-label"
+  >
+    apple
+  </span>
+</label>
+`;
