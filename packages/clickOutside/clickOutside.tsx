@@ -51,7 +51,7 @@ class ClickOutside extends PureComponent<IProps> {
   render() {
     const {children, exclude, handler, ...restProps} = this.props
     return (
-      <div data-role={componentName} className={sc('dd')} ref={this.myRef} {...restProps}>
+      <div data-role={componentName} className={sc('')} ref={this.myRef} {...restProps}>
         {children}
       </div>
     )
