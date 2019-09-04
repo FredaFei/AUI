@@ -10,6 +10,7 @@ import Date2, {IReadonlyDate} from '../utils/date'
 
 import './style'
 import {ReactNode} from "react";
+import Icon from "../icon/icon";
 
 const componentName = 'DatePicker'
 const sc = createScopedClasses(componentName)
@@ -93,7 +94,6 @@ class DatePicker
   onChangePanel = (displayPanel: IPanel) => {
     this.setState({displayPanel});
   }
-
   renderDatePicker() {
     return (
       <div className={sc('body')} ref={this.refDiv}>
@@ -121,7 +121,7 @@ class DatePicker
       <ClickOutside handler={this.onClickOutside} exclude={this.refDiv}>
         <div className={classes(sc('wrapper'), props.className)} style={props.style}>
           <Popover content={this.renderDatePicker()} trigger="manual" open={this.state.open} position="bottomLeft">
-            <Input value={this.formattedValue} onFocus={this.onFocusInput} readOnly={true}/>
+            <Input value={this.formattedValue} onFocus={this.onFocusInput} readOnly={true} before={<Icon name="date"/>} />
           </Popover>
         </div>
       </ClickOutside>
