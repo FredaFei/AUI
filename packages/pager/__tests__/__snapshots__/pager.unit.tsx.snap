@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 Pager 以下行为 Pager 存在 1`] = `
+<div
+  className="am-pager-wrapper "
+>
+  <span
+    className="am-pager-prev"
+    onClick={[Function]}
+  >
+    <svg
+      className="am-icon "
+      style={Object {}}
+    >
+      <use
+        xlinkHref="#left"
+      />
+    </svg>
+  </span>
+  <ul
+    className="am-pager-list"
+  >
+    <li
+      className="am-pager-list-item"
+      onClick={[Function]}
+    >
+      1
+    </li>
+    <li
+      className="am-pager-list-item"
+      onClick={[Function]}
+    >
+      2
+    </li>
+    <li
+      className="am-pager-list-item"
+      onClick={[Function]}
+    >
+      3
+    </li>
+    <li
+      className="am-pager-list-item am-pager-list-item-active"
+      onClick={[Function]}
+    >
+      4
+    </li>
+    <li
+      className="am-pager-list-item"
+      onClick={[Function]}
+    >
+      5
+    </li>
+  </ul>
+  <span
+    className="am-pager-next"
+    onClick={[Function]}
+  >
+    <svg
+      className="am-icon "
+      style={Object {}}
+    >
+      <use
+        xlinkHref="#right"
+      />
+    </svg>
+  </span>
+</div>
+`;

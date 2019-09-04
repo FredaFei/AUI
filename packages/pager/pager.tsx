@@ -17,11 +17,12 @@ interface IProps extends IStyledProps {
 }
 interface IState {
   current?: number
+  value?: string
 }
 class Pager extends React.Component<IProps, IState> {
   static displayName = componentName
   static defaultProps = {}
-  state = { current: this.props.defaultCurrent || 1 }
+  state = { current: this.props.defaultCurrent || 1,value:'' }
   static propTypes = {
     current: PropTypes.number,
     total: PropTypes.number,
