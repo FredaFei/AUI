@@ -9,7 +9,9 @@ const sc = createScopedClasses(componentName)
 
 export interface IProps extends IStyledProps {
 }
-
+// todo
+// 移动端隐藏滚动条
+// 下拉刷新上拉加载
 const Scroll: React.FunctionComponent<IProps> = props => {
   const [barHeight, setBarHeight] = useState(0)
   const [barTop, _setBarTop] = useState(0)
