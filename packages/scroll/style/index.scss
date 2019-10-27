@@ -1,7 +1,30 @@
 @import 'var';
 .am-scroll {
   &-wrapper {
+    position: relative;
+    overflow: hidden;
   }
-  &-body {
+  &-inner {
+    position: absolute;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border: 1px solid red;
+  }
+  &-track{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 100%;
+  }
+  &-bar{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 6px;
+    background: rgba(128,128,128,.8);
+    border-radius: 3px;
   }
 }
