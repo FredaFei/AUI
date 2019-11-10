@@ -21,6 +21,7 @@ import MenuExample from './examples/menu.example'
 import DatePickerExample from './examples/datePicker.example'
 import PopoverExample from './examples/popover.example'
 import ScrollExample from './examples/scroll.example'
+import CarouselExample from './examples/carousel.example'
 import 'examples/index.scss'
 
 class App extends Component {
@@ -100,6 +101,9 @@ class App extends Component {
                                         <NavLink to="/collapse">Collapse 折叠面板</NavLink>
                                     </li>
                                     <li>
+                                        <NavLink to="/carousel">Carousel 轮播</NavLink>
+                                    </li>
+                                    <li>
                                         <NavLink to="/message">Message 全局提示</NavLink>
                                     </li>
                                     <li>
@@ -130,6 +134,7 @@ class App extends Component {
                             <Route path="/pager" component={PagerExample}/>
                             <Route path="/menu" component={MenuExample}/>
                             <Route path="/tabs" component={TabsExample}/>
+                            <Route path="/carousel" component={CarouselExample}/>
                             <Route path="/message" component={MessageExample}/>
                             <Route path="/dialog" component={DialogExample}/>
                             <Route path="/popover" component={PopoverExample}/>
