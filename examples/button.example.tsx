@@ -22,10 +22,6 @@ export default function (props:any) {
           <Button icon="loading"></Button>
           <Button icon="right"></Button>
         </ButtonGroup>
-
-        <ButtonGroup>
-          ha
-        </ButtonGroup>
       </div>
       <div className="exp-section">
         <h3>不可用状态</h3>
