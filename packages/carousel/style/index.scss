@@ -76,7 +76,8 @@
     }
   }
   &-fade {
-    &.am-carousel-forward, .am-carousel-backward {
+    &.am-carousel-forward,
+    &.am-carousel-backward {
       #{component(carouselitem)} {
         &-current {
           animation: carousel-fade-in .4s ease-in-out;
