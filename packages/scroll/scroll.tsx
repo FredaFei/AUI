@@ -3,11 +3,14 @@ import classes, {createScopedClasses} from '../utils/classnames'
 import scrollbarWidth from './scrollbar-width'
 import './style'
 import {UIEventHandler, useEffect, useRef, useState,} from "react";
+import {TouchEventHandler} from "react";
 
 const componentName = 'Scroll'
 const sc = createScopedClasses(componentName)
 
 export interface IProps extends IStyledProps {
+  onPullUp?: () => void
+  onPullDown?: () => void
 }
 
 // todo
@@ -49,7 +52,6 @@ const Scroll: React.FunctionComponent<IProps> = props => {
   const firstRef = useRef(0)
   const draggingRef = useRef(false)
   const onMouseDownBar = (e: MouseEvent) => {
-    console.log(e);
     draggingRef.current = true
     firstRef.current = e.clientY
     firstBarTopRef.current = barTop
@@ -80,9 +82,72 @@ const Scroll: React.FunctionComponent<IProps> = props => {
       document.removeEventListener('selectstart', onSelect)
     }
   }, [])
+
+  const [translateY, _setTranslateY] = useState(0)
+
+  const setTranslateY = (y: number) => {
+    if (pullDownRef.current) {
+      if (y < 0) {y = 0}
+      if (y > 150) {y = 150}
+    }
+    if (y < -150 && pullUpRef.current) {y = 0}
+    console.log(1);
+    console.log(y);
+    console.log(2);
+    _setTranslateY(y)
+  }
+
+  const lastYRef = useRef(0)
+  const moveCountRef = useRef(0)
+  const pullDownRef = useRef<boolean>(false)
+  const pullUpRef = useRef<boolean>(false)
+
+  const onTouchStart: TouchEventHandler = (e) => {
+    if (e.touches.length > 1) {return }
+    const scrollTop = containerRef.current!.scrollTop
+    if (scrollTop === 0) { pullDownRef.current = true}
+    lastYRef.current = e.touches[0].clientY
+    moveCountRef.current = 0
+  }
+  const onTouchMove: TouchEventHandler = (e) => {
+    const deltaY = e.touches[0].clientY - lastYRef.current
+    console.log(deltaY);
+    moveCountRef.current += 1
+
+    if (moveCountRef.current === 1 && deltaY < 0) {
+      // 上拉
+      pullDownRef.current = false
+      pullUpRef.current = true
+      // return
+    }
+    if (!pullDownRef.current) {return}
+    setTranslateY(lastYRef.current + deltaY)
+    lastYRef.current = e.touches[0].clientY
+  }
+  const onToucheEnd: TouchEventHandler = () => {
+    console.log(`pullDownRef.current ${pullDownRef.current}`);
+    console.log(`pullUpRef.current ${pullUpRef.current}`);
+    if (pullDownRef.current) {
+      setTranslateY(0)
+      props.onPullDown && props.onPullDown()
+      pullDownRef.current = false
+    }
+    if (pullUpRef.current) {
+      setTranslateY(0)
+      props.onPullUp && props.onPullUp()
+      pullUpRef.current = false
+    }
+  }
   return (
     <div className={classes(sc('wrapper'), props.className)} {...rest}>
-      <div className={sc('inner')} style={{ right: -scrollbarWidth() }} ref={containerRef} onScroll={onScroll}>
+      <div className={sc('inner')} style={{
+        right: -scrollbarWidth(), transform: `translateY(${translateY}px)`
+      }}
+           ref={containerRef}
+           onTouchStart={onTouchStart}
+           onTouchMove={onTouchMove}
+           onTouchEnd={onToucheEnd}
+           onScroll={onScroll}>
         {children}
       </div>
       <div className={sc('track')}>
