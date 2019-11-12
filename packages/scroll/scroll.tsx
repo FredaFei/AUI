@@ -9,13 +9,16 @@ const sc = createScopedClasses(componentName)
 
 export interface IProps extends IStyledProps {
 }
+
 // todo
-// 移动端隐藏滚动条
 // 下拉刷新上拉加载
 const Scroll: React.FunctionComponent<IProps> = props => {
   const [barHeight, setBarHeight] = useState(0)
   const [barTop, _setBarTop] = useState(0)
+  const [barVisible, setBarVisible] = useState(false)
   const { children, className, ...rest } = props
+
+  const timeIdRef = useRef<number | null>(null)
   const setBarTop = (top: number) => {
     if (top < 0) {return}
     const scrollHeight = containerRef.current!.scrollHeight
@@ -29,6 +32,11 @@ const Scroll: React.FunctionComponent<IProps> = props => {
     const scrollTop = containerRef.current!.scrollTop
     const viewHeight = containerRef.current!.getBoundingClientRect().height
     setBarTop(scrollTop * viewHeight / scrollHeight)
+    setBarVisible(true)
+    if (timeIdRef.current) {clearTimeout(timeIdRef.current)}
+    timeIdRef.current = window.setTimeout(() => {
+      setBarVisible(false)
+    }, 300)
   };
   const containerRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -40,7 +48,7 @@ const Scroll: React.FunctionComponent<IProps> = props => {
   const firstBarTopRef = useRef(0)
   const firstRef = useRef(0)
   const draggingRef = useRef(false)
-  const onMouseDownBar = (e:MouseEvent) => {
+  const onMouseDownBar = (e: MouseEvent) => {
     console.log(e);
     draggingRef.current = true
     firstRef.current = e.clientY
@@ -78,8 +86,10 @@ const Scroll: React.FunctionComponent<IProps> = props => {
         {children}
       </div>
       <div className={sc('track')}>
+        {barVisible &&
         <div className={sc('bar')} style={{ height: barHeight, transform: `translateY(${barTop}px)` }}
-             onMouseDown={()=>onMouseDownBar}></div>
+             onMouseDown={() => onMouseDownBar}></div>
+        }
       </div>
     </div>
   )
