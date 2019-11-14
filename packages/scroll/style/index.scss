@@ -1,4 +1,7 @@
 @import 'var';
+html {
+  scroll-behavior: smooth;
+}
 .am-scroll {
   &-wrapper {
     position: relative;
@@ -11,6 +14,28 @@
     top: 0;
     left: 0;
     bottom: 0;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  &-pulling-up,
+  &-pulling-down{
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left:0;
+    right: 0;
+  }
+  &-pulling-down{
+    top:0;
+    background: hotpink;
+  }
+  &-pulling-up{
+    bottom:0;
+    background: pink;
   }
   &-track{
     position: absolute;
@@ -26,9 +51,5 @@
     width: 6px;
     background: rgba(128,128,128,.8);
     border-radius: 3px;
-    //scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 }

@@ -1,9 +1,9 @@
 import * as React from 'react'
-import classes, {createScopedClasses} from '../utils/classnames'
+import classes, { createScopedClasses } from '../utils/classnames'
 import scrollbarWidth from './scrollbar-width'
 import './style'
-import {UIEventHandler, useEffect, useRef, useState,} from "react";
-import {TouchEventHandler} from "react";
+import { UIEventHandler, useEffect, useRef, useState, TouchEventHandler } from "react";
+import { Icon } from '../index'
 
 const componentName = 'Scroll'
 const sc = createScopedClasses(componentName)
@@ -58,6 +58,7 @@ const Scroll: React.FunctionComponent<IProps> = props => {
   };
   const onMouseMoveBar = (e: MouseEvent) => {
     if (draggingRef.current) {
+      console.log(111);
       const delta = e.clientY - firstRef.current
       const newBarTop = firstBarTopRef.current + delta
       setBarTop(newBarTop); // 可能存在滚动条拖动和内容滚动更新不一致的问题
@@ -90,10 +91,10 @@ const Scroll: React.FunctionComponent<IProps> = props => {
       if (y < 0) {y = 0}
       if (y > 150) {y = 150}
     }
-    if (y < -150 && pullUpRef.current) {y = 0}
-    console.log(1);
-    console.log(y);
-    console.log(2);
+    if (pullUpRef.current) {
+      if (y >= 0) {y = 0}
+      if (y < -150) {y = -150}
+    }
     _setTranslateY(y)
   }
 
@@ -105,51 +106,63 @@ const Scroll: React.FunctionComponent<IProps> = props => {
   const onTouchStart: TouchEventHandler = (e) => {
     if (e.touches.length > 1) {return }
     const scrollTop = containerRef.current!.scrollTop
+    const maxScrollHeight = containerRef.current!.scrollHeight
+    const { height } = containerRef.current!.getBoundingClientRect()
     if (scrollTop === 0) { pullDownRef.current = true}
+    if (scrollTop + height === maxScrollHeight && height !== maxScrollHeight) { pullUpRef.current = true}
+
+    console.log(`scrollTop ${scrollTop}`)
+    console.log(`maxScrollHeight ${maxScrollHeight}`)
+    console.log(`pullUpRef ${scrollTop + height === maxScrollHeight}`)
     lastYRef.current = e.touches[0].clientY
     moveCountRef.current = 0
   }
   const onTouchMove: TouchEventHandler = (e) => {
     const deltaY = e.touches[0].clientY - lastYRef.current
-    console.log(deltaY);
     moveCountRef.current += 1
-
-    if (moveCountRef.current === 1 && deltaY < 0) {
+    if (moveCountRef.current === 1 && deltaY < 0 && pullUpRef.current) {
       // 上拉
-      pullDownRef.current = false
-      pullUpRef.current = true
-      // return
+      // pullDownRef.current = false
     }
-    if (!pullDownRef.current) {return}
-    setTranslateY(lastYRef.current + deltaY)
+    if (moveCountRef.current === 1 && deltaY > 0 && pullDownRef.current) {
+      // 下拉
+      // pullUpRef.current = false
+    }
+    if (pullDownRef.current || pullUpRef.current) {
+      setTranslateY(translateY + deltaY)
+    }
     lastYRef.current = e.touches[0].clientY
   }
   const onToucheEnd: TouchEventHandler = () => {
-    console.log(`pullDownRef.current ${pullDownRef.current}`);
-    console.log(`pullUpRef.current ${pullUpRef.current}`);
     if (pullDownRef.current) {
+      pullDownRef.current = false
       setTranslateY(0)
       props.onPullDown && props.onPullDown()
-      pullDownRef.current = false
     }
     if (pullUpRef.current) {
+      pullUpRef.current = false
       setTranslateY(0)
       props.onPullUp && props.onPullUp()
-      pullUpRef.current = false
     }
   }
   return (
     <div className={classes(sc('wrapper'), props.className)} {...rest}>
-      <div className={sc('inner')} style={{
-        right: -scrollbarWidth(), transform: `translateY(${translateY}px)`
-      }}
-           ref={containerRef}
-           onTouchStart={onTouchStart}
-           onTouchMove={onTouchMove}
-           onTouchEnd={onToucheEnd}
-           onScroll={onScroll}>
-        {children}
+      {pullDownRef.current &&
+      <div className={sc('pulling-down')} style={{ height: translateY }}>
+        {translateY === 150 ?
+          <span className={sc('pulling-text')}>释放手指即可更新</span> : <Icon name="left"/>}
       </div>
+      }
+      <div className={sc('inner')} style={{ right: -scrollbarWidth(), transform: `translateY(${translateY}px)` }}
+           ref={containerRef} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onToucheEnd}
+           onScroll={onScroll}>{children}</div>
+
+      {pullUpRef.current &&
+      <div className={sc('pulling-up')} style={{ height: Math.abs(translateY) }}>
+        {translateY === -150 ?
+          <span className={sc('pulling-text')}>释放手指即可加载更多</span> : <Icon name="left"/>}
+      </div>
+      }
       <div className={sc('track')}>
         {barVisible &&
         <div className={sc('bar')} style={{ height: barHeight, transform: `translateY(${barTop}px)` }}
