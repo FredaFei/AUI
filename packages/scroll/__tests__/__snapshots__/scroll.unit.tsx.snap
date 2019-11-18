@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 Scroll 以下行为 Scroll 存在 1`] = `
+<div
+  className="am-scroll-wrapper "
+  pullingheight={100}
+>
+  <div
+    className="am-scroll-inner"
+    onScroll={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "right": -0,
+        "transform": "translateY(0px)",
+      }
+    }
+  />
+  <div
+    className="am-scroll-track"
+  />
+</div>
+`;
