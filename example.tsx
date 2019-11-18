@@ -1,7 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import {Component} from 'react'
-import {HashRouter as Router, Route, NavLink} from 'react-router-dom'
+import { useState } from 'react'
+import { HashRouter, Route, NavLink, RouteComponentProps, Switch } from 'react-router-dom'
+
 import Home from './examples/home'
 import ButtonExample from './examples/button.example'
 import IconExample from './examples/icon.example'
@@ -24,130 +25,88 @@ import ScrollExample from './examples/scroll.example'
 import CarouselExample from './examples/carousel.example'
 import 'examples/index.scss'
 
-class App extends Component {
-    state = {
-        visibleMenu: false
-    }
-    onToggleMenu = () => {
-        this.setState(({visibleMenu: !this.state.visibleMenu}))
-    }
-
-    render() {
-        return (
-            <Router>
-                <div className="site-doc-wrapper">
-                    <header className="site-doc-header">
-                        <div className="site-doc-menu-icon" onClick={this.onToggleMenu}>
-                            <div className="menu-icon-line" onClick={this.onToggleMenu}></div>
-                        </div>
-                        <nav className="site-doc-logo-github">
-                            <div className="site-nav-item">
-                                <img
-                                    src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/stack-206941f66389b4bc8f476591664d9d3e43f70e55cd841a98d06312ff85da7dc9.svg"
-                                    alt="" className="logo"/>
-                            </div>
-                            <div className="site-nav-item">github</div>
-                        </nav>
-                    </header>
-                    <div className="site-doc-body">
-                        <div className={['site-doc-aside-wrapper', this.state.visibleMenu && 'active'].join(' ')}>
-                            <div className="site-doc-mask" onClick={this.onToggleMenu}></div>
-                            <aside className="site-doc-aside">
-                                <h2>入门</h2>
-                                <ol onClick={this.onToggleMenu}>
-                                    <li>
-                                        <NavLink to="/guide">快速上手</NavLink>
-                                    </li>
-                                </ol>
-                                <h2>组件</h2>
-                                <ol onClick={this.onToggleMenu}>
-                                    <li>
-                                        <NavLink to="/button">Button 按钮</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/icon">Icon 按钮</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/grid">Grid 栅格</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/layout">Layout 布局</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/input">Input 输入框</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/radio">Radio 单选框</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/checkbox">Checkbox 多选框</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/switch">Switch 开关</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/form">Form 表单</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/pager">Pager 分页</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/menu">Menu 导航菜单</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/tabs">Tabs 标签页</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/collapse">Collapse 折叠面板</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/carousel">Carousel 轮播</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/message">Message 全局提示</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/dialog">Dialog 对话框</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/popover">Popover 气泡卡片</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/datePicker">DatePicker 日期选择器</NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink to="/scroll">Scroll 滚动</NavLink>
-                                    </li>
-                                </ol>
-                            </aside>
-                        </div>
-                        <main className="site-doc-main">
-                            <Route path="/guide" exact component={Home}/>
-                            <Route path="/button" component={ButtonExample}/>
-                            <Route path="/icon" component={IconExample}/>
-                            <Route path="/grid" component={GridExample}/>
-                            <Route path="/layout" component={LayoutExample}/>
-                            <Route path="/Input" component={InputExample}/>
-                            <Route path="/Radio" component={RadioExample}/>
-                            <Route path="/Checkbox" component={CheckboxExample}/>
-                            <Route path="/form" component={FormExample}/>
-                            <Route path="/pager" component={PagerExample}/>
-                            <Route path="/menu" component={MenuExample}/>
-                            <Route path="/tabs" component={TabsExample}/>
-                            <Route path="/carousel" component={CarouselExample}/>
-                            <Route path="/message" component={MessageExample}/>
-                            <Route path="/dialog" component={DialogExample}/>
-                            <Route path="/popover" component={PopoverExample}/>
-                            <Route path="/datePicker" component={DatePickerExample}/>
-                            <Route path="/switch" component={SwitchExample}/>
-                            <Route path="/collapse" component={CollapseExample}/>
-                            <Route path="/scroll" component={ScrollExample}/>
-                        </main>
-                    </div>
-                </div>
-            </Router>
-        )
-    }
+interface LinkItem {
+  name: string
+  path: string
+  text: string
+  component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'))
+type Link = Array<LinkItem>
+const renderLink = (routeTable: Link) => {
+  return routeTable.map(item => {
+    return <li key={item.name}><NavLink to={item.path}>{item.text}</NavLink></li>
+  })
+}
+const linkMap: Link = [
+  { name: 'Button', path: '/button', text: 'Button 按钮', component: ButtonExample },
+  { name: 'Icon', path: '/icon', text: 'Icon 图标', component: IconExample },
+  { name: 'Grid', path: '/grid', text: 'Grid 栅格', component: GridExample },
+  { name: 'Layout', path: '/layout', text: 'Layout 布局', component: LayoutExample },
+  { name: 'Input', path: '/input', text: 'Input 输入框', component: InputExample },
+  { name: 'Radio', path: '/radio', text: 'Radio 单选框', component: RadioExample },
+  { name: 'Checkbox', path: '/checkbox', text: 'Checkbox 多选框', component: CheckboxExample },
+  { name: 'Switch', path: '/switch', text: 'Switch 开关', component: SwitchExample },
+  { name: 'Form', path: '/form', text: 'Form 表单', component: FormExample },
+  { name: 'Pager', path: '/pager', text: 'Pager 分页', component: PagerExample },
+  { name: 'Menu', path: '/menu', text: 'Menu 导航菜单', component: MenuExample },
+  { name: 'Tabs', path: '/tabs', text: 'Tabs 标签页', component: TabsExample },
+  { name: 'Collapse', path: '/collapse', text: 'Collapse 折叠面板', component: CollapseExample },
+  { name: 'Carousel', path: '/carousel', text: 'Carousel 轮播', component: CarouselExample },
+  { name: 'Message', path: '/message', text: 'Message 全局提示', component: MessageExample },
+  { name: 'Dialog', path: '/dialog', text: 'Dialog 对话框', component: DialogExample },
+  { name: 'Popover', path: '/popover', text: 'Popover 气泡卡片', component: PopoverExample },
+  { name: 'DatePicker', path: '/datePicker', text: 'DatePicker 日期选择器', component: DatePickerExample },
+  { name: 'Scroll', path: '/scroll', text: 'Scroll 滚动加载', component: ScrollExample },
+]
+
+const A = (props: any) => {
+  console.log(props)
+  return <li><NavLink to="/guide">快速上手</NavLink></li>
+}
+
+const App = () => {
+  const [visibleMenu, setVisibleMenu] = useState(false)
+  const onToggleMenu = () => {
+    setVisibleMenu(!visibleMenu)
+  }
+  return (
+    <div className="site-doc-wrapper">
+      <header className="site-doc-header">
+        <div className="site-doc-menu-icon" onClick={onToggleMenu}>
+          <div className="menu-icon-line" onClick={onToggleMenu}></div>
+        </div>
+        <nav className="site-doc-logo-github">
+          <div className="site-nav-item">
+            <img
+              src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/stack-206941f66389b4bc8f476591664d9d3e43f70e55cd841a98d06312ff85da7dc9.svg"
+              alt="" className="logo"/>
+          </div>
+          <div className="site-nav-item">github</div>
+        </nav>
+      </header>
+      <div className="site-doc-body">
+        <div className={['site-doc-aside-wrapper', visibleMenu && 'active'].join(' ')}>
+          <div className="site-doc-mask" onClick={onToggleMenu}></div>
+          <aside className="site-doc-aside">
+            <h2>入门</h2>
+            <ol onClick={onToggleMenu}>
+              <A pathname="99"/>
+            </ol>
+            <h2>组件</h2>
+            <ol onClick={onToggleMenu}>{renderLink(linkMap)}</ol>
+          </aside>
+        </div>
+        <main className="site-doc-main">
+          <Switch>
+            {linkMap.map(item => <Route path={item.path} exact component={item.component} key={item.name}/>)}
+            <Route path="/" exact component={Home}/>
+            <Route path="/guide" exact component={Home}/>
+          </Switch>
+        </main>
+      </div>
+    </div>
+  )
+}
+
+ReactDOM.render(<HashRouter><App/></HashRouter>, document.getElementById('root'))
