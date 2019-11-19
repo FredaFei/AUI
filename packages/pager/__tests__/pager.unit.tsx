@@ -6,8 +6,7 @@ import Pager from '../pager'
 
 describe('测试 Pager 以下行为', () => {
   it('Pager 存在', () => {
-    const json = renderer.create(<Pager defaultCurrent={4}
-                                        total={5}/>).toJSON()
+    const json = renderer.create(<Pager defaultCurrent={4} total={10}/>).toJSON()
     expect(json).toMatchSnapshot()
   })
   it('Pager 设置 defaultCurrent & total', () => {

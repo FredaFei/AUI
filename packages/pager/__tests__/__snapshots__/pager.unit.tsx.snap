@@ -5,7 +5,7 @@ exports[`测试 Pager 以下行为 Pager 存在 1`] = `
   className="am-pager-wrapper "
 >
   <span
-    className="am-pager-prev"
+    className="am-pager-prev am-pager-disabled"
     onClick={[Function]}
   >
     <svg
@@ -21,7 +21,7 @@ exports[`测试 Pager 以下行为 Pager 存在 1`] = `
     className="am-pager-list"
   >
     <li
-      className="am-pager-list-item"
+      className="am-pager-list-item am-pager-list-item-active"
       onClick={[Function]}
     >
       1
@@ -39,16 +39,18 @@ exports[`测试 Pager 以下行为 Pager 存在 1`] = `
       3
     </li>
     <li
-      className="am-pager-list-item am-pager-list-item-active"
+      className="am-pager-list-item am-pager-split"
       onClick={[Function]}
     >
-      4
+      <span>
+        ...
+      </span>
     </li>
     <li
       className="am-pager-list-item"
       onClick={[Function]}
     >
-      5
+      10
     </li>
   </ul>
   <span
