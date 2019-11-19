@@ -1,43 +1,24 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
 import classes from '../utils/classnames'
 import './style'
 
-export interface IProps extends IStyledProps {
+export interface Props extends IStyledProps {
   header: React.ReactNode
-  key: string
+  name: string
   active?: boolean
   visibleIcon?: boolean
   disabled?: boolean
 }
+
 const componentName = 'Pane'
-class Pane extends React.Component<IProps> {
-  static displayName = componentName;
-  static defaultProps = {
-    visibleIcon: true,
-    disabled: false,
-    active: false
-  }
-  static propTypes = {
-    key: PropTypes.string,
-    visibleIcon: PropTypes.bool,
-    disabled: PropTypes.bool,
-    active: PropTypes.bool,
-    className: PropTypes.string,
-    style: PropTypes.object
-  }
-  renderPane = () => {
-    const { className, style, children } = this.props
-    const styles = Object.assign({}, { ...style })
-    const wrapperClasses = classes(['content-inner', className])
-    return (
-      <div className={wrapperClasses} style={styles}>
-        {children}
-      </div>
-    )
-  }
-  render() {
-    return this.renderPane()
-  }
+
+const Pane: React.FunctionComponent<Props> = props => {
+  return <div className={classes(['content-inner', props.className])} style={props.style} >{props.children}</div>
+}
+Pane.displayName = componentName
+Pane.defaultProps = {
+  visibleIcon: true,
+  disabled: false,
+  active: false
 }
 export default Pane

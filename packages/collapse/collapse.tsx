@@ -1,80 +1,38 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
-import isSimpleArrayEqual  from '../utils/isSimpleArrayEqual'
-import classes, { createScopedClasses } from '../utils/classnames'
+import classes, {createScopedClasses} from '../utils/classnames'
 import Icon from '../icon/icon'
 import './style'
-import { IProps as IPaneProps } from './pane'
+import {Props as PaneProps} from './pane'
+import {useEffect, useRef, useState} from "react";
 
 const componentName = 'Collapse'
 const sc = createScopedClasses(componentName)
-interface IProps extends IStyledProps {
+
+interface Props extends IStyledProps {
   activeKey?: string[]
   defaultActiveKey?: string[]
   accordion?: boolean
-  expandIcon?: (panelProps: any) => React.ReactNode
+  expandIcon?: (active: boolean) => React.ReactNode
   onChange?: (key: string, e: React.MouseEvent<HTMLElement>) => any
 }
-interface IState {
-  defaultKeys: string[]
-  open: boolean
-}
 
-class Collapse extends React.Component<IProps, IState> {
-  static displayName = componentName;
-  static defaultProps = {
-    accordion: false,
-    disabled: false
-  }
-  static propTypes = {
-    activeKey: PropTypes.array,
-    defaultActiveKey: PropTypes.array,
-    accordion: PropTypes.bool,
-    className: PropTypes.string,
-    style: PropTypes.object
-  }
-  constructor(props: IProps) {
-    super(props)
-    this.state = {
-      open: false,
-      defaultKeys: props.activeKey || props.defaultActiveKey || []
-    }
-  }
-   _keys: string[] = []
-  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    const { activeKey } = nextProps
-    const { defaultKeys } = prevState
-    if (!('activeKey' in nextProps)) {
-      return null
-    }
-    if (Array.isArray(activeKey) && Array.isArray(defaultKeys)) {
-      if (!isSimpleArrayEqual(activeKey, defaultKeys)) {
-        return null
-      }
-    }
-    return { defaultKeys: activeKey }
-  }
-  componentDidMount() {
-    if (!('activeKey' in this.props) && !('defaultActiveKey' in this.props)) {
-      this.setState({
-        defaultKeys: [this._keys[0]]
-      })
-    }
-  }
-  componentDidUpdate(nextProps: IProps, prevState: IState) {
-    // todo
-  }
+type Selected = Array<string>
 
-  handleClick = (
-    key: string,
-    e: React.MouseEvent<HTMLElement>,
-    disabled: boolean
-  ): any => {
-    if (disabled) {
-      return false
-    }
-    const { accordion, onChange } = this.props
-    let copyDefaultKeys = [...this.state.defaultKeys]
+const Collapse: React.FunctionComponent<Props> = props => {
+  const [selected, setSelected] = useState<Selected>([])
+  const initializingRef = useRef<boolean>(true)
+  const {className, defaultActiveKey, activeKey, accordion, expandIcon} = props
+
+  useEffect(() => {
+    if (!initializingRef.current) {return}
+    const selected = 'defaultActiveKey' in props ? defaultActiveKey : 'activeKey' in props ? activeKey : []
+    setSelected(selected as Selected)
+  }, [])
+  const keysRef = useRef<Selected>([])
+
+  const handleClick = (key: string, e: React.MouseEvent<HTMLElement>, disabled: boolean): any => {
+    if (disabled) {return false}
+    let copyDefaultKeys = [...selected]
     let index = copyDefaultKeys.indexOf(key)
     if (index >= 0) {
       //close
@@ -88,76 +46,42 @@ class Collapse extends React.Component<IProps, IState> {
       }
     }
 
-    this.setState({
-      defaultKeys: copyDefaultKeys
-    })
-    onChange && onChange(key, e)
+    initializingRef.current = false
+    setSelected(copyDefaultKeys)
+    props.onChange && props.onChange(key, e)
   }
-  renderExpandIcon = (active: boolean) => {
-    const { expandIcon } = this.props
-    const IconContent = expandIcon ? (
-      expandIcon(active)
-    ) : (
-      <Icon
-        name="right"
-        className={classes(['am-icon-animation', active && 'active'])}
-      />
-    )
-    return IconContent
+  const renderExpandIcon = (active: boolean) => {
+    return expandIcon ? expandIcon(active) :
+      <Icon name="right" className={classes('am-icon-animation', active ? 'active' : '')}/>
   }
-  renderCollapseHead = () => {
-    const { defaultKeys } = this.state
-    return React.Children.map(
-      this.props.children as any[],
-      (child: React.ReactElement<IPaneProps>) => {
-        if (!child) {
-          return false
-        }
-        const key = child.key as string
-        this._keys.push(key)
-        const active = defaultKeys.includes(key)
-        const { visibleIcon, disabled, header } = child.props
-        return (
-          <div
-            key={key}
-            className={classes(sc('item'), {
-              disabled,
-              active
-            })}
-          >
-            <div
-              className={sc('item-name')}
-              onClick={(e: React.MouseEvent<HTMLElement>) =>
-                this.handleClick(key, e, disabled || false)
-              }
-            >
-              {visibleIcon && this.renderExpandIcon(active)}
-              {header}
-            </div>
-            <div className={sc('item-content')}>
-              {!disabled &&
-                React.cloneElement(
-                  child as React.ReactElement<IPaneProps>,
-                  {}
-                )}
-            </div>
+  const renderCollapseHead = () => {
+    console.log(props.children)
+    return React.Children.map(props.children as any[], (child: React.ReactElement<PaneProps>) => {
+        if (!child) {return false}
+        console.log(child);
+        const {visibleIcon, disabled, header, name} = child.props
+        const active = selected.includes(name)
+        keysRef.current.push(name)
+        return <div key={name} className={classes(sc('item'), {disabled, active})}>
+          <div className={sc('item-name')}
+               onClick={(e: React.MouseEvent<HTMLElement>) => handleClick(name, e, disabled || false)}>
+            {visibleIcon && renderExpandIcon(active)}
+            {header}
           </div>
-        )
+          <div className={sc('item-content')}>
+            {!disabled && React.cloneElement(child as React.ReactElement<PaneProps>, {})}
+          </div>
+        </div>
       }
     )
   }
-  renderCollapse = () => {
-    const { className, style } = this.props
-    const styles = Object.assign({}, { ...style })
-    const collapseClasses = classes(sc('wrapper'), [className])
-    return (
-      <div data-role={componentName} className={collapseClasses} style={styles}>
-        {this.renderCollapseHead()}
-      </div>
-    )
-  }
-  render() {
-    return this.renderCollapse()
-  }
+  return <div data-role={componentName}
+              className={classes(sc('wrapper'), className)}>{renderCollapseHead()}</div>
 }
+
+Collapse.displayName = componentName
+Collapse.defaultProps = {
+  accordion: false
+}
+
 export default Collapse
