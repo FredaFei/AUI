@@ -19,19 +19,15 @@ describe('测试 Pager 以下行为', () => {
     const onChange = jest.fn()
     const wrapper = mount(<Pager onChange={onChange} visibleQuickJumper current={1} total={10}/>)
     const input = wrapper.find('.am-pager-input-page').at(0);
-    input.simulate('change', { target: { value: '3'} });
-    input.simulate('keypress', {key: 'Enter'})
+    input.simulate('change', { target: { value: 3} });
+    input.simulate('keypress', {key: 'Enter',keyCode: 13, which: 13})
+    // onChange({target: {value: 3}})
     // expect(onChange).toHaveBeenCalledWith(3);
   });
 
   it('Pager 手动触发 onChange', () => {
     const onChange = jest.fn()
-    const wrapper = mount(<Pager
-      visibleQuickJumper
-      current={3}
-      total={10}
-      onChange={onChange}
-    />)
+    const wrapper = mount(<Pager visibleQuickJumper current={3} total={10} onChange={onChange}/>)
     wrapper.find('.am-pager-list-item').at(1).simulate('click')
     expect(onChange).toHaveBeenCalledWith(2);
   })
@@ -47,23 +43,13 @@ describe('测试 Pager 以下行为', () => {
   })
   it('Pager 点击上一页', () => {
     const onChange = jest.fn()
-    const wrapper = mount(<Pager
-      visibleQuickJumper
-      current={3}
-      total={10}
-      onChange={onChange}
-    />)
+    const wrapper = mount(<Pager visibleQuickJumper current={3} total={10} onChange={onChange}/>)
     wrapper.find('.am-pager-prev').simulate('click')
     expect(onChange).toHaveBeenCalledWith(2);
   })
   it('Pager 点击下一页', () => {
     const onChange = jest.fn()
-    const wrapper = mount(<Pager
-      visibleQuickJumper
-      current={3}
-      total={10}
-      onChange={onChange}
-    />)
+    const wrapper = mount(<Pager visibleQuickJumper current={3} total={10} onChange={onChange}/>)
     wrapper.find('.am-pager-next').simulate('click')
     expect(onChange).toHaveBeenCalledWith(4);
   })

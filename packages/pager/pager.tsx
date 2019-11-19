@@ -19,14 +19,12 @@ interface Props extends IStyledProps {
 
 const Pager: React.FunctionComponent<Props> = props => {
   const {visibleQuickJumper, className, style} = props
-  const [index, setIndex] = useState<number>(1)
+  const [index, _setIndex] = useState<number>(1)
   const initializingRef = useRef<boolean>(true)
 
   const onClickItem = (page: number) => {
     if (page <= props.total && page >= 1) {
-      initializingRef.current = false
       setIndex(page)
-      props.onChange && props.onChange(page)
     }
   }
   const onInputEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -34,11 +32,15 @@ const Pager: React.FunctionComponent<Props> = props => {
     const page = input.value
     input.value = ''
     if (/^\d+$/.test(page)) {
-      initializingRef.current = false
-      setIndex(parseInt(page) > props.total ? props.total : parseInt(page))
+      const index = parseInt(page) > props.total ? props.total : parseInt(page)
+      setIndex(index)
     }
   }
-
+  const setIndex = (page:Number)=>{
+    initializingRef.current = false
+    _setIndex(page as number)
+    props.onChange && props.onChange(page as number)
+  }
   useEffect(() => {
     if (!initializingRef.current) {return}
     const page = 'defaultCurrent' in props ? props.defaultCurrent : props.current ? props.current : 1
