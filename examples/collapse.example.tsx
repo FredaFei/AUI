@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useState } from 'react'
+import {useState} from 'react'
 import Collapse from '../packages/collapse/collapse'
 import Pane from '../packages/collapse/pane'
 import Icon from '../packages/icon/icon'
@@ -14,13 +14,13 @@ export default function (props: any) {
       <div className="exp-section">
         <h3>基础应用</h3>
         <Collapse defaultActiveKey={selected1} onChange={onChange}>
-          <Pane header="This is panel header 1" key="1">
+          <Pane header="This is panel header 1" name="1">
             <p>This is pane content 1</p>
           </Pane>
-          <Pane header="This is panel header 2" key="2">
+          <Pane header="This is panel header 2" name="2">
             <p>This is pane content 2</p>
           </Pane>
-          <Pane header="This is panel header 3" key="3">
+          <Pane header="This is panel header 3" name="3">
             <p>This is pane content 3</p>
           </Pane>
         </Collapse>
@@ -28,13 +28,13 @@ export default function (props: any) {
       <div className="exp-section">
         <h3>手风琴</h3>
         <Collapse accordion>
-          <Pane header="This is panel header 1" key="1">
+          <Pane header="This is panel header 1" name="1">
             <p>This is pane content 1</p>
           </Pane>
-          <Pane header="This is panel header 2" key="2">
+          <Pane header="This is panel header 2" name="2">
             <p>This is pane content 2</p>
           </Pane>
-          <Pane header="This is panel header 3" key="3">
+          <Pane header="This is panel header 3" name="3" disabled>
             <p>This is pane content 3</p>
           </Pane>
         </Collapse>
@@ -52,13 +52,13 @@ export default function (props: any) {
             />
           )}
         >
-          <Pane header="This is panel header 1" visibleIcon={false} key="1">
+          <Pane header="This is panel header 1" visibleIcon={false} name="1">
             <p>This is pane content 1</p>
           </Pane>
-          <Pane header="This is panel header 2" key="2">
+          <Pane header="This is panel header 2" name="2">
             <p>This is pane content 2</p>
           </Pane>
-          <Pane header="This is panel header 3" key="3">
+          <Pane header="This is panel header 3" name="3">
             <p>This is pane content 3</p>
           </Pane>
         </Collapse>
