@@ -22,6 +22,12 @@ const Pager: React.FunctionComponent<Props> = props => {
   const [index, _setIndex] = useState<number>(1)
   const initializingRef = useRef<boolean>(true)
 
+  useEffect(() => {
+    if (!initializingRef.current) {return}
+    const page = 'defaultCurrent' in props ? props.defaultCurrent : props.current ? props.current : 1
+    setIndex(page as number)
+
+  },[])
   const onClickItem = (page: number) => {
     if (page <= props.total && page >= 1) {
       setIndex(page)
@@ -41,12 +47,6 @@ const Pager: React.FunctionComponent<Props> = props => {
     _setIndex(page as number)
     props.onChange && props.onChange(page as number)
   }
-  useEffect(() => {
-    if (!initializingRef.current) {return}
-    const page = 'defaultCurrent' in props ? props.defaultCurrent : props.current ? props.current : 1
-    setIndex(page as number)
-
-  })
   const jumpPages = (index: number): number => {
     const prev = index - 5 <= 0 ? 1 : index - 5
     const next = index + 5 >= props.total ? props.total : index + 5
