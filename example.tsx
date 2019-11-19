@@ -61,7 +61,6 @@ const linkMap: Link = [
 ]
 
 const A = (props: any) => {
-  console.log(props)
   return <li><NavLink to="/guide">快速上手</NavLink></li>
 }
 
