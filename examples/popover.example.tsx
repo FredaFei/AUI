@@ -9,6 +9,7 @@ export default function (props: any) {
         setOpen(!open)
     }
     const onClickOutside = () => {
+        console.log(`open2 before ${open}`)
         setOpen(false)
     }
     const content = (
@@ -72,7 +73,7 @@ export default function (props: any) {
             <div className="exp-section">
                 <h3>手动触发</h3>
                 <ClickOutside handler={onClickOutside}>
-                    <Popover content={content} trigger="manual" open={open}>
+                    <Popover content="hello ooo" trigger="manual" open={open} container={div}>
                         <Button onClick={onClick}>click me</Button>
                     </Popover>
                 </ClickOutside>
@@ -81,7 +82,7 @@ export default function (props: any) {
                 <h3>自定义 container</h3>
                 <div ref={div} style={{position: 'relative',top: '10px'}} className="popover-demo-row">
                     <Popover content="hello" container={div}>
-                        <Button>hover me</Button>
+                        <Button>click me</Button>
                     </Popover>
                 </div>
             </div>
