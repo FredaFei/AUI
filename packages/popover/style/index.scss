@@ -9,8 +9,8 @@
 
   &-content {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -9999;
+    left: -9999;
     min-width: 4em;
     white-space: nowrap;
     background: $white;
