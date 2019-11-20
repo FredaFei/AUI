@@ -55,6 +55,7 @@ const Popover: React.FunctionComponent<Props> = props => {
   const triggerRef = useRef<HTMLDivElement>(null)
   const timerRef = useRef<number | null>(null)
   const prevVisible = useRef<boolean>(false)
+  const visiblable = useRef<boolean>(false)
   const {open, trigger, position, content, container, block} = props
   const closeDelay = 200
 
@@ -75,16 +76,16 @@ const Popover: React.FunctionComponent<Props> = props => {
   useEffect(() => {
     console.log(`open update ${open} `)
     console.log(`visible update ${visible} `)
-
     if (trigger !== 'manual') {
       console.log(`not manual`)
-      if (!prevVisible.current && visible === true) {
+      visiblable.current = visible ? true : false
+      if (prevVisible.current === false && visible === true) {
         positionContent()
       }
     } else {
       console.log(`manual`)
       console.log(`prevOpen ${prevOpen}`)
-      if (!prevOpen && open === true) {
+      if (prevOpen === false && open === true) {
         console.log(`end---`)
         positionContent()
       }
@@ -182,7 +183,7 @@ const Popover: React.FunctionComponent<Props> = props => {
   }
   const close = (delay?: number) => {
     nowOrLater(() => {
-      if (visible) {
+      if (visiblable.current) {
         prevVisible.current = true
         setVisible(false)
       }
@@ -190,7 +191,7 @@ const Popover: React.FunctionComponent<Props> = props => {
   }
   const doOpen = (delay?: number) => {
     nowOrLater(() => {
-      if (!visible) {
+      if (!visiblable.current) {
         prevVisible.current = false
         setVisible(true)
       }
