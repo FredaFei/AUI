@@ -74,19 +74,13 @@ const Popover: React.FunctionComponent<Props> = props => {
     setVisible(visible as boolean)
   }, [])
   useEffect(() => {
-    console.log(`open update ${open} `)
-    console.log(`visible update ${visible} `)
     if (trigger !== 'manual') {
-      console.log(`not manual`)
       visiblable.current = visible ? true : false
       if (prevVisible.current === false && visible === true) {
         positionContent()
       }
     } else {
-      console.log(`manual`)
-      console.log(`prevOpen ${prevOpen}`)
       if (prevOpen === false && open === true) {
-        console.log(`end---`)
         positionContent()
       }
     }
