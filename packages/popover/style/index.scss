@@ -1,12 +1,10 @@
 @import 'var';
-
 //$xx: red;
 #{component(popover)} {
   &, &-trigger {
     display: inline-block;
     vertical-align: top;
   }
-
   &-content {
     position: absolute;
     top: -9999;
@@ -17,12 +15,11 @@
     border-radius: $border-radius;
     filter: drop-shadow(0 1px 2px rgba($black, .6));
     border: 1px solid $border-color;
-
+    z-index: 10;
     &-string {
       display: inline-block;
       padding: 4px 8px;
     }
-
     &:before,
     &:after {
       content: '';
@@ -30,163 +27,136 @@
       border-style: solid;
       border-color: transparent;
     }
-
     &:before {
       border-width: 5px;
     }
-
     &:after {
       border-width: 4px;
     }
-
     &-top, &-topLeft, &-topRight {
       &:before {
         border-top-color: $border-color;
       }
-
       &:after {
         border-top-color: $white;
       }
     }
-
     &-top {
       &:before, &:after {
         top: 100%;
         left: 50%;
       }
-
       &:before {
         margin-left: -5px;
       }
-
       &:after {
         margin-left: -4px;
       }
     }
-
     &-topLeft {
       &:before, &:after {
         top: 100%;
         left: 8px;
       }
-
       &:after {
         left: 9px;
       }
     }
-
     &-topRight {
       &:before, &:after {
         top: 100%;
         right: 8px;
       }
-
       &:after {
         right: 9px;
       }
     }
-
     &-bottom, &-bottomLeft, &-bottomRight {
       &:before {
         border-bottom-color: $border-color;
       }
-
       &:after {
         border-bottom-color: $white;
       }
     }
-
     &-bottom {
       &:before, &:after {
         bottom: 100%;
         left: 50%;
       }
-
       &:before {
         margin-left: -5px;
       }
-
       &:after {
         margin-left: -4px;
       }
     }
-
     &-bottomLeft {
       &:before, &:after {
         bottom: 100%;
         left: 8px;
       }
-
       &:after {
         left: 9px;
       }
     }
-
     &-bottomRight {
       &:before, &:after {
         bottom: 100%;
         right: 8px;
       }
-
       &:after {
         right: 9px;
       }
     }
-    &-left,&-leftTop,&-leftBottom{
+    &-left, &-leftTop, &-leftBottom {
       &:before {
         border-left-color: $border-color;
       }
-
       &:after {
         border-left-color: $white;
       }
     }
-    &-leftTop{
+    &-leftTop {
       &:before, &:after {
         left: 100%;
         top: 8px;
       }
-
       &:after {
         top: 9px;
       }
     }
-    &-leftBottom{
+    &-leftBottom {
       &:before, &:after {
         left: 100%;
         bottom: 8px;
       }
-
       &:after {
         bottom: 9px;
       }
     }
-
-    &-right,&-rightTop,&-rightBottom{
+    &-right, &-rightTop, &-rightBottom {
       &:before {
         border-right-color: $border-color;
       }
-
       &:after {
         border-right-color: $white;
       }
     }
-    &-rightTop{
+    &-rightTop {
       &:before, &:after {
         right: 100%;
         top: 8px;
       }
-
       &:after {
         top: 9px;
       }
     }
-    &-rightBottom{
+    &-rightBottom {
       &:before, &:after {
         right: 100%;
         bottom: 8px;
       }
-
       &:after {
         bottom: 9px;
       }
@@ -196,37 +166,30 @@
         margin-top: -5px;
         border-left-color: $border-color;
       }
-
       &:after {
         margin-top: -4px;
         border-left-color: $white;
       }
-
       &:before,
       &:after {
         left: 100%;
         top: 50%;
       }
     }
-
     &-right {
       &:before {
         margin-top: -5px;
         border-right-color: $border-color;
       }
-
       &:after {
         margin-top: -4px;
         border-right-color: $white;
       }
-
       &:before,
       &:after {
         right: 100%;
         top: 50%;
       }
     }
-
   }
-
 }
