@@ -4,7 +4,7 @@ import {useState} from "react";
 
 export default function (props: any) {
   const [d1, setD1] = useState<Date | string>(new Date());
-  const [d2, setD2] = useState<Date | string>(new Date());
+  const [d2, setD2] = useState<Date | string>(new Date('2012-01-01'));
   const onChange = (date: Date | string) => {
     console.log(date)
   }
