@@ -4,7 +4,7 @@ import classes, { createScopedClasses } from '../utils/classnames'
 const componentName = 'Footer'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps { }
+interface IProps extends StyledProps { }
 
 const Footer: React.FunctionComponent<IProps> = (props) => {
   const { className, ...rest } = props
@@ -15,4 +15,4 @@ const Footer: React.FunctionComponent<IProps> = (props) => {
   )
 }
 Footer.displayName = componentName
-export default Footer 
+export default Footer

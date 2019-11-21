@@ -8,7 +8,7 @@ import { Icon } from '../index'
 const componentName = 'Scroll'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends IStyledProps {
+export interface IProps extends StyledProps {
   onPullUp?: () => void
   onPullDown?: () => void
   pullingheight?: number

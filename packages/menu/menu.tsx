@@ -6,7 +6,7 @@ import './style'
 const componentName = 'Menu'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends IStyledProps {
+export interface IProps extends StyledProps {
     selected: string
     layout?: 'horizontal' | 'inline' | 'vertical'
     onSelect?: (value: string) => any

@@ -5,7 +5,7 @@ import './style'
 const componentName = 'TabPane'
 const sc = createScopedClasses(componentName)
 
-export interface Props extends IStyledProps {
+export interface Props extends StyledProps {
   tab: React.ReactNode
   key?: string
   active?: boolean

@@ -15,7 +15,7 @@ import Icon from "../icon/icon";
 const componentName = 'DatePicker'
 const sc = createScopedClasses(componentName)
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   value?: Date | string
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   onChange?: (date: Date | string) => void

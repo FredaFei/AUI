@@ -31,7 +31,7 @@ type position =
   | 'rightTop'
   | 'rightBottom'
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   content: ReactChild
   children: ReactElement<any>
   position?: position

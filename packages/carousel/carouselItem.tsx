@@ -5,7 +5,7 @@ import './style'
 const componentName = 'CarouselItem'
 const sc = createScopedClasses(`${componentName.toLocaleLowerCase()}`)
 
-export interface Props extends IStyledProps {
+export interface Props extends StyledProps {
   current?: boolean
   prev?: boolean
 }

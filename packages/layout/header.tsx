@@ -4,7 +4,7 @@ import classes, { createScopedClasses } from '../utils/classnames'
 const componentName = 'Header'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps { }
+interface IProps extends StyledProps { }
 
 const Header: React.FunctionComponent<IProps> = props => {
   const { className, ...rest } = props
@@ -15,4 +15,4 @@ const Header: React.FunctionComponent<IProps> = props => {
   )
 }
 Header.displayName = componentName
-export default Header 
+export default Header

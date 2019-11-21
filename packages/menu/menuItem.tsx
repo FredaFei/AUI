@@ -6,7 +6,7 @@ import './style'
 const componentName = 'MenuItem'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends IStyledProps {
+export interface IProps extends StyledProps {
     key: string
     disabled?: boolean
     onSelect?: (value: string) => any

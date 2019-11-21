@@ -6,7 +6,7 @@ import './style'
 const componentName = 'Row'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps {
+interface IProps extends StyledProps {
   gutter?: number
   align?: 'left' | 'right' | 'center' | 'spaceBetween' | 'spaceAround'
   verticalAlign?: 'top' | 'center' | 'bottom'

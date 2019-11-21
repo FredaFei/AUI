@@ -3,7 +3,7 @@ import classes, {createScopedClasses} from '../utils/classnames'
 import './importSvgs'
 import './style'
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   name: string
   rotate?: number
   spin?: boolean

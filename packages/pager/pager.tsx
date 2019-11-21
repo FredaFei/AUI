@@ -9,7 +9,7 @@ import {useEffect, useRef, useState} from "react";
 const componentName = 'Pager'
 const sc = createScopedClasses(componentName)
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   current?: number
   defaultCurrent?: number
   total: number

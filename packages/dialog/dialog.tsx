@@ -8,7 +8,7 @@ import './style'
 
 const componentName = 'dialog'
 const sc = createScopedClasses(componentName)
-interface IBaseProps extends IStyledProps {
+interface IBaseProps extends StyledProps {
   mask?: {
     visible?: boolean
     closable?: boolean

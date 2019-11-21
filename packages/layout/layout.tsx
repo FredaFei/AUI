@@ -5,7 +5,7 @@ import classes, { createScopedClasses } from '../utils/classnames'
 const componentName = 'Layout'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps {}
+interface IProps extends StyledProps {}
 
 const Layout: React.FunctionComponent<IProps> = props => {
   const { className, children, ...rest } = props

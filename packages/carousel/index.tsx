@@ -9,7 +9,7 @@ const sc = createScopedClasses(`${componentName.toLocaleLowerCase()}`)
 
 import './style'
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   animation?: 'slide' | 'fade'
   indicator?: indicator
   duration?: number

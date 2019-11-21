@@ -7,7 +7,7 @@ import {useEffect, useRef, useState} from "react";
 const componentName = 'Tabs'
 const sc = createScopedClasses(componentName)
 
-export interface Props extends IStyledProps{
+export interface Props extends StyledProps{
   activeKey?: string
   defaultActiveKey?: string
   direction?: string

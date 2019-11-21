@@ -24,7 +24,7 @@ export interface FormFields {
 }
 type Layout = 'horizontal'|'inline'|'vertical'
 
-interface IProps extends IStyledProps {
+interface IProps extends StyledProps {
   value: FormValue
   errors: FormErrors
   fields: FormFields[]

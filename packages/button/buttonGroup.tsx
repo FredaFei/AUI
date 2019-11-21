@@ -3,7 +3,7 @@ import classes, { createScopedClasses } from '../utils/classnames'
 import Button,{ Props as ButtonProps} from './button'
 import './style'
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   children?: any
 }
 const componentName = 'ButtonGroup'

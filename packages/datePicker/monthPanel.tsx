@@ -10,7 +10,7 @@ const sc = createScopedClasses(componentName)
 
 type Panel = 'day' | 'month' | 'year'
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   display: IReadonlyDate
   onChangePanel?: (panel: Panel) => void
   onChangeDisplay?: (date: Date2) => void

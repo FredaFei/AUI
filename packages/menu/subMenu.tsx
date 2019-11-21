@@ -7,7 +7,7 @@ import './style'
 const componentName = 'SubMenu'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends IStyledProps {
+export interface IProps extends StyledProps {
     key: string
     title: string | ReactNode
 }

@@ -4,7 +4,7 @@ import classes, { createScopedClasses } from '../utils/classnames'
 const componentName = 'Aside'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps { }
+interface IProps extends StyledProps { }
 
 const Aside: React.FunctionComponent<IProps> = props => {
   const { className, ...rest } = props
@@ -15,4 +15,4 @@ const Aside: React.FunctionComponent<IProps> = props => {
   )
 }
 Aside.displayName = componentName
-export default Aside 
+export default Aside

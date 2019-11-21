@@ -6,7 +6,7 @@ import { Icon } from '../index'
 import './style/index'
 const componentName = 'Message'
 const sc = createScopedClasses(componentName)
-interface IProp extends IStyledProps {
+interface IProp extends StyledProps {
   content: React.ReactNode | string
   duration?: number | undefined
   mode?: string

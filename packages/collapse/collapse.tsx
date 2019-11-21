@@ -8,7 +8,7 @@ import {useEffect, useRef, useState} from "react";
 const componentName = 'Collapse'
 const sc = createScopedClasses(componentName)
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   activeKey?: string[]
   defaultActiveKey?: string[]
   accordion?: boolean

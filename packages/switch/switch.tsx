@@ -6,7 +6,7 @@ import './style'
 const componentName = 'Switch'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps {
+interface IProps extends StyledProps {
   defaultChecked?: boolean
   checked?: boolean
   disabled?: boolean

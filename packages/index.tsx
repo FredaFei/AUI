@@ -5,7 +5,7 @@ declare global {
     interface AFunctionComponent<P = {}> extends React.FunctionComponent<P> {
     }
 
-    interface IStyledProps {
+    interface StyledProps {
         className?: string
         style?: React.CSSProperties
     }

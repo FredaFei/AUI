@@ -5,7 +5,7 @@ import './style'
 const componentName = 'Col'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends IStyledProps {
+export interface IProps extends StyledProps {
   gutter?: number
   span?: number
   offset?: number

@@ -18,7 +18,7 @@ function normalize(n: number, base: number): number {
 
 type Panel = 'day' | 'month' | 'year'
 
-interface Props extends IStyledProps {
+interface Props extends StyledProps {
   value?: Date | string
   display: IReadonlyDate
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6

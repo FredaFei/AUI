@@ -2,7 +2,7 @@ import * as React from 'react'
 import classes from '../utils/classnames'
 import './style'
 
-export interface Props extends IStyledProps {
+export interface Props extends StyledProps {
   header: React.ReactNode
   name: string
   active?: boolean
