@@ -6,13 +6,13 @@ import './style'
 const componentName = 'Button'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, ''> {
+export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, ''> {
   icon?: string
   iconPosition?: 'left' | 'right'
   onClick?: React.MouseEventHandler
 }
 
-const Button: React.FunctionComponent<IProps> = props => {
+const Button: React.FunctionComponent<Props> = props => {
   const handleClick = (e: React.MouseEvent): any => {
     const {onClick} = props
     onClick && (onClick as React.MouseEventHandler)(e)

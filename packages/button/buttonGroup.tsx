@@ -1,16 +1,16 @@
 import * as React from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
-import Button,{ IProps as IButtonProps} from './button'
+import Button,{ Props as ButtonProps} from './button'
 import './style'
 
-interface IProps extends IStyledProps {
+interface Props extends IStyledProps {
   children?: any
 }
 const componentName = 'ButtonGroup'
 const sc = createScopedClasses(componentName)
-const ButtonGroup: React.SFC<IProps> = (props: IProps) => {
+const ButtonGroup: React.FunctionComponent<Props> =props => {
   const children = React.Children.map(props.children, child => {
-    const element = child as React.ReactElement<IButtonProps>
+    const element = child as React.ReactElement<ButtonProps>
     return element.type === Button
       ? React.cloneElement(element)
       : null
