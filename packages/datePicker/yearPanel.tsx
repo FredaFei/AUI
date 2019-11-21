@@ -3,95 +3,83 @@ import classes, {createScopedClasses} from '../utils/classnames'
 import Icon from '../icon/icon'
 import Date2, {IReadonlyDate} from '../utils/date'
 import {range} from '../utils/collection'
+import {useState} from "react";
 
 const componentName = 'YearPanel'
 const sc = createScopedClasses(componentName)
 
-type IPanel = 'day' | 'month' | 'year'
+type Panel = 'day' | 'month' | 'year'
 
-interface IProps extends IStyledProps {
+interface Props extends IStyledProps {
   display: IReadonlyDate
-  onChangePanel?: (panel: IPanel) => void
+  onChangePanel?: (panel: Panel) => void
   onChangeDisplay?: (date: Date2) => void
 }
 
-interface IState {
-  display: IReadonlyDate
-  displayPanel?: IPanel
-}
+const YearPanel: React.FunctionComponent<Props> = props => {
+  const [display, setDisplay] = useState(props.display.clone)
 
-class YearPanel extends React.PureComponent<IProps, IState> {
-  static displayName = componentName
-  static propTypes = {}
-  state: IState = {
-    displayPanel: 'day',
-    display: this.props.display.clone
-  }
-
-  get visibleYears() {
-    let start = Math.floor(this.state.display.year / 10) * 10
+  const visibleYears = () => {
+    let start = Math.floor(display.year / 10) * 10
     return Array.from({length: 12}, (val, index) => start - 1 + index)
   }
 
-  onClickPrevYear = () => {
-    this.setState({display: this.state.display.clone.addYear(-10)});
+  const onClickPrevYear = () => {
+    setDisplay(display.clone.addYear(-10))
   }
-  onClickNavYear = () => {
-    this.props.onChangePanel!('month')
+  const onClickNavYear = () => {
+    props.onChangePanel!('month')
   }
-  onClickYear = (date: Date2) => {
-    this.setState({display: date})
-    this.props.onChangeDisplay!(date)
-    this.props.onChangePanel!('month')
+  const onClickYear = (date: Date2) => {
+    setDisplay(date)
+    props.onChangeDisplay!(date)
+    props.onChangePanel!('month')
   }
-  onClickNextYear = () => {
-    this.setState({display: this.state.display.clone.addYear(+10)});
+  const onClickNextYear = () => {
+    setDisplay(display.clone.addYear(+10))
   }
 
-  renderNav() {
+  const renderNav = () => {
     return (
       <div className={classes(sc('nav'), 'am-datePicker-nav')}>
         <div className={sc('col')}>
-          <Icon name="double-left" onClick={this.onClickPrevYear}/>
+          <Icon name="double-left" onClick={onClickPrevYear}/>
         </div>
         <div className={sc('col')}>
                     <span className={sc('year')}
-                          onClick={this.onClickNavYear}>{this.visibleYears[1]}-{this.visibleYears[this.visibleYears.length - 2]}</span>
+                          onClick={onClickNavYear}>{visibleYears()[1]}-{visibleYears()[visibleYears().length - 2]}</span>
         </div>
         <div className={sc('col')}>
-          <Icon name="double-right" onClick={this.onClickNextYear}/>
+          <Icon name="double-right" onClick={onClickNextYear}/>
         </div>
       </div>
     )
   }
 
-  renderBody() {
+  const renderBody = () => {
     return (
       <div className={classes(sc('main'), 'am-datePicker-main')}>
         <table>
-          {this.renderYears()}
+          {renderYears()}
         </table>
       </div>
     )
   }
 
-  renderYears() {
-    const {display} = this.props
-    const currentYearIndex: number = this.visibleYears.indexOf(this.state.display.year)
+  const renderYears = () => {
+    const {display} = props
+    const currentYearIndex: number = visibleYears().indexOf(display.year)
     const years = range(0, 3).map(row => (
       <tr key={`year-${row}`}>
         {range(1, 3).map(col => {
           const index = row * 3 + col - 1
-          const d = display.clone.setYear(this.visibleYears[index])
+          const d = display.clone.setYear(visibleYears()[index])
           return (
-            <td
-              className={sc('year', {
-                'firstOrLastYear': index === 0 || index === this.visibleYears.length - 1,
+            <td className={sc('year', {
+                'firstOrLastYear': index === 0 || index === visibleYears().length - 1,
                 'year-selected': index === currentYearIndex
-              })}
-              onClick={() => this.onClickYear(d)}
-              key={d.timestamp}>
-              <div className={sc('cell')}>{this.visibleYears[index]}</div>
+              })} onClick={() => onClickYear(d)} key={d.timestamp}>
+              <div className={sc('cell')}>{visibleYears()[index]}</div>
             </td>
           )
         })}
@@ -103,14 +91,13 @@ class YearPanel extends React.PureComponent<IProps, IState> {
     )
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        {this.renderNav()}
-        {this.renderBody()}
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+      {renderNav()}
+      {renderBody()}
+    </React.Fragment>
+  )
 }
 
+YearPanel.displayName = componentName
 export default YearPanel

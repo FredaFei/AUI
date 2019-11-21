@@ -6,127 +6,95 @@ import Input from '../input/input';
 import DayPanel from "./dayPanel";
 import MonthPanel from "./monthPanel";
 import YearPanel from "./yearPanel";
-import Date2, {IReadonlyDate} from '../utils/date'
+import Date2 from '../utils/date'
 
 import './style'
-import {ReactNode} from "react";
+import {ReactNode, useEffect, useRef, useState} from "react";
 import Icon from "../icon/icon";
 
 const componentName = 'DatePicker'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends IStyledProps {
+interface Props extends IStyledProps {
   value?: Date | string
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   onChange?: (date: Date | string) => void
   extraFooter?: (() => ReactNode)
 }
 
-type IPanel = 'day' | 'month' | 'year'
+type Panel = 'day' | 'month' | 'year'
 
-interface IState {
-  display: IReadonlyDate
-  displayPanel: IPanel
-  defaultValue: IReadonlyDate
-  open: boolean
-}
+const DatePicker: React.FunctionComponent<Props> = props => {
+  const [display, setDisplay] = useState()
+  const [displayPanel, setDisplayPanel] = useState<Panel>('day')
+  const [visible, setVisible] = useState<boolean>(false)
+  const [formattedValue, setFormattedValue] = useState('')
+  const refDiv = useRef<HTMLDivElement>(null)
 
-/**
- * TODOS:
- * 日期格式自定义
- */
-class DatePicker
-  extends React.PureComponent <IProps, IState> {
-  static displayName = componentName
-  static defaultProps = {
-    firstDayOfWeek: 1
-  }
-  static propTypes = {}
-  private readonly refDiv: React.RefObject<HTMLDivElement>
+  useEffect(() => {
+    const date2Value = 'value' in props ? new Date2(props.value).clone : new Date2(new Date()).clone
+    setDisplay(date2Value)
+    setFormattedValue('value' in props ? date2Value.toDateString() : '')
+  }, [])
 
-  constructor(props: IProps) {
-    super(props)
-    this.state = {
-      open: false,
-      displayPanel: 'day',
-      display: this.display || this.date2Value,
-      defaultValue: this.date2Value
-    }
-    this.refDiv = React.createRef<HTMLDivElement>()
+  const onChange = (date: Date) => {
+    onChangeDisplay(new Date2(date))
+    setFormattedValue(new Date2(date).toDateString())
+    props.onChange && props.onChange(date)
+    close()
   }
-
-  get date2Value() {
-    return new Date2(this.props.value).clone
+  const onChangeDisplay = (display: Date2) => {
+    setDisplay(display)
   }
-
-  get display() {
-    return isNaN(this.date2Value.day) && new Date2(new Date()).clone
+  const onFocusInput = () => {
+    open()
   }
-
-  get formattedValue() {
-    if (!this.props.value && isNaN(this.state.defaultValue.day)) {
-      return ''
-    }
-    return this.state.defaultValue.toDateString()
+  const onClickOutside = () => {
+    close()
   }
-
-  onChange = (date: Date) => {
-    this.onChangeDisplay(new Date2(date))
-    this.setState({defaultValue: new Date2(date)})
-    this.props.onChange && this.props.onChange(date)
-    this.close()
+  const close = () => {
+    setVisible(false)
   }
-  onChangeDisplay = (display: Date2) => {
-    this.setState({display})
+  const open = () => {
+    setVisible(true)
   }
-  onFocusInput = () => {
-    this.open()
+  const onChangePanel = (displayPanel: Panel) => {
+    setDisplayPanel(displayPanel)
   }
-  onClickOutside = () => {
-    this.close()
-  }
-  close = () => {
-    this.setState({open: false})
-  }
-  open = () => {
-    this.setState({open: true})
-  }
-  onChangePanel = (displayPanel: IPanel) => {
-    this.setState({displayPanel});
-  }
-  renderDatePicker() {
+  const renderDatePicker = () => {
     return (
-      <div className={sc('body')} ref={this.refDiv}>
-        {this.state.displayPanel === 'day' ?
-          <DayPanel value={this.props.value}
-                    display={this.state.display}
-                    defaultValue={this.state.defaultValue}
-                    firstDayOfWeek={this.props.firstDayOfWeek}
-                    onChange={this.onChange}
-                    onChangePanel={this.onChangePanel}
-                    extraFooter={this.props.extraFooter}
-                    onChangeDisplay={this.onChangeDisplay}/> : this.state.displayPanel === 'month' ?
-            <MonthPanel display={this.state.display}
-                        onChangePanel={this.onChangePanel}
-                        onChangeDisplay={this.onChangeDisplay}/> : <YearPanel display={this.state.display}
-                                                                              onChangePanel={this.onChangePanel}
-                                                                              onChangeDisplay={this.onChangeDisplay}/>}
+      <div className={sc('body')} ref={refDiv}>
+        {displayPanel === 'day' ?
+          <DayPanel value={props.value}
+                    display={display}
+                    firstDayOfWeek={props.firstDayOfWeek}
+                    onChange={onChange}
+                    onChangePanel={onChangePanel}
+                    extraFooter={props.extraFooter}
+                    onChangeDisplay={onChangeDisplay}/> : displayPanel === 'month' ?
+            <MonthPanel display={display}
+                        onChangePanel={onChangePanel}
+                        onChangeDisplay={onChangeDisplay}/> : <YearPanel display={display}
+                                                                         onChangePanel={onChangePanel}
+                                                                         onChangeDisplay={onChangeDisplay}/>}
       </div>
     )
   }
 
-  render() {
-    const {props} = this
-    return (
-      <ClickOutside handler={this.onClickOutside} exclude={this.refDiv}>
-        <div className={classes(sc('wrapper'), props.className)} style={props.style}>
-          <Popover content={this.renderDatePicker()} trigger="manual" open={this.state.open} position="bottomLeft">
-            <Input value={this.formattedValue} onFocus={this.onFocusInput} readOnly={true} before={<Icon name="date"/>} />
-          </Popover>
-        </div>
-      </ClickOutside>
-    )
-  }
+  return (
+    <ClickOutside handler={onClickOutside} exclude={refDiv}>
+      <div className={classes(sc('wrapper'), props.className)} style={props.style}>
+        <Popover content={renderDatePicker()} trigger="manual" open={visible} position="bottomLeft">
+          <Input value={formattedValue} onFocus={onFocusInput} readOnly={true} before={<Icon name="date"/>}/>
+        </Popover>
+      </div>
+    </ClickOutside>
+  )
+}
+
+DatePicker.displayName = componentName
+DatePicker.defaultProps = {
+  firstDayOfWeek: 1
 }
 
 export default DatePicker

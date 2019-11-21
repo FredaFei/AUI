@@ -3,21 +3,17 @@ import classes, {createScopedClasses} from '../utils/classnames'
 import Icon from '../icon/icon'
 import Date2, {IReadonlyDate} from '../utils/date'
 import {range} from '../utils/collection'
+import {useState} from "react";
 
 const componentName = 'MonthPanel'
 const sc = createScopedClasses(componentName)
 
-type IPanel = 'day' | 'month' | 'year'
+type Panel = 'day' | 'month' | 'year'
 
-interface IProps extends IStyledProps {
+interface Props extends IStyledProps {
   display: IReadonlyDate
-  onChangePanel?: (panel: IPanel) => void
+  onChangePanel?: (panel: Panel) => void
   onChangeDisplay?: (date: Date2) => void
-}
-
-interface IState {
-  display: IReadonlyDate
-  displayPanel?: IPanel
 }
 
 const monthMap = [
@@ -35,52 +31,46 @@ const monthMap = [
   "十二月"
 ]
 
-class MonthPanel extends React.PureComponent<IProps, IState> {
-  static displayName = componentName
-  static propTypes = {}
-  state: IState = {
-    displayPanel: 'day',
-    display: this.props.display.clone
+const MonthPanel: React.FunctionComponent<Props> = props => {
+  const [display, setDisplay] = useState(props.display.clone)
+
+  const onClickPrevYear = () => {
+    setDisplay(display.clone.addYear(-1))
+    props.onChangeDisplay!(display.clone)
+    // this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}), () => {
+    //   this.props.onChangeDisplay!(this.state.display.clone)
+    // });
+  }
+  const onNavMonthClick = () => {
+    props.onChangePanel!('year')
+  }
+  const onClickMonth = (day: Date2) => {
+    setDisplay(day)
+    props.onChangeDisplay!(day)
+    props.onChangePanel!('day')
+  }
+  const onClickNextYear = () => {
+    setDisplay(display.clone.addYear(+1))
+    props.onChangeDisplay!(display.clone)
   }
 
-  onClickPrevYear = () => {
-    this.setState((prevState) => ({display: prevState.display.clone.addYear(-1)}), () => {
-      this.props.onChangeDisplay!(this.state.display.clone)
-    });
-  }
-  onNavMonthClick = () => {
-    this.props.onChangePanel!('year')
-  }
-  onClickMonth = (day: Date2) => {
-    this.setState(() => ({display: day}), () => {
-      this.props.onChangeDisplay!(day)
-      this.props.onChangePanel!('day')
-    })
-  }
-  onClickNextYear = () => {
-    this.setState((prevState) => ({display: prevState.display.clone.addYear(+1)}), () => {
-      this.props.onChangeDisplay!(this.state.display.clone)
-    });
-  }
-
-  renderNav() {
+  const renderNav = () => {
     return (
       <div className={classes(sc('nav'), 'am-datePicker-nav')}>
         <div className={sc('col')}>
-          <Icon name="double-left" onClick={this.onClickPrevYear}/>
+          <Icon name="double-left" onClick={onClickPrevYear}/>
         </div>
         <div className={sc('col')}>
-          <span className={sc('year')} onClick={this.onNavMonthClick}>{this.state.display.year}年</span>
+          <span className={sc('year')} onClick={onNavMonthClick}>{display.year}年</span>
         </div>
         <div className={sc('col')}>
-          <Icon name="double-right" onClick={this.onClickNextYear}/>
+          <Icon name="double-right" onClick={onClickNextYear}/>
         </div>
       </div>
     )
   }
 
-  renderBody() {
-    const {display} = this.props
+  const renderBody = () => {
     const month = range(0, 3).map(row => (
       <tr key={`month-${row}`}>
         {range(1, 3).map(col => {
@@ -89,7 +79,7 @@ class MonthPanel extends React.PureComponent<IProps, IState> {
             className={sc('month', {
               'month-selected': d.month === display.month
             })}
-            onClick={() => this.onClickMonth(d)}
+            onClick={() => onClickMonth(d)}
             key={d.timestamp}>
             <div className={sc('cell')}>{monthMap[row * 3 + col - 1]}</div>
           </td>
@@ -105,14 +95,15 @@ class MonthPanel extends React.PureComponent<IProps, IState> {
     )
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        {this.renderNav()}
-        {this.renderBody()}
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+      {renderNav()}
+      {renderBody()}
+    </React.Fragment>
+  )
 }
+
+MonthPanel.displayName = componentName
+MonthPanel.defaultProps = {}
 
 export default MonthPanel
