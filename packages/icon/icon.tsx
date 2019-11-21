@@ -3,7 +3,7 @@ import classes, {createScopedClasses} from '../utils/classnames'
 import './importSvgs'
 import './style'
 
-interface IProps extends IStyledProps {
+interface Props extends IStyledProps {
   name: string
   rotate?: number
   spin?: boolean
@@ -13,7 +13,7 @@ interface IProps extends IStyledProps {
 const componentName = 'Icon'
 const sc = createScopedClasses(componentName)
 
-const Icon: React.FunctionComponent<IProps> = (props: IProps) => {
+const Icon: React.FunctionComponent<Props> = props => {
   const {name, style, rotate, spin, className, onClick, ...rest} = props
   const wrapClasses = classes(sc('', {'spin': spin || name === 'loading'}), className)
   const styles = Object.assign(
