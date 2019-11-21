@@ -31,12 +31,23 @@ const DatePicker: React.FunctionComponent<Props> = props => {
   const [formattedValue, setFormattedValue] = useState('')
   const refDiv = useRef<HTMLDivElement>(null)
 
+  const isDatepickerRef = useRef(false)
   useEffect(() => {
     const date2Value = 'value' in props ? new Date2(props.value).clone : new Date2(new Date()).clone
     setDisplay(date2Value)
     setFormattedValue('value' in props ? date2Value.toDateString() : '')
+    return bindEvents()
   }, [])
-
+  const bindEvents = ()=>{
+    isDatepickerRef.current = true
+    document.addEventListener('selectstart', onSelect)
+    return ()=>{
+      document.removeEventListener('selectstart', onSelect)
+    }
+  }
+  const onSelect = (e: Event) => {
+    if (isDatepickerRef.current) {e.preventDefault()}
+  }
   const onChange = (date: Date) => {
     onChangeDisplay(new Date2(date))
     setFormattedValue(new Date2(date).toDateString())
