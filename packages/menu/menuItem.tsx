@@ -6,21 +6,33 @@ import './style'
 const componentName = 'MenuItem'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends StyledProps {
-    key: string
-    disabled?: boolean
-    onSelect?: (value: string) => any
+export interface Props extends StyledProps {
+  name: string
+  selectedKey?: string
+  layout?: 'horizontal' | 'inline' | 'vertical'
+  disabled?: boolean
+  visible?: boolean
+  onSelect?: (value: string) => any
+  onClose?: (value: boolean) => any
 }
 
-const MenuItem: React.FunctionComponent<IProps> = props => {
-    const onMenuItemClick = () => {
-        props.onSelect && props.onSelect(props.key)
-    }
-    return (
-        <div className={classes(sc(''), props.className)} style={props.style} onClick={onMenuItemClick}>
-            {props.children}
-        </div>
-    )
+const MenuItem: React.FunctionComponent<Props> = props => {
+  const {layout, onSelect, name, selectedKey, onClose, disabled} = props
+
+  const onMenuItemClick = () => {
+    console.log(`item click`)
+    if(disabled){return}
+    onClose && onClose(false)
+    onSelect && onSelect(name)
+  }
+  console.log(`name ${name},selectedKey ${selectedKey}`)
+  return (
+    <div className={classes(sc(''), props.className,
+      {active: selectedKey === name, vertical: layout === 'vertical', disabled})}
+         style={props.style} onClick={onMenuItemClick}>
+      {props.children}
+    </div>
+  )
 }
 
 MenuItem.displayName = componentName
