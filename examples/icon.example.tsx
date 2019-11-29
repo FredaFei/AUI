@@ -1,6 +1,9 @@
 import * as React from 'react'
 import Icon from '../packages/icon/icon'
 
+import Markdown from './markdown';
+import content from './test.md';
+
 
 export default function (props:any) {
   return (
@@ -30,6 +33,7 @@ export default function (props:any) {
         <Icon name="left" spin/>
         <Icon name="upload" rotate={180}/>
       </div>
+      <Markdown content={content} />
     </div>
   )
 }
