@@ -1,6 +1,8 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CheckerPlugin} = require('awesome-typescript-loader')
+const highlight = require('highlight.js')
+
 const devMode = process.env.NODE_ENV !== 'production';
 
 module.exports = {
@@ -39,9 +41,27 @@ module.exports = {
           }
         ]
       },
+      // {
+      //   test: /\.md$/,
+      //   use: 'raw-loader'
+      // },
       {
-        test: /\.md$/,
-        use: 'raw-loader'
+        test: /\.(md)$/,
+        use: [
+          'html-loader',
+          {
+            loader: 'markdown-loader',
+            options: {
+              highlight: (code, lang) => {
+                if (!lang || ['text', 'literal', 'nohighlight'].includes(lang)) {
+                  return `<pre class="hljs">${code}</pre>`;
+                }
+                const html = highlight.highlight(lang, code).value;
+                return `<span class="hljs">${html}</span>`;
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.s([ac])ss$/,
