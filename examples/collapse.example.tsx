@@ -4,6 +4,11 @@ import Collapse from '../packages/collapse/collapse'
 import Pane from '../packages/collapse/pane'
 import Icon from '../packages/icon/icon'
 
+import content1 from "./markdown/collapse-demo-1.md";
+import content2 from "./markdown/collapse-demo-2.md";
+import content3 from "./markdown/collapse-demo-3.md";
+import CodeBox from "./codeBox";
+
 export default function (props: any) {
   const [selected1] = useState(['1'])
   const onChange = (checked: string): any => {
@@ -11,8 +16,8 @@ export default function (props: any) {
   }
   return (
     <div className="exp-box">
+      <h3>基础应用</h3>
       <div className="exp-section">
-        <h3>基础应用</h3>
         <Collapse defaultActiveKey={selected1} onChange={onChange}>
           <Pane header="This is panel header 1" name="1">
             <p>This is pane content 1</p>
@@ -24,9 +29,10 @@ export default function (props: any) {
             <p>This is pane content 3</p>
           </Pane>
         </Collapse>
+        <CodeBox content={content1}/>
       </div>
+      <h3>手风琴</h3>
       <div className="exp-section">
-        <h3>手风琴</h3>
         <Collapse accordion>
           <Pane header="This is panel header 1" name="1">
             <p>This is pane content 1</p>
@@ -38,9 +44,10 @@ export default function (props: any) {
             <p>This is pane content 3</p>
           </Pane>
         </Collapse>
+        <CodeBox content={content2}/>
       </div>
+      <h3>自定义状态</h3>
       <div className="exp-section">
-        <h3>自定义状态</h3>
         <Collapse
           activeKey={['1', '3']}
           className="custom-desk"
@@ -62,6 +69,7 @@ export default function (props: any) {
             <p>This is pane content 3</p>
           </Pane>
         </Collapse>
+        <CodeBox content={content3}/>
       </div>
     </div>
   )
