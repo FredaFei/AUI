@@ -35,8 +35,8 @@ export default function (props: any) {
           <Input value={value} onChange={onChange}/>
           <Input value={value} onChange={onChange} size="small"/>
         </div>
+        <CodeBox content={content1}/>
       </div>
-      <CodeBox content={content1}/>
       <div className="exp-section">
         <h3>错误提示</h3>
         <div className="custom-input">
@@ -44,16 +44,16 @@ export default function (props: any) {
           <Input label="用户名：" labelPosition="left" error={error} errorPosition="right" type="text"/>
           <Input label="用户名：" labelPosition="left" error={error} errorPosition="bottom" type="text"/>
         </div>
+        <CodeBox content={content2}/>
       </div>
-      <CodeBox content={content2}/>
       <div className="exp-section">
         <h3>不可用状态</h3>
         <div className="custom-input">
           <Input label="用户名" labelPosition="top" value="hello" disabled type="text"/>
           <Input label="密码" labelPosition="top" value="123456" disabled type="password"/>
         </div>
+        <CodeBox content={content3}/>
       </div>
-      <CodeBox content={content3}/>
       <div className="exp-section">
         <h3>自定义样式</h3>
         <div className="custom-input">
@@ -64,8 +64,8 @@ export default function (props: any) {
           <Input after={<Icon name="thumbs-up"/>}/>
           <Input before={<Icon name="date"/>} after={<Icon name="error"/>}/>
         </div>
+        <CodeBox content={content4}/>
       </div>
-      <CodeBox content={content4}/>
       <div className="exp-section">
         <h3>自定义触发事件</h3>
         <div className="custom-input">
@@ -76,8 +76,8 @@ export default function (props: any) {
           <Input onKeyDown={onKeyDown}/>
           <div>enter event value: {keyDownVal}</div>
         </div>
+        <CodeBox content={content5}/>
       </div>
-      <CodeBox content={content5}/>
       <div className="exp-section">
         <h3>支持的类型</h3>
         <div className="custom-input">
@@ -91,8 +91,8 @@ export default function (props: any) {
           <Input type="url" pattern="https://.*" placeholder="url"/>
           <Input type="search" placeholder="search"/>
         </div>
+        <CodeBox content={content6}/>
       </div>
-      <CodeBox content={content6}/>
     </div>
   )
 }
