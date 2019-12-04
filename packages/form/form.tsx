@@ -24,7 +24,7 @@ export interface FormFields {
 }
 type Layout = 'horizontal'|'inline'|'vertical'
 
-interface IProps extends StyledProps {
+interface Props extends StyledProps {
   value: FormValue
   errors: FormErrors
   fields: FormFields[]
@@ -41,7 +41,7 @@ interface IProps extends StyledProps {
  * 2.input 组件 type类型范围
  */
 
-const Form: React.FunctionComponent<IProps> = props => {
+const Form: React.FunctionComponent<Props> = props => {
   const onInputChange = (
     name: string,
     e: React.ChangeEvent<HTMLInputElement>
@@ -119,7 +119,7 @@ const Form: React.FunctionComponent<IProps> = props => {
               >
                 {f.label}
               </td>
-              <td>{renderInput(f)}</td>
+              <td className={sc('item-field')}>{renderInput(f)}</td>
             </tr>
             <tr>
               <td />
@@ -131,7 +131,7 @@ const Form: React.FunctionComponent<IProps> = props => {
         ))}
         <tr>
           <td />
-          <td colSpan={2}>{renderButtons()}</td>
+          <td colSpan={2} className={sc('item-field')}>{renderButtons()}</td>
         </tr>
       </tbody>
     </table>
@@ -144,10 +144,11 @@ const Form: React.FunctionComponent<IProps> = props => {
     }
     return map[props.layout!]
   }
+  // const {...rest} = props
   return (
     <form
       className={classes(sc('wrapper', props.layout!),props.className)}
-      onSubmit={onFormSubmit}
+      onSubmit={onFormSubmit} style={props.style}
     >
       {layoutMap()}
     </form>
