@@ -2,6 +2,16 @@ import * as React from 'react'
 import Row from '../packages/grid/row'
 import Col from '../packages/grid/col'
 
+import content1 from "./markdown/grid-demo-1.md";
+import content2 from "./markdown/grid-demo-2.md";
+import content3 from "./markdown/grid-demo-3.md";
+import content4 from "./markdown/grid-demo-4.md";
+import content5 from "./markdown/grid-demo-5.md";
+import content6 from "./markdown/grid-demo-6.md";
+import content7 from "./markdown/grid-demo-7.md";
+import content8 from "./markdown/grid-demo-8.md";
+import CodeBox from "./codeBox";
+
 export default function(props: any) {
   return (
     <div className="exp-box">
@@ -24,6 +34,7 @@ export default function(props: any) {
             <Col span={6}>col-6</Col>
           </Row>
         </div>
+        <CodeBox content={content1}/>
       </div>
       <div className="exp-section">
         <h3>区块间隔</h3>
@@ -43,6 +54,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content2}/>
       </div>
       <div className="exp-section">
         <h3>左右偏移</h3>
@@ -67,6 +79,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content3}/>
       </div>
       <div className="exp-section">
         <h3>自定义Flex对齐</h3>
@@ -87,6 +100,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content4}/>
         <p>vertical + align = center + center</p>
         <div className="custom-grid">
           <Row align="spaceAround" verticalAlign="center">
@@ -104,6 +118,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content5}/>
         <p>vertical + align = center + right</p>
         <div className="custom-grid">
           <Row align="right" verticalAlign="center">
@@ -121,6 +136,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content6}/>
         <p>vertical + align = bottom + center</p>
         <div className="custom-grid">
           <Row align="spaceAround" verticalAlign="bottom">
@@ -138,6 +154,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content7}/>
         <p>vertical + align = center + spaceBetween</p>
         <div className="custom-grid">
           <Row align="spaceBetween" verticalAlign="center">
@@ -155,6 +172,7 @@ export default function(props: any) {
             </Col>
           </Row>
         </div>
+        <CodeBox content={content8}/>
       </div>
     </div>
   )
