@@ -8,19 +8,19 @@ import content3 from "./markdown/button-demo-3.md";
 import content4 from "./markdown/button-demo-4.md";
 import CodeBox from "./codeBox";
 
-export default function (props:any) {
+export default function (props: any) {
   return (
     <div className="exp-box">
+      <h3>基础应用</h3>
       <div className="exp-section">
-        <h3>基础应用</h3>
         <Button>首页</Button>
         <Button icon="settings">设置</Button>
         <Button icon="upload">下载APP</Button>
         <Button icon="thumbs-up">好看</Button>
+        <CodeBox content={content1}/>
       </div>
-      <CodeBox content={content1}/>
+      <h3>按钮组合</h3>
       <div className="exp-section">
-        <h3>按钮组合</h3>
         <ButtonGroup>
           <Button icon="left"></Button>
           <Button>1</Button>
@@ -28,20 +28,20 @@ export default function (props:any) {
           <Button icon="loading"></Button>
           <Button icon="right"></Button>
         </ButtonGroup>
+        <CodeBox content={content2}/>
       </div>
-      <CodeBox content={content2}/>
+      <h3>不可用状态</h3>
       <div className="exp-section">
-        <h3>不可用状态</h3>
         <Button icon="right" iconPosition="right" disabled>
           编辑
         </Button>
+        <CodeBox content={content3}/>
       </div>
-      <CodeBox content={content3}/>
+      <h3>自定义样式</h3>
       <div className="exp-section">
-        <h3>自定义样式</h3>
         <Button className="custom">哈哈</Button>
+        <CodeBox content={content4}/>
       </div>
-      <CodeBox content={content4}/>
     </div>
   )
 }
