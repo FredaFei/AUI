@@ -1,9 +1,13 @@
 import * as React from 'react'
-import { useState } from 'react'
+import {useState} from 'react'
 import Button from '../packages/button/button'
-import Dialog, { alert, confirm, modal } from '../packages/dialog/dialog'
+import Dialog, {alert, confirm, modal} from '../packages/dialog/dialog'
 
-export default function(props: any) {
+import content1 from "./markdown/dialog-demo-1.md";
+import content2 from "./markdown/dialog-demo-2.md";
+import CodeBox from "./codeBox";
+
+export default function (props: any) {
   const [x, setX] = useState(false)
   const [y, setY] = useState(false)
   const onClose1 = () => {
@@ -22,11 +26,7 @@ export default function(props: any) {
   }
   const onConfirm = () => {
     confirm({
-      content: (
-        <div>
-          <h3>this is a content</h3>
-        </div>
-      ),
+      content: <div><h3>this is a content</h3></div>,
       title: 'this is a title',
       onYes() {
         console.log('confirm yes')
@@ -41,13 +41,7 @@ export default function(props: any) {
       content: (
         <div>
           <h3>this is a content</h3>
-          <Button
-            onClick={e => {
-              close()
-            }}
-          >
-            close
-          </Button>
+          <Button onClick={e => {close()}}>close</Button>
         </div>
       ),
       title: 'this is a title',
@@ -61,9 +55,9 @@ export default function(props: any) {
   }
   return (
     <div className="exp-sections-wrapper">
+      <h3>基础应用</h3>
       <div className="exp-section">
-        <h3>基础应用</h3>
-        <Button onClick={() => setX(true)}>open Dialog</Button>
+        <Button onClick={() => setX(true)}>Open Dialog</Button>
         <Button onClick={() => setY(true)}>
           Open Dialog with customized footer
         </Button>
@@ -75,43 +69,27 @@ export default function(props: any) {
           <div>Some contents...</div>
         </Dialog>
 
-        <Dialog
-          visible={y}
-          title="编辑志愿表"
-          onClose={onClose2}
-          footer={
-            <React.Fragment>
-              <Button
-                onClick={() => {
-                  onClose2()
-                }}
-              >
-                取消
-              </Button>
-              <Button
-                className="exp-section-btn"
-                onClick={() => {
-                  onClose2()
-                  console.log('我已经提交了')
-                }}
-              >
-                提交
-              </Button>
-            </React.Fragment>
-          }
-        >
+        <Dialog visible={y} title="编辑日志" onClose={onClose2}
+                footer={
+                  <React.Fragment>
+                    <Button onClick={() => {onClose2()}}>取消</Button>
+                    <Button className="exp-section-btn" onClick={() => {onClose2()}}>提交</Button>
+                  </React.Fragment>
+                }>
           <div>打雷啦...</div>
           <div>下雨啦...</div>
           <div>收衣服啦...</div>
           <div>Some contents...</div>
           <div>Some contents...</div>
         </Dialog>
+        <CodeBox content={content1}/>
       </div>
+      <h3>动态调用</h3>
       <div className="exp-section">
-        <h3>动态调用</h3>
         <Button onClick={onModal}>modal</Button>
         <Button onClick={onAlert}>alert</Button>
         <Button onClick={onConfirm}>confirm</Button>
+        <CodeBox content={content2}/>
       </div>
     </div>
   )
