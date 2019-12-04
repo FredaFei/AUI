@@ -8,8 +8,8 @@ import content2 from "./markdown/icon-demo-2.md";
 export default function (props: any) {
   return (
     <div className="exp-box custom-icon">
+      <h3>基础应用</h3>
       <div className="exp-section">
-        <h3>基础应用</h3>
         <Icon name="settings"/>
         <Icon name="left"/>
         <Icon name="right"/>
@@ -26,15 +26,14 @@ export default function (props: any) {
         <Icon name="loading"/>
         <Icon name="error"/>
         <Icon name="desc"/>
+        <CodeBox content={content1}/>
       </div>
-      <CodeBox content={content1}/>
+      <h3>自定义样式</h3>
       <div className="exp-section">
-        <h3>自定义样式</h3>
         <Icon name="left" spin/>
         <Icon name="upload" rotate={180}/>
+        <CodeBox content={content2}/>
       </div>
-      <CodeBox content={content2}/>
-
     </div>
   );
 }
