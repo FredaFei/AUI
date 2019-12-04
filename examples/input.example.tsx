@@ -27,8 +27,8 @@ export default function (props: any) {
   }
   return (
     <div className="exp-box">
+      <h3>基础应用</h3>
       <div className="exp-section">
-        <h3>基础应用</h3>
         <h3>三种尺寸</h3>
         <div className="custom-input">
           <Input value={value} onChange={onChange} size="big"/>
@@ -37,8 +37,8 @@ export default function (props: any) {
         </div>
         <CodeBox content={content1}/>
       </div>
+      <h3>错误提示</h3>
       <div className="exp-section">
-        <h3>错误提示</h3>
         <div className="custom-input">
           <Input label="用户名：" labelPosition="top" error={error} errorPosition="right" type="text"/>
           <Input label="用户名：" labelPosition="left" error={error} errorPosition="right" type="text"/>
@@ -46,16 +46,16 @@ export default function (props: any) {
         </div>
         <CodeBox content={content2}/>
       </div>
+      <h3>不可用状态</h3>
       <div className="exp-section">
-        <h3>不可用状态</h3>
         <div className="custom-input">
           <Input label="用户名" labelPosition="top" value="hello" disabled type="text"/>
           <Input label="密码" labelPosition="top" value="123456" disabled type="password"/>
         </div>
         <CodeBox content={content3}/>
       </div>
+      <h3>自定义样式</h3>
       <div className="exp-section">
-        <h3>自定义样式</h3>
         <div className="custom-input">
           <Input addOnBefore="Http://" addOnAfter=".com"/>
           <Input addOnAfter={<Icon name="settings"/>}/>
@@ -66,8 +66,8 @@ export default function (props: any) {
         </div>
         <CodeBox content={content4}/>
       </div>
+      <h3>自定义触发事件</h3>
       <div className="exp-section">
-        <h3>自定义触发事件</h3>
         <div className="custom-input">
           <Input onEnter={onEnter}/>
           <div>enter event value: {enterVal}</div>
@@ -78,8 +78,8 @@ export default function (props: any) {
         </div>
         <CodeBox content={content5}/>
       </div>
+      <h3>支持的类型</h3>
       <div className="exp-section">
-        <h3>支持的类型</h3>
         <div className="custom-input">
           <Input type="text" placeholder="text"/>
           <Input type="number" placeholder="number"/>
