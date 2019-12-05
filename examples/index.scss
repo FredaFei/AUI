@@ -300,8 +300,8 @@ body {
   }
   .am-icon {font-size: 30px;margin-right: 6px;}
 }
-
 .markdown-content {
+  overflow-x: auto;
   table {
     line-height: 1.5;
     border: 1px solid #e8e8e8;
@@ -343,5 +343,5 @@ body {
       }
     }
   }
-  p{font-size: 16px;}
+  p {font-size: 16px;}
 }
