@@ -5,6 +5,7 @@ import {useState} from "react";
 import content1 from "./markdown/datePicker-demo-1.md";
 import content2 from "./markdown/datePicker-demo-2.md";
 import content3 from "./markdown/datePicker-demo-3.md";
+import content4 from "./markdown/datePicker-demo-4.md";
 import CodeBox from "./codeBox";
 import Markdown from "./markdown";
 import doc from "./markdown/datePicker-doc.md";
@@ -34,8 +35,8 @@ export default function (props: any) {
       </div>
       <h3>日期默认为空</h3>
       <div className="exp-section">
-        <DatePicker onChange={onChange} disabled/>
-        <CodeBox content={content2}/>
+        <DatePicker value={new Date()} disabled/>
+        <CodeBox content={content4}/>
       </div>
       <Markdown source={doc}/>
     </div>
