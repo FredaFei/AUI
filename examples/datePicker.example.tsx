@@ -6,6 +6,8 @@ import content1 from "./markdown/datePicker-demo-1.md";
 import content2 from "./markdown/datePicker-demo-2.md";
 import content3 from "./markdown/datePicker-demo-3.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/datePicker-doc.md";
 
 export default function (props: any) {
   const [d1, setD1] = useState<Date | string>(new Date());
@@ -30,6 +32,7 @@ export default function (props: any) {
         <DatePicker firstDayOfWeek={0} value={d2} onChange={(day: Date | string) => setD2(day)}/>
         <CodeBox content={content3}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
