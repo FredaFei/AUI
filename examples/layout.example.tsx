@@ -5,6 +5,8 @@ import content1 from "./markdown/layout-demo-1.md";
 import content2 from "./markdown/layout-demo-2.md";
 import content3 from "./markdown/layout-demo-3.md";
 import content4 from "./markdown/layout-demo-4.md";
+import doc from "./markdown/layout-doc.md";
+import Markdown from './markdown'
 
 export default function (props: any) {
   return (
@@ -55,6 +57,7 @@ export default function (props: any) {
         </Layout>
         <CodeBox content={content4}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
