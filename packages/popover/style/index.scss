@@ -1,9 +1,13 @@
 @import 'var';
 //$xx: red;
 #{component(popover)} {
+  display: inline-block;vertical-align: top;
   &, &-trigger {
     display: inline-block;
     vertical-align: top;
+  }
+  &-block, &-block &-trigger {
+    display: block;
   }
   &-content {
     position: absolute;

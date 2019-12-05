@@ -7,6 +7,8 @@ import content2 from "./markdown/popover-demo-2.md";
 import content3 from "./markdown/popover-demo-3.md";
 import content4 from "./markdown/popover-demo-4.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/popover-doc.md";
 
 export default function (props: any) {
   const [open, setOpen] = useState(false);
@@ -95,6 +97,7 @@ export default function (props: any) {
           <CodeBox content={content4}/>
         </div>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
