@@ -6,6 +6,8 @@ import content1 from "./markdown/radio-demo-1.md";
 import content2 from "./markdown/radio-demo-2.md";
 import content3 from "./markdown/radio-demo-3.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/radio-doc.md";
 
 const groups = [
   {name: 'fruit', value: 'apple'},
@@ -63,6 +65,7 @@ export default function (props: any) {
         </Radio>
         <CodeBox content={content3}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
