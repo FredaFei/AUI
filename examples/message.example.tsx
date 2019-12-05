@@ -6,6 +6,8 @@ import message from '../packages/message/message'
 import content1 from "./markdown/message-demo-1.md";
 import content2 from "./markdown/message-demo-2.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/message-doc.md";
 
 export default function (props: any) {
   const [text, setText] = useState('default')
@@ -48,6 +50,7 @@ export default function (props: any) {
         <Button onClick={onManualClose}>手动关闭</Button>
         <CodeBox content={content2}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }

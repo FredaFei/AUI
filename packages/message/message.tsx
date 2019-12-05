@@ -8,7 +8,7 @@ const componentName = 'Message'
 const sc = createScopedClasses(componentName)
 interface IProp extends StyledProps {
   content: React.ReactNode | string
-  duration?: number | undefined
+  duration?: number
   mode?: string
   onClose?: () => any
 }
