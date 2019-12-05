@@ -4,6 +4,8 @@ import CodeBox from './codeBox'
 
 import content1 from "./markdown/icon-demo-1.md";
 import content2 from "./markdown/icon-demo-2.md";
+import doc from "./markdown/icon-doc.md";
+import Markdown from './markdown'
 
 export default function (props: any) {
   return (
@@ -34,6 +36,7 @@ export default function (props: any) {
         <Icon name="upload" rotate={180}/>
         <CodeBox content={content2}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   );
 }
