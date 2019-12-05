@@ -10,6 +10,8 @@ import content5 from "./markdown/grid-demo-5.md";
 import content6 from "./markdown/grid-demo-6.md";
 import content7 from "./markdown/grid-demo-7.md";
 import content8 from "./markdown/grid-demo-8.md";
+import doc from "./markdown/grid-doc.md";
+import Markdown from './markdown'
 import CodeBox from "./codeBox";
 
 export default function (props: any) {
@@ -182,6 +184,7 @@ export default function (props: any) {
         </div>
         <CodeBox content={content8}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
