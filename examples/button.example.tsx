@@ -6,6 +6,8 @@ import content1 from "./markdown/button-demo-1.md";
 import content2 from "./markdown/button-demo-2.md";
 import content3 from "./markdown/button-demo-3.md";
 import content4 from "./markdown/button-demo-4.md";
+import doc from "./markdown/button-doc.md";
+import Markdown from './markdown'
 import CodeBox from "./codeBox";
 
 export default function (props: any) {
@@ -39,9 +41,10 @@ export default function (props: any) {
       </div>
       <h3>自定义样式</h3>
       <div className="exp-section">
-        <Button className="custom">哈哈</Button>
+        <Button className="custom" style={{background:'#eafefe'}}>哈哈</Button>
         <CodeBox content={content4}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
