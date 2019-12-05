@@ -189,7 +189,7 @@ body {
   background: white;
   border: 1px solid #d6d6d6;
   box-shadow: 1px 1px 0px #bababa;
-  p{padding-bottom: 10px;}
+  p {padding-bottom: 10px;}
   & + .exp-section {
     margin-top: 20px;
     font-size: 15px;
@@ -299,4 +299,49 @@ body {
     cursor: pointer;
   }
   .am-icon {font-size: 30px;margin-right: 6px;}
+}
+
+.markdown-content {
+  table {
+    line-height: 1.5;
+    border: 1px solid #e8e8e8;
+    border-collapse: collapse;
+    border-spacing: 0;
+    th, td {
+      text-align: left;
+      padding: 12px;
+      color: #5c6b77;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    th {
+      padding-top: 14px;
+      border-width: 0 0 2px 0;
+      font-weight: 500;
+      white-space: nowrap;
+      background: rgba(0, 0, 0, 0.02);
+    }
+    tbody {
+      tr {transition: all .3s;
+        &:hover {background: rgba(60, 90, 100, 0.04);}
+      }
+      td {
+        &:first-child {
+          width: 20%;
+          color: #595959;
+          font-weight: 600;
+        }
+        &:nth-child(3) {
+          width: 22%;
+          color: #c41d7f;
+          font-size: 13px;
+          word-break: break-all;
+        }
+        &:nth-child(4) {
+          width: 16%;
+          font-size: 13px;
+        }
+      }
+    }
+  }
+  p{font-size: 16px;}
 }
