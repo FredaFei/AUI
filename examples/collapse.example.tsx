@@ -8,6 +8,8 @@ import content1 from "./markdown/collapse-demo-1.md";
 import content2 from "./markdown/collapse-demo-2.md";
 import content3 from "./markdown/collapse-demo-3.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/collapse-doc.md";
 
 export default function (props: any) {
   const [selected1] = useState(['1'])
@@ -71,6 +73,7 @@ export default function (props: any) {
         </Collapse>
         <CodeBox content={content3}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
