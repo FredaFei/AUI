@@ -40,6 +40,13 @@ table {
     min-width: 16em;
     min-height: 300px;
   }
+  &-disabled {
+    input,input:hover,input:focus {
+      color: #ccc;
+      cursor: not-allowed;
+      border-color: $gray;
+    }
+  }
 }
 #{component(dayPanel)} {
   &-main {

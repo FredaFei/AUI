@@ -22,7 +22,7 @@ export default function (props: any) {
         <DatePicker value={d1} onChange={(day: Date | string) => setD1(day)}/>
         <CodeBox content={content1}/>
       </div>
-      <h3>日期默认为空</h3>
+      <h3>禁用</h3>
       <div className="exp-section">
         <DatePicker onChange={onChange}/>
         <CodeBox content={content2}/>
@@ -31,6 +31,11 @@ export default function (props: any) {
       <div className="exp-section">
         <DatePicker firstDayOfWeek={0} value={d2} onChange={(day: Date | string) => setD2(day)}/>
         <CodeBox content={content3}/>
+      </div>
+      <h3>日期默认为空</h3>
+      <div className="exp-section">
+        <DatePicker onChange={onChange} disabled/>
+        <CodeBox content={content2}/>
       </div>
       <Markdown source={doc}/>
     </div>

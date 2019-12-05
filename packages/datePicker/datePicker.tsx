@@ -17,6 +17,7 @@ const sc = createScopedClasses(componentName)
 
 interface Props extends StyledProps {
   value?: Date | string
+  disabled?: Boolean
   firstDayOfWeek?: 0 | 1 | 2 | 3 | 4 | 5 | 6
   onChange?: (date: Date | string) => void
   extraFooter?: (() => ReactNode)
@@ -38,10 +39,10 @@ const DatePicker: React.FunctionComponent<Props> = props => {
     setFormattedValue('value' in props ? date2Value.toDateString() : '')
     return bindEvents()
   }, [])
-  const bindEvents = ()=>{
+  const bindEvents = () => {
     isDatepickerRef.current = true
     document.addEventListener('selectstart', onSelect)
-    return ()=>{
+    return () => {
       document.removeEventListener('selectstart', onSelect)
     }
   }
@@ -67,6 +68,7 @@ const DatePicker: React.FunctionComponent<Props> = props => {
     setVisible(false)
   }
   const open = () => {
+    if(props.disabled){return}
     setVisible(true)
   }
   const onChangePanel = (displayPanel: Panel) => {
@@ -94,9 +96,10 @@ const DatePicker: React.FunctionComponent<Props> = props => {
 
   return (
     <ClickOutside handler={onClickOutside} exclude={refDiv}>
-      <div className={classes(sc('wrapper'), props.className)} style={props.style}>
+      <div className={classes(sc('wrapper',{disabled:props.disabled}), props.className)} style={props.style}>
         <Popover content={renderDatePicker()} trigger="manual" open={visible} position="bottomLeft">
-          <Input value={formattedValue} onFocus={onFocusInput} readOnly={true} before={<Icon name="date"/>}/>
+          <Input value={formattedValue} onFocus={onFocusInput} readOnly={true}
+                 before={<Icon name="date"/>}/>
         </Popover>
       </div>
     </ClickOutside>
@@ -105,7 +108,8 @@ const DatePicker: React.FunctionComponent<Props> = props => {
 
 DatePicker.displayName = componentName
 DatePicker.defaultProps = {
-  firstDayOfWeek: 1
+  firstDayOfWeek: 1,
+  disabled: false
 }
 
 export default DatePicker
