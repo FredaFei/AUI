@@ -7,6 +7,8 @@ import content1 from "./markdown/switch-demo-1.md";
 import content2 from "./markdown/switch-demo-2.md";
 import content3 from "./markdown/switch-demo-3.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/switch-doc.md";
 
 
 export default function (props: any) {
@@ -36,6 +38,7 @@ export default function (props: any) {
         <Switch disabled/>
         <CodeBox content={content3}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
