@@ -7,6 +7,8 @@ import content2 from "./markdown/carousel-demo-2.md";
 import content3 from "./markdown/carousel-demo-3.md";
 import content4 from "./markdown/carousel-demo-4.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/carousel-doc.md";
 
 
 type Position = 'left' | 'top' | 'bottom' | 'right'
@@ -119,6 +121,7 @@ export default function (props: any) {
         </Carousel>
         <CodeBox content={content4}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
