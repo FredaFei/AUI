@@ -6,6 +6,8 @@ import content1 from "./markdown/checkbox-demo-1.md";
 import content2 from "./markdown/checkbox-demo-2.md";
 import content3 from "./markdown/checkbox-demo-3.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/checkbox-doc.md";
 
 const initialState = {selected: [], checkAll: false, indeterminate: false}
 const groups = [
@@ -120,6 +122,7 @@ export default function (props: any) {
         <Checkbox checked onChange={onChange4} disabled>apple</Checkbox>
         <CodeBox content={content3}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
