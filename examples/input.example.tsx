@@ -10,6 +10,8 @@ import content4 from "./markdown/input-demo-4.md";
 import content5 from "./markdown/input-demo-5.md";
 import content6 from "./markdown/input-demo-6.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/input-doc.md";
 
 export default function (props: any) {
   const [error] = useState('用户名不能为空')
@@ -93,6 +95,7 @@ export default function (props: any) {
         </div>
         <CodeBox content={content6}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
