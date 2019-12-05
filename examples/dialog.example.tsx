@@ -6,6 +6,8 @@ import Dialog, {alert, confirm, modal} from '../packages/dialog/dialog'
 import content1 from "./markdown/dialog-demo-1.md";
 import content2 from "./markdown/dialog-demo-2.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/dialog-doc.md";
 
 export default function (props: any) {
   const [x, setX] = useState(false)
@@ -70,6 +72,7 @@ export default function (props: any) {
         </Dialog>
 
         <Dialog visible={y} title="编辑日志" onClose={onClose2}
+                mask={{closable:false,visible:true}}
                 footer={
                   <React.Fragment>
                     <Button onClick={() => {onClose2()}}>取消</Button>
@@ -91,6 +94,7 @@ export default function (props: any) {
         <Button onClick={onConfirm}>confirm</Button>
         <CodeBox content={content2}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
