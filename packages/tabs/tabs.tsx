@@ -10,7 +10,7 @@ const sc = createScopedClasses(componentName)
 export interface Props extends StyledProps{
   activeKey?: string
   defaultActiveKey?: string
-  direction?: string
+  direction?: 'horizontal'|'vertical'
   onChange?: (key: string) => any
 }
 
