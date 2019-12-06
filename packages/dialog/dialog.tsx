@@ -1,14 +1,14 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
-import { ReactNode, ReactElement, ReactFragment, Fragment } from 'react'
-import * as PropTypes from 'prop-types'
-import classes, { createScopedClasses } from '../utils/classnames'
-import { Icon, Button} from '../index'
+import {ReactNode, ReactElement, ReactFragment, Fragment} from 'react'
+import classes, {createScopedClasses} from '../utils/classnames'
+import {Icon, Button} from '../index'
 import './style'
 
 const componentName = 'dialog'
 const sc = createScopedClasses(componentName)
-interface IBaseProps extends StyledProps {
+
+interface BaseProps extends StyledProps {
   mask?: {
     visible?: boolean
     closable?: boolean
@@ -19,89 +19,72 @@ interface IBaseProps extends StyledProps {
   onYes?: React.MouseEventHandler
   onNo?: React.MouseEventHandler
 }
-interface IProps extends IBaseProps{
+
+interface Props extends BaseProps {
   visible: boolean
 }
-class Dialog extends React.Component<IProps> {
-  static displayName = componentName;
-  static defaultProps = {
-    visible: false,
-    mask: {
-      visible: true,
-      closable: true
-    }
-  }
-  static propTypes = {
-    onClose: PropTypes.func
-  }
-  constructor(props: IProps) {
-    super(props)
-  }
-  onClose: React.MouseEventHandler = e => {
-    const { onClose } = this.props
+
+const Dialog: React.FunctionComponent<Props> = props => {
+  const {visible, mask, title, style, className, footer, children} = props
+
+  const onClose: React.MouseEventHandler = e => {
+    const {onClose} = props
     onClose && onClose(e)
   }
-  render() {
-    const {
-      visible,
-      mask,
-      title,
-      style,
-      className,
-      footer,
-      children
-    } = this.props
-    return (
-      visible &&
-      ReactDOM.createPortal(
-        <div className={classes(sc('wrapper'), className)} style={style}>
-          {mask && mask.visible && (
-            <div
-              className={sc('mask')}
-              onClick={mask.closable ? this.onClose : undefined}
-            />
-          )}
-          <div className={sc('')}>
-            <div className={sc('close')} onClick={this.onClose}>
-              <Icon name="close" />
-            </div>
-            {title && <div className={sc('header')}>{title}</div>}
-            <div className={sc('body')}>{children}</div>
-            {footer && <div className={sc('footer')}>{footer}</div>}
+  return visible ?
+    ReactDOM.createPortal(
+      <div className={classes(sc('wrapper'), className)} style={style}>
+        {mask && mask.visible && (
+          <div
+            className={sc('mask')}
+            onClick={mask.closable ? onClose : undefined}
+          />
+        )}
+        <div className={sc('')}>
+          <div className={sc('close')} onClick={onClose}>
+            <Icon name="close"/>
           </div>
-        </div>,
-        document.body
-      )
-    )
+          {title && <div className={sc('header')}>{title}</div>}
+          <div className={sc('body')}>{children}</div>
+          {footer && <div className={sc('footer')}>{footer}</div>}
+        </div>
+      </div>,
+      document.body
+    ) : null
+}
+
+Dialog.displayName = componentName;
+Dialog.defaultProps = {
+  visible: false,
+  mask: {
+    visible: true,
+    closable: true
   }
 }
 
-interface IModalProps extends IBaseProps {
+interface ModalProps extends BaseProps {
   content: ReactNode
 }
-const createModal = (params: IModalProps) => {
-  const { content, ...rest } = params
-  const render = (props: IProps, children: ReactNode) => {
+
+const createModal = (params: ModalProps) => {
+  const {content, ...rest} = params
+  const render = (props: Props, children: ReactNode) => {
     ReactDOM.render(React.createElement(Dialog, props, children), div)
   }
   const onClose = () => {
-    render({ ...props, visible: false }, content)
+    render({...props, visible: false}, content)
     ReactDOM.unmountComponentAtNode(div)
     div.remove()
     return true
   }
-  const props = {
-    visible: true,
-    onClose,
-    ...rest
-  }
+  const props = {visible: true, onClose, ...rest}
   const div = document.createElement('div')
   document.body.appendChild(div)
   render(props, content)
   return onClose
 }
 
-export const alert = ({ content, onYes, ...rest }: IModalProps) => {
+export const alert = ({content, onYes, ...rest}: ModalProps) => {
   const onOk: React.MouseEventHandler = e => {
     closer()
     onYes && onYes(e)
@@ -111,9 +94,9 @@ export const alert = ({ content, onYes, ...rest }: IModalProps) => {
       确定
     </Button>
   )
-  const closer = createModal({ content, footer, ...rest })
+  const closer = createModal({content, footer, ...rest})
 }
-export const confirm = ({ content, onYes, onNo, ...rest }: IModalProps) => {
+export const confirm = ({content, onYes, onNo, ...rest}: ModalProps) => {
   const onCancel: React.MouseEventHandler = e => {
     closer()
     onNo && onNo(e)
@@ -130,9 +113,9 @@ export const confirm = ({ content, onYes, onNo, ...rest }: IModalProps) => {
       </Button>
     </Fragment>
   )
-  const closer = createModal({ content, footer, ...rest })
+  const closer = createModal({content, footer, ...rest})
 }
-export const modal = ({ content, onYes, onNo, ...rest }: IModalProps) => {
+export const modal = ({content, onYes, onNo, ...rest}: ModalProps) => {
   const onCancel: React.MouseEventHandler = e => {
     closer()
     onNo && onNo(e)
@@ -149,7 +132,7 @@ export const modal = ({ content, onYes, onNo, ...rest }: IModalProps) => {
       </Button>
     </React.Fragment>
   )
-  const closer = createModal({ content, footer, onYes, onNo, ...rest })
+  const closer = createModal({content, footer, onYes, onNo, ...rest})
   return closer
 }
 
