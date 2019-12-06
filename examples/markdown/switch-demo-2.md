@@ -1,16 +1,17 @@
-```html
-<div>
-  <Switch checked={checked}/>
-  <Button onClick={onToggleSwitch}>toggle</Button>
-</div>
-```
-```javascript
-  import * as React from 'react'
-  import { useState } from 'react'
-  
-  const [checked, setChecked] = useState(true)
+``` jsx harmony
+import * as React from 'react'
+import {useState} from 'react'
 
-  const onToggleSwitch = () => {
-      setChecked(!checked)
-    }
+export default function (props) {
+  const [checked, setChecked] = useState(true)
+  const onToggleSwitch = ()=> {
+    setChecked(!checked)
+  }
+  return (
+    <div className="exp-section">
+      <Switch checked={checked} style={{marginRight: '30px'}}/>
+      <Button onClick={onToggleSwitch}>toggle</Button>
+    </div>
+  )
+}
 ```

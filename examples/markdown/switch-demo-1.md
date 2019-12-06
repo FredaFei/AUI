@@ -1,15 +1,14 @@
-```html
-<div>
-  <Switch defaultChecked onChange={onChange}/>
-</div>
-```
-```javascript
-  import * as React from 'react'
-  import { useState } from 'react'
-  
-  const [checked, setChecked] = useState(true)
+``` jsx harmony
+import * as React from 'react'
 
-  const onChange = (checked) => {
+export default function (props) {
+  const onChange = (checked)=> {
     console.log(`我是${checked}`)
   }
+  return (
+    <div className="exp-section">
+      <Switch defaultChecked onChange={onChange}/>
+    </div>
+  )
+}
 ```
