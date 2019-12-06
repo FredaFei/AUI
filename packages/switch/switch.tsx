@@ -1,103 +1,77 @@
 import * as React from 'react'
-import * as PropTypes from 'prop-types'
 import classes, {createScopedClasses} from '../utils/classnames'
 import './style'
+import {useEffect, useRef, useState} from "react";
 
 const componentName = 'Switch'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends StyledProps {
+interface Props extends StyledProps {
   defaultChecked?: boolean
   checked?: boolean
   disabled?: boolean
   onChange?: (checked: boolean, e: React.MouseEvent<HTMLElement>) => any
 }
 
-interface IState {
-  checked: boolean
-  position: object
+const initPosition = {
+  width: '',
+  height: '',
+  marginLeft: '',
+  marginTop: ''
 }
 
-class Switch extends React.Component<IProps, IState> {
-  static displayName = componentName
-  static defaultProps = {
-    disabled: false,
-    defaultChecked: false
-  }
-  static propTypes = {
-    disabled: PropTypes.bool,
-    checked: PropTypes.bool,
-    onChange: PropTypes.func,
-    className: PropTypes.string,
-    style: PropTypes.object
-  }
-  _rippleElement: React.RefObject<HTMLSpanElement>
-  _rippleParentElement: React.RefObject<HTMLLabelElement>
+interface Position {
+  [key: string]: string
+}
 
-  constructor(props: IProps) {
-    super(props)
-    this._rippleElement = React.createRef()
-    this._rippleParentElement = React.createRef()
-    this.state = {
-      checked: props.defaultChecked || false,
-      position: {}
-    }
-  }
+const Switch: React.FunctionComponent<Props> = props => {
+  const [position, setPosition] = useState<Position>(initPosition)
+  const [currentSelected, setCurrentSelected] = useState(false)
+  const {defaultChecked, checked, disabled, onChange, style, className} = props
 
-  static getDerivedStateFromProps(nextProps: IProps, prevState: IState) {
-    if ('checked' in nextProps && nextProps.checked !== prevState.checked) {
-      return {checked: nextProps.checked}
-    }
-    return null
-  }
+  const isActive = (currentSelected || checked) && 'active'
+  const isDisabled = disabled && 'disabled'
+  const wrapperClass = classes(sc('', isActive, isDisabled), className)
 
-  onRippleEffect = (): any => {
-    const targetEl = this._rippleParentElement.current
-    const rippleEl = this._rippleElement.current
+  const rippleParentRef = useRef<HTMLSpanElement>(null)
+  const rippleRef = useRef<HTMLSpanElement>(null)
+
+  useEffect(() => {
+    const selected = 'defaultChecked' in props ? defaultChecked : 'checked' in props ? checked : false
+    setCurrentSelected(selected as boolean)
+  }, [])
+  useEffect(() => {
+    'checked' in props && setCurrentSelected(checked as boolean)
+    return () => {}
+  }, [checked])
+
+  const onRippleEffect = (): any => {
+    const targetEl = rippleParentRef.current
+    const rippleEl = rippleRef.current
     rippleEl!.classList.remove('active')
     const {width} = targetEl!.getBoundingClientRect()
-    this.setState({
-      position: {
-        width: `${width * 2}px`,
-        height: `${width * 2}px`,
-        marginLeft: `-${width}px`,
-        marginTop: `-${width}px`
-      }
+    setPosition({
+      width: `${width * 2}px`,
+      height: `${width * 2}px`,
+      marginLeft: `-${width}px`,
+      marginTop: `-${width}px`
     })
     rippleEl!.classList.add('active')
   }
-  onClick = (event: React.MouseEvent<HTMLElement>): any => {
-    const {disabled, onChange} = this.props
-    if (disabled) {
-      return false
-    }
-    this.onRippleEffect()
-    this.setState(state => ({checked: !state.checked}))
-    onChange && onChange(this.state.checked, event)
+  const onClick = (event: React.MouseEvent<HTMLElement>) => {
+    const {disabled} = props
+    if (disabled) {return}
+    if (checked) {return}
+    onRippleEffect()
+    setCurrentSelected(() => !currentSelected)
+    onChange && onChange(!currentSelected, event)
   }
 
-  render() {
-    const {position, checked} = this.state
-    const {disabled, style, className} = this.props
-    const isActive = checked && 'active'
-    const isDisabled = disabled && 'disabled'
-    const wrapperClass = classes(sc('', isActive, isDisabled), className)
-    const styles = Object.assign({}, style)
-    return (
-      <label className={wrapperClass} style={styles} onClick={this.onClick}>
-        <span
-          className={classes(sc('core'), [isActive])}
-          ref={this._rippleParentElement}
-        >
-          <span
-            className={classes(sc('ripple'), [isActive])}
-            style={position}
-            ref={this._rippleElement}
-          />
+  return <label className={wrapperClass} style={style} onClick={onClick}>
+        <span className={classes(sc('core'), [isActive])} ref={rippleParentRef}>
+          <span className={classes(sc('ripple'), [isActive])} style={position} ref={rippleRef}/>
         </span>
-      </label>
-    )
-  }
+  </label>
 }
 
 export default Switch
