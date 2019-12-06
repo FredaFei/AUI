@@ -94,8 +94,8 @@ export default function (props: any) {
           <Popover content="hello" container={div}>
             <Button>click me</Button>
           </Popover>
-          <CodeBox content={content4}/>
         </div>
+        <CodeBox content={content4}/>
       </div>
       <Markdown source={doc}/>
     </div>

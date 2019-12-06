@@ -8,7 +8,7 @@
 | open      |手动控制浮层显隐  |Boolean |false |true |
 | block      |设置容器为display:block  |Boolean |false |true |
 | container      |自定义容器  |React.RefObject<Element> |false |true |
-| className      |自定义类名  |string |—— |—— |
+| className      |自定义类名  |String |—— |—— |
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onClick    | 点击按钮时触发 |       (event) => void |—— |—— |
 
