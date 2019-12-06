@@ -6,7 +6,7 @@
 | mask         |设置遮罩 |{visible:Boolean,closable:Boolean} |{visible:true,closable:true} |—— |
 | title         |标题 |React.ReactNode |—— |—— |
 | footer |底部内容 |React.ReactNode |left |right |
-| className      |自定义类名  |string |—— |—— |
+| className      |自定义类名  |String |—— |—— |
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onClose    | 点击蒙层或头部关闭按钮时的回调 |   React.MouseEventHandler |—— |—— |
 | onYes    | 点击确认按钮时的回调 |  React.MouseEventHandler |—— |—— |
@@ -27,7 +27,7 @@ modal(options)
 | mask         |设置遮罩 |{visible:Boolean,closable:Boolean} |{visible:true,closable:true} |—— |
 | title         |标题 |React.ReactNode |—— |—— |
 | footer |底部内容 |React.ReactNode |left |right |
-| className      |自定义类名  |string |—— |—— |
+| className      |自定义类名  |String |—— |—— |
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onClose    | 点击蒙层或头部关闭按钮时的回调 |   React.MouseEventHandler |—— |—— |
 | onYes    | 点击确认按钮时的回调 |  React.MouseEventHandler |—— |—— |

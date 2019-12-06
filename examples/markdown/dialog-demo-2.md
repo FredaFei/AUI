@@ -1,11 +1,7 @@
-```html
-<div>
-  <Button onClick={onModal}>modal</Button>
-  <Button onClick={onAlert}>alert</Button>
-  <Button onClick={onConfirm}>confirm</Button>
-</div>
-```
-```javascript
+``` jsx harmony
+import * as React from 'react'
+
+export default function (props: any) {
   const onAlert = () => {
     alert({
       content: <h3>this is a content</h3>,
@@ -13,7 +9,7 @@
         console.log('alert yes')
       }
     })
-  };
+  }
   const onConfirm = () => {
     confirm({
       content: <div><h3>this is a content</h3></div>,
@@ -43,4 +39,12 @@
       }
     })
   }
+  return (
+    <div className="exp-section">
+      <Button onClick={onModal}>modal</Button>
+      <Button onClick={onAlert}>alert</Button>
+      <Button onClick={onConfirm}>confirm</Button>
+    </div>
+  )
+}
 ```
