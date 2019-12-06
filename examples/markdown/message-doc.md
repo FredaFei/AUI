@@ -1,7 +1,7 @@
 ### API
 组件提供了一些静态方法，使用方式和参数如下：
 
-```javascript
+```jsx
 message.success(content, [duration], onClose)
 message.error(content, [duration], onClose)
 message.info(content, [duration], onClose)
@@ -11,13 +11,8 @@ message.loading(content, [duration], onClose)
 
 对象的形式传递参数：
 
-```javascript
+```jsx
 message.open(config)
-message.success(config)
-message.error(config)
-message.info(config)
-message.warning(config)
-message.loading(config)
 ```
 
 config 对象属性：
@@ -30,3 +25,6 @@ config 对象属性：
 | className      |自定义类名  |String |—— |—— |
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onClose    | 关闭时触发的回调函数 |       () => any |—— |—— |
+
+### 备注
+若 duration设置为0时，则需要手动关闭Message

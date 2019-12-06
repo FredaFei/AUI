@@ -5,6 +5,7 @@ import message from '../packages/message/message'
 
 import content1 from "./markdown/message-demo-1.md";
 import content2 from "./markdown/message-demo-2.md";
+import content3 from "./markdown/message-demo-3.md";
 import CodeBox from "./codeBox";
 import Markdown from "./markdown";
 import doc from "./markdown/message-doc.md";
@@ -26,6 +27,14 @@ export default function (props: any) {
     message[key](`This is a ${key} message`, i - 1, onCloseMessage(key))
   }
   const onManualClose = (): void => {
+    message['info']('This is message')
+  }
+  const onClose1 = (): void => {
+    message['info']('This is message',() => {
+      message['success']('我已经关闭了！')
+    })
+  }
+  const onClose2 = (): void => {
     message['info']('This is message', 0, () => {
       message['success']('我已经关闭了！')
     })
@@ -45,10 +54,16 @@ export default function (props: any) {
         </h4>
         <CodeBox content={content1}/>
       </div>
-      <h3>基础应用</h3>
+      <h3>手动关闭</h3>
       <div className="exp-section">
         <Button onClick={onManualClose}>手动关闭</Button>
         <CodeBox content={content2}/>
+      </div>
+      <h3>回调</h3>
+      <div className="exp-section">
+        <Button onClick={onClose1}>自动关闭时回调执行</Button>
+        <Button onClick={onClose2}>手动时回调执行</Button>
+        <CodeBox content={content3}/>
       </div>
       <Markdown source={doc}/>
     </div>
