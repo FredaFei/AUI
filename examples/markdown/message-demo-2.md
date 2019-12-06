@@ -1,16 +1,14 @@
-```html
-<div>
-  <Button onClick={onManualClose}>手动关闭</Button>
-</div>
-```
+``` jsx harmony
+import * as React from 'react'
 
-```javascript
-  import * as React from 'react'
-
+export default function (props) {
   const onManualClose = () => {
-    message['info']('This is message', 0, () => {
-      message['success']('我已经关闭了！')
-    })
+    message['info']('This is message',0)
   }
-
+  return (
+    <div className="exp-section">
+      <Button onClick={onManualClose}>手动关闭</Button>
+    </div>
+  )
+}
 ```

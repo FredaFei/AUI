@@ -1,14 +1,13 @@
 ``` jsx harmony
 import * as React from 'react'
-import {useState} from 'react'
 
 export default function () {
-  const onClose1 = (): void => {
+  const onClose1 = () => {
     message['info']('This is message',() => {
       message['success']('我已经关闭了！')
     })
   }
-  const onClose2 = (): void => {
+  const onClose2 = () => {
     message['info']('This is message', 0, () => {
       message['success']('我已经关闭了！')
     })

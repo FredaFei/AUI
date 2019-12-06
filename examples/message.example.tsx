@@ -27,7 +27,7 @@ export default function (props: any) {
     message[key](`This is a ${key} message`, i - 1, onCloseMessage(key))
   }
   const onManualClose = (): void => {
-    message['info']('This is message')
+    message['info']('This is message',0)
   }
   const onClose1 = (): void => {
     message['info']('This is message',() => {
