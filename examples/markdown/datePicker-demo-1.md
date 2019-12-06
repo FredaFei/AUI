@@ -1,11 +1,13 @@
-```html
-<div>
-  <DatePicker value={d1} onChange={onChange1}/>
-</div>
-```
-```javascript
+``` jsx harmony
+import * as React from 'react'
+import {useState} from "react";
+
+export default function (props) {
   const [d1, setD1] = useState(new Date());
-  const onChange1 = (day) => {
-    setD1(day)
-  }
+  return (
+    <div className="exp-section">
+      <DatePicker value={d1} onChange={(day) => setD1(day)}/>
+    </div>
+  )
+}
 ```
