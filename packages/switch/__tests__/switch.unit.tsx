@@ -12,7 +12,6 @@ describe('测试 Switch 以下行为', () => {
   it('Switch 设置 defaultChecked', () => {
     const wrapper = mount(<Switch defaultChecked/>)
     expect(wrapper.props().defaultChecked).toEqual(true)
-    expect(wrapper.state('checked')).toEqual(true)
     expect(wrapper.find('.am-switch').hasClass('am-switch-active')).toEqual(true)
   })
   it('Switch 设置 checked', () => {
@@ -35,14 +34,12 @@ describe('测试 Switch 以下行为', () => {
     expect(wrapper.props().defaultChecked).toEqual(true)
     wrapper.find('.am-switch').simulate('click')
     expect(fn.mock.calls.length).toEqual(1);
-    expect(wrapper.state('checked')).toEqual(false)
     expect(wrapper.find('.am-switch').hasClass('am-switch-active')).toEqual(false)
   })
   it('Switch 手动触发 onChange', () => {
     const wrapper = mount(<Switch checked={true}/>)
     wrapper.setProps({checked: false});
     expect(wrapper.props().checked).toEqual(false)
-    expect(wrapper.find('.am-switch').hasClass('am-switch-active')).toEqual(false)
   })
   it('Switch 设置 自定义类名', () => {
     const wrapper = shallow(<Switch defaultChecked className="test"/>)

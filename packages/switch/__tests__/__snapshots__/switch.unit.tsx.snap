@@ -2,16 +2,22 @@
 
 exports[`测试 Switch 以下行为 Switch 存在 1`] = `
 <label
-  className="am-switch am-switch-active "
+  className="am-switch "
   onClick={[Function]}
-  style={Object {}}
 >
   <span
-    className="am-switch-core active"
+    className="am-switch-core "
   >
     <span
-      className="am-switch-ripple active"
-      style={Object {}}
+      className="am-switch-ripple "
+      style={
+        Object {
+          "height": "",
+          "marginLeft": "",
+          "marginTop": "",
+          "width": "",
+        }
+      }
     />
   </span>
 </label>
@@ -21,18 +27,19 @@ exports[`测试 Switch 以下行为 Switch 设置 自定义样式 1`] = `
 initialize {
   "0": Object {
     "attribs": Object {
-      "class": "am-switch am-switch-active ",
+      "class": "am-switch ",
       "style": "margin-right:30px",
     },
     "children": Array [
       Object {
         "attribs": Object {
-          "class": "am-switch-core active",
+          "class": "am-switch-core ",
         },
         "children": Array [
           Object {
             "attribs": Object {
-              "class": "am-switch-ripple active",
+              "class": "am-switch-ripple ",
+              "style": "width:;height:;margin-left:;margin-top:",
             },
             "children": Array [],
             "name": "span",
@@ -43,9 +50,11 @@ initialize {
             "type": "tag",
             "x-attribsNamespace": Object {
               "class": undefined,
+              "style": undefined,
             },
             "x-attribsPrefix": Object {
               "class": undefined,
+              "style": undefined,
             },
           },
         ],
