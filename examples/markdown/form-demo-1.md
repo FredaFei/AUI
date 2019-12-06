@@ -1,9 +1,9 @@
-```javascript
+``` jsx harmony
 import * as React from 'react'
 import {useState, Fragment} from 'react'
 
 const style = {width: '40%'}
-  
+
 function baseFormExample(props) {
   const [formData, setFormData] = useState({
     username: '',
@@ -26,6 +26,15 @@ function baseFormExample(props) {
             </Fragment>
           }
     />
+  )
+}
+
+
+export default function (props) {
+  return (
+    <div className="exp-section">
+      {baseFormExample(props)}
+    </div>
   )
 }
 ```

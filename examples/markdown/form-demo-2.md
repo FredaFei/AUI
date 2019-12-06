@@ -1,10 +1,9 @@
-```javascript
+``` jsx harmony
 import * as React from 'react'
 import {useState, Fragment} from 'react'
 
-const style = {width: '40%'}
 function layoutFormExample(props) {
-  const [formData, setFormData] = useState<FormValue>({
+  const [formData, setFormData] = useState({
     username: '',
     password: ''
   })
@@ -18,13 +17,18 @@ function layoutFormExample(props) {
   const onChange = (value) => {
     setFormData(value)
   }
-  const onSubmit = ()=> {}
+  const onSubmit = () => {}
   return (
     <div>
       <ButtonGroup style={{marginBottom: '20px'}}>
         {layouts.map((i) => (
-          <Button key={i} style={layout === i ? {background: '#66e2d5', color: '#fff'} : {}}
-            onClick={() => setLayout(i)}>{i}</Button>
+          <Button
+            key={i}
+            style={layout === i ? {background: '#66e2d5', color: '#fff'} : {}}
+            onClick={() => setLayout(i)}
+          >
+            {i}
+          </Button>
         ))}
       </ButtonGroup>
       <Form layout={layout} value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit}
@@ -38,4 +42,11 @@ function layoutFormExample(props) {
   )
 }
 
+export default function (props) {
+  return (
+    <div className="exp-section">
+      {layoutFormExample(props)}
+    </div>
+  )
+}
 ```

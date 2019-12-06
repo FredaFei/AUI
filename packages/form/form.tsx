@@ -1,5 +1,4 @@
 import * as React from 'react'
-// import * as PropTypes from 'prop-types'
 import { ReactFragment, Fragment, ReactNode } from 'react'
 import classes, { createScopedClasses } from '../utils/classnames'
 import Input from '../input/input'
@@ -8,7 +7,7 @@ import './style'
 const componentName = 'Form'
 const sc = createScopedClasses(componentName)
 
-interface IFormFieldInput {
+interface FormFieldInput {
   type: 'text' | 'password' | 'number'
 }
 export interface FormValue {
@@ -20,7 +19,7 @@ export interface FormErrors {
 export interface FormFields {
   name: string
   label: string
-  input: (() => ReactNode) | IFormFieldInput
+  input: (() => ReactNode) | FormFieldInput
 }
 type Layout = 'horizontal'|'inline'|'vertical'
 

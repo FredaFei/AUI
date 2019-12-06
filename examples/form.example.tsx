@@ -12,6 +12,8 @@ import content2 from "./markdown/form-demo-2.md";
 import content3 from "./markdown/form-demo-3.md";
 import content4 from "./markdown/form-demo-4.md";
 import CodeBox from "./codeBox";
+import Markdown from "./markdown";
+import doc from "./markdown/form-doc.md";
 
 const style = {width: '40%'}
 const names = ['jan', 'lily', 'bob', 'jerry']
@@ -278,6 +280,7 @@ export default function (props: any) {
         {customFormExample(props)}
         <CodeBox content={content4}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-```javascript
+``` jsx harmony
 import * as React from 'react'
 import {useState, Fragment} from 'react'
 
@@ -16,11 +16,10 @@ function checkName(value,success,fail) {
   }, 500)
 }
 
-
 function radioGroupExample() {
   const [checked, setChecked] = useState([''])
   const onChange = (e) => {
-    setChecked([(e.target as HTMLInputElement).value])
+    setChecked([e.target.value])
   }
   const groups = [
     {name: 'gender', value: 'boy'},
@@ -66,13 +65,13 @@ function customFormExample(props) {
   const onChange = (value) => {
     setFormData(value)
   }
-  const onSubmit = ()=> {
+  const onSubmit = () => {
     const rules = [
       {key: 'username', required: true, label: '用户名'},
       {
         key: 'username',
         validator: (value) => {
-          return new Promise<string>((resolve, reject) => {
+          return new Promise((resolve, reject) => {
             checkName(value, resolve, (message) => reject(message))
           })
         },
@@ -89,7 +88,7 @@ function customFormExample(props) {
       {key: 'password2', pattern: /^[a-zA-Z0-9]+$/, label: '确认密码'},
       {
         key: 'password2',
-        validator: (value) => {
+        validator: (value: string) => {
           if (value !== formData['password']) {
             return '两次的密码不一致'
           }
@@ -101,8 +100,9 @@ function customFormExample(props) {
     validator(
       formData,
       rules,
-      (errors) => {
+      (errors)=> {
         if (noErrors(errors)) {
+          // todo
           console.log('submit')
           return false
         }
@@ -126,4 +126,11 @@ function customFormExample(props) {
   )
 }
 
+export default function (props) {
+  return (
+    <div className="exp-section">
+      {customFormExample(props)}
+    </div>
+  )
+}
 ```

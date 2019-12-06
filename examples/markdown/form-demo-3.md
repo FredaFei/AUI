@@ -1,6 +1,7 @@
-```javascript
+``` jsx harmony
 import * as React from 'react'
 import {useState, Fragment} from 'react'
+
 const style = {width: '40%'}
 
 function validateFormExample(props) {
@@ -26,7 +27,10 @@ function validateFormExample(props) {
       {key: 'password', maxLength: 16, label: '密码'},
       {key: 'password', pattern: /^[a-zA-Z0-9]+$/, label: '密码'}
     ]
-    validator(formData,rules,(errors) => {
+    validator(
+      formData,
+      rules,
+      (errors) => {
         if (noErrors(errors)) {
           // todo
           return false
@@ -49,4 +53,11 @@ function validateFormExample(props) {
   )
 }
 
+export default function (props) {
+  return (
+    <div className="exp-section">
+      {validateFormExample(props)}
+    </div>
+  )
+}
 ```
