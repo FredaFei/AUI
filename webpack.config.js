@@ -1,8 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const {CheckerPlugin} = require('awesome-typescript-loader')
-const highlight = require('highlight.js')
-const marked = require('marked')
 
 const devMode = process.env.NODE_ENV !== 'production';
 

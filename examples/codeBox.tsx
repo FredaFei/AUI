@@ -1,21 +1,12 @@
 import * as React from 'react'
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from "react-markdown"
 import Icon from "../packages/icon/icon"
-import Prism from "./lib/prism"
+import CodeBlock from "./codeBlock"
 
 import {useState} from "react"
 
 interface Props {
   [key: string]: string
-}
-
-const CodeBlock = (props: Props) => {
-  setTimeout(() => Prism.highlightAll(), 0)
-  return <pre className="line-numbers">
-          <code className={`language-${props.language}`}>
-            {props.value}
-          </code>
-        </pre>
 }
 
 export default function (props: Props) {
@@ -27,6 +18,7 @@ export default function (props: Props) {
         <span>查看代码</span>
       </div>
       {visible && <ReactMarkdown source={props.content}
+                                 escapeHtml={false}
                                  renderers={{
                                    code: CodeBlock
                                  }}></ReactMarkdown>

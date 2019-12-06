@@ -9,23 +9,10 @@ import content4 from "./markdown/button-demo-4.md";
 import doc from "./markdown/button-doc.md";
 import Markdown from './markdown'
 import CodeBox from "./codeBox";
-import content5 from "./1.md";
-import CodeBlock from "./CodeBlock";
-import HeadingBlock from "./HeadingBlock";
-import ReactMarkdown from "react-markdown";
 
 export default function (props: any) {
   return (
     <div className="exp-box">
-      <ReactMarkdown
-        source={content5}
-        escapeHtml={false}
-        renderers={{
-          code: CodeBlock,
-          heading: HeadingBlock
-        }}
-      />
-
       <h3>基础应用</h3>
       <div className="exp-section">
         <Button>首页</Button>
