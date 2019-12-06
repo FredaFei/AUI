@@ -5,7 +5,7 @@
 | name         |设置图标名 |String |—— |—— |
 | rotate |设置图标的旋转角度 |Number | ——|—— |
 | spin      |设置图标加载状态  |Boolean |false |true |
-| className      |自定义类名  |string |—— |—— |
+| className      |自定义类名  |String |—— |—— |
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onClick    | 点击按钮时触发 |       () => void |—— |—— |
 

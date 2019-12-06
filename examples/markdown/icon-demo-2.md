@@ -1,7 +1,13 @@
+```jsx harmony
+import * as React from 'react'
 
-```html
-<div>
-  <Icon name="left" spin/>
-  <Icon name="upload" rotate={180}/>
-</div>
+export default function (props) {
+  return (
+    <div className="exp-section">
+      <Icon name="left" spin/>
+      <Icon name="upload" rotate={180}/>
+    </div>
+  );
+}
 ```
+
