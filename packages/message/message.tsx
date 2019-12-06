@@ -1,87 +1,72 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as PropTypes from 'prop-types'
-import classes, { createScopedClasses } from '../utils/classnames'
-import { Icon } from '../index'
+import classes, {createScopedClasses} from '../utils/classnames'
+import {Icon} from '../index'
 import './style/index'
+import {useEffect, useRef, useState} from "react";
+
 const componentName = 'Message'
 const sc = createScopedClasses(componentName)
-interface IProp extends StyledProps {
+
+interface Props extends StyledProps {
   content: React.ReactNode | string
   duration?: number
   mode?: string
   onClose?: () => any
 }
-interface IState {
-  visible: boolean
-}
-class Message extends React.Component<IProp, IState> {
-  static displayName = componentName
-  static defaultProps = {
-    duration: 3
-  }
-  static propTypes = {
-    duration: PropTypes.number,
-    content: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-    mode: PropTypes.oneOf(['info', 'success', 'warning', 'error', 'loading']),
-    onClose: PropTypes.func
-  }
-  constructor(props: IProp) {
-    super(props)
-    this.state = {
-      visible: true
-    }
-  }
-  _timer: any
-  componentDidMount() {
-    const { duration } = this.props
+
+const Message: React.FunctionComponent<Props> = props => {
+  const [visible, setVisible] = useState(true)
+  const {content, className, style, duration, onClose, mode} = props
+
+  const timerRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    const {duration} = props
     if (duration) {
-      this._timer = setTimeout(() => {
-        this.onCloseClick()
+      timerRef.current = window.setTimeout(() => {
+        onCloseClick()
       }, duration * 1000)
     }
-  }
-  componentWillUnmount() {
-    const { _timer } = this
-    if (_timer) {
-      window.clearTimeout(_timer)
+    return () => {
+      timerRef.current && window.clearTimeout(timerRef.current)
     }
-  }
+  }, [])
 
-  onCloseClick = () => {
-    const { onClose } = this.props
-    this.setState(state => ({ visible: false }))
+  const onCloseClick = () => {
+    setVisible(false)
     onClose && onClose()
   }
-  render() {
-    const { visible } = this.state
-    const { content, className, style, duration, mode } = this.props
-    return (
-      visible &&
+  return (
+    visible ?
       ReactDOM.createPortal(
         <div className={classes(sc('wrapper'), className)} style={style}>
           {mode && (
             <span className={sc('icon-type', `${mode}`)}>
-              <Icon name={mode} />
+              <Icon name={mode}/>
             </span>
           )}
           {content}
           {duration === 0 && (
-            <span className={sc('close')} onClick={this.onCloseClick}>
-              <Icon name="close" />
+            <span className={sc('close')} onClick={onCloseClick}>
+              <Icon name="close"/>
             </span>
           )}
         </div>,
         document.body
-      )
-    )
-  }
+      ) : null
+  )
 }
+Message.defaultProps = {
+  duration: 3
+}
+Message.displayName = componentName
+
 const message = {
-  open(params: IProp) {
+  open(params: Props) {
     const div = document.createElement('div')
     document.body.appendChild(div)
-    const { onClose } = params
+    const {onClose} = params
     const close = () => {
       onClose && onClose()
       ReactDOM.unmountComponentAtNode(div)
@@ -107,7 +92,7 @@ modeArr.forEach(mode => {
       onClose = duration
       duration = undefined
     }
-    return message.open({ content, duration, mode, onClose, ...rest })
+    return message.open({content, duration, mode, onClose, ...rest})
   }
 })
 export default message
