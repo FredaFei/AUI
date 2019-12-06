@@ -2,7 +2,7 @@
 import * as React from 'react'
 import {useState} from 'react'
 
-export default function (props: any) {
+export default function (props) {
   const [x, setX] = useState(false)
   const [y, setY] = useState(false)
   const onClose1 = () => {

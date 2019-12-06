@@ -1,7 +1,7 @@
 ``` jsx harmony
 import * as React from 'react'
 
-export default function (props: any) {
+export default function (props) {
   const onAlert = () => {
     alert({
       content: <h3>this is a content</h3>,
