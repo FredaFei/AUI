@@ -20,11 +20,9 @@ type Selected = Array<string>
 
 const Collapse: React.FunctionComponent<Props> = props => {
   const [selected, setSelected] = useState<Selected>([])
-  const initializingRef = useRef<boolean>(true)
   const {className, defaultActiveKey, activeKey, accordion, expandIcon} = props
 
   useEffect(() => {
-    if (!initializingRef.current) {return}
     const selected = 'defaultActiveKey' in props ? defaultActiveKey : 'activeKey' in props ? activeKey : []
     setSelected(selected as Selected)
   }, [])
@@ -46,7 +44,6 @@ const Collapse: React.FunctionComponent<Props> = props => {
       }
     }
 
-    initializingRef.current = false
     setSelected(copyDefaultKeys)
     props.onChange && props.onChange(key, e)
   }
@@ -55,10 +52,8 @@ const Collapse: React.FunctionComponent<Props> = props => {
       <Icon name="right" className={classes('am-icon-animation', active ? 'active' : '')}/>
   }
   const renderCollapseHead = () => {
-    console.log(props.children)
     return React.Children.map(props.children as any[], (child: React.ReactElement<PaneProps>) => {
         if (!child) {return false}
-        console.log(child);
         const {visibleIcon, disabled, header, name} = child.props
         const active = selected.includes(name)
         keysRef.current.push(name)
