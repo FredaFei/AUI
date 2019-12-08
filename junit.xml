@@ -48,21 +48,21 @@
     <testcase classname="测试 Input 以下行为 Input 设置 自定义样式" name="测试 Input 以下行为 Input 设置 自定义样式" time="0.004">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Pager 以下行为" errors="0" failures="0" skipped="1" timestamp="2019-12-06T06:21:40" time="0.346" tests="7">
-    <testcase classname="测试 Pager 以下行为 Pager 存在" name="测试 Pager 以下行为 Pager 存在" time="0.004">
+  <testsuite name="测试 Uploader 以下行为" errors="0" failures="0" skipped="1" timestamp="2019-12-06T06:21:40" time="0.346" tests="7">
+    <testcase classname="测试 Uploader 以下行为 Uploader 存在" name="测试 Uploader 以下行为 Uploader 存在" time="0.004">
     </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" name="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" time="0.018">
+    <testcase classname="测试 Uploader 以下行为 Uploader 设置 defaultCurrent &amp; total" name="测试 Uploader 以下行为 Uploader 设置 defaultCurrent &amp; total" time="0.018">
     </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 设置 快捷跳转" name="测试 Pager 以下行为 Pager 设置 快捷跳转" time="0">
+    <testcase classname="测试 Uploader 以下行为 Uploader 设置 快捷跳转" name="测试 Uploader 以下行为 Uploader 设置 快捷跳转" time="0">
       <skipped/>
     </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 手动触发 onChange" name="测试 Pager 以下行为 Pager 手动触发 onChange" time="0.012">
+    <testcase classname="测试 Uploader 以下行为 Uploader 手动触发 onChange" name="测试 Uploader 以下行为 Uploader 手动触发 onChange" time="0.012">
     </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 点击加载更多页" name="测试 Pager 以下行为 Pager 点击加载更多页" time="0.013">
+    <testcase classname="测试 Uploader 以下行为 Uploader 点击加载更多页" name="测试 Uploader 以下行为 Uploader 点击加载更多页" time="0.013">
     </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 点击上一页" name="测试 Pager 以下行为 Pager 点击上一页" time="0.008">
+    <testcase classname="测试 Uploader 以下行为 Uploader 点击上一页" name="测试 Uploader 以下行为 Uploader 点击上一页" time="0.008">
     </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 点击下一页" name="测试 Pager 以下行为 Pager 点击下一页" time="0.01">
+    <testcase classname="测试 Uploader 以下行为 Uploader 点击下一页" name="测试 Uploader 以下行为 Uploader 点击下一页" time="0.01">
     </testcase>
   </testsuite>
   <testsuite name="测试 Col 以下行为" errors="0" failures="0" skipped="0" timestamp="2019-12-06T06:21:40" time="0.279" tests="7">

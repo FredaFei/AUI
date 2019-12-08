@@ -1,0 +1,53 @@
+@import 'var';
+#{component(uploader)} {
+  &-wrapper{}
+  &-content{
+    position: relative;
+    display: inline-block;
+    input[type="file"] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+    }
+  }
+  &-file-list {
+    list-style: none;
+    > li {
+      margin: 8px 0;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      border: 1px solid darken($gray, 10%);
+      border-radius: $border-radius;
+    }
+  }
+  &-defaultImage,
+  &-preview {
+    width: 48px;
+    height: 48px;
+    margin-right: 8px;
+  }
+  &-preview {
+    border: none;
+  }
+  &-name {
+    margin-right: auto;
+    &.success {
+      color: green;
+    }
+    &.fail {
+      color: red;
+    }
+  }
+  &-remove {
+    font-size: 20px;
+  }
+  &-spin {
+    width: 32px;
+    height: 32px;
+    //@include spin;
+  }
+}

@@ -20,6 +20,7 @@ import SwitchExample from './examples/switch.example'
 import CollapseExample from './examples/collapse.example'
 import MenuExample from './examples/menu.example'
 import DatePickerExample from './examples/datePicker.example'
+import UploaderExample from './examples/uploader.example'
 import PopoverExample from './examples/popover.example'
 import ScrollExample from './examples/scroll.example'
 import CarouselExample from './examples/carousel.example'
@@ -48,7 +49,7 @@ const linkMap: Link = [
   { name: 'Checkbox', path: '/checkbox', text: 'Checkbox 多选框', component: CheckboxExample },
   { name: 'Switch', path: '/switch', text: 'Switch 开关', component: SwitchExample },
   { name: 'Form', path: '/form', text: 'Form 表单', component: FormExample },
-  { name: 'Pager', path: '/pager', text: 'Pager 分页', component: PagerExample },
+  { name: 'Pager', path: '/pager', text: 'Uploader 分页', component: PagerExample },
   { name: 'Menu', path: '/menu', text: 'Menu 导航菜单', component: MenuExample },
   { name: 'Tabs', path: '/tabs', text: 'Tabs 标签页', component: TabsExample },
   { name: 'Collapse', path: '/collapse', text: 'Collapse 折叠面板', component: CollapseExample },
@@ -57,6 +58,7 @@ const linkMap: Link = [
   { name: 'Dialog', path: '/dialog', text: 'Dialog 对话框', component: DialogExample },
   { name: 'Popover', path: '/popover', text: 'Popover 气泡卡片', component: PopoverExample },
   { name: 'DatePicker', path: '/datePicker', text: 'DatePicker 日期选择器', component: DatePickerExample },
+  { name: 'Uploader', path: '/uploader', text: 'Uploader 上传', component: UploaderExample },
   { name: 'Scroll', path: '/scroll', text: 'Scroll 滚动加载', component: ScrollExample },
 ]
 
