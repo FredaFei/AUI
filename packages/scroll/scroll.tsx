@@ -8,17 +8,17 @@ import { Icon } from '../index'
 const componentName = 'Scroll'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends StyledProps {
+export interface Props extends StyledProps {
   onPullUp?: () => void
   onPullDown?: () => void
-  pullingheight?: number
+  pullingHeight?: number
 }
 
-const Scroll: React.FunctionComponent<IProps> = props => {
+const Scroll: React.FC<Props> = props => {
   const [barHeight, setBarHeight] = useState(0)
   const [barTop, _setBarTop] = useState(0)
   const [barVisible, setBarVisible] = useState(false)
-  const { children, className, ...rest } = props
+  const { children, className,pullingHeight,onPullUp,onPullDown, ...rest } = props
 
   const timeIdRef = useRef<number | null>(null)
   const setBarTop = (top: number) => {
@@ -85,14 +85,14 @@ const Scroll: React.FunctionComponent<IProps> = props => {
   const [translateY, _setTranslateY] = useState(0)
 
   const setTranslateY = (y: number) => {
-    const {pullingheight } = props
+    const {pullingHeight } = props
     if (pullDownRef.current) {
       if (y < 0) {y = 0}
-      if (y > pullingheight!) {y = pullingheight!}
+      if (y > pullingHeight!) {y = pullingHeight!}
     }
     if (pullUpRef.current) {
       if (y >= 0) {y = 0}
-      if (y < -(pullingheight!)) {y = -(pullingheight!)}
+      if (y < -(pullingHeight!)) {y = -(pullingHeight!)}
     }
     _setTranslateY(y)
   }
@@ -136,20 +136,20 @@ const Scroll: React.FunctionComponent<IProps> = props => {
     if (pullDownRef.current) {
       pullDownRef.current = false
       setTranslateY(0)
-      props.onPullDown && props.onPullDown()
+      onPullDown && onPullDown()
     }
     if (pullUpRef.current) {
       pullUpRef.current = false
       setTranslateY(0)
-      props.onPullUp && props.onPullUp()
+      onPullUp && onPullUp()
     }
   }
   return (
     <div className={classes(sc('wrapper'), props.className)} {...rest}>
       {pullDownRef.current &&
       <div className={sc('pulling-down')} style={{ height: translateY }}>
-          <Icon name={translateY === props.pullingheight ?'top':'bottom'}/>
-          <span className={sc('pulling-text')}>{translateY === props.pullingheight ? '释放手指即可更新':''}</span>
+          <Icon name={translateY === props.pullingHeight ?'top':'bottom'}/>
+          <span className={sc('pulling-text')}>{translateY === props.pullingHeight ? '释放手指即可更新':''}</span>
       </div>
       }
       <div className={sc('inner')} style={{ right: -scrollbarWidth(), transform: `translateY(${translateY}px)` }}
@@ -158,7 +158,7 @@ const Scroll: React.FunctionComponent<IProps> = props => {
 
       {pullUpRef.current &&
       <div className={sc('pulling-up')} style={{ height: Math.abs(translateY) }}>
-        <Icon name="loading"/><span className={sc('pulling-text')}>{translateY === -(props.pullingheight!)?'释放手指即可加载更多':''}</span>
+        <Icon name="loading"/><span className={sc('pulling-text')}>{translateY === -(props.pullingHeight!)?'释放手指即可加载更多':''}</span>
       </div>
       }
       <div className={sc('track')}>
@@ -172,6 +172,6 @@ const Scroll: React.FunctionComponent<IProps> = props => {
 }
 Scroll.displayName = componentName
 Scroll.defaultProps = {
-  pullingheight: 100
+  pullingHeight: 100
 }
 export default Scroll
