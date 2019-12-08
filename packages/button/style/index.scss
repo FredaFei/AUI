@@ -24,11 +24,9 @@
     &:hover {
       border-color: $border-color-hover;
     }
-
     &:active {
       background-color: $border-active-bg;
     }
-
     &:focus {
       outline: none;
     }
@@ -76,14 +74,14 @@
     }
   }
 }
-
 .am-buttonGroup {
   display: inline-flex;
   vertical-align: middle;
   > .am-button-wrapper {
     border-radius: 0;
     &:not(:first-child) {
-      margin-left: -1px;
+      border-left: none;
+      margin-left: 0;
     }
     &:first-child {
       border-top-left-radius: $border-radius;
