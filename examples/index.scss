@@ -283,7 +283,9 @@ body {
   }
 }
 .exp-box {
-  &.custom-icon {font-size: 28px;}
+  &.custom-icon {
+    .am-icon{font-size: 28px;}
+  }
 }
 .code-box {
   color: $light-color;
