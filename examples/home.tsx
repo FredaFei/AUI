@@ -1,11 +1,11 @@
 import * as React from 'react'
-import ReactMarkdown from 'react-markdown'
 import md from '!!raw-loader!./home.md'
+import Markdown from './markdown'
 
 export default function(props: any) {
   return (
     <div>
-      <ReactMarkdown source={md} escapeHtml={false} />
+      <Markdown source={md}/>
     </div>
   )
 }

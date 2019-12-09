@@ -6,13 +6,14 @@
 
 **安装**
 
-```markdown
+```
   $ yarn add amazing-react
   $ npm install amazing-react
 ```
+
 **使用组件**
 
-```javascript
+```jsx harmony
 import  {  Button  }  from  'amazing-react'
 import  'amazing-react/lib/amazing-react.css'
 
