@@ -34,7 +34,7 @@ function getBody(xhr: XMLHttpRequest) {
   }
 }
 
-const core = (action: string, method: string, options: OtherOptions) => {
+const core = (method: string, action: string, options: OtherOptions) => {
   const xhr = new XMLHttpRequest();
   xhr.onerror = (e) => {
     options.error && options.error(e);
@@ -50,8 +50,8 @@ const core = (action: string, method: string, options: OtherOptions) => {
     // @ts-ignore
     options.success && options.success(getBody(xhr), xhr);
   };
-
-  xhr.open(method, action, true);
+  console.log(method, action)
+  xhr.open(method, action)
 
   const headers = options.headers || {};
 
@@ -66,6 +66,7 @@ const core = (action: string, method: string, options: OtherOptions) => {
       xhr.setRequestHeader(h, headers[h]);
     }
   }
+  console.log(options);
   xhr.send(options.data);
 }
 

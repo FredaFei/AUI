@@ -23,21 +23,23 @@ interface Props extends StyledProps {
   method?: string
   accept?: string
   sizeLimit?: number
-  parseResponse: (data: any) => void
+  parseResponse?: (data: any) => void
   onFail?: (err: any) => void
   onSuccess?: () => void
-  customRequest ?: () => void
+  onChange?: (files: Array<CurrentFiles>) => void
+  customRequest?: (data: FormData) => void
 }
 
-// type RowFiles = FileList | null
 const Uploader: React.FC<Props> = props => {
   const {fileList, name, sizeLimit, onFail, onSuccess, parseResponse, className, style, children} = props
-
   const [currentFileList, setCurrentFileList] = useState<Array<CurrentFiles>>([])
 
+  const filesRef = useRef<Array<CurrentFiles>>([])
   useEffect(() => {
+    filesRef.current = fileList
     setCurrentFileList(fileList)
   }, [])
+
   const inputRef = useRef<HTMLInputElement>(null)
   const onClickUploadFile = () => {
     inputRef.current!.addEventListener("change", () => {
@@ -45,22 +47,22 @@ const Uploader: React.FC<Props> = props => {
     })
   };
   const beforeUploadFiles = (rowFiles: FileList, newNames: string[]): boolean => {
-    console.log(rowFiles);
     const tempRowFiles = Array.from(rowFiles);
-    console.log(Array.from(rowFiles))
     for (let i = 0; i < tempRowFiles.length; i++) {
       if (tempRowFiles[i]['size'] > sizeLimit!) {
         onFail && onFail('文件过大了哦！');
         return false;
       }
     }
-    console.log(tempRowFiles);
     let temp = tempRowFiles.map((rowFile, index) => {
       let {size, type} = rowFile;
       return {name: newNames[index], size, type, status: "uploading"};
-    });
-    console.log('11')
-    setCurrentFileList(temp as CurrentFiles[])
+    }) as CurrentFiles[];
+    const prevFiles = [...filesRef.current]
+    const _fileList = [...prevFiles, ...temp]
+    filesRef.current = [...prevFiles, ...temp]
+    setCurrentFileList(() => _fileList)
+    props.onChange && props.onChange(_fileList)
     return true;
   }
   const uploadFiles = (): any => {
@@ -70,28 +72,31 @@ const Uploader: React.FC<Props> = props => {
       let newName = generatorName(rowFiles![i].name);
       newNames[i] = newName;
     }
-    console.log(`newNames ${newNames}`);
     if (!beforeUploadFiles(rowFiles as FileList, newNames)) {
       return false;
     }
     for (let i = 0; i < rowFiles!.length; i++) {
       let formData: FormData = new FormData();
       formData.append(name, rowFiles![i]);
+      if (props.customRequest) {
+        props.customRequest(formData)
+        return
+      }
       doUploadFiles(
         formData,
-        response => {
-          console.log(response);
-          let url = parseResponse(response);
+        (response: Response) => {
+          let url = (parseResponse && parseResponse(response)) || response.url;
           afterUploadFiles(newNames[i], url);
         },
-        xhr => {
-          console.log(xhr);
+        (xhr: XMLHttpRequest) => {
           uploadFileError(xhr, newNames[i]);
         }
-      );
+      )
+
+      inputRef.current!.value = ''
     }
   }
-  const doUploadFiles = (formData: FormData, success, error) => {
+  const doUploadFiles = (formData: FormData, success: (response: Response) => void, error: (xhr: XMLHttpRequest) => void) => {
     http[props.method!.toLocaleLowerCase()](props.action, {
       data: formData,
       success,
@@ -99,35 +104,46 @@ const Uploader: React.FC<Props> = props => {
     });
   }
   const afterUploadFiles = (name: string, url: string) => {
-    let file = fileList.filter(f => f.name === name)[0];
-    let index = fileList.indexOf(file);
-    let copyFile = {...file};
-    copyFile.url = url;
-    copyFile.status = "success";
-    let copyFileList = [...fileList];
-    copyFileList.splice(index, 1, copyFile);
-    setCurrentFileList(copyFileList)
-    // this.$emit("uploaded");
+    _setFileList('success', name, url)
     onSuccess && onSuccess()
   }
-  const uploadFileError = (xhr, newName: string) => {
+  const uploadFileError = (xhr: any, newName: string) => {
+    _setFileList('fail', newName)
+    onFail && onFail(xhr.status === 0 ? '网络无法连接' : xhr.response)
+  }
+  const _setFileList = (status: 'fail' | 'success', newName: string, url?: string) => {
+    const currentFileList = filesRef.current
     let file = currentFileList.filter(f => f.name === newName)[0];
     let index = currentFileList.indexOf(file);
     let copyFile = {...file};
-    copyFile.status = "fail";
+    copyFile.url = url || undefined;
+    copyFile.status = status;
     let copyFileList = [...currentFileList];
     copyFileList.splice(index, 1, copyFile);
     setCurrentFileList(copyFileList)
-    onFail && onFail(xhr.status === 0 ? '网络无法连接' : xhr.response)
+    filesRef.current = copyFileList
+    props.onChange && props.onChange(copyFileList)
   }
   const generatorName = (name: string) => {
-    while (fileList.filter(n => n.name === name).length > 0) {
+    while (filesRef.current.filter(n => n.name === name).length > 0) {
       let dotIndex = name.lastIndexOf(".");
       let nameWithoutExtension = name.substring(0, dotIndex);
       let extension = name.substring(dotIndex);
       name = nameWithoutExtension + "(1)" + extension;
     }
     return name;
+  }
+
+  const onDeleteFile = (file: CurrentFiles) => {
+    let yes = window.confirm("确定删除该文件吗？");
+    if (yes) {
+      let copy = [...currentFileList];
+      let index = copy.indexOf(file);
+      copy.splice(index, 1);
+      setCurrentFileList(copy)
+      filesRef.current = copy
+      props.onChange && props.onChange(copy)
+    }
   }
   return (
     <div className={classes(sc('wrapper'), className)} style={style}>
@@ -139,11 +155,13 @@ const Uploader: React.FC<Props> = props => {
       <ul className={sc('file-list')}>
         {currentFileList.map(file => {
           return <li className={sc('file-list-item')} key={file.name}>
-            {file.status === 'uploading' ? <Icon name="loading"/> : file.status === 'success' ?
-              <img src={file.url} className={sc('preview')}/> : <Icon name="image"/>}
+            {file.status === 'uploading' ?
+              <Icon name="loading" className={sc('placeholder-img')}/> : file.status === 'success' ?
+                <img src={file.url} className={sc('preview')}/> :
+                <Icon name="image" className={sc('placeholder-img', 'fail')}/>}
 
-            <span className={sc('name')}>{file.name}</span>
-            <Icon name="close" className={sc('remove')}/>
+            <span className={sc('name', file.status === 'fail' && 'fail')}>{file.name}</span>
+            <Icon name="close" className={sc('remove')} onClick={() => onDeleteFile(file)}/>
           </li>
         })}
       </ul>

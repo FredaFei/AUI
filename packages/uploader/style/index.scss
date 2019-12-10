@@ -1,7 +1,7 @@
 @import 'var';
 #{component(uploader)} {
-  &-wrapper{}
-  &-content{
+  &-wrapper {}
+  &-content {
     position: relative;
     display: inline-block;
     input[type="file"] {
@@ -24,6 +24,10 @@
       border-radius: $border-radius;
     }
   }
+  &-placeholder-img {
+    color: $blue;
+  }
+  &-placeholder-img,
   &-defaultImage,
   &-preview {
     width: 48px;
@@ -35,19 +39,11 @@
   }
   &-name {
     margin-right: auto;
-    &.success {
-      color: green;
-    }
-    &.fail {
-      color: red;
-    }
   }
   &-remove {
     font-size: 20px;
   }
-  &-spin {
-    width: 32px;
-    height: 32px;
-    //@include spin;
+  &-fail {
+    color: $error-color;
   }
 }
