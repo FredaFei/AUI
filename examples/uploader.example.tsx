@@ -5,8 +5,8 @@ import {useState} from "react";
 
 import content1 from "./markdown/uploader-demo-1.md";
 import content2 from "./markdown/uploader-demo-2.md";
-// import doc from "./markdown/button-doc.md";
-// import Markdown from './markdown'
+import doc from "./markdown/uploader-doc.md";
+import Markdown from './markdown'
 import CodeBox from "./codeBox";
 
 export default function (props: any) {
@@ -59,6 +59,7 @@ export default function (props: any) {
         </Uploader>
         <CodeBox content={content2}/>
       </div>
+      <Markdown source={doc}/>
     </div>
   )
 }
