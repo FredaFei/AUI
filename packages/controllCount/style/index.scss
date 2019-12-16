@@ -1,0 +1,44 @@
+@import 'var';
+
+#{component(controllCount)} {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  input,
+  &-btn {
+    text-align: center;
+    line-height: 30px;
+    color: #666;
+    background: #ffffff;
+    outline: none;
+    box-sizing: border-box;
+  }
+  &-btn {
+    border: 1px solid #ebebeb;
+    flex: 0 0 34px;
+    width: 32px;
+    font-size: 20px;
+    cursor: pointer;
+    &:nth-child(1) {
+      border-radius: $border-radius 0 0 $border-radius;
+    }
+    &:nth-child(3) {
+      border-radius: 0 $border-radius $border-radius 0;
+    }
+  }
+  input {
+    flex: 1;
+    min-width: 34px;
+    color: #333;
+    font-size: 16px;
+    border: none;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
+    border-radius: 0;
+    -webkit-appearance: none;
+  }
+  .disabled {
+    color: #aaa;
+    background: #ebebeb;
+  }
+}
