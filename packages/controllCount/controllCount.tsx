@@ -20,7 +20,7 @@ const ControllCount: React.FunctionComponent<Props> = props => {
   const [stateCount, setStateCount] = useState(1)
 
   const inputRef = useRef<HTMLInputElement>(null)
-  const {count, minCount, maxCount, onChange, readOnly, ...rest} = props
+  const {count, minCount, maxCount, onChange, readOnly, className, ...rest} = props
 
   useEffect(() => {
     const defaultCount = 'count' in props ? count : 1
@@ -30,7 +30,7 @@ const ControllCount: React.FunctionComponent<Props> = props => {
   const computedNum = (val: number) => {
     if (!validateCount(val, true)) {return}
     const currentCount = stateCount + val
-    setStateCount(()=>currentCount)
+    setStateCount(() => currentCount)
     inputRef.current!.value = currentCount + ''
     onChange && onChange(currentCount)
   }
@@ -39,7 +39,7 @@ const ControllCount: React.FunctionComponent<Props> = props => {
       if (val < 0 && stateCount === minCount) {return}
       if (val > 0 && stateCount >= maxCount!) {return}
     } else {
-      if (val === 0) {return}
+      if (val < minCount!) {return}
       if (val > maxCount!) {return}
     }
     return true
@@ -54,11 +54,11 @@ const ControllCount: React.FunctionComponent<Props> = props => {
       inputRef.current!.value = stateCount + ''
       return
     }
-    setStateCount(()=>value)
+    setStateCount(() => value)
     onChange && onChange(value)
   }
   return (
-    <div className={sc('')} {...rest}>
+    <div className={classes(sc(''), className)} {...rest}>
       <button className={classes(sc('btn', 'next'), {disabled: stateCount <= 1})} onClick={() => computedNum(-1)}>-
       </button>
       <input type="text" ref={inputRef} onBlur={onBlur} readOnly={readOnly}/>
