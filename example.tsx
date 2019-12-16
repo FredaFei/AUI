@@ -27,6 +27,7 @@ import ScrollExample from './examples/scroll.example'
 import CarouselExample from './examples/carousel.example'
 import 'examples/index.scss'
 
+// @ts-ignore
 import logo from './logo.png'
 
 interface LinkItem {
