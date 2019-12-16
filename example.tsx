@@ -27,6 +27,8 @@ import ScrollExample from './examples/scroll.example'
 import CarouselExample from './examples/carousel.example'
 import 'examples/index.scss'
 
+import logo from './logo.png'
+
 interface LinkItem {
   name: string
   path: string
@@ -51,7 +53,7 @@ const linkMap: Link = [
   { name: 'Checkbox', path: '/checkbox', text: 'Checkbox 多选框', component: CheckboxExample },
   { name: 'Switch', path: '/switch', text: 'Switch 开关', component: SwitchExample },
   { name: 'Form', path: '/form', text: 'Form 表单', component: FormExample },
-  { name: 'Pager', path: '/pager', text: 'Uploader 分页', component: PagerExample },
+  { name: 'Pager', path: '/pager', text: 'Pager 分页', component: PagerExample },
   { name: 'Menu', path: '/menu', text: 'Menu 导航菜单', component: MenuExample },
   { name: 'Tabs', path: '/tabs', text: 'Tabs 标签页', component: TabsExample },
   { name: 'Collapse', path: '/collapse', text: 'Collapse 折叠面板', component: CollapseExample },
@@ -81,9 +83,7 @@ const App = () => {
         </div>
         <nav className="site-doc-logo-github">
           <div className="site-nav-item">
-            <img
-              src="https://practicaldev-herokuapp-com.freetls.fastly.net/assets/stack-206941f66389b4bc8f476591664d9d3e43f70e55cd841a98d06312ff85da7dc9.svg"
-              alt="" className="logo"/>
+            <img src={logo} className="logo"/>
           </div>
           <div className="site-nav-item">github</div>
         </nav>
