@@ -8,6 +8,7 @@ import ButtonExample from './examples/button.example'
 import IconExample from './examples/icon.example'
 import GridExample from './examples/grid.example'
 import LayoutExample from './examples/layout.example'
+import ControllCountExample from './examples/controllCount.example'
 import InputExample from './examples/input.example'
 import RadioExample from './examples/radio.example'
 import CheckboxExample from './examples/checkbox.example'
@@ -44,6 +45,7 @@ const linkMap: Link = [
   { name: 'Icon', path: '/icon', text: 'Icon 图标', component: IconExample },
   { name: 'Grid', path: '/grid', text: 'Grid 栅格', component: GridExample },
   { name: 'Layout', path: '/layout', text: 'Layout 布局', component: LayoutExample },
+  { name: 'ControllCount', path: '/controllCount', text: 'ControllCount 数量输入框', component: ControllCountExample },
   { name: 'Input', path: '/input', text: 'Input 输入框', component: InputExample },
   { name: 'Radio', path: '/radio', text: 'Radio 单选框', component: RadioExample },
   { name: 'Checkbox', path: '/checkbox', text: 'Checkbox 多选框', component: CheckboxExample },
