@@ -23,6 +23,7 @@ declare global {
 export {default as Button} from './button/button'
 export {default as ButtonGroup} from './button/buttonGroup'
 export {default as Icon} from './icon/icon'
+export {default as ControllCount} from './controllCount/controllCount'
 export {default as Row} from './grid/row'
 export {default as Col} from './grid/col'
 export {default as Dialog} from './dialog/dialog'
