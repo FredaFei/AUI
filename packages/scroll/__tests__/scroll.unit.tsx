@@ -9,9 +9,9 @@ describe('测试 Scroll 以下行为', () => {
     const json = renderer.create(<Scroll/>).toJSON()
     expect(json).toMatchSnapshot()
   })
-  it('Scroll 设置 pullingheight', () => {
-    const wrapper = mount(<Scroll pullingheight={200}>apple</Scroll>)
-    expect(wrapper.props().pullingheight).toEqual(200)
+  it('Scroll 设置 pullingHeight', () => {
+    const wrapper = mount(<Scroll pullingHeight={200}>apple</Scroll>)
+    expect(wrapper.props().pullingHeight).toEqual(200)
   })
 
 })
