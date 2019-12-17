@@ -1,3 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="0" failures="0" time="0.01">
+<testsuites name="jest tests" tests="7" failures="0" time="1.762">
+  <testsuite name="测试 Pager 以下行为" errors="0" failures="0" skipped="0" timestamp="2019-12-17T06:28:32" time="1.712" tests="7">
+    <testcase classname="测试 Pager 以下行为 Pager 存在" name="测试 Pager 以下行为 Pager 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" name="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" time="0.023">
+    </testcase>
+    <testcase classname="测试 Pager 以下行为 Pager 设置 快捷跳转" name="测试 Pager 以下行为 Pager 设置 快捷跳转" time="0.01">
+    </testcase>
+    <testcase classname="测试 Pager 以下行为 Pager 手动触发 onChange" name="测试 Pager 以下行为 Pager 手动触发 onChange" time="0.012">
+    </testcase>
+    <testcase classname="测试 Pager 以下行为 Pager 点击加载更多页" name="测试 Pager 以下行为 Pager 点击加载更多页" time="0.02">
+    </testcase>
+    <testcase classname="测试 Pager 以下行为 Pager 点击上一页" name="测试 Pager 以下行为 Pager 点击上一页" time="0.011">
+    </testcase>
+    <testcase classname="测试 Pager 以下行为 Pager 点击下一页" name="测试 Pager 以下行为 Pager 点击下一页" time="0.013">
+    </testcase>
+  </testsuite>
 </testsuites>

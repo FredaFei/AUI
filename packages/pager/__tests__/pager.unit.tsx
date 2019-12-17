@@ -14,15 +14,12 @@ describe('测试 Pager 以下行为', () => {
     expect(wrapper.props().defaultCurrent).toEqual(4)
     expect(wrapper.props().total).toEqual(5)
   })
-  // todo: 待完善
-  xit('Pager 设置 快捷跳转', () => {
+  it('Pager 设置 快捷跳转', () => {
     const onChange = jest.fn()
-    const wrapper = mount(<Pager onChange={onChange} visibleQuickJumper current={1} total={10}/>)
+    const wrapper = mount(<Pager onChange={onChange} visibleQuickJumper total={10}/>)
     const input = wrapper.find('.am-pager-input-page').at(0);
-    input.simulate('change', { target: { value: 3} });
-    input.simulate('keypress', {key: 'Enter',keyCode: 13, which: 13})
-    // onChange({target: {value: 3}})
-    // expect(onChange).toHaveBeenCalledWith(3);
+    input.simulate('keydown', {keyCode: 13, which: 13,target: { value: 3}})
+    expect(onChange).toHaveBeenCalled();
   });
 
   it('Pager 手动触发 onChange', () => {
