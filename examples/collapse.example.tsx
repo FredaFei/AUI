@@ -35,7 +35,7 @@ export default function (props: any) {
       </div>
       <h3>手风琴</h3>
       <div className="exp-section">
-        <Collapse accordion>
+        <Collapse accordion defaultActiveKey={['1']}>
           <Pane header="This is panel header 1" name="1">
             <p>This is pane content 1</p>
           </Pane>
