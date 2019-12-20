@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 Carousel 以下行为 Carousel 存在 1`] = `
+<div
+  className="am-carousel-wrapper "
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+>
+  <div
+    className="am-carousel-view am-carousel-slide am-carousel"
+    style={
+      Object {
+        "height": 300,
+      }
+    }
+  >
+    <div
+      className="am-carouselitem am-carouselitem-current "
+      style={
+        Object {
+          "background": "#66e2d5",
+          "color": "#fff",
+          "fontSize": "20px",
+        }
+      }
+    >
+      page 1
+    </div>
+    <div
+      className="am-carouselitem "
+      style={
+        Object {
+          "background": "yellow",
+          "color": "#fff",
+          "fontSize": "20px",
+        }
+      }
+    >
+      page 2
+    </div>
+  </div>
+  <div
+    className="am-carousel-dots position-bottom style-circle"
+  >
+    <span
+      className="dot position-bottom style-circle active"
+      onClick={[Function]}
+    >
+      
+    </span>
+    <span
+      className="dot position-bottom style-circle "
+      onClick={[Function]}
+    >
+      
+    </span>
+  </div>
+</div>
+`;
