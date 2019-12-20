@@ -18,7 +18,9 @@ describe('测试 Pager 以下行为', () => {
     const onChange = jest.fn()
     const wrapper = mount(<Pager onChange={onChange} visibleQuickJumper total={10}/>)
     const input = wrapper.find('.am-pager-input-page').at(0);
-    input.simulate('keydown', {keyCode: 13, which: 13,target: { value: 3}})
+    input.simulate('keypress', {keyCode: 13, which: 13,target: { value: 12}})
+    expect(onChange).toHaveBeenCalled();
+    input.simulate('keypress', {keyCode: 13, which: 13,target: { value: 3}})
     expect(onChange).toHaveBeenCalled();
   });
 

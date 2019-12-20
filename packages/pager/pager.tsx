@@ -37,10 +37,9 @@ const Pager: React.FunctionComponent<Props> = props => {
     const input = e.target as HTMLInputElement
     const page = input.value
     input.value = ''
-    if (/^\d+$/.test(page)) {
-      const index = parseInt(page) > props.total ? props.total : parseInt(page)
-      setIndex(index)
-    }
+    if (!/^\d+$/.test(page)) {return}
+    const index = parseInt(page) > props.total ? props.total : parseInt(page)
+    setIndex(index)
   }
   const setIndex = (page:Number)=>{
     initializingRef.current = false
