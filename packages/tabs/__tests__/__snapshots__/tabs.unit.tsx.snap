@@ -1,0 +1,1540 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 Tabs 以下行为 Tabs 存在 1`] = `
+<div
+  className="am-tabs-wrapper "
+  data-role="Tabs"
+>
+  <div
+    className="am-tabs-nav"
+  >
+    <div
+      className="am-tabs-nav-item"
+      data-role="tabsNavItem"
+      onClick={[Function]}
+    >
+      tab 1
+    </div>
+    <div
+      className="am-tabs-nav-line"
+    />
+  </div>
+  <ul
+    className="am-tabs-pane-body"
+  >
+    <li
+      className="am-tabPane-pane-item "
+      data-role="TabPane"
+      tab="tab 1"
+    >
+      Content of Tab Pane 1
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`测试 Tabs 以下行为 Tabs 设置 自定义样式 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "class": "am-tabs-wrapper ",
+      "data-role": "Tabs",
+      "style": "margin-right:30px",
+    },
+    "children": Array [
+      Object {
+        "attribs": Object {
+          "class": "am-tabs-nav",
+        },
+        "children": Array [
+          Object {
+            "attribs": Object {
+              "class": "am-tabs-nav-item",
+              "data-role": "tabsNavItem",
+            },
+            "children": Array [
+              Object {
+                "data": "tab 1",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "Tab 2",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Tab 3",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": Object {
+                  "attribs": Object {
+                    "class": "am-tabs-nav-line",
+                  },
+                  "children": Array [],
+                  "name": "div",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                  },
+                },
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "data-role": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "data-role": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "class": "am-tabs-nav-item",
+              "data-role": "tabsNavItem",
+            },
+            "children": Array [
+              Object {
+                "data": "Tab 2",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "Tab 3",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-line",
+                },
+                "children": Array [],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "tab 1",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "data-role": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "data-role": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "class": "am-tabs-nav-item",
+              "data-role": "tabsNavItem",
+            },
+            "children": Array [
+              Object {
+                "data": "Tab 3",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-line",
+              },
+              "children": Array [],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "Tab 2",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "tab 1",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "data-role": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "data-role": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "class": "am-tabs-nav-line",
+            },
+            "children": Array [],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "Tab 3",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Tab 2",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": Object {
+                  "attribs": Object {
+                    "class": "am-tabs-nav-item",
+                    "data-role": "tabsNavItem",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "tab 1",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "div",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                },
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+        ],
+        "name": "div",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": Object {
+          "attribs": Object {
+            "class": "am-tabs-pane-body",
+          },
+          "children": Array [
+            Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "tab 1",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 1",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabPane-pane-item ",
+                  "data-role": "TabPane",
+                  "tab": "Tab 2",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Content of Tab Pane 2",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "li",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": Object {
+                  "attribs": Object {
+                    "class": "am-tabPane-pane-item ",
+                    "data-role": "TabPane",
+                    "tab": "Tab 3",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Content of Tab Pane 3",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "li",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                    "tab": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                    "tab": undefined,
+                  },
+                },
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+            Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "Tab 2",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 2",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabPane-pane-item ",
+                  "data-role": "TabPane",
+                  "tab": "Tab 3",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Content of Tab Pane 3",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "li",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabPane-pane-item ",
+                  "data-role": "TabPane",
+                  "tab": "tab 1",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Content of Tab Pane 1",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "li",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+            Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "Tab 3",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 3",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabPane-pane-item ",
+                  "data-role": "TabPane",
+                  "tab": "Tab 2",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Content of Tab Pane 2",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "li",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": Object {
+                  "attribs": Object {
+                    "class": "am-tabPane-pane-item ",
+                    "data-role": "TabPane",
+                    "tab": "tab 1",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Content of Tab Pane 1",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "li",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                    "tab": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                    "tab": undefined,
+                  },
+                },
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+          ],
+          "name": "ul",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": null,
+          "parent": [Circular],
+          "prev": [Circular],
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+      Object {
+        "attribs": Object {
+          "class": "am-tabs-pane-body",
+        },
+        "children": Array [
+          Object {
+            "attribs": Object {
+              "class": "am-tabPane-pane-item ",
+              "data-role": "TabPane",
+              "tab": "tab 1",
+            },
+            "children": Array [
+              Object {
+                "data": "Content of Tab Pane 1",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "li",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "Tab 2",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 2",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabPane-pane-item ",
+                  "data-role": "TabPane",
+                  "tab": "Tab 3",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Content of Tab Pane 3",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "li",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "data-role": undefined,
+              "tab": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "data-role": undefined,
+              "tab": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "class": "am-tabPane-pane-item ",
+              "data-role": "TabPane",
+              "tab": "Tab 2",
+            },
+            "children": Array [
+              Object {
+                "data": "Content of Tab Pane 2",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "li",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "Tab 3",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 3",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": [Circular],
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "tab 1",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 1",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "data-role": undefined,
+              "tab": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "data-role": undefined,
+              "tab": undefined,
+            },
+          },
+          Object {
+            "attribs": Object {
+              "class": "am-tabPane-pane-item ",
+              "data-role": "TabPane",
+              "tab": "Tab 3",
+            },
+            "children": Array [
+              Object {
+                "data": "Content of Tab Pane 3",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "text",
+              },
+            ],
+            "name": "li",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": Object {
+              "attribs": Object {
+                "class": "am-tabPane-pane-item ",
+                "data-role": "TabPane",
+                "tab": "Tab 2",
+              },
+              "children": Array [
+                Object {
+                  "data": "Content of Tab Pane 2",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "li",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": [Circular],
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabPane-pane-item ",
+                  "data-role": "TabPane",
+                  "tab": "tab 1",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Content of Tab Pane 1",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "li",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                  "tab": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+                "tab": undefined,
+              },
+            },
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+              "data-role": undefined,
+              "tab": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+              "data-role": undefined,
+              "tab": undefined,
+            },
+          },
+        ],
+        "name": "ul",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": Object {
+          "attribs": Object {
+            "class": "am-tabs-nav",
+          },
+          "children": Array [
+            Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "tab 1",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Tab 2",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": Object {
+                  "attribs": Object {
+                    "class": "am-tabs-nav-item",
+                    "data-role": "tabsNavItem",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Tab 3",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "div",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": Object {
+                    "attribs": Object {
+                      "class": "am-tabs-nav-line",
+                    },
+                    "children": Array [],
+                    "name": "div",
+                    "namespace": "http://www.w3.org/1999/xhtml",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": [Circular],
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "class": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "class": undefined,
+                    },
+                  },
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                },
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": null,
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "Tab 2",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Tab 3",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": Object {
+                  "attribs": Object {
+                    "class": "am-tabs-nav-line",
+                  },
+                  "children": Array [],
+                  "name": "div",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": [Circular],
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                  },
+                },
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "tab 1",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-item",
+                "data-role": "tabsNavItem",
+              },
+              "children": Array [
+                Object {
+                  "data": "Tab 3",
+                  "next": null,
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "text",
+                },
+              ],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-line",
+                },
+                "children": Array [],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": [Circular],
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
+              },
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Tab 2",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": Object {
+                  "attribs": Object {
+                    "class": "am-tabs-nav-item",
+                    "data-role": "tabsNavItem",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "tab 1",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "div",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": null,
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                },
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+                "data-role": undefined,
+              },
+            },
+            Object {
+              "attribs": Object {
+                "class": "am-tabs-nav-line",
+              },
+              "children": Array [],
+              "name": "div",
+              "namespace": "http://www.w3.org/1999/xhtml",
+              "next": null,
+              "parent": [Circular],
+              "prev": Object {
+                "attribs": Object {
+                  "class": "am-tabs-nav-item",
+                  "data-role": "tabsNavItem",
+                },
+                "children": Array [
+                  Object {
+                    "data": "Tab 3",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "text",
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": [Circular],
+                "parent": [Circular],
+                "prev": Object {
+                  "attribs": Object {
+                    "class": "am-tabs-nav-item",
+                    "data-role": "tabsNavItem",
+                  },
+                  "children": Array [
+                    Object {
+                      "data": "Tab 2",
+                      "next": null,
+                      "parent": [Circular],
+                      "prev": null,
+                      "type": "text",
+                    },
+                  ],
+                  "name": "div",
+                  "namespace": "http://www.w3.org/1999/xhtml",
+                  "next": [Circular],
+                  "parent": [Circular],
+                  "prev": Object {
+                    "attribs": Object {
+                      "class": "am-tabs-nav-item",
+                      "data-role": "tabsNavItem",
+                    },
+                    "children": Array [
+                      Object {
+                        "data": "tab 1",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "text",
+                      },
+                    ],
+                    "name": "div",
+                    "namespace": "http://www.w3.org/1999/xhtml",
+                    "next": [Circular],
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "class": undefined,
+                      "data-role": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "class": undefined,
+                      "data-role": undefined,
+                    },
+                  },
+                  "type": "tag",
+                  "x-attribsNamespace": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                  "x-attribsPrefix": Object {
+                    "class": undefined,
+                    "data-role": undefined,
+                  },
+                },
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                  "data-role": undefined,
+                },
+              },
+              "type": "tag",
+              "x-attribsNamespace": Object {
+                "class": undefined,
+              },
+              "x-attribsPrefix": Object {
+                "class": undefined,
+              },
+            },
+          ],
+          "name": "div",
+          "namespace": "http://www.w3.org/1999/xhtml",
+          "next": [Circular],
+          "parent": [Circular],
+          "prev": null,
+          "type": "tag",
+          "x-attribsNamespace": Object {
+            "class": undefined,
+          },
+          "x-attribsPrefix": Object {
+            "class": undefined,
+          },
+        },
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+        },
+      },
+    ],
+    "name": "div",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+      "data-role": undefined,
+      "style": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+      "data-role": undefined,
+      "style": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;
