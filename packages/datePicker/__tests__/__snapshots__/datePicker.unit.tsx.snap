@@ -1,0 +1,435 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`测试 ControllCount 以下行为 ControllCount 存在 1`] = `
+<div
+  className="am-clickOutside"
+  data-role="ClickOutside"
+>
+  <div
+    className="am-datePicker-wrapper "
+  >
+    <div
+      className="am-popover"
+    >
+      <div
+        className="am-popover-trigger "
+      >
+        <div
+          className="am-input-wrapper am-input-label-top"
+        >
+          <div
+            className="am-input-inputAndError"
+          >
+            <div
+              className="am-input-content am-input-before-or-after"
+            >
+              <span
+                className="am-input-before"
+              >
+                <svg
+                  className="am-icon "
+                  style={Object {}}
+                >
+                  <use
+                    xlinkHref="#date"
+                  />
+                </svg>
+              </span>
+              <input
+                className="am-input "
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                readOnly={true}
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`测试 DatePicker 以下行为 DatePicker 存在 1`] = `
+<div
+  className="am-clickOutside"
+  data-role="ClickOutside"
+>
+  <div
+    className="am-datePicker-wrapper "
+  >
+    <div
+      className="am-popover"
+    >
+      <div
+        className="am-popover-trigger "
+      >
+        <div
+          className="am-input-wrapper am-input-label-top"
+        >
+          <div
+            className="am-input-inputAndError"
+          >
+            <div
+              className="am-input-content am-input-before-or-after"
+            >
+              <span
+                className="am-input-before"
+              >
+                <svg
+                  className="am-icon "
+                  style={Object {}}
+                >
+                  <use
+                    xlinkHref="#date"
+                  />
+                </svg>
+              </span>
+              <input
+                className="am-input "
+                onFocus={[Function]}
+                onKeyDown={[Function]}
+                readOnly={true}
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`测试 DatePicker 以下行为 DatePicker 设置 自定义样式 1`] = `
+initialize {
+  "0": Object {
+    "attribs": Object {
+      "class": "am-clickOutside",
+      "data-role": "ClickOutside",
+    },
+    "children": Array [
+      Object {
+        "attribs": Object {
+          "class": "am-datePicker-wrapper ",
+          "style": "color: red;",
+        },
+        "children": Array [
+          Object {
+            "attribs": Object {
+              "class": "am-popover",
+            },
+            "children": Array [
+              Object {
+                "attribs": Object {
+                  "class": "am-popover-trigger ",
+                },
+                "children": Array [
+                  Object {
+                    "attribs": Object {
+                      "class": "am-input-wrapper am-input-label-top",
+                    },
+                    "children": Array [
+                      Object {
+                        "attribs": Object {
+                          "class": "am-input-inputAndError",
+                        },
+                        "children": Array [
+                          Object {
+                            "attribs": Object {
+                              "class": "am-input-content am-input-before-or-after",
+                            },
+                            "children": Array [
+                              Object {
+                                "attribs": Object {
+                                  "class": "am-input-before",
+                                },
+                                "children": Array [
+                                  Object {
+                                    "attribs": Object {
+                                      "class": "am-icon ",
+                                    },
+                                    "children": Array [
+                                      Object {
+                                        "attribs": Object {
+                                          "href": "#date",
+                                        },
+                                        "children": Array [],
+                                        "name": "use",
+                                        "namespace": "http://www.w3.org/2000/svg",
+                                        "next": null,
+                                        "parent": [Circular],
+                                        "prev": null,
+                                        "type": "tag",
+                                        "x-attribsNamespace": Object {
+                                          "href": "http://www.w3.org/1999/xlink",
+                                        },
+                                        "x-attribsPrefix": Object {
+                                          "href": "xlink",
+                                        },
+                                      },
+                                    ],
+                                    "name": "svg",
+                                    "namespace": "http://www.w3.org/2000/svg",
+                                    "next": null,
+                                    "parent": [Circular],
+                                    "prev": null,
+                                    "type": "tag",
+                                    "x-attribsNamespace": Object {
+                                      "class": undefined,
+                                    },
+                                    "x-attribsPrefix": Object {
+                                      "class": undefined,
+                                    },
+                                  },
+                                ],
+                                "name": "span",
+                                "namespace": "http://www.w3.org/1999/xhtml",
+                                "next": Object {
+                                  "attribs": Object {
+                                    "class": "am-input ",
+                                    "readonly": "",
+                                    "type": "text",
+                                    "value": "",
+                                  },
+                                  "children": Array [],
+                                  "name": "input",
+                                  "namespace": "http://www.w3.org/1999/xhtml",
+                                  "next": null,
+                                  "parent": [Circular],
+                                  "prev": [Circular],
+                                  "type": "tag",
+                                  "x-attribsNamespace": Object {
+                                    "class": undefined,
+                                    "readonly": undefined,
+                                    "type": undefined,
+                                    "value": undefined,
+                                  },
+                                  "x-attribsPrefix": Object {
+                                    "class": undefined,
+                                    "readonly": undefined,
+                                    "type": undefined,
+                                    "value": undefined,
+                                  },
+                                },
+                                "parent": [Circular],
+                                "prev": null,
+                                "type": "tag",
+                                "x-attribsNamespace": Object {
+                                  "class": undefined,
+                                },
+                                "x-attribsPrefix": Object {
+                                  "class": undefined,
+                                },
+                              },
+                              Object {
+                                "attribs": Object {
+                                  "class": "am-input ",
+                                  "readonly": "",
+                                  "type": "text",
+                                  "value": "",
+                                },
+                                "children": Array [],
+                                "name": "input",
+                                "namespace": "http://www.w3.org/1999/xhtml",
+                                "next": null,
+                                "parent": [Circular],
+                                "prev": Object {
+                                  "attribs": Object {
+                                    "class": "am-input-before",
+                                  },
+                                  "children": Array [
+                                    Object {
+                                      "attribs": Object {
+                                        "class": "am-icon ",
+                                      },
+                                      "children": Array [
+                                        Object {
+                                          "attribs": Object {
+                                            "href": "#date",
+                                          },
+                                          "children": Array [],
+                                          "name": "use",
+                                          "namespace": "http://www.w3.org/2000/svg",
+                                          "next": null,
+                                          "parent": [Circular],
+                                          "prev": null,
+                                          "type": "tag",
+                                          "x-attribsNamespace": Object {
+                                            "href": "http://www.w3.org/1999/xlink",
+                                          },
+                                          "x-attribsPrefix": Object {
+                                            "href": "xlink",
+                                          },
+                                        },
+                                      ],
+                                      "name": "svg",
+                                      "namespace": "http://www.w3.org/2000/svg",
+                                      "next": null,
+                                      "parent": [Circular],
+                                      "prev": null,
+                                      "type": "tag",
+                                      "x-attribsNamespace": Object {
+                                        "class": undefined,
+                                      },
+                                      "x-attribsPrefix": Object {
+                                        "class": undefined,
+                                      },
+                                    },
+                                  ],
+                                  "name": "span",
+                                  "namespace": "http://www.w3.org/1999/xhtml",
+                                  "next": [Circular],
+                                  "parent": [Circular],
+                                  "prev": null,
+                                  "type": "tag",
+                                  "x-attribsNamespace": Object {
+                                    "class": undefined,
+                                  },
+                                  "x-attribsPrefix": Object {
+                                    "class": undefined,
+                                  },
+                                },
+                                "type": "tag",
+                                "x-attribsNamespace": Object {
+                                  "class": undefined,
+                                  "readonly": undefined,
+                                  "type": undefined,
+                                  "value": undefined,
+                                },
+                                "x-attribsPrefix": Object {
+                                  "class": undefined,
+                                  "readonly": undefined,
+                                  "type": undefined,
+                                  "value": undefined,
+                                },
+                              },
+                            ],
+                            "name": "div",
+                            "namespace": "http://www.w3.org/1999/xhtml",
+                            "next": null,
+                            "parent": [Circular],
+                            "prev": null,
+                            "type": "tag",
+                            "x-attribsNamespace": Object {
+                              "class": undefined,
+                            },
+                            "x-attribsPrefix": Object {
+                              "class": undefined,
+                            },
+                          },
+                        ],
+                        "name": "div",
+                        "namespace": "http://www.w3.org/1999/xhtml",
+                        "next": null,
+                        "parent": [Circular],
+                        "prev": null,
+                        "type": "tag",
+                        "x-attribsNamespace": Object {
+                          "class": undefined,
+                        },
+                        "x-attribsPrefix": Object {
+                          "class": undefined,
+                        },
+                      },
+                    ],
+                    "name": "div",
+                    "namespace": "http://www.w3.org/1999/xhtml",
+                    "next": null,
+                    "parent": [Circular],
+                    "prev": null,
+                    "type": "tag",
+                    "x-attribsNamespace": Object {
+                      "class": undefined,
+                    },
+                    "x-attribsPrefix": Object {
+                      "class": undefined,
+                    },
+                  },
+                ],
+                "name": "div",
+                "namespace": "http://www.w3.org/1999/xhtml",
+                "next": null,
+                "parent": [Circular],
+                "prev": null,
+                "type": "tag",
+                "x-attribsNamespace": Object {
+                  "class": undefined,
+                },
+                "x-attribsPrefix": Object {
+                  "class": undefined,
+                },
+              },
+            ],
+            "name": "div",
+            "namespace": "http://www.w3.org/1999/xhtml",
+            "next": null,
+            "parent": [Circular],
+            "prev": null,
+            "type": "tag",
+            "x-attribsNamespace": Object {
+              "class": undefined,
+            },
+            "x-attribsPrefix": Object {
+              "class": undefined,
+            },
+          },
+        ],
+        "name": "div",
+        "namespace": "http://www.w3.org/1999/xhtml",
+        "next": null,
+        "parent": [Circular],
+        "prev": null,
+        "type": "tag",
+        "x-attribsNamespace": Object {
+          "class": undefined,
+          "style": undefined,
+        },
+        "x-attribsPrefix": Object {
+          "class": undefined,
+          "style": undefined,
+        },
+      },
+    ],
+    "name": "div",
+    "namespace": "http://www.w3.org/1999/xhtml",
+    "next": null,
+    "parent": null,
+    "prev": null,
+    "root": Object {
+      "attribs": Object {},
+      "children": Array [
+        [Circular],
+      ],
+      "name": "root",
+      "namespace": "http://www.w3.org/1999/xhtml",
+      "next": null,
+      "parent": null,
+      "prev": null,
+      "type": "root",
+      "x-attribsNamespace": Object {},
+      "x-attribsPrefix": Object {},
+    },
+    "type": "tag",
+    "x-attribsNamespace": Object {
+      "class": undefined,
+      "data-role": undefined,
+    },
+    "x-attribsPrefix": Object {
+      "class": undefined,
+      "data-role": undefined,
+    },
+  },
+  "_root": [Circular],
+  "length": 1,
+  "options": Object {
+    "decodeEntities": true,
+    "normalizeWhitespace": false,
+    "withDomLvl1": true,
+    "xml": false,
+  },
+}
+`;
