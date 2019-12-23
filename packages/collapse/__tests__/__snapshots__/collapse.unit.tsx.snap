@@ -6,10 +6,3 @@ exports[`测试 Collapse 以下行为 Collapse 存在 1`] = `
   data-role="Collapse"
 />
 `;
-
-exports[`测试 Scroll 以下行为 Collapse 存在 1`] = `
-<div
-  className="am-collapse-wrapper "
-  data-role="Collapse"
-/>
-`;
