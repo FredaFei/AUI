@@ -1,9 +1,9 @@
 import * as React from 'react'
-import classes, { createScopedClasses } from '../utils/classnames'
+import classes, {createScopedClasses} from '../utils/classnames'
 import scrollbarWidth from './scrollbar-width'
 import './style'
-import { UIEventHandler, useEffect, useRef, useState, TouchEventHandler } from "react";
-import { Icon } from '../index'
+import {UIEventHandler, useEffect, useRef, useState, TouchEventHandler} from "react";
+import {Icon} from '../index'
 
 const componentName = 'Scroll'
 const sc = createScopedClasses(componentName)
@@ -18,7 +18,7 @@ const Scroll: React.FC<Props> = props => {
   const [barHeight, setBarHeight] = useState(0)
   const [barTop, _setBarTop] = useState(0)
   const [barVisible, setBarVisible] = useState(false)
-  const { children, className,pullingHeight,onPullUp,onPullDown, ...rest } = props
+  const {children, className, pullingHeight, onPullUp, onPullDown, ...rest} = props
 
   const timeIdRef = useRef<number | null>(null)
   const setBarTop = (top: number) => {
@@ -85,7 +85,7 @@ const Scroll: React.FC<Props> = props => {
   const [translateY, _setTranslateY] = useState(0)
 
   const setTranslateY = (y: number) => {
-    const {pullingHeight } = props
+    const {pullingHeight} = props
     if (pullDownRef.current) {
       if (y < 0) {y = 0}
       if (y > pullingHeight!) {y = pullingHeight!}
@@ -106,13 +106,10 @@ const Scroll: React.FC<Props> = props => {
     if (e.touches.length > 1) {return }
     const scrollTop = containerRef.current!.scrollTop
     const maxScrollHeight = containerRef.current!.scrollHeight
-    const { height } = containerRef.current!.getBoundingClientRect()
+    const {height} = containerRef.current!.getBoundingClientRect()
     if (scrollTop === 0) { pullDownRef.current = true}
     if (scrollTop + height === maxScrollHeight && height !== maxScrollHeight) { pullUpRef.current = true}
 
-    console.log(`scrollTop ${scrollTop}`)
-    console.log(`maxScrollHeight ${maxScrollHeight}`)
-    console.log(`pullUpRef ${scrollTop + height === maxScrollHeight}`)
     lastYRef.current = e.touches[0].clientY
     moveCountRef.current = 0
   }
@@ -121,11 +118,9 @@ const Scroll: React.FC<Props> = props => {
     moveCountRef.current += 1
     if (moveCountRef.current === 1 && deltaY < 0 && pullUpRef.current) {
       // 上拉
-      // pullDownRef.current = false
     }
     if (moveCountRef.current === 1 && deltaY > 0 && pullDownRef.current) {
       // 下拉
-      // pullUpRef.current = false
     }
     if (pullDownRef.current || pullUpRef.current) {
       setTranslateY(translateY + deltaY)
@@ -147,23 +142,24 @@ const Scroll: React.FC<Props> = props => {
   return (
     <div className={classes(sc('wrapper'), props.className)} {...rest}>
       {pullDownRef.current &&
-      <div className={sc('pulling-down')} style={{ height: translateY }}>
-          <Icon name={translateY === props.pullingHeight ?'top':'bottom'}/>
-          <span className={sc('pulling-text')}>{translateY === props.pullingHeight ? '释放手指即可更新':''}</span>
+      <div className={sc('pulling-down')} style={{height: translateY}}>
+        <Icon name={translateY === props.pullingHeight ? 'top' : 'bottom'}/>
+        <span className={sc('pulling-text')}>{translateY === props.pullingHeight ? '释放手指即可更新' : ''}</span>
       </div>
       }
-      <div className={sc('inner')} style={{ right: -scrollbarWidth(), transform: `translateY(${translateY}px)` }}
+      <div className={sc('inner')} style={{right: -scrollbarWidth(), transform: `translateY(${translateY}px)`}}
            ref={containerRef} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onToucheEnd}
            onScroll={onScroll}>{children}</div>
 
       {pullUpRef.current &&
-      <div className={sc('pulling-up')} style={{ height: Math.abs(translateY) }}>
-        <Icon name="loading"/><span className={sc('pulling-text')}>{translateY === -(props.pullingHeight!)?'释放手指即可加载更多':''}</span>
+      <div className={sc('pulling-up')} style={{height: Math.abs(translateY)}}>
+        <Icon name="loading"/><span
+        className={sc('pulling-text')}>{translateY === -(props.pullingHeight!) ? '释放手指即可加载更多' : ''}</span>
       </div>
       }
       <div className={sc('track')}>
         {barVisible &&
-        <div className={sc('bar')} style={{ height: barHeight, transform: `translateY(${barTop}px)` }}
+        <div className={sc('bar')} style={{height: barHeight, transform: `translateY(${barTop}px)`}}
              onMouseDown={() => onMouseDownBar}></div>
         }
       </div>
