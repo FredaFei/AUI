@@ -233,7 +233,7 @@ const Popover: React.FunctionComponent<Props> = props => {
       })
       break;
     default:
-      console.error(new Error('invalid trigger'));
+      console.warn(new Error('invalid trigger'));
       return null
   }
 

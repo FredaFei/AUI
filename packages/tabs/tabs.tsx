@@ -95,7 +95,7 @@ const Tabs: React.FunctionComponent<Props> = props => {
     const children = React.Children.map(props.children, child => {
       const element = child as React.ReactElement<PaneProps>
       if (element.type !== TabPane) {
-        console.error('Tabs 组件的子组件只能是 TabPane组件')
+        console.warn('Tabs 组件的子组件只能是 TabPane组件')
         return null
       }
       const key = element.key as string
