@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Uploader from '../packages/uploader/uploader'
+import Uploader,{CurrentFiles} from '../packages/uploader/uploader'
 import {Button} from '../packages'
 import {useState} from "react";
 
@@ -11,7 +11,7 @@ import CodeBox from "./codeBox";
 
 export default function (props: any) {
   const [fileList] = useState([])
-  const [fileList2] = useState([
+  const [fileList2] = useState<Array<CurrentFiles>>([
     {
       name: "stable-deltail-1.png",
       size: 288120,

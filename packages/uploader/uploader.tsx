@@ -8,10 +8,11 @@ import http from "../utils/http";
 const componentName = 'Uploader'
 const sc = createScopedClasses(componentName)
 
-interface CurrentFiles {
+type status = 'fail' | 'success' | 'uploading'
+export interface CurrentFiles {
   name?: string
   size?: number
-  status?: 'fail' | 'success' | 'uploading'
+  status?: status
   type?: string
   url?: string
 }
