@@ -1,8 +1,8 @@
 {
-  "name": "react-typeScript-ui",
+  "name": "AUI",
   "version": "0.0.1",
-  "main": "dist/lib/index",
-  "types": "dist/lib/index",
+  "main": "dist/packages/index",
+  "types": "dist/packages/index",
   "files": [
     "/dist/**/*"
   ],
@@ -10,6 +10,7 @@
   "author": "FredaFei <964959033@qq.com>",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
+    "docs": "cross-env NODE_ENV=production webpack --config webpack.config.docs.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand --watch",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.ci.js"

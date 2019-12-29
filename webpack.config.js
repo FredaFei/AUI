@@ -18,7 +18,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist/lib'),
-    library: 'awesome-ui',
+    library: 'AUI',
     libraryTarget: 'umd'
   },
   module: {
