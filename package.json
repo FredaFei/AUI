@@ -6,7 +6,7 @@
   "files": [
     "/dist/**/*"
   ],
-  "repository": "git@github.com:FredaFei/react-typeScript-ui.git",
+  "repository": "git@github.com:FredaFei/AUI.git",
   "author": "FredaFei <964959033@qq.com>",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
