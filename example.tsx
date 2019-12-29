@@ -109,6 +109,10 @@ const App = () => {
           </Switch>
         </main>
       </div>
+      <footer className="site-doc-footer">
+        <p className="text-center">Made with ❤️<a href="https://github.com/Freda" target="_blank"> by Freda</a>
+        </p>
+      </footer>
     </div>
   )
 }
