@@ -55,7 +55,6 @@ const validator = (
   const newPromises = flat(errors).map(([key,promiseOrString])=>(promiseOrString instanceof Promise ? promiseOrString : Promise.reject(promiseOrString))
           .then(()=>[key,undefined],reason=>[key,reason]))
   Promise.all(newPromises).then(results=>{
-    console.log(results)
     callback(zip(results.filter(i=>i[1])))
   })
 }
@@ -65,8 +64,6 @@ function flat(array: any[]) {
   for (let i = 0; i < array.length; i++) {
     if (array[i] instanceof Array) {
       result.push(...array[i])
-    } else {
-      result.push(array[i])
     }
   }
   return result
