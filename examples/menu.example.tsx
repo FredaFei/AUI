@@ -32,7 +32,7 @@ export default function (props: any) {
       </div>
       <div className="exp-section">
         <h3>垂直排列</h3>
-        <Menu layout="vertical" selected="menu1">
+        <Menu layout="vertical" selected="menu3-2-2">
           <MenuItem name="menu1">menu 1</MenuItem>
           <MenuItem name="menu2">menu 2</MenuItem>
           <SubMenu title="submenu 1" name="submenu1">
@@ -47,6 +47,7 @@ export default function (props: any) {
           </SubMenu>
           <MenuItem name="menu4">menu 4</MenuItem>
         </Menu>
+        <CodeBox content={content2}/>
       </div>
       <div className="exp-section">
         <h3>多层嵌套</h3>
