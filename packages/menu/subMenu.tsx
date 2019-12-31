@@ -25,16 +25,19 @@ const SubMenu: React.FunctionComponent<Props> = props => {
     if (disabled) {return}
     setVisible(prevState => !prevState)
   }
-
+// todo 销毁实例
   const active = () => namePath.includes(name as string)
+  const vertical = layout === 'vertical'
   return (
-    <div className={classes(sc(''), props.className, { open, visible,disabled })} style={props.style}>
-      <div className={classes(sc('label'), { active: active() })} onClick={onNavTitleClick}>
+    <div className={classes(sc(''), props.className, { open, visible, disabled, vertical })}
+         style={props.style}>
+      <div className={classes(sc('label'), { active: active(), visible })} onClick={onNavTitleClick}>
         <span className={sc('title')}>{props.title}</span>
-        <span className={sc('icon')}><Icon name="right"/></span>
+        <span className={classes(sc('icon'), { vertical, visible: open })}><Icon
+          name="right"/></span>
       </div>
       <div
-        className={classes(sc('popover'), { active: visible, vertical: layout === 'vertical' })}>{props.children}</div>
+        className={classes(sc('popover'), { active: visible, vertical })}>{props.children}</div>
     </div>
   )
 }
