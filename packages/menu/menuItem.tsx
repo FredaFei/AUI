@@ -1,15 +1,14 @@
 import * as React from 'react'
 import classes, {createScopedClasses} from '../utils/classnames'
-
+import {MenuContext} from './menu'
 import './style'
+import {useContext} from 'react';
 
 const componentName = 'MenuItem'
 const sc = createScopedClasses(componentName)
 
 export interface Props extends StyledProps {
   name: string
-  selectedKey?: string
-  layout?: 'horizontal' | 'inline' | 'vertical'
   disabled?: boolean
   visible?: boolean
   onSelect?: (value: string) => any
@@ -17,15 +16,15 @@ export interface Props extends StyledProps {
 }
 
 const MenuItem: React.FunctionComponent<Props> = props => {
-  const {layout, onSelect, name, selectedKey, onClose, disabled} = props
+  const {name, onClose, disabled} = props
+  const {layout, updateSelected, selectedKey} = useContext(MenuContext)
+
 
   const onMenuItemClick = () => {
-    console.log(`item click`)
-    if(disabled){return}
+    if (disabled) {return}
     onClose && onClose(false)
-    onSelect && onSelect(name)
+    updateSelected!(name)
   }
-  console.log(`name ${name},selectedKey ${selectedKey}`)
   return (
     <div className={classes(sc(''), props.className,
       {active: selectedKey === name, vertical: layout === 'vertical', disabled})}
