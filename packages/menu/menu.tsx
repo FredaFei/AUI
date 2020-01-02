@@ -24,6 +24,7 @@ interface Context {
   open: boolean
   layout?: Props['layout']
   updateSelected: Props['onChange']
+  updateNamePath: Props['onChange']
   close: () => void
 }
 
@@ -32,14 +33,16 @@ export const MenuContext = React.createContext<Context>({
   open: false,
   close: () => {},
   updateSelected: (name: string) => {},
+  updateNamePath: (name: string) => {},
 });
 
 const Menu: React.FunctionComponent<Props> = props => {
-  const { layout, selected, onChange } = props
+  const {layout, selected, onChange} = props
 
   const [selectedKey, setSelectedKey] = useState('')
   const [open, setOpen] = useState(false)
   const [namePath, _setNamePath] = useState<string[]>([])
+  // const openRef = useRef<boolean>(false)
 
   const items = useRef<Items>({})
 
@@ -55,14 +58,14 @@ const Menu: React.FunctionComponent<Props> = props => {
 
   const getItems = (element: React.ReactElement, parents?: string) => {
     console.log(element)
-    const { name, children } = element.props
+    const {name, children} = element.props
     items.current[name] = items.current[name] || {}
     if (Array.isArray(children)) {
       items.current[name].parents = parents
       items.current[name].hasChild = true
       children.map(item => getItems(item, name))
     } else {
-      items.current[name] = { hasChild: false, parents: parents || '' }
+      items.current[name] = {hasChild: false, parents: parents || ''}
     }
   }
   const updateSelectedKey = (name: string) => {
@@ -73,12 +76,15 @@ const Menu: React.FunctionComponent<Props> = props => {
     // toggleVisible()
     // namePath.current = []
   }
-  const setNamePath = (name:string)=>{
+  const setNamePath = (name: string) => {
     console.log(name);
-    console.log(namePath);
+    // console.log(namePath);
     console.log(items.current);
+    console.log('hasChild');
+    console.log(items.current[name]['hasChild'])
     let _namePath = []
     if (!items.current[name]['hasChild']) {
+      console.log('nochild');
       _namePath = []
       close()
     }
@@ -98,7 +104,8 @@ const Menu: React.FunctionComponent<Props> = props => {
     <MenuContext.Provider value={{
       selectedKey, items: items.current, namePath,
       layout, open, close,
-      updateSelected: updateSelectedKey
+      updateSelected: updateSelectedKey,
+      updateNamePath: setNamePath
     }}>
       <div className={classes(sc('wrapper'), `${layout}`, props.className)} style={props.style}>
         {props.children}

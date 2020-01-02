@@ -1,10 +1,11 @@
 import * as React from 'react'
-import {ReactNode, useContext} from "react";
+import {ReactNode, useContext, useEffect, useRef} from "react";
 import classes, {createScopedClasses} from '../utils/classnames'
 import {MenuContext} from './menu'
 
 import './style'
 import Icon from "../icon/icon"
+import ClickOutside from '../clickOutside/clickOutside'
 import {useState} from "react";
 
 const componentName = 'SubMenu'
@@ -18,27 +19,45 @@ export interface Props extends StyledProps {
 }
 
 const SubMenu: React.FunctionComponent<Props> = props => {
-  const { disabled, name } = props
+  const {disabled, name} = props
   const [visible, setVisible] = useState(false)
-  const { layout, namePath, open } = useContext(MenuContext)
+  const refDiv = useRef<HTMLDivElement>(null)
+  const {layout, namePath} = useContext(MenuContext)
+  useEffect(() => {
+    // setVisible(open || false)
+    // return ()=>{
+    //   setVisible(false)
+    //   close()
+    // }
+  }, [])
+
   const onNavTitleClick = () => {
     if (disabled) {return}
     setVisible(prevState => !prevState)
   }
-// todo 销毁实例
+
+  const close = () => {
+    // todo hover
+    layout !== 'vertical' && setVisible(false)
+  }
   const active = () => namePath.includes(name as string)
+
   const vertical = layout === 'vertical'
+
   return (
-    <div className={classes(sc(''), props.className, { open, visible, disabled, vertical })}
-         style={props.style}>
-      <div className={classes(sc('label'), { active: active(), visible })} onClick={onNavTitleClick}>
-        <span className={sc('title')}>{props.title}</span>
-        <span className={classes(sc('icon'), { vertical, visible: open })}><Icon
-          name="right"/></span>
+
+    <ClickOutside handler={close} exclude={refDiv}>
+      <div className={classes(sc(''), props.className, {active: active(), visible,vertical,disabled })}
+           style={props.style}>
+        <div className={classes(sc('label'), {active: active(), visible})} onClick={onNavTitleClick}>
+          <span className={sc('title')}>{props.title}</span>
+          <span className={classes(sc('icon'), {visible,vertical})}><Icon
+            name="right"/></span>
+        </div>
+        <div
+          className={classes(sc('popover'), {visible, vertical})} ref={refDiv}>{props.children}</div>
       </div>
-      <div
-        className={classes(sc('popover'), { active: visible, vertical })}>{props.children}</div>
-    </div>
+    </ClickOutside>
   )
 }
 
