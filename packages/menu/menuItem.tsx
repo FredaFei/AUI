@@ -10,24 +10,19 @@ const sc = createScopedClasses(componentName)
 export interface Props extends StyledProps {
   name: string
   disabled?: boolean
-  visible?: boolean
-  onSelect?: (value: string) => any
-  onClose?: (value: boolean) => any
 }
 
 const MenuItem: React.FunctionComponent<Props> = props => {
-  const {name, onClose, disabled} = props
-  const {layout, updateSelected, selectedKey} = useContext(MenuContext)
-
+  const { name, disabled } = props
+  const { layout, updateSelected, selectedKey } = useContext(MenuContext)
 
   const onMenuItemClick = () => {
     if (disabled) {return}
-    onClose && onClose(false)
-    updateSelected!(name)
+    updateSelected!(name, true)
   }
   return (
     <div className={classes(sc(''), props.className,
-      {active: selectedKey === name, vertical: layout === 'vertical', disabled})}
+      { active: selectedKey === name, vertical: layout === 'vertical', disabled })}
          style={props.style} onClick={onMenuItemClick}>
       {props.children}
     </div>
@@ -35,7 +30,8 @@ const MenuItem: React.FunctionComponent<Props> = props => {
 }
 
 MenuItem.displayName = componentName
-MenuItem.defaultProps = {}
-MenuItem.propTypes = {}
+MenuItem.defaultProps = {
+  disabled: false
+}
 
 export default MenuItem

@@ -21,35 +21,31 @@ interface Context {
   selectedKey: string
   items: Items
   namePath: string[]
-  open: boolean
+  isMenuItemClick: boolean
   layout?: Props['layout']
-  updateSelected: Props['onChange']
+  updateSelected: (value:string,isItemClick:boolean)=>void
   updateNamePath: Props['onChange']
-  close: () => void
 }
+
 
 export const MenuContext = React.createContext<Context>({
   items: {}, namePath: [], layout: 'horizontal', selectedKey: '',
-  open: false,
-  close: () => {},
-  updateSelected: (name: string) => {},
+  isMenuItemClick: false,
+  updateSelected: (value:string,isItemClick:boolean)=>{},
   updateNamePath: (name: string) => {},
 });
 
 const Menu: React.FunctionComponent<Props> = props => {
-  const {layout, selected, onChange} = props
+  const { layout, selected, onChange } = props
 
   const [selectedKey, setSelectedKey] = useState('')
-  const [open, setOpen] = useState(false)
   const [namePath, _setNamePath] = useState<string[]>([])
-  // const openRef = useRef<boolean>(false)
-
+  const isMenuItemClick = useRef<boolean>(false)
   const items = useRef<Items>({})
 
   useEffect(() => {
     React.Children.map(props.children, child => {
       getItems(child as React.ReactElement)
-      console.log(items.current)
     })
     const defaultSelected = 'selected' in props ? selected : ''
     setNamePath(defaultSelected)
@@ -57,34 +53,25 @@ const Menu: React.FunctionComponent<Props> = props => {
   }, [])
 
   const getItems = (element: React.ReactElement, parents?: string) => {
-    console.log(element)
-    const {name, children} = element.props
+    const { name, children } = element.props
     items.current[name] = items.current[name] || {}
     if (Array.isArray(children)) {
       items.current[name].parents = parents
       items.current[name].hasChild = true
       children.map(item => getItems(item, name))
     } else {
-      items.current[name] = {hasChild: false, parents: parents || ''}
+      items.current[name] = { hasChild: false, parents: parents || '' }
     }
   }
-  const updateSelectedKey = (name: string) => {
+  const updateSelectedKey = (name: string,isItemClick:boolean) => {
     setSelectedKey(name)
-    onChange && onChange(name)
-    // todo 是否有后代节点
     setNamePath(name)
-    // toggleVisible()
-    // namePath.current = []
+    isMenuItemClick.current = isItemClick
+    onChange && onChange(name)
   }
   const setNamePath = (name: string) => {
-    console.log(name);
-    // console.log(namePath);
-    console.log(items.current);
-    console.log('hasChild');
-    console.log(items.current[name]['hasChild'])
     let _namePath = []
     if (!items.current[name]['hasChild']) {
-      console.log('nochild');
       _namePath = []
       close()
     }
@@ -95,15 +82,11 @@ const Menu: React.FunctionComponent<Props> = props => {
     }
     _setNamePath(_namePath)
   }
-  const close = () => {
-    setOpen(false)
-  }
-
 
   return (
     <MenuContext.Provider value={{
       selectedKey, items: items.current, namePath,
-      layout, open, close,
+      layout, isMenuItemClick: isMenuItemClick.current,
       updateSelected: updateSelectedKey,
       updateNamePath: setNamePath
     }}>
