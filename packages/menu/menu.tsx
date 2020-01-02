@@ -23,15 +23,14 @@ interface Context {
   namePath: string[]
   isMenuItemClick: boolean
   layout?: Props['layout']
-  updateSelected: (value:string,isItemClick:boolean)=>void
+  updateSelected: (value: string, isItemClick: boolean) => void
   updateNamePath: Props['onChange']
 }
-
 
 export const MenuContext = React.createContext<Context>({
   items: {}, namePath: [], layout: 'horizontal', selectedKey: '',
   isMenuItemClick: false,
-  updateSelected: (value:string,isItemClick:boolean)=>{},
+  updateSelected: (value: string, isItemClick: boolean) => {},
   updateNamePath: (name: string) => {},
 });
 
@@ -63,7 +62,7 @@ const Menu: React.FunctionComponent<Props> = props => {
       items.current[name] = { hasChild: false, parents: parents || '' }
     }
   }
-  const updateSelectedKey = (name: string,isItemClick:boolean) => {
+  const updateSelectedKey = (name: string, isItemClick: boolean) => {
     setSelectedKey(name)
     setNamePath(name)
     isMenuItemClick.current = isItemClick

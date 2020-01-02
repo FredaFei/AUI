@@ -15,8 +15,6 @@ export default function (props: any) {
       <div className="exp-section">
         <h3>基础应用</h3>
         <Menu selected="menu3-3">
-          <MenuItem name="menu1">menu 1</MenuItem>
-          <MenuItem name="menu2">menu 2</MenuItem>
           <SubMenu title="submenu 1" name="submenu1">
             <MenuItem name="menu3-1">menu 3--1</MenuItem>
             <MenuItem name="menu3-2">menu 3--2</MenuItem>
@@ -27,6 +25,8 @@ export default function (props: any) {
               <MenuItem name="menu3-3-3">menu 3-2-3</MenuItem>
             </SubMenu>
           </SubMenu>
+          <MenuItem name="menu1">menu 1</MenuItem>
+          <MenuItem name="menu2">menu 2</MenuItem>
         </Menu>
         <CodeBox content={content1}/>
       </div>
