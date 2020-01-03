@@ -8,7 +8,7 @@ const componentName = 'Menu'
 const sc = createScopedClasses(componentName)
 
 export interface Props extends StyledProps {
-  selected: string
+  selected?: string
   layout?: 'horizontal' | 'vertical'
   onChange?: (value: string) => void
 }
@@ -35,7 +35,7 @@ export const MenuContext = React.createContext<Context>({
 });
 
 const Menu: React.FunctionComponent<Props> = props => {
-  const { layout, selected, onChange } = props
+  const {layout, selected, onChange} = props
 
   const [selectedKey, setSelectedKey] = useState('')
   const [namePath, _setNamePath] = useState<string[]>([])
@@ -43,23 +43,18 @@ const Menu: React.FunctionComponent<Props> = props => {
   const items = useRef<Items>({})
 
   useEffect(() => {
-    React.Children.map(props.children, child => {
-      getItems(child as React.ReactElement)
-    })
+    React.Children.map(props.children, child => getItems(child as React.ReactElement))
     const defaultSelected = 'selected' in props ? selected : ''
-    setNamePath(defaultSelected)
+    setNamePath(defaultSelected as string)
     setSelectedKey(defaultSelected as string)
   }, [])
 
   const getItems = (element: React.ReactElement, parents?: string) => {
-    const { name, children } = element.props
-    items.current[name] = items.current[name] || {}
+    const {name, children} = element.props
+    items.current[name] = items.current[name] || {hasChild: false, parents: parents || ''}
     if (Array.isArray(children)) {
-      items.current[name].parents = parents
-      items.current[name].hasChild = true
+      items.current[name]['hasChild'] = true
       children.map(item => getItems(item, name))
-    } else {
-      items.current[name] = { hasChild: false, parents: parents || '' }
     }
   }
   const updateSelectedKey = (name: string, isItemClick: boolean) => {
@@ -69,11 +64,9 @@ const Menu: React.FunctionComponent<Props> = props => {
     onChange && onChange(name)
   }
   const setNamePath = (name: string) => {
+    if (!items.current[name]) {return}
     let _namePath = []
-    if (!items.current[name]['hasChild']) {
-      _namePath = []
-      close()
-    }
+    if (!items.current[name]['hasChild']) {_namePath = []}
     let parent = items.current[name]['parents']
     while (parent) {
       _namePath.unshift(parent)
