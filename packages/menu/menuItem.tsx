@@ -21,8 +21,7 @@ const MenuItem: React.FunctionComponent<Props> = props => {
     updateSelected!(name, true)
   }
   return (
-    <div className={classes(sc(''), props.className,
-      { active: selectedKey === name, vertical: layout === 'vertical', disabled })}
+    <div className={classes(sc(''), props.className, { active: selectedKey === name, vertical: layout === 'vertical', disabled })}
          style={props.style} onClick={onMenuItemClick}>
       {props.children}
     </div>

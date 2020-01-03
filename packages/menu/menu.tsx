@@ -24,14 +24,12 @@ interface Context {
   isMenuItemClick: boolean
   layout?: Props['layout']
   updateSelected: (value: string, isItemClick: boolean) => void
-  updateNamePath: Props['onChange']
 }
 
 export const MenuContext = React.createContext<Context>({
   items: {}, namePath: [], layout: 'horizontal', selectedKey: '',
   isMenuItemClick: false,
-  updateSelected: (value: string, isItemClick: boolean) => {},
-  updateNamePath: (name: string) => {},
+  updateSelected: (value: string, isItemClick: boolean) => {}
 });
 
 const Menu: React.FunctionComponent<Props> = props => {
@@ -79,8 +77,7 @@ const Menu: React.FunctionComponent<Props> = props => {
     <MenuContext.Provider value={{
       selectedKey, items: items.current, namePath,
       layout, isMenuItemClick: isMenuItemClick.current,
-      updateSelected: updateSelectedKey,
-      updateNamePath: setNamePath
+      updateSelected: updateSelectedKey
     }}>
       <div className={classes(sc('wrapper'), `${layout}`, props.className)} style={props.style}>
         {props.children}
