@@ -14,7 +14,7 @@ export default function (props: any) {
     <div className="exp-box">
       <div className="exp-section" style={style}>
         <h3>基础应用</h3>
-        <Menu >
+        <Menu selected="menu1">
           <SubMenu title="sub1" name="sub1">
             <MenuItem name="menu3-1">menu 3--1</MenuItem>
             <MenuItem name="menu3-2">menu 3--2</MenuItem>
