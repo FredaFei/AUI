@@ -26,7 +26,6 @@ a {
 $site-color: #314659;
 $focus-color: #1890ff;
 $site-border-color: #e8e8e8;
-
 body {
   overflow-x: hidden;
   color: $site-color;
@@ -108,13 +107,13 @@ body {
       padding: 10px 0;
     }
   }
-  &-footer{
+  &-footer {
     line-height: 50px;
     margin: auto;
     text-align: center;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.15);
     background-color: #f5f5f5;
-    a{color: $darkblue;}
+    a {color: $darkblue;}
   }
 }
 // 移动端
@@ -122,11 +121,12 @@ body {
   .site-doc {
     &-header {
       padding: 10px;
-      img{display: none;}
+      img {display: none;}
     }
     &-body {
       margin: 24px 8px;
       flex-direction: column;
+      min-height: calc(100vh - 145px);
     }
     &-menu-icon {
       .menu-icon-line {
@@ -298,7 +298,7 @@ body {
 }
 .exp-box {
   &.custom-icon {
-    .am-icon{font-size: 28px;}
+    .am-icon {font-size: 28px;}
   }
 }
 .code-box {
