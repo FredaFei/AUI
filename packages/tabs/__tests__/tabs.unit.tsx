@@ -62,6 +62,20 @@ describe('测试 Tabs 以下行为', () => {
     </Tabs>)
     expect(wrapper.props().defaultActiveKey).toEqual('key2')
   })
+  it('Tabs 设置 lineWidthOrHeight', () => {
+    const wrapper = mount(<Tabs lineWidthOrHeight="26">
+      <TabPane tab="tab 1" key="key1">
+        Content of Tab Pane 1
+      </TabPane>
+      <TabPane tab="Tab 2" key="key2">
+        Content of Tab Pane 2
+      </TabPane>
+      <TabPane tab="Tab 3" key="key3">
+        Content of Tab Pane 3
+      </TabPane>
+    </Tabs>)
+    expect(wrapper.props().lineWidthOrHeight).toEqual('26')
+  })
   it('Tabs 设置 activeKey', () => {
     const fn = jest.fn()
     const wrapper = mount(<Tabs activeKey="sport2" onChange={fn}>

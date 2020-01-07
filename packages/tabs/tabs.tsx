@@ -7,10 +7,11 @@ import {useEffect, useRef, useState} from "react";
 const componentName = 'Tabs'
 const sc = createScopedClasses(componentName)
 
-export interface Props extends StyledProps{
+export interface Props extends StyledProps {
   activeKey?: string
   defaultActiveKey?: string
-  direction?: 'horizontal'|'vertical'
+  lineWidthOrHeight?: string | number
+  direction?: 'horizontal' | 'vertical'
   onChange?: (key: string) => any
 }
 
@@ -24,7 +25,7 @@ type TLayout = (a: React.ReactElement<PaneProps>, b: Layout) => {}
 const Tabs: React.FunctionComponent<Props> = props => {
   const [activeTabKey, setActiveTabKey] = useState<string>('')
 
-  const {className, direction, defaultActiveKey, activeKey,style} = props
+  const {className, direction, lineWidthOrHeight, defaultActiveKey, activeKey, style} = props
 
   const keysRef = useRef<Array<string>>([])
   const lineRef = useRef<HTMLDivElement>(null)
@@ -54,12 +55,15 @@ const Tabs: React.FunctionComponent<Props> = props => {
     const el = tabsHeadElement.children[index]
     let {left: left1, top: top1} = tabsHeadElement.getBoundingClientRect()
     let {width, left: left2, height, top: top2} = el.getBoundingClientRect()
+
+    const lineWidth = lineWidthOrHeight ? +lineWidthOrHeight : width
+    const lineHeight = lineWidthOrHeight ? +lineWidthOrHeight : height
     if (direction === 'horizontal') {
-      lineElement.style.width = `${width}px`
-      lineElement.style.left = `${left2 - left1}px`
+      lineElement.style.width = `${lineWidth}px`
+      lineElement.style.left = `${left2 - left1 + (width - lineWidth) / 2}px`
     } else {
-      lineElement.style.height = `${height}px`
-      lineElement.style.top = `${top2 - top1}px`
+      lineElement.style.height = `${lineHeight}px`
+      lineElement.style.top = `${top2 - top1 + (height - lineHeight) / 2}px`
     }
   }
 
@@ -106,7 +110,8 @@ const Tabs: React.FunctionComponent<Props> = props => {
   }
 
   return (
-    <div data-role={componentName} className={classes(sc('wrapper', {vertical: direction === 'vertical'}), className)} style={style}>
+    <div data-role={componentName} className={classes(sc('wrapper', {vertical: direction === 'vertical'}), className)}
+         style={style}>
       <div className={sc('nav')} ref={tabsHeadRef}>
         {renderLayout(renderTabsNav)}
         <div className={sc('nav-line')} ref={lineRef}/>
