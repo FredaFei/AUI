@@ -6,6 +6,7 @@
 | activeKey         |当前激活tab面板的key |String |—— |—— |
 | defaultActiveKey |初始化选中面板的 key |String |—— |—— |
 | direction |tab面板排序样式 |String |horizontal |`vertical` |
+| lineWidthOrHeight |tab 选中时下线条宽/高 |String/Number |—— |—— |
 | className      |自定义类名  |String |—— |—— |
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onChange    | 切换面板的回调 |       (key) => void |—— |—— |

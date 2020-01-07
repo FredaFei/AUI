@@ -7,6 +7,7 @@ import content1 from "./markdown/tabs-demo-1.md";
 import content2 from "./markdown/tabs-demo-2.md";
 import content3 from "./markdown/tabs-demo-3.md";
 import content4 from "./markdown/tabs-demo-4.md";
+import content5 from "./markdown/tabs-demo-5.md";
 import CodeBox from "./codeBox";
 import Markdown from "./markdown";
 import doc from "./markdown/tabs-doc.md";
@@ -46,6 +47,21 @@ export default function (props: any) {
         </Tabs>
         <CodeBox content={content2}/>
       </div>
+      <h3>自定义下标线高度</h3>
+      <div className="exp-section">
+        <Tabs direction="vertical" lineWidthOrHeight="26">
+          <TabPane tab="sport" key="sport1">
+            Content of Tab Pane 1
+          </TabPane>
+          <TabPane tab="music" key="music1">
+            Content of Tab Pane 2
+          </TabPane>
+          <TabPane tab="art" key="art1">
+            Content of Tab Pane 3
+          </TabPane>
+        </Tabs>
+        <CodeBox content={content3}/>
+      </div>
       <h3>手动更新</h3>
       <div className="exp-section">
         <Tabs activeKey={tabs} onChange={value => { setTabs(value)}}>
@@ -59,7 +75,7 @@ export default function (props: any) {
             Content of Tab Pane 3
           </TabPane>
         </Tabs>
-        <CodeBox content={content3}/>
+        <CodeBox content={content4}/>
       </div>
       <h3>禁用</h3>
       <div className="exp-section">
@@ -74,7 +90,7 @@ export default function (props: any) {
             Content of Tab Pane 3
           </TabPane>
         </Tabs>
-        <CodeBox content={content4}/>
+        <CodeBox content={content5}/>
       </div>
       <Markdown source={doc}/>
     </div>
