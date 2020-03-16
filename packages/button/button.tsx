@@ -1,10 +1,10 @@
-import * as React from 'react'
-import classes, {createScopedClasses} from '../utils/classnames'
-import Icon from '../icon/icon'
-import './style'
+import * as React from 'react';
+import classes, { createScopedClasses } from '../utils/classnames';
+import Icon from '../icon/icon';
+import './style';
 
-const componentName = 'Button'
-const sc = createScopedClasses(componentName)
+const componentName = 'Button';
+const sc = createScopedClasses(componentName);
 
 export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, ''> {
   icon?: string
@@ -14,10 +14,10 @@ export interface Props extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement
 
 const Button: React.FunctionComponent<Props> = props => {
   const handleClick = (e: React.MouseEvent): any => {
-    const {onClick} = props
-    onClick && (onClick as React.MouseEventHandler)(e)
-  }
-  const {icon, iconPosition, style, className, children, ...rest} = props
+    const {onClick} = props;
+    onClick && (onClick as React.MouseEventHandler)(e);
+  };
+  const {icon, iconPosition, style, className, children, ...rest} = props;
   let renderButtonBody = () => {
     return icon ? (
       <div className={classes(sc('body'), [
@@ -26,8 +26,8 @@ const Button: React.FunctionComponent<Props> = props => {
         <Icon name={icon} className="icon-name"/>
         <span className={sc('content')}>{children}</span>
       </div>
-    ) : <span className={sc('content')}>{children}</span>
-  }
+    ) : <span className={sc('content')}>{children}</span>;
+  };
   return <button
     {...rest}
     data-role={componentName}
@@ -36,10 +36,10 @@ const Button: React.FunctionComponent<Props> = props => {
     onClick={handleClick}
   >
     {renderButtonBody()}
-  </button>
-}
-Button.displayName = componentName
+  </button>;
+};
+Button.displayName = componentName;
 Button.defaultProps = {
   iconPosition: 'left'
-}
-export default Button
+};
+export default Button;
