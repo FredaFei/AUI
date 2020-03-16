@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="jest tests" tests="141" failures="0" time="39.514">
-  <testsuite name="测试 Validator 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T01:59:48" time="6.791" tests="7">
-    <testcase classname="测试 Validator 以下行为 基本验证" name="测试 Validator 以下行为 基本验证" time="0.002">
+<testsuites name="jest tests" tests="141" failures="0" time="21.185">
+  <testsuite name="测试 Validator 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:27" time="4.705" tests="7">
+    <testcase classname="测试 Validator 以下行为 基本验证" name="测试 Validator 以下行为 基本验证" time="0.003">
     </testcase>
-    <testcase classname="测试 Validator 以下行为 基本验证，是否必填" name="测试 Validator 以下行为 基本验证，是否必填" time="0.003">
+    <testcase classname="测试 Validator 以下行为 基本验证，是否必填" name="测试 Validator 以下行为 基本验证，是否必填" time="0.002">
     </testcase>
     <testcase classname="测试 Validator 以下行为 基本验证，最小长度" name="测试 Validator 以下行为 基本验证，最小长度" time="0.002">
     </testcase>
@@ -13,321 +13,321 @@
     </testcase>
     <testcase classname="测试 Validator 以下行为 基本验证，自定义验证器" name="测试 Validator 以下行为 基本验证，自定义验证器" time="0.004">
     </testcase>
-    <testcase classname="测试 Validator 以下行为 基本验证，自定义异步验证器" name="测试 Validator 以下行为 基本验证，自定义异步验证器" time="0.036">
+    <testcase classname="测试 Validator 以下行为 基本验证，自定义异步验证器" name="测试 Validator 以下行为 基本验证，自定义异步验证器" time="0.012">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Header 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T01:59:55" time="0.726" tests="3">
-    <testcase classname="测试 Header 以下行为 Header 存在" name="测试 Header 以下行为 Header 存在" time="0.013">
+  <testsuite name="测试 Tabs 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:32" time="1.257" tests="10">
+    <testcase classname="测试 Tabs 以下行为 Tabs 存在" name="测试 Tabs 以下行为 Tabs 存在" time="0.008">
     </testcase>
-    <testcase classname="测试 Header 以下行为 Header 设置 自定义类名" name="测试 Header 以下行为 Header 设置 自定义类名" time="0.006">
+    <testcase classname="测试 Tabs 以下行为 Tabs defaultActiveKey &amp; direction 默认为 &quot;key1&quot; " name="测试 Tabs 以下行为 Tabs defaultActiveKey &amp; direction 默认为 &quot;key1&quot; " time="0.126">
     </testcase>
-    <testcase classname="测试 Header 以下行为 Header 设置 自定义样式" name="测试 Header 以下行为 Header 设置 自定义样式" time="0.025">
+    <testcase classname="测试 Tabs 以下行为 Tabs 组件的子组件只能是 TabPane组件 " name="测试 Tabs 以下行为 Tabs 组件的子组件只能是 TabPane组件 " time="0.035">
     </testcase>
-  </testsuite>
-  <testsuite name="测试 DatePicker 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T01:59:56" time="2.516" tests="6">
-    <testcase classname="测试 DatePicker 以下行为 DatePicker 存在" name="测试 DatePicker 以下行为 DatePicker 存在" time="0.011">
+    <testcase classname="测试 Tabs 以下行为 Tabs 设置 direction 默认为 &quot;vertical&quot; " name="测试 Tabs 以下行为 Tabs 设置 direction 默认为 &quot;vertical&quot; " time="0.041">
     </testcase>
-    <testcase classname="测试 DatePicker 以下行为 DatePicker disabled/firstDayOfWeek, 默认值" name="测试 DatePicker 以下行为 DatePicker disabled/firstDayOfWeek, 默认值" time="0.05">
+    <testcase classname="测试 Tabs 以下行为 Tabs 设置 defaultActiveKey" name="测试 Tabs 以下行为 Tabs 设置 defaultActiveKey" time="0.023">
     </testcase>
-    <testcase classname="测试 DatePicker 以下行为 DatePicker 设置 disabled/firstDayOfWeek/value" name="测试 DatePicker 以下行为 DatePicker 设置 disabled/firstDayOfWeek/value" time="0.017">
+    <testcase classname="测试 Tabs 以下行为 Tabs 设置 lineWidthOrHeight" name="测试 Tabs 以下行为 Tabs 设置 lineWidthOrHeight" time="0.015">
     </testcase>
-    <testcase classname="测试 DatePicker 以下行为 DatePicker 点击 input,触发 open &amp; onChange 事件" name="测试 DatePicker 以下行为 DatePicker 点击 input,触发 open &amp; onChange 事件" time="1.409">
+    <testcase classname="测试 Tabs 以下行为 Tabs 设置 activeKey" name="测试 Tabs 以下行为 Tabs 设置 activeKey" time="0.027">
     </testcase>
-    <testcase classname="测试 DatePicker 以下行为 DatePicker 设置 自定义类名" name="测试 DatePicker 以下行为 DatePicker 设置 自定义类名" time="0.007">
+    <testcase classname="测试 Tabs 以下行为 Tabs 触发 onChange ,disabled 时不触发" name="测试 Tabs 以下行为 Tabs 触发 onChange ,disabled 时不触发" time="0.137">
     </testcase>
-    <testcase classname="测试 DatePicker 以下行为 DatePicker 设置 自定义样式" name="测试 DatePicker 以下行为 DatePicker 设置 自定义样式" time="0.043">
+    <testcase classname="测试 Tabs 以下行为 Tabs 设置 自定义类名" name="测试 Tabs 以下行为 Tabs 设置 自定义类名" time="0.004">
     </testcase>
-  </testsuite>
-  <testsuite name="测试 ControllCount 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T01:59:59" time="1.183" tests="9">
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 存在" name="测试 ControllCount 以下行为 ControllCount 存在" time="0.032">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount count/maxCount/minCount/readOnly, 默认值" name="测试 ControllCount 以下行为 ControllCount count/maxCount/minCount/readOnly, 默认值" time="0.04">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 count/maxCount/minCount/readOnly" name="测试 ControllCount 以下行为 ControllCount 设置 count/maxCount/minCount/readOnly" time="0.012">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 button click,触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 设置 button click,触发 onChange 事件" time="0.041">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" time="0.008">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" time="0.01">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 不触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 不触发 onChange 事件" time="0.014">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 自定义类名" name="测试 ControllCount 以下行为 ControllCount 设置 自定义类名" time="0.005">
-    </testcase>
-    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 自定义样式" name="测试 ControllCount 以下行为 ControllCount 设置 自定义样式" time="0.017">
+    <testcase classname="测试 Tabs 以下行为 Tabs 设置 自定义样式" name="测试 Tabs 以下行为 Tabs 设置 自定义样式" time="0.096">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Menu 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:00" time="1.413" tests="9">
-    <testcase classname="测试 Menu 以下行为 Menu 存在" name="测试 Menu 以下行为 Menu 存在" time="0.041">
+  <testsuite name="测试 Checkbox 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:33" time="0.713" tests="5">
+    <testcase classname="测试 Checkbox 以下行为 Checkbox 存在" name="测试 Checkbox 以下行为 Checkbox 存在" time="0.006">
     </testcase>
-    <testcase classname="测试 Menu 以下行为 Menu 参数 layout 默认值为“horizontal”" name="测试 Menu 以下行为 Menu 参数 layout 默认值为“horizontal”" time="0.038">
+    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 checked" name="测试 Checkbox 以下行为 Checkbox 设置 checked" time="0.038">
     </testcase>
-    <testcase classname="测试 Menu 以下行为 Menu 设置 selected" name="测试 Menu 以下行为 Menu 设置 selected" time="0.032">
+    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 disabled" name="测试 Checkbox 以下行为 Checkbox 设置 disabled" time="0.009">
     </testcase>
-    <testcase classname="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" name="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" time="0.087">
+    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 indeterminate" name="测试 Checkbox 以下行为 Checkbox 设置 indeterminate" time="0.007">
     </testcase>
-    <testcase classname="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" name="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" time="0.078">
-    </testcase>
-    <testcase classname="测试 Menu 以下行为 MenuItem 设置 disalbed 值为“true”" name="测试 Menu 以下行为 MenuItem 设置 disalbed 值为“true”" time="0.208">
-    </testcase>
-    <testcase classname="测试 Menu 以下行为 SubMenu 设置 disalbed 值为“true”" name="测试 Menu 以下行为 SubMenu 设置 disalbed 值为“true”" time="0.077">
-    </testcase>
-    <testcase classname="测试 Menu 以下行为 Menu 设置 自定义类名" name="测试 Menu 以下行为 Menu 设置 自定义类名" time="0.004">
-    </testcase>
-    <testcase classname="测试 Menu 以下行为 Menu 设置 自定义样式" name="测试 Menu 以下行为 Menu 设置 自定义样式" time="0.047">
+    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 onChange" name="测试 Checkbox 以下行为 Checkbox 设置 onChange" time="0.009">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Tabs 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:04" time="3.843" tests="10">
-    <testcase classname="测试 Tabs 以下行为 Tabs 存在" name="测试 Tabs 以下行为 Tabs 存在" time="0.017">
+  <testsuite name="测试 Header 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:34" time="0.835" tests="3">
+    <testcase classname="测试 Header 以下行为 Footer 存在" name="测试 Header 以下行为 Footer 存在" time="0.006">
     </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs defaultActiveKey &amp; direction 默认为 &quot;key1&quot; " name="测试 Tabs 以下行为 Tabs defaultActiveKey &amp; direction 默认为 &quot;key1&quot; " time="0.353">
+    <testcase classname="测试 Header 以下行为 Footer 设置 自定义类名" name="测试 Header 以下行为 Footer 设置 自定义类名" time="0.007">
     </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 组件的子组件只能是 TabPane组件 " name="测试 Tabs 以下行为 Tabs 组件的子组件只能是 TabPane组件 " time="0.189">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 设置 direction 默认为 &quot;vertical&quot; " name="测试 Tabs 以下行为 Tabs 设置 direction 默认为 &quot;vertical&quot; " time="0.153">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 设置 defaultActiveKey" name="测试 Tabs 以下行为 Tabs 设置 defaultActiveKey" time="0.013">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 设置 lineWidthOrHeight" name="测试 Tabs 以下行为 Tabs 设置 lineWidthOrHeight" time="0.011">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 设置 activeKey" name="测试 Tabs 以下行为 Tabs 设置 activeKey" time="0.086">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 触发 onChange ,disabled 时不触发" name="测试 Tabs 以下行为 Tabs 触发 onChange ,disabled 时不触发" time="0.346">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 设置 自定义类名" name="测试 Tabs 以下行为 Tabs 设置 自定义类名" time="0.005">
-    </testcase>
-    <testcase classname="测试 Tabs 以下行为 Tabs 设置 自定义样式" name="测试 Tabs 以下行为 Tabs 设置 自定义样式" time="0.285">
+    <testcase classname="测试 Header 以下行为 Footer 设置 自定义样式" name="测试 Header 以下行为 Footer 设置 自定义样式" time="0.011">
     </testcase>
   </testsuite>
-  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:09" time="1.037" tests="2">
-    <testcase classname="classes 接受1个className" name="classes 接受1个className" time="0.002">
+  <testsuite name="测试 Pager 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:35" time="0.915" tests="7">
+    <testcase classname="测试 Pager 以下行为 Pager 存在" name="测试 Pager 以下行为 Pager 存在" time="0.009">
     </testcase>
-    <testcase classname="classes 接受1个className,返回作用域类名" name="classes 接受1个className,返回作用域类名" time="0.002">
+    <testcase classname="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" name="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" time="0.045">
     </testcase>
-  </testsuite>
-  <testsuite name="测试 Checkbox 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:11" time="1.311" tests="5">
-    <testcase classname="测试 Checkbox 以下行为 Checkbox 存在" name="测试 Checkbox 以下行为 Checkbox 存在" time="0.043">
+    <testcase classname="测试 Pager 以下行为 Pager 设置 快捷跳转" name="测试 Pager 以下行为 Pager 设置 快捷跳转" time="0.024">
     </testcase>
-    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 checked" name="测试 Checkbox 以下行为 Checkbox 设置 checked" time="0.239">
+    <testcase classname="测试 Pager 以下行为 Pager 手动触发 onChange" name="测试 Pager 以下行为 Pager 手动触发 onChange" time="0.054">
     </testcase>
-    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 disabled" name="测试 Checkbox 以下行为 Checkbox 设置 disabled" time="0.017">
+    <testcase classname="测试 Pager 以下行为 Pager 点击加载更多页" name="测试 Pager 以下行为 Pager 点击加载更多页" time="0.07">
     </testcase>
-    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 indeterminate" name="测试 Checkbox 以下行为 Checkbox 设置 indeterminate" time="0.012">
+    <testcase classname="测试 Pager 以下行为 Pager 点击上一页" name="测试 Pager 以下行为 Pager 点击上一页" time="0.038">
     </testcase>
-    <testcase classname="测试 Checkbox 以下行为 Checkbox 设置 onChange" name="测试 Checkbox 以下行为 Checkbox 设置 onChange" time="0.037">
+    <testcase classname="测试 Pager 以下行为 Pager 点击下一页" name="测试 Pager 以下行为 Pager 点击下一页" time="0.042">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Carousel 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:14" time="1.247" tests="6">
-    <testcase classname="测试 Carousel 以下行为 Carousel 存在" name="测试 Carousel 以下行为 Carousel 存在" time="0.01">
+  <testsuite name="测试 Input 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:36" time="0.681" tests="11">
+    <testcase classname="测试 Input 以下行为 Input 存在" name="测试 Input 以下行为 Input 存在" time="0.005">
     </testcase>
-    <testcase classname="测试 Carousel 以下行为 Carousel 默认属性 animation/autoPlay/duration/indicator" name="测试 Carousel 以下行为 Carousel 默认属性 animation/autoPlay/duration/indicator" time="0.052">
-    </testcase>
-    <testcase classname="测试 Carousel 以下行为 Carousel 设置 autoPlay" name="测试 Carousel 以下行为 Carousel 设置 autoPlay" time="0.026">
-    </testcase>
-    <testcase classname="测试 Carousel 以下行为 Carousel 设置 indicator" name="测试 Carousel 以下行为 Carousel 设置 indicator" time="0.013">
-    </testcase>
-    <testcase classname="测试 Carousel 以下行为 Carousel 设置 duration" name="测试 Carousel 以下行为 Carousel 设置 duration" time="0.008">
-    </testcase>
-    <testcase classname="测试 Carousel 以下行为 Carousel 设置 animation" name="测试 Carousel 以下行为 Carousel 设置 animation" time="0.008">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Layout 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:15" time="0.696" tests="5">
-    <testcase classname="测试 Layout 以下行为 Layout 存在" name="测试 Layout 以下行为 Layout 存在" time="0.007">
-    </testcase>
-    <testcase classname="测试 Layout 以下行为 layout 上中下布局" name="测试 Layout 以下行为 layout 上中下布局" time="0.014">
-    </testcase>
-    <testcase classname="测试 Layout 以下行为 layout 侧边栏布局" name="测试 Layout 以下行为 layout 侧边栏布局" time="0.048">
-    </testcase>
-    <testcase classname="测试 Layout 以下行为 Layout 设置 自定义类名" name="测试 Layout 以下行为 Layout 设置 自定义类名" time="0.003">
-    </testcase>
-    <testcase classname="测试 Layout 以下行为 Layout 设置 自定义样式" name="测试 Layout 以下行为 Layout 设置 自定义样式" time="0.027">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Switch 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:16" time="1.205" tests="8">
-    <testcase classname="测试 Switch 以下行为 Switch 存在" name="测试 Switch 以下行为 Switch 存在" time="0.007">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 设置 defaultChecked" name="测试 Switch 以下行为 Switch 设置 defaultChecked" time="0.059">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 设置 checked" name="测试 Switch 以下行为 Switch 设置 checked" time="0.016">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 设置 disabled" name="测试 Switch 以下行为 Switch 设置 disabled" time="0.011">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 手动点击，自动触发 state.checked &amp; props.onChange" name="测试 Switch 以下行为 Switch 手动点击，自动触发 state.checked &amp; props.onChange" time="0.015">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 手动触发 onChange" name="测试 Switch 以下行为 Switch 手动触发 onChange" time="0.011">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 设置 自定义类名" name="测试 Switch 以下行为 Switch 设置 自定义类名" time="0.004">
-    </testcase>
-    <testcase classname="测试 Switch 以下行为 Switch 设置 自定义样式" name="测试 Switch 以下行为 Switch 设置 自定义样式" time="0.01">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Pager 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:18" time="1.003" tests="7">
-    <testcase classname="测试 Pager 以下行为 Pager 存在" name="测试 Pager 以下行为 Pager 存在" time="0.008">
-    </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" name="测试 Pager 以下行为 Pager 设置 defaultCurrent &amp; total" time="0.058">
-    </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 设置 快捷跳转" name="测试 Pager 以下行为 Pager 设置 快捷跳转" time="0.033">
-    </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 手动触发 onChange" name="测试 Pager 以下行为 Pager 手动触发 onChange" time="0.034">
-    </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 点击加载更多页" name="测试 Pager 以下行为 Pager 点击加载更多页" time="0.047">
-    </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 点击上一页" name="测试 Pager 以下行为 Pager 点击上一页" time="0.032">
-    </testcase>
-    <testcase classname="测试 Pager 以下行为 Pager 点击下一页" name="测试 Pager 以下行为 Pager 点击下一页" time="0.03">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Aside 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:20" time="0.645" tests="3">
-    <testcase classname="测试 Aside 以下行为 Aside 存在" name="测试 Aside 以下行为 Aside 存在" time="0.007">
-    </testcase>
-    <testcase classname="测试 Aside 以下行为 Aside 设置 自定义类名" name="测试 Aside 以下行为 Aside 设置 自定义类名" time="0.008">
-    </testcase>
-    <testcase classname="测试 Aside 以下行为 Aside 设置 自定义样式" name="测试 Aside 以下行为 Aside 设置 自定义样式" time="0.01">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Col 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:21" time="0.614" tests="7">
-    <testcase classname="测试 Col 以下行为 Col 存在" name="测试 Col 以下行为 Col 存在" time="0.006">
-    </testcase>
-    <testcase classname="测试 Col 以下行为 Col 设置 span" name="测试 Col 以下行为 Col 设置 span" time="0.036">
-    </testcase>
-    <testcase classname="测试 Col 以下行为 Col 设置 gutter" name="测试 Col 以下行为 Col 设置 gutter" time="0.019">
-    </testcase>
-    <testcase classname="测试 Col 以下行为 Col 设置 span,gutter,offset 默认均为0" name="测试 Col 以下行为 Col 设置 span,gutter,offset 默认均为0" time="0.005">
-    </testcase>
-    <testcase classname="测试 Col 以下行为 Col 设置 offset" name="测试 Col 以下行为 Col 设置 offset" time="0.008">
-    </testcase>
-    <testcase classname="测试 Col 以下行为 Col 设置 自定义类名" name="测试 Col 以下行为 Col 设置 自定义类名" time="0.003">
-    </testcase>
-    <testcase classname="测试 Col 以下行为 Col 设置 自定义样式" name="测试 Col 以下行为 Col 设置 自定义样式" time="0.008">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Scroll 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:22" time="0.945" tests="2">
-    <testcase classname="测试 Scroll 以下行为 Scroll 存在" name="测试 Scroll 以下行为 Scroll 存在" time="0.008">
-    </testcase>
-    <testcase classname="测试 Scroll 以下行为 Scroll 设置 pullingHeight" name="测试 Scroll 以下行为 Scroll 设置 pullingHeight" time="0.042">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Collapse 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:23" time="0.633" tests="5">
-    <testcase classname="测试 Collapse 以下行为 Collapse 存在" name="测试 Collapse 以下行为 Collapse 存在" time="0.005">
-    </testcase>
-    <testcase classname="测试 Collapse 以下行为 Collapse 设置 defaultActiveKey" name="测试 Collapse 以下行为 Collapse 设置 defaultActiveKey" time="0.062">
-    </testcase>
-    <testcase classname="测试 Collapse 以下行为 Collapse 设置 activeKey" name="测试 Collapse 以下行为 Collapse 设置 activeKey" time="0.017">
-    </testcase>
-    <testcase classname="测试 Collapse 以下行为 Collapse 设置 accordion" name="测试 Collapse 以下行为 Collapse 设置 accordion" time="0.045">
-    </testcase>
-    <testcase classname="测试 Collapse 以下行为 Collapse 设置 onChange" name="测试 Collapse 以下行为 Collapse 设置 onChange" time="0.022">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Input 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:23" time="0.507" tests="11">
-    <testcase classname="测试 Input 以下行为 Input 存在" name="测试 Input 以下行为 Input 存在" time="0.004">
-    </testcase>
-    <testcase classname="测试 Input 以下行为 Input type/errorPosition/labelPosition 默认值分别为 text、right、top" name="测试 Input 以下行为 Input type/errorPosition/labelPosition 默认值分别为 text、right、top" time="0.023">
+    <testcase classname="测试 Input 以下行为 Input type/errorPosition/labelPosition 默认值分别为 text、right、top" name="测试 Input 以下行为 Input type/errorPosition/labelPosition 默认值分别为 text、right、top" time="0.024">
     </testcase>
     <testcase classname="测试 Input 以下行为 Input 设置 size" name="测试 Input 以下行为 Input 设置 size" time="0.014">
     </testcase>
-    <testcase classname="测试 Input 以下行为 Input 设置 type" name="测试 Input 以下行为 Input 设置 type" time="0.016">
+    <testcase classname="测试 Input 以下行为 Input 设置 type" name="测试 Input 以下行为 Input 设置 type" time="0.012">
     </testcase>
     <testcase classname="测试 Input 以下行为 Input 设置 label &amp; labelPosition" name="测试 Input 以下行为 Input 设置 label &amp; labelPosition" time="0.005">
     </testcase>
     <testcase classname="测试 Input 以下行为 Input 设置 error &amp; errorPosition" name="测试 Input 以下行为 Input 设置 error &amp; errorPosition" time="0.007">
     </testcase>
-    <testcase classname="测试 Input 以下行为 Input 设置 onEnter、onKeyDown、onChange 事件" name="测试 Input 以下行为 Input 设置 onEnter、onKeyDown、onChange 事件" time="0.009">
+    <testcase classname="测试 Input 以下行为 Input 设置 onEnter、onKeyDown、onChange 事件" name="测试 Input 以下行为 Input 设置 onEnter、onKeyDown、onChange 事件" time="0.008">
     </testcase>
-    <testcase classname="测试 Input 以下行为 Input 设置 before &amp; after" name="测试 Input 以下行为 Input 设置 before &amp; after" time="0.01">
+    <testcase classname="测试 Input 以下行为 Input 设置 before &amp; after" name="测试 Input 以下行为 Input 设置 before &amp; after" time="0.024">
     </testcase>
-    <testcase classname="测试 Input 以下行为 Input 设置 addOnBefore &amp; addOnAfter" name="测试 Input 以下行为 Input 设置 addOnBefore &amp; addOnAfter" time="0.011">
+    <testcase classname="测试 Input 以下行为 Input 设置 addOnBefore &amp; addOnAfter" name="测试 Input 以下行为 Input 设置 addOnBefore &amp; addOnAfter" time="0.016">
     </testcase>
-    <testcase classname="测试 Input 以下行为 Input 设置 自定义类名" name="测试 Input 以下行为 Input 设置 自定义类名" time="0.004">
+    <testcase classname="测试 Input 以下行为 Input 设置 自定义类名" name="测试 Input 以下行为 Input 设置 自定义类名" time="0.028">
     </testcase>
-    <testcase classname="测试 Input 以下行为 Input 设置 自定义样式" name="测试 Input 以下行为 Input 设置 自定义样式" time="0.007">
+    <testcase classname="测试 Input 以下行为 Input 设置 自定义样式" name="测试 Input 以下行为 Input 设置 自定义样式" time="0.009">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Button 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:24" time="0.627" tests="6">
+  <testsuite name="测试 Menu 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:37" time="0.609" tests="9">
+    <testcase classname="测试 Menu 以下行为 Menu 存在" name="测试 Menu 以下行为 Menu 存在" time="0.008">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 Menu 参数 layout 默认值为“horizontal”" name="测试 Menu 以下行为 Menu 参数 layout 默认值为“horizontal”" time="0.024">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 Menu 设置 selected" name="测试 Menu 以下行为 Menu 设置 selected" time="0.025">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" name="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" time="0.025">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" name="测试 Menu 以下行为 Menu 点击menuItem 触发onChange" time="0.041">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 MenuItem 设置 disalbed 值为“true”" name="测试 Menu 以下行为 MenuItem 设置 disalbed 值为“true”" time="0.009">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 SubMenu 设置 disalbed 值为“true”" name="测试 Menu 以下行为 SubMenu 设置 disalbed 值为“true”" time="0.027">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 Menu 设置 自定义类名" name="测试 Menu 以下行为 Menu 设置 自定义类名" time="0.004">
+    </testcase>
+    <testcase classname="测试 Menu 以下行为 Menu 设置 自定义样式" name="测试 Menu 以下行为 Menu 设置 自定义样式" time="0.008">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Scroll 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:37" time="0.577" tests="2">
+    <testcase classname="测试 Scroll 以下行为 Scroll 存在" name="测试 Scroll 以下行为 Scroll 存在" time="0.006">
+    </testcase>
+    <testcase classname="测试 Scroll 以下行为 Scroll 设置 pullingHeight" name="测试 Scroll 以下行为 Scroll 设置 pullingHeight" time="0.024">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 ControllCount 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:38" time="0.42" tests="9">
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 存在" name="测试 ControllCount 以下行为 ControllCount 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount count/maxCount/minCount/readOnly, 默认值" name="测试 ControllCount 以下行为 ControllCount count/maxCount/minCount/readOnly, 默认值" time="0.024">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 count/maxCount/minCount/readOnly" name="测试 ControllCount 以下行为 ControllCount 设置 count/maxCount/minCount/readOnly" time="0.007">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 button click,触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 设置 button click,触发 onChange 事件" time="0.015">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" time="0.006">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 设置 button click,不触发 onChange 事件" time="0.007">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 不触发 onChange 事件" name="测试 ControllCount 以下行为 ControllCount 不触发 onChange 事件" time="0.01">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 自定义类名" name="测试 ControllCount 以下行为 ControllCount 设置 自定义类名" time="0.005">
+    </testcase>
+    <testcase classname="测试 ControllCount 以下行为 ControllCount 设置 自定义样式" name="测试 ControllCount 以下行为 ControllCount 设置 自定义样式" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 DatePicker 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:39" time="0.719" tests="6">
+    <testcase classname="测试 DatePicker 以下行为 DatePicker 存在" name="测试 DatePicker 以下行为 DatePicker 存在" time="0.007">
+    </testcase>
+    <testcase classname="测试 DatePicker 以下行为 DatePicker disabled/firstDayOfWeek, 默认值" name="测试 DatePicker 以下行为 DatePicker disabled/firstDayOfWeek, 默认值" time="0.033">
+    </testcase>
+    <testcase classname="测试 DatePicker 以下行为 DatePicker 设置 disabled/firstDayOfWeek/value" name="测试 DatePicker 以下行为 DatePicker 设置 disabled/firstDayOfWeek/value" time="0.013">
+    </testcase>
+    <testcase classname="测试 DatePicker 以下行为 DatePicker 点击 input,触发 open &amp; onChange 事件" name="测试 DatePicker 以下行为 DatePicker 点击 input,触发 open &amp; onChange 事件" time="0.083">
+    </testcase>
+    <testcase classname="测试 DatePicker 以下行为 DatePicker 设置 自定义类名" name="测试 DatePicker 以下行为 DatePicker 设置 自定义类名" time="0.019">
+    </testcase>
+    <testcase classname="测试 DatePicker 以下行为 DatePicker 设置 自定义样式" name="测试 DatePicker 以下行为 DatePicker 设置 自定义样式" time="0.019">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Col 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:39" time="0.388" tests="7">
+    <testcase classname="测试 Col 以下行为 Col 存在" name="测试 Col 以下行为 Col 存在" time="0.004">
+    </testcase>
+    <testcase classname="测试 Col 以下行为 Col 设置 span" name="测试 Col 以下行为 Col 设置 span" time="0.026">
+    </testcase>
+    <testcase classname="测试 Col 以下行为 Col 设置 gutter" name="测试 Col 以下行为 Col 设置 gutter" time="0.011">
+    </testcase>
+    <testcase classname="测试 Col 以下行为 Col 设置 span,gutter,offset 默认均为0" name="测试 Col 以下行为 Col 设置 span,gutter,offset 默认均为0" time="0.004">
+    </testcase>
+    <testcase classname="测试 Col 以下行为 Col 设置 offset" name="测试 Col 以下行为 Col 设置 offset" time="0.006">
+    </testcase>
+    <testcase classname="测试 Col 以下行为 Col 设置 自定义类名" name="测试 Col 以下行为 Col 设置 自定义类名" time="0.003">
+    </testcase>
+    <testcase classname="测试 Col 以下行为 Col 设置 自定义样式" name="测试 Col 以下行为 Col 设置 自定义样式" time="0.021">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Carousel 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:40" time="0.385" tests="6">
+    <testcase classname="测试 Carousel 以下行为 Carousel 存在" name="测试 Carousel 以下行为 Carousel 存在" time="0.007">
+    </testcase>
+    <testcase classname="测试 Carousel 以下行为 Carousel 默认属性 animation/autoPlay/duration/indicator" name="测试 Carousel 以下行为 Carousel 默认属性 animation/autoPlay/duration/indicator" time="0.024">
+    </testcase>
+    <testcase classname="测试 Carousel 以下行为 Carousel 设置 autoPlay" name="测试 Carousel 以下行为 Carousel 设置 autoPlay" time="0.006">
+    </testcase>
+    <testcase classname="测试 Carousel 以下行为 Carousel 设置 indicator" name="测试 Carousel 以下行为 Carousel 设置 indicator" time="0.007">
+    </testcase>
+    <testcase classname="测试 Carousel 以下行为 Carousel 设置 duration" name="测试 Carousel 以下行为 Carousel 设置 duration" time="0.006">
+    </testcase>
+    <testcase classname="测试 Carousel 以下行为 Carousel 设置 animation" name="测试 Carousel 以下行为 Carousel 设置 animation" time="0.005">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Collapse 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:40" time="0.462" tests="5">
+    <testcase classname="测试 Collapse 以下行为 Collapse 存在" name="测试 Collapse 以下行为 Collapse 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 Collapse 以下行为 Collapse 设置 defaultActiveKey" name="测试 Collapse 以下行为 Collapse 设置 defaultActiveKey" time="0.034">
+    </testcase>
+    <testcase classname="测试 Collapse 以下行为 Collapse 设置 activeKey" name="测试 Collapse 以下行为 Collapse 设置 activeKey" time="0.014">
+    </testcase>
+    <testcase classname="测试 Collapse 以下行为 Collapse 设置 accordion" name="测试 Collapse 以下行为 Collapse 设置 accordion" time="0.038">
+    </testcase>
+    <testcase classname="测试 Collapse 以下行为 Collapse 设置 onChange" name="测试 Collapse 以下行为 Collapse 设置 onChange" time="0.04">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Row 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:41" time="0.447" tests="7">
+    <testcase classname="测试 Row 以下行为 Row 存在" name="测试 Row 以下行为 Row 存在" time="0.004">
+    </testcase>
+    <testcase classname="测试 Row 以下行为 Row 设置 align,gutter,verticalAlign 默认值分别为left，0，top" name="测试 Row 以下行为 Row 设置 align,gutter,verticalAlign 默认值分别为left，0，top" time="0.022">
+    </testcase>
+    <testcase classname="测试 Row 以下行为 Row 设置 align" name="测试 Row 以下行为 Row 设置 align" time="0.01">
+    </testcase>
+    <testcase classname="测试 Row 以下行为 Row 设置 verticalAlign" name="测试 Row 以下行为 Row 设置 verticalAlign" time="0.006">
+    </testcase>
+    <testcase classname="测试 Row 以下行为 Row 设置 gutter" name="测试 Row 以下行为 Row 设置 gutter" time="0.009">
+    </testcase>
+    <testcase classname="测试 Row 以下行为 Row 设置 自定义类名" name="测试 Row 以下行为 Row 设置 自定义类名" time="0.003">
+    </testcase>
+    <testcase classname="测试 Row 以下行为 Row 设置 自定义样式" name="测试 Row 以下行为 Row 设置 自定义样式" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Switch 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:41" time="0.408" tests="8">
+    <testcase classname="测试 Switch 以下行为 Switch 存在" name="测试 Switch 以下行为 Switch 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 设置 defaultChecked" name="测试 Switch 以下行为 Switch 设置 defaultChecked" time="0.025">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 设置 checked" name="测试 Switch 以下行为 Switch 设置 checked" time="0.008">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 设置 disabled" name="测试 Switch 以下行为 Switch 设置 disabled" time="0.014">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 手动点击，自动触发 state.checked &amp; props.onChange" name="测试 Switch 以下行为 Switch 手动点击，自动触发 state.checked &amp; props.onChange" time="0.012">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 手动触发 onChange" name="测试 Switch 以下行为 Switch 手动触发 onChange" time="0.007">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 设置 自定义类名" name="测试 Switch 以下行为 Switch 设置 自定义类名" time="0.019">
+    </testcase>
+    <testcase classname="测试 Switch 以下行为 Switch 设置 自定义样式" name="测试 Switch 以下行为 Switch 设置 自定义样式" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Layout 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:42" time="0.367" tests="5">
+    <testcase classname="测试 Layout 以下行为 Layout 存在" name="测试 Layout 以下行为 Layout 存在" time="0.004">
+    </testcase>
+    <testcase classname="测试 Layout 以下行为 layout 上中下布局" name="测试 Layout 以下行为 layout 上中下布局" time="0.01">
+    </testcase>
+    <testcase classname="测试 Layout 以下行为 layout 侧边栏布局" name="测试 Layout 以下行为 layout 侧边栏布局" time="0.015">
+    </testcase>
+    <testcase classname="测试 Layout 以下行为 Layout 设置 自定义类名" name="测试 Layout 以下行为 Layout 设置 自定义类名" time="0.004">
+    </testcase>
+    <testcase classname="测试 Layout 以下行为 Layout 设置 自定义样式" name="测试 Layout 以下行为 Layout 设置 自定义样式" time="0.006">
+    </testcase>
+  </testsuite>
+  <testsuite name="classes" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:42" time="0.478" tests="2">
+    <testcase classname="classes 接受1个className" name="classes 接受1个className" time="0.002">
+    </testcase>
+    <testcase classname="classes 接受1个className,返回作用域类名" name="classes 接受1个className,返回作用域类名" time="0.001">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Radio 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:43" time="0.411" tests="6">
+    <testcase classname="测试 Radio 以下行为 Radio 存在" name="测试 Radio 以下行为 Radio 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 Radio 以下行为 Radio 设置 checked" name="测试 Radio 以下行为 Radio 设置 checked" time="0.026">
+    </testcase>
+    <testcase classname="测试 Radio 以下行为 Radio 设置 disabled" name="测试 Radio 以下行为 Radio 设置 disabled" time="0.007">
+    </testcase>
+    <testcase classname="测试 Radio 以下行为 Radio 设置 onChange" name="测试 Radio 以下行为 Radio 设置 onChange" time="0.011">
+    </testcase>
+    <testcase classname="测试 Radio 以下行为 Radio 设置 自定义类名" name="测试 Radio 以下行为 Radio 设置 自定义类名" time="0.008">
+    </testcase>
+    <testcase classname="测试 Radio 以下行为 Radio 设置 自定义样式" name="测试 Radio 以下行为 Radio 设置 自定义样式" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Aside 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:43" time="0.465" tests="3">
+    <testcase classname="测试 Aside 以下行为 Aside 存在" name="测试 Aside 以下行为 Aside 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 Aside 以下行为 Aside 设置 自定义类名" name="测试 Aside 以下行为 Aside 设置 自定义类名" time="0.01">
+    </testcase>
+    <testcase classname="测试 Aside 以下行为 Aside 设置 自定义样式" name="测试 Aside 以下行为 Aside 设置 自定义样式" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Header 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:44" time="0.752" tests="3">
+    <testcase classname="测试 Header 以下行为 Header 存在" name="测试 Header 以下行为 Header 存在" time="0.021">
+    </testcase>
+    <testcase classname="测试 Header 以下行为 Header 设置 自定义类名" name="测试 Header 以下行为 Header 设置 自定义类名" time="0.006">
+    </testcase>
+    <testcase classname="测试 Header 以下行为 Header 设置 自定义样式" name="测试 Header 以下行为 Header 设置 自定义样式" time="0.01">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Button 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:44" time="0.74" tests="6">
     <testcase classname="测试 Button 以下行为 Button 存在" name="测试 Button 以下行为 Button 存在" time="0.005">
     </testcase>
-    <testcase classname="测试 Button 以下行为 Button 带 icon,iconPosition默认left" name="测试 Button 以下行为 Button 带 icon,iconPosition默认left" time="0.025">
+    <testcase classname="测试 Button 以下行为 Button 带 icon,iconPosition默认left" name="测试 Button 以下行为 Button 带 icon,iconPosition默认left" time="0.032">
     </testcase>
-    <testcase classname="测试 Button 以下行为 Button 带 icon,iconPosition可设置" name="测试 Button 以下行为 Button 带 icon,iconPosition可设置" time="0.004">
+    <testcase classname="测试 Button 以下行为 Button 带 icon,iconPosition可设置" name="测试 Button 以下行为 Button 带 icon,iconPosition可设置" time="0.006">
     </testcase>
     <testcase classname="测试 Button 以下行为 Button 设置 onClick" name="测试 Button 以下行为 Button 设置 onClick" time="0.002">
     </testcase>
     <testcase classname="测试 Button 以下行为 Button 设置 自定义类名" name="测试 Button 以下行为 Button 设置 自定义类名" time="0.004">
     </testcase>
-    <testcase classname="测试 Button 以下行为 Button 设置 自定义样式" name="测试 Button 以下行为 Button 设置 自定义样式" time="0.009">
+    <testcase classname="测试 Button 以下行为 Button 设置 自定义样式" name="测试 Button 以下行为 Button 设置 自定义样式" time="0.04">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Main 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:25" time="0.322" tests="3">
-    <testcase classname="测试 Main 以下行为 Main 存在" name="测试 Main 以下行为 Main 存在" time="0.004">
+  <testsuite name="测试 Icon 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:45" time="0.695" tests="7">
+    <testcase classname="测试 Icon 以下行为 Icon 存在" name="测试 Icon 以下行为 Icon 存在" time="0.005">
     </testcase>
-    <testcase classname="测试 Main 以下行为 Main 设置 自定义类名" name="测试 Main 以下行为 Main 设置 自定义类名" time="0.004">
-    </testcase>
-    <testcase classname="测试 Main 以下行为 Main 设置 自定义样式" name="测试 Main 以下行为 Main 设置 自定义样式" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Row 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:25" time="0.394" tests="7">
-    <testcase classname="测试 Row 以下行为 Row 存在" name="测试 Row 以下行为 Row 存在" time="0.004">
-    </testcase>
-    <testcase classname="测试 Row 以下行为 Row 设置 align,gutter,verticalAlign 默认值分别为left，0，top" name="测试 Row 以下行为 Row 设置 align,gutter,verticalAlign 默认值分别为left，0，top" time="0.022">
-    </testcase>
-    <testcase classname="测试 Row 以下行为 Row 设置 align" name="测试 Row 以下行为 Row 设置 align" time="0.008">
-    </testcase>
-    <testcase classname="测试 Row 以下行为 Row 设置 verticalAlign" name="测试 Row 以下行为 Row 设置 verticalAlign" time="0.01">
-    </testcase>
-    <testcase classname="测试 Row 以下行为 Row 设置 gutter" name="测试 Row 以下行为 Row 设置 gutter" time="0.012">
-    </testcase>
-    <testcase classname="测试 Row 以下行为 Row 设置 自定义类名" name="测试 Row 以下行为 Row 设置 自定义类名" time="0.003">
-    </testcase>
-    <testcase classname="测试 Row 以下行为 Row 设置 自定义样式" name="测试 Row 以下行为 Row 设置 自定义样式" time="0.007">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Radio 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:25" time="0.38" tests="6">
-    <testcase classname="测试 Radio 以下行为 Radio 存在" name="测试 Radio 以下行为 Radio 存在" time="0.004">
-    </testcase>
-    <testcase classname="测试 Radio 以下行为 Radio 设置 checked" name="测试 Radio 以下行为 Radio 设置 checked" time="0.025">
-    </testcase>
-    <testcase classname="测试 Radio 以下行为 Radio 设置 disabled" name="测试 Radio 以下行为 Radio 设置 disabled" time="0.008">
-    </testcase>
-    <testcase classname="测试 Radio 以下行为 Radio 设置 onChange" name="测试 Radio 以下行为 Radio 设置 onChange" time="0.01">
-    </testcase>
-    <testcase classname="测试 Radio 以下行为 Radio 设置 自定义类名" name="测试 Radio 以下行为 Radio 设置 自定义类名" time="0.003">
-    </testcase>
-    <testcase classname="测试 Radio 以下行为 Radio 设置 自定义样式" name="测试 Radio 以下行为 Radio 设置 自定义样式" time="0.009">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 Icon 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:26" time="0.368" tests="7">
-    <testcase classname="测试 Icon 以下行为 Icon 存在" name="测试 Icon 以下行为 Icon 存在" time="0.004">
-    </testcase>
-    <testcase classname="测试 Icon 以下行为 Icon 设置 rotate" name="测试 Icon 以下行为 Icon 设置 rotate" time="0.02">
+    <testcase classname="测试 Icon 以下行为 Icon 设置 rotate" name="测试 Icon 以下行为 Icon 设置 rotate" time="0.032">
     </testcase>
     <testcase classname="测试 Icon 以下行为 Icon 设置 spin" name="测试 Icon 以下行为 Icon 设置 spin" time="0.004">
     </testcase>
-    <testcase classname="测试 Icon 以下行为 Icon 设置 loading" name="测试 Icon 以下行为 Icon 设置 loading" time="0.002">
+    <testcase classname="测试 Icon 以下行为 Icon 设置 loading" name="测试 Icon 以下行为 Icon 设置 loading" time="0.003">
     </testcase>
-    <testcase classname="测试 Icon 以下行为 Icon 设置 onClick" name="测试 Icon 以下行为 Icon 设置 onClick" time="0.001">
+    <testcase classname="测试 Icon 以下行为 Icon 设置 onClick" name="测试 Icon 以下行为 Icon 设置 onClick" time="0.002">
     </testcase>
-    <testcase classname="测试 Icon 以下行为 Icon 设置 自定义类名" name="测试 Icon 以下行为 Icon 设置 自定义类名" time="0.002">
+    <testcase classname="测试 Icon 以下行为 Icon 设置 自定义类名" name="测试 Icon 以下行为 Icon 设置 自定义类名" time="0.004">
     </testcase>
-    <testcase classname="测试 Icon 以下行为 Icon 设置 自定义样式" name="测试 Icon 以下行为 Icon 设置 自定义样式" time="0.006">
-    </testcase>
-  </testsuite>
-  <testsuite name="测试 ButtonGroup 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:26" time="0.339" tests="4">
-    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 存在" name="测试 ButtonGroup 以下行为 ButtonGroup 存在" time="0.006">
-    </testcase>
-    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 子组件不是Button组件时" name="测试 ButtonGroup 以下行为 ButtonGroup 子组件不是Button组件时" time="0.023">
-    </testcase>
-    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义类名" name="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义类名" time="0.004">
-    </testcase>
-    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义样式" name="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义样式" time="0.004">
+    <testcase classname="测试 Icon 以下行为 Icon 设置 自定义样式" name="测试 Icon 以下行为 Icon 设置 自定义样式" time="0.008">
     </testcase>
   </testsuite>
-  <testsuite name="测试 Header 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T02:00:27" time="0.393" tests="3">
-    <testcase classname="测试 Header 以下行为 Footer 存在" name="测试 Header 以下行为 Footer 存在" time="0.004">
+  <testsuite name="测试 ButtonGroup 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:46" time="0.701" tests="4">
+    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 存在" name="测试 ButtonGroup 以下行为 ButtonGroup 存在" time="0.011">
     </testcase>
-    <testcase classname="测试 Header 以下行为 Footer 设置 自定义类名" name="测试 Header 以下行为 Footer 设置 自定义类名" time="0.006">
+    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 子组件不是Button组件时" name="测试 ButtonGroup 以下行为 ButtonGroup 子组件不是Button组件时" time="0.048">
     </testcase>
-    <testcase classname="测试 Header 以下行为 Footer 设置 自定义样式" name="测试 Header 以下行为 Footer 设置 自定义样式" time="0.007">
+    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义类名" name="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义类名" time="0.006">
+    </testcase>
+    <testcase classname="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义样式" name="测试 ButtonGroup 以下行为 ButtonGroup 设置 自定义样式" time="0.007">
+    </testcase>
+  </testsuite>
+  <testsuite name="测试 Main 以下行为" errors="0" failures="0" skipped="0" timestamp="2020-03-16T03:04:47" time="0.692" tests="3">
+    <testcase classname="测试 Main 以下行为 Main 存在" name="测试 Main 以下行为 Main 存在" time="0.005">
+    </testcase>
+    <testcase classname="测试 Main 以下行为 Main 设置 自定义类名" name="测试 Main 以下行为 Main 设置 自定义类名" time="0.01">
+    </testcase>
+    <testcase classname="测试 Main 以下行为 Main 设置 自定义样式" name="测试 Main 以下行为 Main 设置 自定义样式" time="0.01">
     </testcase>
   </testsuite>
 </testsuites>
