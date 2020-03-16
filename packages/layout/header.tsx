@@ -4,9 +4,9 @@ import classes, { createScopedClasses } from '../utils/classnames'
 const componentName = 'Header'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends StyledProps { }
+interface Props extends StyledProps { }
 
-const Header: React.FunctionComponent<IProps> = props => {
+const Header: React.FunctionComponent<Props> = props => {
   const { className, ...rest } = props
   return (
     <div className={classes(sc(''), className)} {...rest}>

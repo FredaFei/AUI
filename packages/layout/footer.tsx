@@ -4,9 +4,9 @@ import classes, { createScopedClasses } from '../utils/classnames'
 const componentName = 'Footer'
 const sc = createScopedClasses(componentName)
 
-interface IProps extends StyledProps { }
+interface Props extends StyledProps { }
 
-const Footer: React.FunctionComponent<IProps> = (props) => {
+const Footer: React.FunctionComponent<Props> = (props) => {
   const { className, ...rest } = props
   return (
     <div className={classes(sc(''), className)} {...rest}>
