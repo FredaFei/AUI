@@ -5,12 +5,12 @@ import './style'
 const componentName = 'Radio'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   disabled?: boolean
   checked?: boolean
 }
 
-const Radio: React.FunctionComponent<IProps> = props => {
+const Radio: React.FunctionComponent<Props> = props => {
   const {disabled, checked, children, className, ...rest} = props
   return (
     <label className={classes(sc('wrapper', {disabled, checked}), className)}>
