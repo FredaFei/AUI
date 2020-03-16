@@ -1,12 +1,12 @@
-import * as React from 'react'
-import classes, {createScopedClasses} from '../utils/classnames'
+import * as React from 'react';
+import classes, { createScopedClasses } from '../utils/classnames';
 
-import './style'
+import './style';
 
-const componentName = 'Input'
-const sc = createScopedClasses(componentName)
+const componentName = 'Input';
+const sc = createScopedClasses(componentName);
 
-export interface IProps
+export interface Props
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   before?: string | React.ReactNode
   after?: string | React.ReactNode
@@ -29,7 +29,7 @@ export interface IProps
   onEnter?: React.KeyboardEventHandler<HTMLInputElement>
 }
 
-const Input: React.FunctionComponent<IProps> = props => {
+const Input: React.FunctionComponent<Props> = props => {
   const {
     label,
     labelPosition,
@@ -45,21 +45,21 @@ const Input: React.FunctionComponent<IProps> = props => {
     addOnAfter,
     onEnter,
     ...rest
-  } = props
+  } = props;
   const class1 = {
     'label-left': labelPosition === 'left',
     'label-top': labelPosition === 'top'
-  }
+  };
   const class2 = {
     'error-bottom': errorPosition === 'bottom',
     'error-right': errorPosition === 'right'
-  }
+  };
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === 13) {
-      onEnter && onEnter.call(null, e)
+      onEnter && onEnter.call(null, e);
     }
-    props.onKeyDown && props.onKeyDown.call(null, e)
-  }
+    props.onKeyDown && props.onKeyDown.call(null, e);
+  };
   return (
     <div
       className={sc('wrapper', class1, {
@@ -85,15 +85,15 @@ const Input: React.FunctionComponent<IProps> = props => {
         {error && <span className={sc('error', class2)}>{error}</span>}
       </div>
     </div>
-  )
-}
+  );
+};
 
-Input.displayName = componentName
+Input.displayName = componentName;
 Input.defaultProps = {
   errorPosition: 'right',
   type: 'text',
   labelPosition: 'top'
-}
-Input.propTypes = {}
+};
+Input.propTypes = {};
 
-export default Input
+export default Input;
