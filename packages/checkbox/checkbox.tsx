@@ -4,10 +4,10 @@ import './style'
 
 const componentName = 'Checkbox'
 const sc = createScopedClasses(componentName)
-export interface IProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   indeterminate?: boolean
 }
-const Checkbox: React.FunctionComponent<IProps> = props => {
+const Checkbox: React.FunctionComponent<Props> = props => {
   const {
     indeterminate,
     disabled,
