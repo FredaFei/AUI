@@ -5,13 +5,13 @@ import './style'
 const componentName = 'Col'
 const sc = createScopedClasses(componentName)
 
-export interface IProps extends StyledProps {
+export interface Props extends StyledProps {
   gutter?: number
   span?: number
   offset?: number
 }
 
-const Col: React.FunctionComponent<IProps> = props => {
+const Col: React.FunctionComponent<Props> = props => {
   const {gutter, span, offset, className, style, children} = props
   const styles = Object.assign(
     {
