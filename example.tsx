@@ -25,6 +25,7 @@ import UploaderExample from './examples/uploader.example'
 import PopoverExample from './examples/popover.example'
 import ScrollExample from './examples/scroll.example'
 import CarouselExample from './examples/carousel.example'
+import TreeExample from './examples/tree.example'
 import 'examples/index.scss'
 
 // @ts-ignore
@@ -65,6 +66,7 @@ const linkMap: Link = [
   { name: 'DatePicker', path: '/datePicker', text: 'DatePicker 日期选择器', component: DatePickerExample },
   { name: 'Uploader', path: '/uploader', text: 'Uploader 上传', component: UploaderExample },
   { name: 'Scroll', path: '/scroll', text: 'Scroll 滚动加载', component: ScrollExample },
+  { name: 'Tree', path: '/tree', text: 'Tree 树形组件', component: TreeExample },
 ]
 
 const A = (props: any) => {
