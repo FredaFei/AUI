@@ -45,19 +45,35 @@ export default function (props: any) {
       ],
     }
   ]);
-  const [selected, setSelected] = useState(['1.1.1']);
-  const onChange = (item: SourceItem, checked: boolean) => {
+  const [selected, setSelected] = useState(['1.1']);
+  const [selectedValues, setSelectedValues] = useState(['1.1.1','2.1']);
+  const onChange1 = (item: SourceItem, checked: boolean) => {
     if (checked) {
-      setSelected([...selected, item.value]);
+      setSelected([item.value]);
     } else {
-      setSelected(selected.filter(i => i !== item.value));
+      setSelected([]);
+    }
+  };
+  const onChange2 = (item: SourceItem, checked: boolean) => {
+    if (checked) {
+      setSelectedValues([...selectedValues, item.value]);
+    } else {
+      setSelectedValues(selectedValues.filter(i => i !== item.value));
     }
   };
   return (
     <div className="exp-box">
       <h3>基础应用</h3>
       <div className="exp-section">
-        <Tree sourceData={data} selected={selected} onChange={onChange}/>
+        <p>多选</p>
+        <p>selectedValues: {selectedValues}</p>
+        <Tree sourceData={data} selected={selectedValues} onChange={onChange2}/>
+        <CodeBox content={content1}/>
+      </div>
+      <div className="exp-section">
+        <p>单选</p>
+        <p>selected: {selected}</p>
+        <Tree sourceData={data} selected={selected} onChange={onChange1} multiple={false}/>
         <CodeBox content={content1}/>
       </div>
       <Markdown source={doc}/>
