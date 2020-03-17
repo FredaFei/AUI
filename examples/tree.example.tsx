@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tree,{SourceItem} from '../packages/tree/tree';
+import Tree, { SourceItem } from '../packages/tree/tree';
 
 import content1 from './markdown/tree-demo-1.md';
 import CodeBox from './codeBox';
@@ -8,7 +8,7 @@ import doc from './markdown/tree-doc.md';
 import { useState } from 'react';
 
 export default function (props: any) {
-  const [data, setData] = useState<SourceItem[]>([
+  const [data] = useState<SourceItem[]>([
     {
       text: '1',
       value: '1',
@@ -16,7 +16,17 @@ export default function (props: any) {
         {
           text: '1.1',
           value: '1.1',
-        },{
+          children: [
+            {
+              text: '1.1.1',
+              value: '1.1.1',
+            },
+            {
+              text: '1.1.2',
+              value: '1.1.2',
+            }
+          ]
+        }, {
           text: '1.2',
           value: '1.2',
         },
@@ -28,18 +38,26 @@ export default function (props: any) {
         {
           text: '2.1',
           value: '2.1',
-        },{
+        }, {
           text: '2.2',
           value: '2.2',
         }
       ],
     }
   ]);
+  const [selected, setSelected] = useState(['1.1.1']);
+  const onChange = (item: SourceItem, checked: boolean) => {
+    if (checked) {
+      setSelected([...selected, item.value]);
+    } else {
+      setSelected(selected.filter(i => i !== item.value));
+    }
+  };
   return (
     <div className="exp-box">
       <h3>基础应用</h3>
       <div className="exp-section">
-        <Tree sourceData={data}/>
+        <Tree sourceData={data} selected={selected} onChange={onChange}/>
         <CodeBox content={content1}/>
       </div>
       <Markdown source={doc}/>
