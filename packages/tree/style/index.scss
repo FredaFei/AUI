@@ -1,4 +1,17 @@
 @import 'var';
-#{component(tree)} {
 
+#{component(tree)} {
+  &-item {
+    line-height: 1.5;
+    outline: 1px solid;
+  }
+  &-text:hover {
+    background: yellow;
+  }
+  &-leave-1{
+    padding-left: 0;
+  }
+  &-leave-2,&-leave-3{
+    padding-left: 1em;
+  }
 }
