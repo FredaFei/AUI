@@ -21,7 +21,7 @@ const Tree: React.FunctionComponent<Props> = props => {
       props.sourceData.map(item => {
         return <div className={sc('item')} key={item.value}>
           <div className={sc('text')}>{item.text}</div>
-          {item.children && item.children.map(item2 => <div className={sc('text')} key={item2.value}>{item2.text}</div>)}
+          {item.children?.map(item2 => <div className={sc('text')} key={item2.value}>{item2.text}</div>)}
         </div>;
       })
     }
