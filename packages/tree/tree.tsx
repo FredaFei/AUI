@@ -16,14 +16,16 @@ interface Props extends StyledProps {
 }
 
 const Tree: React.FunctionComponent<Props> = props => {
+  const renderTreeItem = (item: SourceItem) => {
+    return <div className={sc('item')} key={item.value}>
+      <div className={sc('text')}>{item.text}</div>
+      {item.children?.map(subItem => renderTreeItem(subItem))}
+    </div>;
+  };
+
   return <div className={classes(sc('tree'))}>
     {
-      props.sourceData.map(item => {
-        return <div className={sc('item')} key={item.value}>
-          <div className={sc('text')}>{item.text}</div>
-          {item.children?.map(item2 => <div className={sc('text')} key={item2.value}>{item2.text}</div>)}
-        </div>;
-      })
+      props.sourceData.map(item =>renderTreeItem(item))
     }
   </div>;
 };
