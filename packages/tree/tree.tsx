@@ -12,20 +12,30 @@ export interface SourceItem {
 }
 
 interface Props extends StyledProps {
-  sourceData: SourceItem[]
+  sourceData: SourceItem[],
+  selected: string[],
+  onChange: (item: SourceItem, checked: boolean) => void,
 }
 
 const Tree: React.FunctionComponent<Props> = props => {
-  const renderTreeItem = (item: SourceItem) => {
-    return <div className={sc('item')} key={item.value}>
+  const renderTreeItem = (item: SourceItem,
+                          selected: string[],
+                          onChange: (item: SourceItem, checked: boolean) => void,
+                          leave = 1) => {
+    const classes = {
+      [`leave-${leave}`]: true,
+      'item': true,
+    };
+    return <div className={sc(classes)} key={item.value}>
+      <input type="checkbox" checked={selected.includes(item.value)} onChange={e => onChange(item, e.target.checked)}/>
       <div className={sc('text')}>{item.text}</div>
-      {item.children?.map(subItem => renderTreeItem(subItem))}
+      {item.children?.map(subItem => renderTreeItem(subItem, selected, onChange, leave + 1))}
     </div>;
   };
 
-  return <div className={classes(sc('tree'))}>
+  return <div className={classes(sc(''))}>
     {
-      props.sourceData.map(item =>renderTreeItem(item))
+      props.sourceData.map(item => renderTreeItem(item, props.selected, props.onChange))
     }
   </div>;
 };
