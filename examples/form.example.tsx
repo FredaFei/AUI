@@ -1,22 +1,23 @@
-import * as React from 'react'
-import {useState, Fragment} from 'react'
-import Form, {FormValue, FormFields, FormErrors} from '../packages/form/form'
-import Button from '../packages/button/button'
-import ButtonGroup from '../packages/button/buttonGroup'
-import Radio from '../packages/radio/radio'
-import Switch from '../packages/switch/switch'
-import validator, {noErrors} from '../packages/form/validator'
+import * as React from 'react';
+import { useState, Fragment } from 'react';
+import Form, { FormValue, FormFields, FormErrors } from '../packages/form/form';
+import Button from '../packages/button/button';
+import ButtonGroup from '../packages/button/buttonGroup';
+import Radio from '../packages/radio/radio';
+import Switch from '../packages/switch/switch';
+import validator, { noErrors } from '../packages/form/validator';
 
-import content1 from "./markdown/form-demo-1.md";
-import content2 from "./markdown/form-demo-2.md";
-import content3 from "./markdown/form-demo-3.md";
-import content4 from "./markdown/form-demo-4.md";
-import CodeBox from "./codeBox";
-import Markdown from "./markdown";
-import doc from "./markdown/form-doc.md";
+import content1 from './markdown/form-demo-1.md';
+import content2 from './markdown/form-demo-2.md';
+import content3 from './markdown/form-demo-3.md';
+import content4 from './markdown/form-demo-4.md';
+import CodeBox from './codeBox';
+import Markdown from './markdown';
+import doc from './markdown/form-doc.md';
 
-const style = {width: '40%'}
-const names = ['jan', 'lily', 'bob', 'jerry']
+const style = {width: '40%'};
+const names = ['jan', 'lily', 'bob', 'jerry'];
+type Layout = 'horizontal' | 'vertical' | 'inline'
 
 function checkName(
   value: string,
@@ -24,29 +25,29 @@ function checkName(
   fail: (message: string) => void
 ) {
   setTimeout(() => {
-    console.log('我已经知道结果了')
+    console.log('我已经知道结果了');
     if (!names.includes(value)) {
-      success()
+      success();
     } else {
-      fail('该用户名已存在')
+      fail('该用户名已存在');
     }
-  }, 500)
+  }, 500);
 }
 
 function baseFormExample(props: any) {
   const [formData, setFormData] = useState<FormValue>({
     username: '',
     password: ''
-  })
+  });
   const [fields] = useState<FormFields[]>([
     {name: 'username', label: '用户名', input: {type: 'text'}},
     {name: 'password', label: '密码', input: {type: 'password'}}
-  ])
-  const [errors] = useState({})
+  ]);
+  const [errors] = useState({});
   const onChange = (value: FormValue) => {
-    setFormData(value)
-  }
-  const onSubmit = (): any => {}
+    setFormData(value);
+  };
+  const onSubmit = (): any => {};
   return (
     <Form value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit} style={style}
           buttons={
@@ -55,25 +56,25 @@ function baseFormExample(props: any) {
             </Fragment>
           }
     />
-  )
+  );
 }
 
 function layoutFormExample(props: any) {
   const [formData, setFormData] = useState<FormValue>({
     username: '',
     password: ''
-  })
+  });
   const [fields] = useState<FormFields[]>([
     {name: 'username', label: '用户名', input: {type: 'text'}},
     {name: 'password', label: '密码', input: {type: 'password'}}
-  ])
-  const [errors] = useState<FormErrors>({})
-  const [layout, setLayout] = useState()
-  const [layouts] = useState<string[]>(['horizontal', 'vertical', 'inline'])
+  ]);
+  const [errors] = useState<FormErrors>({});
+  const [layout, setLayout] = useState<Layout>();
+  const [layouts] = useState<string[]>(['horizontal', 'vertical', 'inline']);
   const onChange = (value: FormValue) => {
-    setFormData(value)
-  }
-  const onSubmit = (): any => {}
+    setFormData(value);
+  };
+  const onSubmit = (): any => {};
   return (
     <div>
       <ButtonGroup style={{marginBottom: '20px'}}>
@@ -81,36 +82,36 @@ function layoutFormExample(props: any) {
           <Button
             key={i}
             style={layout === i ? {background: '#66e2d5', color: '#fff'} : {}}
-            onClick={() => setLayout(i)}
+            onClick={() => setLayout(i as Layout)}
           >
             {i}
           </Button>
         ))}
       </ButtonGroup>
       <Form layout={layout} value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit}
-             buttons={
+            buttons={
               <Fragment>
                 <Button type="submit">提交</Button>
               </Fragment>
             }
       />
     </div>
-  )
+  );
 }
 
 function validateFormExample(props: any) {
   const [formData, setFormData] = useState<FormValue>({
     username: '',
     password: ''
-  })
+  });
   const [fields] = useState<FormFields[]>([
     {name: 'username', label: '用户名', input: {type: 'text'}},
     {name: 'password', label: '密码', input: {type: 'password'}}
-  ])
-  const [errors, setErrors] = useState({})
+  ]);
+  const [errors, setErrors] = useState({});
   const onChange = (value: FormValue) => {
-    setFormData(value)
-  }
+    setFormData(value);
+  };
   const onSubmit = (): any => {
     const rules = [
       {key: 'username', required: true, label: '用户名'},
@@ -120,21 +121,21 @@ function validateFormExample(props: any) {
       {key: 'password', minLength: 6, label: '密码'},
       {key: 'password', maxLength: 16, label: '密码'},
       {key: 'password', pattern: /^[a-zA-Z0-9]+$/, label: '密码'}
-    ]
+    ];
     validator(
       formData,
       rules,
       (errors: any): any => {
         if (noErrors(errors)) {
           // todo
-          return false
+          return false;
         }
-        setErrors(errors)
+        setErrors(errors);
       }
-    )
-  }
+    );
+  };
   return (
-    <Form value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit}  style={style}
+    <Form value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit} style={style}
           buttons={
             <Fragment>
               <Button type="submit">提交</Button>
@@ -144,18 +145,18 @@ function validateFormExample(props: any) {
             </Fragment>
           }
     />
-  )
+  );
 }
 
 function radioGroupExample() {
-  const [checked, setChecked] = useState([''])
+  const [checked, setChecked] = useState(['']);
   const onChange = (e: React.FormEvent) => {
-    setChecked([(e.target as HTMLInputElement).value])
-  }
+    setChecked([(e.target as HTMLInputElement).value]);
+  };
   const groups = [
     {name: 'gender', value: 'boy'},
     {name: 'gender', value: 'girl'}
-  ]
+  ];
   return (
     <Fragment>
       {groups.map(i => (
@@ -164,7 +165,7 @@ function radioGroupExample() {
         </Radio>
       ))}
     </Fragment>
-  )
+  );
 }
 
 function customFormExample(props: any) {
@@ -175,7 +176,7 @@ function customFormExample(props: any) {
     switch: '',
     password: '',
     password2: ''
-  })
+  });
   const [fields] = useState<FormFields[]>([
     {name: 'username', label: '用户名', input: {type: 'text'}},
     {name: 'age', label: '年龄', input: {type: 'number'}},
@@ -191,11 +192,11 @@ function customFormExample(props: any) {
       label: 'switch',
       input: () => <Switch/>
     }
-  ])
-  const [errors, setErrors] = useState({})
+  ]);
+  const [errors, setErrors] = useState({});
   const onChange = (value: FormValue) => {
-    setFormData(value)
-  }
+    setFormData(value);
+  };
   const onSubmit = (): any => {
     const rules = [
       {key: 'username', required: true, label: '用户名'},
@@ -203,8 +204,8 @@ function customFormExample(props: any) {
         key: 'username',
         validator: (value: string) => {
           return new Promise<string>((resolve, reject) => {
-            checkName(value, resolve, (message: string) => reject(message))
-          })
+            checkName(value, resolve, (message: string) => reject(message));
+          });
         },
         label: '用户名'
       },
@@ -221,29 +222,29 @@ function customFormExample(props: any) {
         key: 'password2',
         validator: (value: string) => {
           if (value !== formData['password']) {
-            return '两次的密码不一致'
+            return '两次的密码不一致';
           }
-          return ''
+          return '';
         },
         label: '确认密码'
       }
-    ]
+    ];
     validator(
       formData,
       rules,
       (errors: any): any => {
         if (noErrors(errors)) {
           // todo
-          console.log('submit')
-          return false
+          console.log('submit');
+          return false;
         }
-        console.log(errors)
-        setErrors(errors)
+        console.log(errors);
+        setErrors(errors);
       }
-    )
-  }
+    );
+  };
   return (
-    <Form value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit}  style={style}
+    <Form value={formData} fields={fields} errors={errors} onChange={onChange} onSubmit={onSubmit} style={style}
           errorDisplayMode="all"
           buttons={
             <Fragment>
@@ -254,7 +255,7 @@ function customFormExample(props: any) {
             </Fragment>
           }
     />
-  )
+  );
 }
 
 export default function (props: any) {
@@ -282,5 +283,5 @@ export default function (props: any) {
       </div>
       <Markdown source={doc}/>
     </div>
-  )
+  );
 }
