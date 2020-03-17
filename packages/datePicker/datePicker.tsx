@@ -6,7 +6,7 @@ import Input from '../input/input';
 import DayPanel from "./dayPanel";
 import MonthPanel from "./monthPanel";
 import YearPanel from "./yearPanel";
-import Date2 from '../utils/date'
+import Date2, { IReadonlyDate } from '../utils/date';
 
 import './style'
 import {ReactNode, useEffect, useRef, useState} from "react";
@@ -26,7 +26,7 @@ interface Props extends StyledProps {
 type Panel = 'day' | 'month' | 'year'
 
 const DatePicker: React.FunctionComponent<Props> = props => {
-  const [display, setDisplay] = useState()
+  const [display, setDisplay] = useState<IReadonlyDate>(new Date2(new Date()).clone)
   const [displayPanel, setDisplayPanel] = useState<Panel>('day')
   const [visible, setVisible] = useState<boolean>(false)
   const [formattedValue, setFormattedValue] = useState('')
@@ -35,7 +35,7 @@ const DatePicker: React.FunctionComponent<Props> = props => {
   const isDatepickerRef = useRef(false)
   useEffect(() => {
     const date2Value = 'value' in props ? new Date2(props.value).clone : new Date2(new Date()).clone
-    setDisplay(date2Value)
+    setDisplay(date2Value as IReadonlyDate)
     setFormattedValue('value' in props ? date2Value.toDateString() : '')
     return bindEvents()
   }, [])
