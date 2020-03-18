@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Tree, { SourceItem } from '../packages/tree/tree';
+import Tree from '../packages/tree/tree';
 
 import content1 from './markdown/tree-demo-1.md';
 import CodeBox from './codeBox';
@@ -8,7 +8,7 @@ import doc from './markdown/tree-doc.md';
 import { useState } from 'react';
 
 export default function (props: any) {
-  const [data] = useState<SourceItem[]>([
+  const [data] = useState([
     {
       text: '1',
       value: '1',
@@ -46,20 +46,9 @@ export default function (props: any) {
     }
   ]);
   const [selected, setSelected] = useState(['1.1']);
-  const [selectedValues, setSelectedValues] = useState(['1.1.1','2.1']);
-  const onChange1 = (item: SourceItem, checked: boolean) => {
-    if (checked) {
-      setSelected([item.value]);
-    } else {
-      setSelected([]);
-    }
-  };
-  const onChange2 = (item: SourceItem, checked: boolean) => {
-    if (checked) {
-      setSelectedValues([...selectedValues, item.value]);
-    } else {
-      setSelectedValues(selectedValues.filter(i => i !== item.value));
-    }
+  const [selectedValues, setSelectedValues] = useState(['1.1.1', '2.1']);
+  const onChange = (item: string[], setType: (value: string[]) => void) => {
+    setType(item);
   };
   return (
     <div className="exp-box">
@@ -67,13 +56,15 @@ export default function (props: any) {
       <div className="exp-section">
         <p>多选</p>
         <p>selectedValues: {selectedValues}</p>
-        <Tree sourceData={data} selected={selectedValues} onChange={onChange2}/>
+        <Tree sourceData={data} selected={selectedValues} multiple={true}
+              onChange={(values) => onChange(values, setSelectedValues)}/>
         <CodeBox content={content1}/>
       </div>
       <div className="exp-section">
         <p>单选</p>
         <p>selected: {selected}</p>
-        <Tree sourceData={data} selected={selected} onChange={onChange1} multiple={false}/>
+        <Tree sourceData={data} selected={selected} multiple={false}
+              onChange={(values) => onChange(values, setSelected)}/>
         <CodeBox content={content1}/>
       </div>
       <Markdown source={doc}/>
