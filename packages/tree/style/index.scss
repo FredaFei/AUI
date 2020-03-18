@@ -1,15 +1,25 @@
 @import 'var';
 
-#{component(tree)} {
-  &-item {
-    line-height: 1.5;
-    outline: 1px solid;
-  }
+#{component(treeItem)} {
+  line-height: 1.5;
+  border: 1px solid;
   &-text {
     display: block;
     &:hover {
       background: yellow;
     }
+  }
+  &-children {
+    transition: height .2s;
+  }
+  &-collapsed {
+    height: 0;
+    overflow: hidden;
+  }
+  &-expand {
+    display: inline-block;
+    background: red;
+    width: 200px;
   }
   &-leave-1 {
     padding-left: 0;
