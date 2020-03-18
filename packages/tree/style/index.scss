@@ -10,11 +10,12 @@
     }
   }
   &-children {
+    overflow: hidden;
     transition: height .2s;
   }
-  &-collapsed {
+  &-collapsed{}
+  &-gone {
     height: 0;
-    overflow: hidden;
   }
   &-expand {
     display: inline-block;

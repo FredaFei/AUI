@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { createScopedClasses } from '../utils/classnames';
 import './style';
-import { ChangeEventHandler, useEffect, useState } from 'react';
+import { ChangeEventHandler, useRef, useState } from 'react';
+import useExceptFirstUpdate from '../hooks/useExceptFirstUpdate';
 
 const componentName = 'TreeItem';
 const sc = createScopedClasses(componentName);
@@ -14,6 +15,8 @@ interface TreeItemProps {
 const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
   const {item, leave, treeProps} = props;
   const [expanded, setExpanded] = useState(true);
+  const childrenRef = useRef<HTMLDivElement>(null);
+
   const classes = {[`leave-${leave}`]: true, 'item': true};
   const onChange: ChangeEventHandler<HTMLInputElement> = e => {
     const checked = e.target.checked;
@@ -33,15 +36,47 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
       treeProps.onChange([]);
     }
   };
-  useEffect(()=>{
-    console.log('expanded');
-    console.log(expanded);
-  },[expanded])
+  useExceptFirstUpdate(expanded, () => {
+    console.log('expanded change');
+    if (!childrenRef.current) {return;}
+    if (expanded) {
+      console.log('open');
+      childrenRef.current.style.position = 'absolute';
+      childrenRef.current.style.opacity = '0';
+      childrenRef.current.style.height = 'auto';
+      const {height} = childrenRef.current.getBoundingClientRect();
+      childrenRef.current.style.position = '';
+      childrenRef.current.style.opacity = '';
+      childrenRef.current.style.height = `0px`;
+      childrenRef.current.getBoundingClientRect();
+      childrenRef.current.style.height = `${height}px`;
+      childrenRef.current.addEventListener('transitionend', afterExpand);
+    } else {
+      console.log('close');
+      const {height} = childrenRef.current.getBoundingClientRect();
+      childrenRef.current.style.height = `${height}px`;
+      childrenRef.current.getBoundingClientRect();
+      childrenRef.current.style.height = `0px`;
+      childrenRef.current.addEventListener('transitionend', afterCollapse);
+    }
+
+  });
+  const afterExpand = () => {
+    if (!childrenRef.current) {return;}
+    childrenRef.current.style.height = '';
+    childrenRef.current.removeEventListener('transitionend', afterExpand);
+  };
+  const afterCollapse = () => {
+    if (!childrenRef.current) {return;}
+    childrenRef.current.style.height = '';
+    childrenRef.current.classList.add(sc('gone'));
+    childrenRef.current.removeEventListener('transitionend', afterCollapse);
+  };
   const expand = () => {
-    setExpanded(false);
+    setExpanded(true);
   };
   const collapse = () => {
-    setExpanded(true);
+    setExpanded(false);
   };
   return <div className={sc(classes)} key={item.value}>
     <div className={sc('text')}>
@@ -51,11 +86,11 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
       </label>
       {
         item.children && <span className={sc('expand')}>
-            {expanded ? <span onClick={expand}>+</span> : <span onClick={collapse}>-</span>}
+            {expanded ? <span onClick={collapse}>-</span> : <span onClick={expand}>+</span>}
           </span>
       }
     </div>
-    <div className={sc('children', {collapsed: expanded})}>
+    <div className={sc('children', {collapsed: !expanded})} ref={childrenRef}>
       {item.children?.map(subItem => <TreeItem treeProps={treeProps}
                                                item={subItem} leave={leave + 1} key={subItem.value}/>)}
     </div>
