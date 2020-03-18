@@ -5,13 +5,16 @@
     line-height: 1.5;
     outline: 1px solid;
   }
-  &-text:hover {
-    background: yellow;
+  &-text {
+    display: block;
+    &:hover {
+      background: yellow;
+    }
   }
-  &-leave-1{
+  &-leave-1 {
     padding-left: 0;
   }
-  &-leave-2,&-leave-3{
+  &-leave-2, &-leave-3 {
     padding-left: 1em;
   }
 }

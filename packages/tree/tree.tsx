@@ -44,8 +44,10 @@ const Tree: React.FunctionComponent<Props> = props => {
       }
     };
     return <div className={sc(classes)} key={item.value}>
-      <input type="checkbox" checked={props.selected.includes(item.value)} onChange={onChange}/>
-      <div className={sc('text')}>{item.text}</div>
+      <label className={sc('text')}>
+        <input type="checkbox" checked={props.selected.includes(item.value)} onChange={onChange}/>
+        {item.text}
+      </label>
       {item.children?.map(subItem => renderTreeItem(subItem, leave + 1))}
     </div>;
   };
