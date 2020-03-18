@@ -1,6 +1,7 @@
 import * as React from 'react';
 import classes, { createScopedClasses } from '../utils/classnames';
 import './style';
+import { ChangeEventHandler } from 'react';
 
 const componentName = 'Tree';
 const sc = createScopedClasses(componentName);
@@ -11,23 +12,41 @@ export interface SourceItem {
   children?: SourceItem[]
 }
 
-interface Props extends StyledProps {
+type Props = {
   sourceData: SourceItem[]
   selected: string[]
-  multiple?: boolean
-  onChange: (item: SourceItem, checked: boolean) => void
-}
+  onChange: (values: string[]) => void
+} & ({
+  multiple: true,
+} | {
+  multiple: false,
+})
 
 const Tree: React.FunctionComponent<Props> = props => {
   const renderTreeItem = (item: SourceItem, leave = 1) => {
-    const classes = {
-      [`leave-${leave}`]: true,
-      'item': true,
+    const classes = {[`leave-${leave}`]: true, 'item': true};
+    const onChange: ChangeEventHandler<HTMLInputElement> = e => {
+      const checked = e.target.checked;
+      props.multiple ? multipleSelected(checked) : singleSelected(checked);
+    };
+    const multipleSelected = (checked: boolean) => {
+      if (checked) {
+        props.onChange([...props.selected, item.value]);
+      } else {
+        props.onChange(props.selected.filter(value => value !== item.value));
+      }
+    };
+    const singleSelected = (checked: boolean) => {
+      if (checked) {
+        props.onChange([item.value]);
+      } else {
+        props.onChange([]);
+      }
     };
     return <div className={sc(classes)} key={item.value}>
-      <input type="checkbox" checked={props.selected.includes(item.value)} onChange={e => props.onChange(item, e.target.checked)}/>
+      <input type="checkbox" checked={props.selected.includes(item.value)} onChange={onChange}/>
       <div className={sc('text')}>{item.text}</div>
-      {item.children?.map(subItem => renderTreeItem(subItem,leave + 1))}
+      {item.children?.map(subItem => renderTreeItem(subItem, leave + 1))}
     </div>;
   };
 
