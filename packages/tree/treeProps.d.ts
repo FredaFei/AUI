@@ -1,5 +1,5 @@
 interface SourceItem {
-  value: string
+  key: string
   text: string
   children?: SourceItem[]
 }
