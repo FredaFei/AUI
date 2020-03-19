@@ -9,7 +9,7 @@ const sc = createScopedClasses(componentName);
 const Tree: React.FunctionComponent<TreeProps> = props => {
   return <div className={classes(sc(''))}>
     {
-      props.sourceData.map(item => <TreeItem treeProps={props} item={item} leave={1} key={item.value} />)
+      props.sourceData.map(item => <TreeItem treeProps={props} item={item} leave={1} key={item.key} />)
     }
   </div>;
 };

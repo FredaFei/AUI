@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { createScopedClasses } from '../utils/classnames';
 import './style';
-import { ChangeEventHandler, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import useExceptFirstUpdate from '../hooks/useExceptFirstUpdate';
+import TreeCheckbox from './treeCheckbox';
 
 const componentName = 'TreeItem';
 const sc = createScopedClasses(componentName);
@@ -18,24 +19,6 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
   const childrenRef = useRef<HTMLDivElement>(null);
 
   const classes = {[`leave-${leave}`]: true, 'item': true};
-  const onChange: ChangeEventHandler<HTMLInputElement> = e => {
-    const checked = e.target.checked;
-    treeProps.multiple ? multipleSelected(checked) : singleSelected(checked);
-  };
-  const multipleSelected = (checked: boolean) => {
-    if (checked) {
-      treeProps.onChange([...treeProps.selected, item.value]);
-    } else {
-      treeProps.onChange(treeProps.selected.filter(value => value !== item.value));
-    }
-  };
-  const singleSelected = (checked: boolean) => {
-    if (checked) {
-      treeProps.onChange([item.value]);
-    } else {
-      treeProps.onChange([]);
-    }
-  };
   useExceptFirstUpdate(expanded, () => {
     console.log('expanded change');
     if (!childrenRef.current) {return;}
@@ -78,12 +61,9 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
   const collapse = () => {
     setExpanded(false);
   };
-  return <div className={sc(classes)} key={item.value}>
+  return <div className={sc(classes)} key={item.key}>
     <div className={sc('text')}>
-      <label>
-        <input type="checkbox" checked={treeProps.selected.includes(item.value)} onChange={onChange}/>
-        {item.text}
-      </label>
+      <TreeCheckbox checkTreeProps={treeProps} item={item}/>
       {
         item.children && <span className={sc('expand')}>
             {expanded ? <span onClick={collapse}>-</span> : <span onClick={expand}>+</span>}
@@ -92,7 +72,7 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
     </div>
     <div className={sc('children', {collapsed: !expanded})} ref={childrenRef}>
       {item.children?.map(subItem => <TreeItem treeProps={treeProps}
-                                               item={subItem} leave={leave + 1} key={subItem.value}/>)}
+                                               item={subItem} leave={leave + 1} key={subItem.key}/>)}
     </div>
   </div>;
 
