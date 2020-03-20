@@ -12,9 +12,10 @@ interface TreeItemProps {
   treeProps: TreeProps
   item: SourceItem
   leave: number
+  selectedMap: SelectedMap
 };
 const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
-  const {item, leave, treeProps} = props;
+  const {item, leave, treeProps,selectedMap} = props;
   const [expanded, setExpanded] = useState(true);
   const childrenRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +64,7 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
   };
   return <div className={sc(classes)} key={item.key}>
     <div className={sc('text')}>
-      <TreeCheckbox checkTreeProps={treeProps} item={item}/>
+      <TreeCheckbox checkTreeProps={treeProps} item={item} selectedMap={selectedMap}/>
       {
         item.children && <span className={sc('expand')}>
             {expanded ? <span onClick={collapse}>-</span> : <span onClick={expand}>+</span>}
@@ -71,7 +72,7 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
       }
     </div>
     <div className={sc('children', {collapsed: !expanded})} ref={childrenRef}>
-      {item.children?.map(subItem => <TreeItem treeProps={treeProps}
+      {item.children?.map(subItem => <TreeItem treeProps={treeProps} selectedMap={selectedMap}
                                                item={subItem} leave={leave + 1} key={subItem.key}/>)}
     </div>
   </div>;

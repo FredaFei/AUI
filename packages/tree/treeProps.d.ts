@@ -4,6 +4,10 @@ interface SourceItem {
   children?: SourceItem[]
 }
 
+interface SelectedMap {
+  [key: string]: string[]
+}
+
 type TreeProps = {
   sourceData: SourceItem[]
   selected: string[]
