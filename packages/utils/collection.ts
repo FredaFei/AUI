@@ -15,4 +15,8 @@ function difference(a: any[], b: any[]) {
   return a.filter(i => b.indexOf(i) === -1);
 }
 
-export { range, unique,difference };
+function intersection(a: any[], b: any[]) {
+  return a.filter(i => b.indexOf(i) > -1);
+}
+
+export { range, unique, difference, intersection };
