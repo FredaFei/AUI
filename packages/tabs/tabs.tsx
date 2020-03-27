@@ -52,7 +52,6 @@ const Tabs: React.FunctionComponent<Props> = props => {
     if (!lineElement || !tabsHeadElement || !tabsHeadElement.children) {
       return false;
     }
-    console.log(`index ${index}`)
     const el = tabsHeadElement.children[index];
     let {left: left1, top: top1} = tabsHeadElement.getBoundingClientRect();
     let {width, left: left2, height, top: top2} = el.getBoundingClientRect();
@@ -63,12 +62,7 @@ const Tabs: React.FunctionComponent<Props> = props => {
       lineElement.style.width = `${lineWidth}px`;
       lineElement.style.transform = `translate3d(${left2 - left1 + (width - lineWidth) / 2}px,0,0)`;
     } else {
-      console.log(`top2: ${top2}`);
-      console.log(`top1: ${top1}`);
-      console.log(`height: ${height}`);
-      console.log(`lineHeight: ${lineHeight}`);
       lineElement.style.height = `${lineHeight}px`;
-      // lineElement.style.top = `${top2 - top1 + (height - lineHeight) / 2}px`;
       lineElement.style.transform = `translate3d(0,${top2 - top1 + (height - lineHeight) / 2}px,0)`;
     }
   };
