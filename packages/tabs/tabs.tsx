@@ -1,11 +1,11 @@
-import * as React from 'react'
-import classes, {createScopedClasses} from '../utils/classnames'
-import TabPane, {Props as PaneProps} from './tabPane'
-import './style'
-import {useEffect, useRef, useState} from "react";
+import * as React from 'react';
+import classes, { createScopedClasses } from '../utils/classnames';
+import TabPane, { Props as PaneProps } from './tabPane';
+import './style';
+import { useEffect, useRef, useState } from 'react';
 
-const componentName = 'Tabs'
-const sc = createScopedClasses(componentName)
+const componentName = 'Tabs';
+const sc = createScopedClasses(componentName);
 
 export interface Props extends StyledProps {
   activeKey?: string
@@ -23,63 +23,69 @@ interface Layout {
 type TLayout = (a: React.ReactElement<PaneProps>, b: Layout) => {}
 
 const Tabs: React.FunctionComponent<Props> = props => {
-  const [activeTabKey, setActiveTabKey] = useState<string>('')
+  const [activeTabKey, setActiveTabKey] = useState<string>('');
 
-  const {className, direction, lineWidthOrHeight, defaultActiveKey, activeKey, style} = props
+  const {className, direction, lineWidthOrHeight, defaultActiveKey, activeKey, style} = props;
 
-  const keysRef = useRef<Array<string>>([])
-  const lineRef = useRef<HTMLDivElement>(null)
-  const tabsHeadRef = useRef<HTMLDivElement>(null)
+  const keysRef = useRef<Array<string>>([]);
+  const lineRef = useRef<HTMLDivElement>(null);
+  const tabsHeadRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const active = 'defaultActiveKey' in props ? defaultActiveKey : 'activeKey' in props ? activeKey : (keysRef.current[0] || '')
-    setActiveTabKey(active as string)
-    calculateLineStyle(getCurrentTabsIndex(active as string))
-  }, [])
+    const active = 'defaultActiveKey' in props ? defaultActiveKey : 'activeKey' in props ? activeKey : (keysRef.current[0] || '');
+    setActiveTabKey(active as string);
+    calculateLineStyle(getCurrentTabsIndex(active as string));
+  }, []);
 
   const getCurrentTabsIndex = (value: string): number => {
-    const index = keysRef.current.indexOf(value)
-    return index >= 0 ? index : 0
-  }
+    const index = keysRef.current.indexOf(value);
+    return index >= 0 ? index : 0;
+  };
 
   const calculateLineStyle = (index: number): any => {
     if (index < 0) {
-      return false
+      return false;
     }
-    const {direction} = props
-    const lineElement = lineRef.current
-    const tabsHeadElement = tabsHeadRef.current
+    const {direction} = props;
+    const lineElement = lineRef.current;
+    const tabsHeadElement = tabsHeadRef.current;
     if (!lineElement || !tabsHeadElement || !tabsHeadElement.children) {
-      return false
+      return false;
     }
-    const el = tabsHeadElement.children[index]
-    let {left: left1, top: top1} = tabsHeadElement.getBoundingClientRect()
-    let {width, left: left2, height, top: top2} = el.getBoundingClientRect()
+    console.log(`index ${index}`)
+    const el = tabsHeadElement.children[index];
+    let {left: left1, top: top1} = tabsHeadElement.getBoundingClientRect();
+    let {width, left: left2, height, top: top2} = el.getBoundingClientRect();
 
-    const lineWidth = lineWidthOrHeight ? +lineWidthOrHeight : width
-    const lineHeight = lineWidthOrHeight ? +lineWidthOrHeight : height
+    const lineWidth = lineWidthOrHeight ? +lineWidthOrHeight : width;
+    const lineHeight = lineWidthOrHeight ? +lineWidthOrHeight : height;
     if (direction === 'horizontal') {
-      lineElement.style.width = `${lineWidth}px`
-      lineElement.style.left = `${left2 - left1 + (width - lineWidth) / 2}px`
+      lineElement.style.width = `${lineWidth}px`;
+      lineElement.style.transform = `translate3d(${left2 - left1 + (width - lineWidth) / 2}px,0,0)`;
     } else {
-      lineElement.style.height = `${lineHeight}px`
-      lineElement.style.top = `${top2 - top1 + (height - lineHeight) / 2}px`
+      console.log(`top2: ${top2}`);
+      console.log(`top1: ${top1}`);
+      console.log(`height: ${height}`);
+      console.log(`lineHeight: ${lineHeight}`);
+      lineElement.style.height = `${lineHeight}px`;
+      // lineElement.style.top = `${top2 - top1 + (height - lineHeight) / 2}px`;
+      lineElement.style.transform = `translate3d(0,${top2 - top1 + (height - lineHeight) / 2}px,0)`;
     }
-  }
+  };
 
   const handleClick = (key: string, disabled: boolean): any => {
     if (disabled) {
-      return false
+      return false;
     }
-    setActiveTabKey(key)
-    calculateLineStyle(getCurrentTabsIndex(key))
-    props.onChange && props.onChange(key)
-  }
+    setActiveTabKey(key);
+    calculateLineStyle(getCurrentTabsIndex(key));
+    props.onChange && props.onChange(key);
+  };
   const renderTabsNav = (child: React.ReactElement, options: Layout) => {
     const itemClass = {
       disabled: child.props.disabled,
       active: options.active
-    }
+    };
     return (
       <div
         data-role="tabsNavItem"
@@ -87,30 +93,30 @@ const Tabs: React.FunctionComponent<Props> = props => {
         className={sc('nav-item', itemClass)}
         onClick={() => handleClick(options.key, child.props.disabled)}
       >{child.props.tab}</div>
-    )
-  }
+    );
+  };
 
   const renderTabsPane = (child: React.ReactElement, options: Layout) => {
     return React.cloneElement(child, {
       active: options.active
-    })
-  }
+    });
+  };
   const renderLayout = (layout: TLayout) => {
     const children = React.Children.map(props.children, child => {
-      const element = child as React.ReactElement<PaneProps>
+      const element = child as React.ReactElement<PaneProps>;
       if (element.type !== TabPane) {
-        console.warn('Tabs 组件的子组件只能是 TabPane组件')
-        return null
+        console.warn('Tabs 组件的子组件只能是 TabPane组件');
+        return null;
       }
-      const key = element.key as string
-      keysRef.current.push(key)
-      return element.type === TabPane && layout(element, {key, active: activeTabKey === key})
-    })
-    return children.filter(i => i)
-  }
+      const key = element.key as string;
+      keysRef.current.push(key);
+      return element.type === TabPane && layout(element, {key, active: activeTabKey === key});
+    });
+    return children.filter(i => i);
+  };
 
   return (
-    <div data-role={componentName} className={classes(sc('wrapper', {vertical: direction === 'vertical'}), className)}
+    <div data-role={componentName} className={classes(sc('wrapper', direction), className)}
          style={style}>
       <div className={sc('nav')} ref={tabsHeadRef}>
         {renderLayout(renderTabsNav)}
@@ -120,11 +126,11 @@ const Tabs: React.FunctionComponent<Props> = props => {
         {renderLayout(renderTabsPane)}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-Tabs.displayName = componentName
+Tabs.displayName = componentName;
 Tabs.defaultProps = {
   direction: 'horizontal'
-}
-export default Tabs
+};
+export default Tabs;
