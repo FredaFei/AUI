@@ -20,10 +20,19 @@ interface Layout {
   active?: boolean
 }
 
+type LineStyle = {
+  transform: string
+} & ({
+  width: string
+} | {
+  height: string
+})
+
 type TLayout = (a: React.ReactElement<PaneProps>, b: Layout) => {}
 
 const Tabs: React.FunctionComponent<Props> = props => {
   const [activeTabKey, setActiveTabKey] = useState<string>('');
+  const [lineStyle, setLineStyle] = useState<LineStyle>({transform: '', width: ''});
 
   const {className, direction, lineWidthOrHeight, defaultActiveKey, activeKey, style} = props;
 
@@ -41,7 +50,6 @@ const Tabs: React.FunctionComponent<Props> = props => {
     const index = keysRef.current.indexOf(value);
     return index >= 0 ? index : 0;
   };
-
   const calculateLineStyle = (index: number): any => {
     if (index < 0) {
       return false;
@@ -59,11 +67,15 @@ const Tabs: React.FunctionComponent<Props> = props => {
     const lineWidth = lineWidthOrHeight ? +lineWidthOrHeight : width;
     const lineHeight = lineWidthOrHeight ? +lineWidthOrHeight : height;
     if (direction === 'horizontal') {
-      lineElement.style.width = `${lineWidth}px`;
-      lineElement.style.transform = `translate3d(${left2 - left1 + (width - lineWidth) / 2}px,0,0)`;
+      setLineStyle({
+        width: `${lineWidth}px`,
+        transform: `translate3d(${left2 - left1 + (width - lineWidth) / 2}px,0,0)`
+      });
     } else {
-      lineElement.style.height = `${lineHeight}px`;
-      lineElement.style.transform = `translate3d(0,${top2 - top1 + (height - lineHeight) / 2}px,0)`;
+      setLineStyle({
+        height: `${lineHeight}px`,
+        transform: `translate3d(0,${top2 - top1 + (height - lineHeight) / 2}px,0)`
+      });
     }
   };
 
@@ -114,7 +126,7 @@ const Tabs: React.FunctionComponent<Props> = props => {
          style={style}>
       <div className={sc('nav')} ref={tabsHeadRef}>
         {renderLayout(renderTabsNav)}
-        <div className={sc('nav-line')} ref={lineRef}/>
+        <div className={sc('nav-line')} ref={lineRef} style={lineStyle}/>
       </div>
       <ul className="am-tabs-pane-body">
         {renderLayout(renderTabsPane)}
