@@ -4,20 +4,30 @@
   &-wrapper {
     position: relative;
   }
+  &-nav-wrapper {
+    display: flex;
+    margin-bottom: 0;
+    margin-left: 0;
+    overflow: hidden;
+  }
   &-nav {
     position: relative;
     display: flex;
     justify-content: flex-start;
     flex-shrink: 0;
     border-bottom: 1px solid #ddd;
+    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     &-line {
       position: absolute;
       box-sizing: border-box;
       transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
   }
-  &-horizontal  {
+  &-horizontal {
     #{component(tabs)} {
+      &-nav-wrapper {
+        width: 100%;
+      }
       &-nav-line {
         left: 0;
         bottom: -1px;
@@ -35,6 +45,10 @@
         border-bottom: none;
         flex-direction: column;
         border-right: 1px solid #ddd;
+        &-wrapper {
+          height: 100%;
+          flex-direction: column;
+        }
       }
       &-nav-item {text-align: right;}
       &-nav-line {
@@ -48,6 +62,7 @@
   &-nav-item {
     padding: 12px 16px;
     height: 100%;
+    white-space: nowrap;
     box-sizing: border-box;
     cursor: pointer;
     transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);

@@ -1,19 +1,28 @@
-import * as React from 'react'
-import {useState} from 'react'
-import Tabs from '../packages/tabs/tabs'
-import TabPane from '../packages/tabs/tabPane'
+import * as React from 'react';
+import { useState } from 'react';
+import Tabs from '../packages/tabs/tabs';
+import TabPane from '../packages/tabs/tabPane';
 
-import content1 from "./markdown/tabs-demo-1.md";
-import content2 from "./markdown/tabs-demo-2.md";
-import content3 from "./markdown/tabs-demo-3.md";
-import content4 from "./markdown/tabs-demo-4.md";
-import content5 from "./markdown/tabs-demo-5.md";
-import CodeBox from "./codeBox";
-import Markdown from "./markdown";
-import doc from "./markdown/tabs-doc.md";
+import content1 from './markdown/tabs-demo-1.md';
+import content2 from './markdown/tabs-demo-2.md';
+import content3 from './markdown/tabs-demo-3.md';
+import content4 from './markdown/tabs-demo-4.md';
+import content5 from './markdown/tabs-demo-5.md';
+import CodeBox from './codeBox';
+import Markdown from './markdown';
+import doc from './markdown/tabs-doc.md';
+import { range } from '../packages/utils/collection';
+import Button from '../packages/button/button';
+import ButtonGroup from '../packages/button/buttonGroup';
 
+const initTabs = range(11, 26).map(i => `tab ${i % 2 === 0 ? i * 10 : i}`);
 export default function (props: any) {
-  const [tabs, setTabs] = useState('music2')
+  const [tabs, setTabs] = useState('music2');
+  const [tabsSource] = useState(initTabs);
+  const [direction, setDirection] = useState<'horizontal' | 'vertical'>('vertical');
+
+  const style = direction === 'horizontal' ? {maxWidth: '976px'} : {height: '320px'};
+
   return (
     <div className="exp-box">
       <h3>基础应用</h3>
@@ -62,9 +71,21 @@ export default function (props: any) {
         </Tabs>
         <CodeBox content={content3}/>
       </div>
+
+      <h3>Tabs 滚动显示</h3>
+      <div className="exp-section">
+        <ButtonGroup style={{marginBottom:'20px'}}>
+          <Button onClick={() => setDirection('horizontal')}>Horizontal</Button>
+          <Button onClick={() => setDirection('vertical')}>Vertical</Button>
+        </ButtonGroup>
+
+        <Tabs direction={direction} style={style}>
+          {tabsSource.map(t => <TabPane tab={t} key={t}>{`Content of Tab Pane ${t}`}</TabPane>)}
+        </Tabs>
+      </div>
       <h3>手动更新</h3>
       <div className="exp-section">
-        <Tabs activeKey={tabs} onChange={value => { setTabs(value)}}>
+        <Tabs activeKey={tabs} onChange={value => { setTabs(value);}}>
           <TabPane tab="sport" key="sport2">
             Content of Tab Pane 1
           </TabPane>
@@ -94,5 +115,5 @@ export default function (props: any) {
       </div>
       <Markdown source={doc}/>
     </div>
-  )
+  );
 }
