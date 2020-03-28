@@ -1,13 +1,16 @@
 {
   "name": "amazing-ui-react",
   "version": "0.0.4",
-  "main": "dist/packages/index",
-  "types": "dist/packages/index",
+  "main": "dist/lib/index",
+  "types": "dist/lib/index",
   "files": [
     "/dist/**/*"
   ],
-  "repository": "git@github.com:FredaFei/AUI.git",
-  "author": "FredaFei <964959033@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FredaFei/AUI.git"
+  },
+  "author": "FredaFei",
   "scripts": {
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "docs": "cross-env NODE_ENV=production webpack --config webpack.config.docs.js",
@@ -16,6 +19,9 @@
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.ci.js"
   },
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FredaFei/AUI/issues"
+  },
   "devDependencies": {
     "@babel/preset-env": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
