@@ -16,11 +16,11 @@
     justify-content: flex-start;
     flex-shrink: 0;
     border-bottom: 1px solid #ddd;
-    transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     &-line {
       position: absolute;
       box-sizing: border-box;
-      transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+      transition: transform 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     }
   }
   &-horizontal {
@@ -65,7 +65,7 @@
     white-space: nowrap;
     box-sizing: border-box;
     cursor: pointer;
-    transition: color 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transition: color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
     &:hover {
       color: $blue;
     }

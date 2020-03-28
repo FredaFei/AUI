@@ -56,6 +56,7 @@ const Tabs: React.FunctionComponent<Props> = props => {
     calculateLineStyle(getCurrentTabsIndex(activeTabKey));
     hasTabItemHidden() && calculateNavsStyle(getCurrentTabsIndex(activeTabKey));
   }, [activeTabKey, direction]);
+
   const hasTabItemHidden = () => {
     const {width, height} = tabItemsRef.current!.getBoundingClientRect();
     const {width: viewWidth, height: viewHeight} = navViewRef.current!.getBoundingClientRect();
@@ -63,22 +64,19 @@ const Tabs: React.FunctionComponent<Props> = props => {
     if (props.direction === 'vertical' && viewHeight >= height) {return false;}
     return true;
   };
-  const getLineOffset = (index: number, tabItemElement: HTMLElement) => {
-    let width = 0,
-      height = 0,
-      left = 0,
-      top = 0;
+  const getCurrentItemOffset = (index: number, tabItemElement: HTMLElement) => {
+    let width = 0, height = 0, left = 0, top = 0;
     if (tabItemElement) {
       const tabItems = tabItemElement.querySelectorAll('.am-tabs-nav-item');
-      // const {children} = tabItemRef.current!;
       for (let i = 0; i < tabItems.length; i++) {
+        let {width: itemWidth, height: itemHeight} = tabItems[i].getBoundingClientRect();
         if (i < index) {
-          left += tabItems[i].offsetWidth;
-          top += tabItems[i].offsetHeight;
+          left += itemWidth;
+          top += itemHeight;
         }
         if (i === index) {
-          width = tabItems[i].offsetWidth;
-          height = tabItems[i].offsetHeight;
+          width = itemWidth;
+          height = itemHeight;
         }
       }
     }
@@ -94,46 +92,36 @@ const Tabs: React.FunctionComponent<Props> = props => {
     const index = keysRef.current.indexOf(value);
     return index >= 0 ? index : 0;
   };
+  const tabItemViewPosition = (itemLeftOrRight: number, itemWidthOrHeight: number, viewWidthOrHeight: number, widthOrHeight: number): number => {
+    const offset = itemLeftOrRight + itemWidthOrHeight / 2;
+    let delta = offset - viewWidthOrHeight / 2;
+    if (delta > 0) {
+      if (widthOrHeight - itemLeftOrRight - itemWidthOrHeight <= viewWidthOrHeight / 2) {
+        delta = widthOrHeight - viewWidthOrHeight;
+      }
+    } else {
+      delta = 0;
+    }
+    return delta;
+  };
   const calculateNavsStyle = (index: number): any => {
     if (index < 0) {
       return false;
     }
-    const {direction} = props;
     const navsElement = navViewRef.current;
     const tabItemsElement = tabItemsRef.current;
-    const lineElement = lineRef.current;
-    if (!navsElement || !tabItemsElement || !lineElement) {
+    if (!navsElement || !tabItemsElement) {
       return false;
     }
     const {width: viewWidth, height: viewHeight} = navsElement.getBoundingClientRect();
-    const {width: itemWidth, height: itemHeight, left: itemLeft, top: itemTop} = getLineOffset(index, tabItemsElement);
+    const {width: itemWidth, height: itemHeight, left: itemLeft, top: itemTop} = getCurrentItemOffset(index, tabItemsElement);
     const {width, height} = tabItemsElement.getBoundingClientRect();
     console.log(`itemLeft`);
     console.log({itemWidth, itemHeight, itemLeft, itemTop});
-    if (direction === 'horizontal') {
-      const offsetX = itemLeft + itemWidth / 2;
-      let deltaX = offsetX - viewWidth / 2;
-      if (deltaX > 0) {
-        if (width - itemLeft - itemWidth <= viewWidth / 2) {
-          deltaX = width - viewWidth;
-        }
-      } else {
-        deltaX = 0;
-      }
-      setNavX(-deltaX);
+    if (props.direction === 'horizontal') {
+      setNavX(-tabItemViewPosition(itemLeft, itemWidth, viewWidth, width));
     } else {
-      const offsetY = itemTop + itemHeight / 2;
-      let deltaY = offsetY - viewHeight / 2;
-      console.log(`before deltaY ${deltaY}`);
-      if (deltaY > 0) {
-        if (height - itemTop - itemHeight <= viewHeight / 2) {
-          deltaY = height - viewHeight;
-          console.log(`middle deltaY ${deltaY}`);
-        }
-      } else {
-        deltaY = 0;
-      }
-      setNavY(-deltaY);
+      setNavY(-tabItemViewPosition(itemTop, itemHeight, viewHeight, height));
     }
   };
   const calculateLineStyle = (index: number): any => {
