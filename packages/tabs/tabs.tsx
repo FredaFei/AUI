@@ -80,19 +80,15 @@ const Tabs: React.FunctionComponent<Props> = props => {
         }
       }
     }
-    return {
-      width,
-      left,
-      height,
-      top,
-    };
+    return {width, left, height, top};
   };
 
   const getCurrentTabsIndex = (value: string): number => {
     const index = keysRef.current.indexOf(value);
     return index >= 0 ? index : 0;
   };
-  const tabItemViewPosition = (itemLeftOrRight: number, itemWidthOrHeight: number, viewWidthOrHeight: number, widthOrHeight: number): number => {
+  const tabItemViewPosition = (itemLeftOrRight: number, itemWidthOrHeight: number,
+                               viewWidthOrHeight: number, widthOrHeight: number): number => {
     const offset = itemLeftOrRight + itemWidthOrHeight / 2;
     let delta = offset - viewWidthOrHeight / 2;
     if (delta > 0) {
@@ -105,19 +101,14 @@ const Tabs: React.FunctionComponent<Props> = props => {
     return delta;
   };
   const calculateNavsStyle = (index: number): any => {
-    if (index < 0) {
-      return false;
-    }
+    if (index < 0) {return;}
     const navsElement = navViewRef.current;
     const tabItemsElement = tabItemsRef.current;
-    if (!navsElement || !tabItemsElement) {
-      return false;
-    }
+    if (!navsElement || !tabItemsElement) {return;}
     const {width: viewWidth, height: viewHeight} = navsElement.getBoundingClientRect();
     const {width: itemWidth, height: itemHeight, left: itemLeft, top: itemTop} = getCurrentItemOffset(index, tabItemsElement);
     const {width, height} = tabItemsElement.getBoundingClientRect();
-    console.log(`itemLeft`);
-    console.log({itemWidth, itemHeight, itemLeft, itemTop});
+
     if (props.direction === 'horizontal') {
       setNavX(-tabItemViewPosition(itemLeft, itemWidth, viewWidth, width));
     } else {
@@ -125,22 +116,17 @@ const Tabs: React.FunctionComponent<Props> = props => {
     }
   };
   const calculateLineStyle = (index: number): any => {
-    if (index < 0) {
-      return false;
-    }
-    const {direction} = props;
+    if (index < 0) {return;}
     const lineElement = lineRef.current;
     const tabItemsElement = tabItemsRef.current;
-    if (!lineElement || !tabItemsElement || !tabItemsElement.children) {
-      return false;
-    }
+    if (!lineElement || !tabItemsElement || !tabItemsElement.children) {return;}
     const el = tabItemsElement.children[index];
     let {left: left1, top: top1} = tabItemsElement.getBoundingClientRect();
     let {width, left: left2, height, top: top2} = el.getBoundingClientRect();
 
     const lineWidth = lineWidthOrHeight ? +lineWidthOrHeight : width;
     const lineHeight = lineWidthOrHeight ? +lineWidthOrHeight : height;
-    if (direction === 'horizontal') {
+    if (props.direction === 'horizontal') {
       setLineWidth(lineWidth);
       setLineX(left2 - left1 + (width - lineWidth) / 2);
     } else {
@@ -192,8 +178,7 @@ const Tabs: React.FunctionComponent<Props> = props => {
   };
 
   return (
-    <div data-role={componentName} className={classes(sc('wrapper', direction), className)}
-         style={style}>
+    <div data-role={componentName} className={classes(sc('wrapper', direction), className)} style={style}>
       <div className={sc('nav-wrapper')} ref={navViewRef}>
         <div className={sc('nav')} ref={tabItemsRef} style={navsStyle}>
           {renderLayout(renderTabsNav)}
