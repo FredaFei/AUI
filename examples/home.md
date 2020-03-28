@@ -7,15 +7,15 @@
 **安装**
 
 ```
-  $ yarn add amazing-react
-  $ npm install amazing-react
+  $ yarn add amazing-ui-react
+  $ npm install amazing-ui-react
 ```
 
 **使用组件**
 
 ```jsx harmony
-import  {  Button  }  from  'amazing-react'
-import  'amazing-react/lib/amazing-react.css'
+import  {  Button  }  from  'amazing-ui-react'
+import  'amazing-ui-react/lib/amazing-ui-react.css'
 
 <Button>submit</Button>
 
