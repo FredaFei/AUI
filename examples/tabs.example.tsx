@@ -8,6 +8,7 @@ import content2 from './markdown/tabs-demo-2.md';
 import content3 from './markdown/tabs-demo-3.md';
 import content4 from './markdown/tabs-demo-4.md';
 import content5 from './markdown/tabs-demo-5.md';
+import content6 from './markdown/tabs-demo-6.md';
 import CodeBox from './codeBox';
 import Markdown from './markdown';
 import doc from './markdown/tabs-doc.md';
@@ -71,18 +72,6 @@ export default function (props: any) {
         </Tabs>
         <CodeBox content={content3}/>
       </div>
-
-      <h3>Tabs 滚动显示</h3>
-      <div className="exp-section">
-        <ButtonGroup style={{marginBottom:'20px'}}>
-          <Button onClick={() => setDirection('horizontal')}>Horizontal</Button>
-          <Button onClick={() => setDirection('vertical')}>Vertical</Button>
-        </ButtonGroup>
-
-        <Tabs direction={direction} style={style}>
-          {tabsSource.map(t => <TabPane tab={t} key={t}>{`Content of Tab Pane ${t}`}</TabPane>)}
-        </Tabs>
-      </div>
       <h3>手动更新</h3>
       <div className="exp-section">
         <Tabs activeKey={tabs} onChange={value => { setTabs(value);}}>
@@ -98,6 +87,19 @@ export default function (props: any) {
         </Tabs>
         <CodeBox content={content4}/>
       </div>
+      <h3>Tabs 左右、上下滑动，容纳更多标签</h3>
+      <div className="exp-section">
+        <ButtonGroup style={{marginBottom: '20px'}}>
+          <Button onClick={() => setDirection('horizontal')}>Horizontal</Button>
+          <Button onClick={() => setDirection('vertical')}>Vertical</Button>
+        </ButtonGroup>
+
+        <Tabs direction={direction} style={style}>
+          {tabsSource.map(t => <TabPane tab={t} key={t}>{`Content of Tab Pane ${t}`}</TabPane>)}
+        </Tabs>
+
+        <CodeBox content={content5}/>
+      </div>
       <h3>禁用</h3>
       <div className="exp-section">
         <Tabs defaultActiveKey="art3">
@@ -111,7 +113,7 @@ export default function (props: any) {
             Content of Tab Pane 3
           </TabPane>
         </Tabs>
-        <CodeBox content={content5}/>
+        <CodeBox content={content6}/>
       </div>
       <Markdown source={doc}/>
     </div>
