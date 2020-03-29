@@ -14,8 +14,9 @@
 **使用组件**
 
 ```jsx harmony
-import  {  Button  }  from  'amazing-ui-react'
-import  'amazing-ui-react/lib/amazing-ui-react.css'
+
+import { Button } from "amazing-ui-react";
+import "amazing-ui-react/dist/lib/index.css";
 
 <Button>submit</Button>
 
