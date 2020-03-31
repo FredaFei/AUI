@@ -97,9 +97,9 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
     };
     const singleSelected = (checked: boolean) => {
       if (checked) {
-        props.onItemChange([item.key]);
+        treeProps.onChange([item.key]);
       } else {
-        props.onItemChange([]);
+        treeProps.onChange([]);
       }
     };
     const checkedAll = () => {
@@ -114,12 +114,11 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
     }
     return <div className={ sc(classes) } key={ item.key }>
       <div className={ sc('text') }>
-        {
-          item.children ?
-            <Checkbox indeterminate={ indeterminate() } checked={ checkedAll() }
-                      onChange={ onChange }>{ item.text }</Checkbox> :
-            <Checkbox checked={ treeProps.selected.includes(item.key) } value={ item.key }
-                      onChange={ onChange }>{ item.text }</Checkbox>
+        { item.children && treeProps.multiple ?
+          <Checkbox indeterminate={ indeterminate() } checked={ checkedAll() }
+                    onChange={ onChange }>{ item.text }</Checkbox> :
+          <Checkbox checked={ treeProps.selected.includes(item.key) } value={ item.key }
+                    onChange={ onChange }>{ item.text }</Checkbox>
         }
         {
           item.children && <span className={ sc('expand') }>
