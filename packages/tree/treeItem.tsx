@@ -112,14 +112,16 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
       const common = intersection(treeProps.selected, childrenValues)
       return common.length !== childrenValues.length
     }
+    const checkboxRender = () => {
+      return item.children && treeProps.multiple ?
+        <Checkbox indeterminate={ indeterminate() } checked={ checkedAll() }
+                  onChange={ onChange }>{ item.text }</Checkbox> :
+        <Checkbox checked={ treeProps.selected.includes(item.key) } value={ item.key }
+                  onChange={ onChange }>{ item.text }</Checkbox>
+    }
     return <div className={ sc(classes) } key={ item.key }>
       <div className={ sc('text') }>
-        { item.children && treeProps.multiple ?
-          <Checkbox indeterminate={ indeterminate() } checked={ checkedAll() }
-                    onChange={ onChange }>{ item.text }</Checkbox> :
-          <Checkbox checked={ treeProps.selected.includes(item.key) } value={ item.key }
-                    onChange={ onChange }>{ item.text }</Checkbox>
-        }
+        { checkboxRender() }
         {
           item.children && <span className={ sc('expand') }>
             { expanded ? <span onClick={ collapse }>-</span> : <span onClick={ expand }>+</span> }
