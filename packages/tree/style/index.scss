@@ -1,31 +1,58 @@
 @import 'var';
 
+.am-checkbox-wrapper {
+  padding-left: 1.5em;
+}
+
 #{component(treeItem)} {
   line-height: 1.5;
   border: 1px solid;
+
   &-text {
     display: block;
+    position: relative;
+
     &:hover {
       background: yellow;
     }
   }
+
   &-children {
     overflow: hidden;
     transition: height .2s;
   }
-  &-collapsed{}
+
+  &-collapsed {}
+
   &-gone {
     height: 0;
   }
+
   &-expand {
-    display: inline-block;
-    background: red;
-    width: 200px;
+    margin-right: .5em;
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    &-icon {
+      transform: rotate(90deg);
+      transition: transform 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
   }
-  &-leave-1 {
-    padding-left: 0;
+
+  &-collapsed {
+    #{component(treeItem)} {
+      &-expand-icon {
+        transform: rotate(0deg);
+      }
+    }
   }
-  &-leave-2, &-leave-3 {
-    padding-left: 1em;
-  }
+
+  //&-leave-1 {
+  //  padding-left: 0;
+  //}
+  //
+  //&-leave-2, &-leave-3 {
+  //  padding-left: 1em;
+  //}
 }

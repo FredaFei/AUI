@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import useExceptFirstUpdate from '../hooks/useExceptFirstUpdate';
 import Checkbox from '../checkbox/checkbox';
 import { flatten, intersection, towArraysAreEqual, unique } from '../utils/collection';
+import Icon from '../icon/icon';
 
 const componentName = 'TreeItem';
 const sc = createScopedClasses(componentName);
@@ -119,14 +120,17 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
         <Checkbox checked={ treeProps.selected.includes(item.key) } value={ item.key }
                   onChange={ onChange }>{ item.text }</Checkbox>
     }
-    return <div className={ sc(classes) } key={ item.key }>
+    const switcherIconRender = () => {
+      return item.children &&
+        <span className={ sc('expand', { collapsed: !expanded }) }>
+          <Icon name="right" className={ sc('expand-icon') } onClick={ expanded ? collapse : expand }/>
+        </span>
+    }
+    const itemStyle = { paddingLeft: `${ (leave - 1) * 0.5 }em` }
+    return <div className={ sc(classes) } key={ item.key } style={ itemStyle }>
       <div className={ sc('text') }>
+        { switcherIconRender() }
         { checkboxRender() }
-        {
-          item.children && <span className={ sc('expand') }>
-            { expanded ? <span onClick={ collapse }>-</span> : <span onClick={ expand }>+</span> }
-          </span>
-        }
       </div>
       <div className={ sc('children', { collapsed: !expanded }) } ref={ childrenRef }>
         { item.children?.map(subItem => <TreeItem treeProps={ treeProps } onItemChange={ onItemChange }
