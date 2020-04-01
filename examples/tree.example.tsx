@@ -4,7 +4,7 @@ import Tree from '../packages/tree/tree';
 import content1 from './markdown/tree-demo-1.md';
 import content2 from './markdown/tree-demo-2.md';
 import content3 from './markdown/tree-demo-3.md';
-// import content4 from './markdown/tree-demo-4.md';
+
 import CodeBox from './codeBox';
 import Markdown from './markdown';
 import doc from './markdown/tree-doc.md';
