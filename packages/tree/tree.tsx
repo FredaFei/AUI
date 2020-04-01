@@ -14,8 +14,6 @@ type Style = {
 const Tree: React.FunctionComponent<TreeProps & Style> = props => {
   const { sourceData } = props;
   const onItemChange = (values: string[]) => {
-    console.log('tree onItemChange values');
-    console.log(values);
     props.onChange(values)
   }
   return <div className={ classes(sc(''), props.className) }>

@@ -71,13 +71,9 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
     const onItemChange = (values: string[]) => {
       const childrenValues = collectionChildrenValues(item)
       const common = intersection(values, childrenValues)
-      console.log('item onItemChange values')
-      console.log(values)
       if (common.length !== 0) {
-        // 半选
         props.onItemChange(unique(values.concat(item.key)))
       } else {
-        // 全选
         props.onItemChange(values.filter(v => v !== item.key))
       }
     }
@@ -88,8 +84,6 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
     };
     const multipleSelected = (checked: boolean) => {
       const childrenValues = collectionChildrenValues(item)
-      console.log('childrenValues')
-      console.log(childrenValues)
       if (checked) {
         props.onItemChange(unique([...treeProps.selected, item.key, ...childrenValues]))
       } else {
