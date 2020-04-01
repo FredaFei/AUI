@@ -1,6 +1,6 @@
 interface SourceItem {
   key: string
-  text: string
+  text: (() => any) | string
   children?: SourceItem[]
 }
 

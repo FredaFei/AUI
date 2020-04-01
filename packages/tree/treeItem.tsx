@@ -14,7 +14,6 @@ interface TreeItemProps {
   treeProps: TreeProps
   item: SourceItem
   leave: number
-  selectedMap?: SelectedMap
   onItemChange: (values: string[]) => void
 };
 const collectionChildrenValues = (item: SourceItem): string[] => {
@@ -108,11 +107,12 @@ const TreeItem: React.FunctionComponent<TreeItemProps> = props => {
       return common.length !== childrenValues.length
     }
     const checkboxRender = () => {
+      const child = item.text instanceof Function ? item.text() : item.text
       return item.children && treeProps.multiple ?
         <Checkbox indeterminate={ indeterminate() } checked={ checkedAll() }
-                  onChange={ onChange }>{ item.text }</Checkbox> :
+                  onChange={ onChange }>{ child }</Checkbox> :
         <Checkbox checked={ treeProps.selected.includes(item.key) } value={ item.key }
-                  onChange={ onChange }>{ item.text }</Checkbox>
+                  onChange={ onChange }>{ child }</Checkbox>
     }
     const switcherIconRender = () => {
       return item.children &&
