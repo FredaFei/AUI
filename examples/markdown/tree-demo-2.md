@@ -39,14 +39,14 @@ export default function (props) {
       ],
     }
   ]);
-  const [selectedValues, setSelectedValues] = useState(['1.1.1', '1.1','1']);
+  const [selected, setSelected] = useState(['1.1']);
   const onChange = (item: string[], setType: (value: string[]) => void) => {
     setType(item);
   };
   return (
     <div className="exp-section">
-      <Tree sourceData={data} selected={selectedValues} multiple={true}
-                  onChange={(values) => onChange(values, setSelectedValues)}/>
+      <Tree sourceData={data} selected={selected} multiple={false}
+                  onChange={(values) => onChange(values, setSelected)}/>
     </div>
   )
 }

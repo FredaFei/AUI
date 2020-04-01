@@ -2,6 +2,9 @@ import * as React from 'react';
 import Tree from '../packages/tree/tree';
 
 import content1 from './markdown/tree-demo-1.md';
+import content2 from './markdown/tree-demo-2.md';
+import content3 from './markdown/tree-demo-3.md';
+// import content4 from './markdown/tree-demo-4.md';
 import CodeBox from './codeBox';
 import Markdown from './markdown';
 import doc from './markdown/tree-doc.md';
@@ -84,8 +87,8 @@ export default function (props: any) {
     }
   ]);
   const [selected, setSelected] = useState(['1.1']);
-  const [selectedValues, setSelectedValues] = useState(['1.1.1', '2.1']);
-  const [customSelected, setCustomSelected] = useState(['1.1.1', '2.1']);
+  const [selectedValues, setSelectedValues] = useState(['1.1.1', '1.1','1']);
+  const [customSelected, setCustomSelected] = useState(['2.1']);
   const onChange = (item: string[], setType: (value: string[]) => void) => {
     setType(item);
   };
@@ -104,13 +107,13 @@ export default function (props: any) {
         <p>selected: {selected}</p>
         <Tree sourceData={data} selected={selected} multiple={false}
               onChange={(values) => onChange(values, setSelected)}/>
-        <CodeBox content={content1}/>
+        <CodeBox content={content2}/>
       </div>
       <div className="exp-section">
         <p>自定义节点</p>
-        <Tree sourceData={customData} selected={customSelected} multiple={false}
+        <Tree sourceData={customData} selected={customSelected} multiple={true}
               onChange={(values) => onChange(values, setCustomSelected)}/>
-        <CodeBox content={content1}/>
+        <CodeBox content={content3}/>
       </div>
       <Markdown source={doc}/>
     </div>
