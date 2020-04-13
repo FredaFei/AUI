@@ -29,7 +29,7 @@ describe('测试 Tabs 以下行为', () => {
     expect(wrapper.find('.am-tabs-wrapper').at(0).hasClass('vertical')).toEqual(false)
     expect(wrapper.find('.am-tabs-nav-item').at(0).hasClass('am-tabs-active')).toEqual(true)
   })
-  it('Tabs 组件的子组件只能是 TabPane组件 ', () => {
+  xit('Tabs 组件的子组件只能是 TabPane组件 ', () => {
     const wrapper = mount(<Tabs><div>haha</div></Tabs>)
     expect(wrapper.find('.am-tabs-nav-item').length).toEqual(0)
   })
