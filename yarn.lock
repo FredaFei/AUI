@@ -4965,6 +4965,11 @@ jest-regex-util@^24.3.0, jest-regex-util@^24.9.0:
   resolved "https://registry.npm.taobao.org/jest-regex-util/download/jest-regex-util-24.9.0.tgz#c13fb3380bde22bf6575432c493ea8fe37965636"
   integrity sha1-wT+zOAveIr9ldUMsST6o/jeWVjY=
 
+jest-regex-util@^26.0.0:
+  version "26.0.0"
+  resolved "https://registry.npm.taobao.org/jest-regex-util/download/jest-regex-util-26.0.0.tgz#d25e7184b36e39fd466c3bc41be0971e821fee28"
+  integrity sha1-0l5xhLNuOf1GbDvEG+CXHoIf7ig=
+
 jest-resolve-dependencies@^24.9.0:
   version "24.9.0"
   resolved "https://registry.npm.taobao.org/jest-resolve-dependencies/download/jest-resolve-dependencies-24.9.0.tgz#ad055198959c4cfba8a4f066c673a3f0786507ab"
