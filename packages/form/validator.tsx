@@ -5,6 +5,7 @@ function isEmpty(value: any) {
 }
 
 type rules = Array<FormRules>
+
 interface FormRules {
   key: string
   label: string
@@ -14,6 +15,7 @@ interface FormRules {
   pattern?: RegExp
   validator?: (value: string) => OneError
 }
+
 type OneError = string | Promise<string>
 
 export const noErrors = (value: any) => {
@@ -26,7 +28,7 @@ const validator = (
 ) => {
   const result: any = {}
   const addErrors = (key: string, error: OneError) => {
-    if (result[key]===undefined) {
+    if (result[key] === undefined) {
       result[key] = []
     }
     result[key].push(error)
@@ -51,12 +53,12 @@ const validator = (
     }
   })
 
-  const errors = Object.keys(result).map(k=>result[k].map((promise:OneError)=> [k,promise] ))
-  const newPromises = flat(errors).map(([key,promiseOrString])=>(promiseOrString instanceof Promise ? promiseOrString : Promise.reject(promiseOrString))
-          .then(()=>[key,undefined],reason=>[key,reason]))
-  Promise.all(newPromises).then(results=>{
-    callback(zip(results.filter(i=>i[1])))
-  })
+  const errors = Object.keys(result).map(k => result[k].map((promise: OneError) => [k, promise]))
+  const newPromises = flat(errors).map(([key, promiseOrString]) => (promiseOrString instanceof Promise ? promiseOrString : Promise.reject(promiseOrString))
+    .then(() => [key, undefined], reason => [key, reason]))
+  Promise.all(newPromises).then((results:Array<string[]>) => {
+    callback(zip(results.filter(i => i[1])))
+  }).catch(() => console.log(''))
 }
 
 function flat(array: any[]) {
@@ -71,10 +73,11 @@ function flat(array: any[]) {
 
 function zip(list: Array<string[]>) {
   const result = {}
-  list.map(([key,value])=>{
+  list.length > 0 && list.map(([key, value]) => {
     result[key] = result[key] || []
     result[key].push(value)
   })
   return result
 }
+
 export default validator
