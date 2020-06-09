@@ -15,7 +15,7 @@
     "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "docs": "cross-env NODE_ENV=production webpack --config webpack.config.docs.js",
     "build": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
-    "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand --watch",
+    "test": "cross-env NODE_ENV=test jest --config=jest.config.js --runInBand --watchAll",
     "ci": "cross-env NODE_ENV=test JEST_JUNIT_OUTPUT=./test-results/jest/results.xml jest --config=jest.config.ci.js"
   },
   "license": "MIT",
