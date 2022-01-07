@@ -7,6 +7,7 @@ import Home from './examples/home';
 import ButtonExample from './examples/button.example';
 import IconExample from './examples/icon.example';
 import GridExample from './examples/grid.example';
+import SkeletonExample from './examples/skeleton.example';
 import LayoutExample from './examples/layout.example';
 import ControllCountExample from './examples/controllCount.example';
 import InputExample from './examples/input.example';
@@ -47,6 +48,7 @@ const renderLink = (routeTable: Link) => {
 const linkMap: Link = [
   {name: 'Button', path: '/button', text: 'Button 按钮', component: ButtonExample},
   {name: 'Icon', path: '/icon', text: 'Icon 图标', component: IconExample},
+  {name: 'skeleton', path: '/skeleton', text: 'Skeleton 骨架屏', component: SkeletonExample},
   {name: 'Grid', path: '/grid', text: 'Grid 栅格', component: GridExample},
   {name: 'Layout', path: '/layout', text: 'Layout 布局', component: LayoutExample},
   {name: 'ControllCount', path: '/controllCount', text: 'ControllCount 数量输入框', component: ControllCountExample},
