@@ -6,6 +6,7 @@
 import * as React from "react";
 import classes, { createScopedClasses } from "../utils/classnames";
 import "./style";
+import { range } from "../utils/collection";
 
 const componentName = "Skeleton";
 const sc = createScopedClasses(componentName);
@@ -40,8 +41,12 @@ const Skeleton: React.FC<SkeletonProps> = (props) => {
         const width = line.length / longest * 100 + "%";
         return <div className={sc("block", props.loading && "loading")} style={{ width, height: props.blockGap, marginBottom: props.blockGap }}></div>;
     });
-    return <div className={classes(sc("wrapper", (props?.className || "")))} style={{ marginBottom: props.repeatGap }}>
-        {createBlocks()}
+    return <div className={classes(sc("wrapper"), props?.className || "")} style={props.style}>
+        {
+            range(1, props.repeat || 1).map(() => <div className={sc("repeat")} style={{ marginBottom: props.repeatGap }}>
+                {createBlocks()}
+            </div>)
+        }
     </div>;
 };
 Skeleton.defaultProps = {

@@ -11,7 +11,7 @@ export default function (props: any) {
         <div className="exp-box">
             <h3>基础应用</h3>
             <div className="exp-section">
-                <Skeleton repeat={2} placeholder={`
+                <Skeleton placeholder={`
                 xxxxxx
                 xxxxxxxxxxxxxxxx
                 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -20,7 +20,7 @@ export default function (props: any) {
             </div>
             <h3>动画效果</h3>
             <div className="exp-section">
-                <Skeleton repeat={4} loading placeholder={`
+                <Skeleton repeat={2} loading placeholder={`
                 xxxxxx
                 xxxxxxxxxxxxxxxx
                 xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
