@@ -82,14 +82,14 @@ export default function (props: any) {
       <h3>手动触发</h3>
       <div className="exp-section">
         <ClickOutside handler={onClickOutside}>
-          <Popover content="hello ooo" trigger="manual" open={open} container={div}>
+          <Popover content="hello ooo" trigger="manual" open={open}>
             <Button onClick={onClick}>click me</Button>
           </Popover>
         </ClickOutside>
         <CodeBox content={content3}/>
       </div>
       <h3>自定义 container</h3>
-      <div className="exp-section">
+      <div className="exp-section" style={{overflowX: 'inherit'}}>
         <div ref={div} style={{position: 'relative', top: '10px'}} className="popover-demo-row">
           <Popover content="hello" container={div}>
             <Button>click me</Button>

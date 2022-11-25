@@ -14,7 +14,7 @@ export default function (props) {
   return (
     <div className="exp-section">
       <ClickOutside handler={onClickOutside}>
-        <Popover content="hello ooo" trigger="manual" open={open} container={div}>
+        <Popover content="hello ooo" trigger="manual" open={open}>
           <Button onClick={onClick}>click me</Button>
         </Popover>
       </ClickOutside>
