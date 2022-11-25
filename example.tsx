@@ -76,48 +76,51 @@ const App = () => {
     setVisibleMenu(!visibleMenu);
   };
   return (
-    <React.Suspense fallback={<></>}>
-      <div className="site-doc-wrapper">
-        <header className="site-doc-header">
-          <div className="site-doc-menu-icon" onClick={onToggleMenu}>
-            <div className="menu-icon-line" onClick={onToggleMenu}></div>
-          </div>
-          <nav className="site-doc-logo-github">
-            <div className="site-nav-item">
-              <img src={logo} className="logo" />
-            </div>
-            <div className="site-nav-item"><a href="https://github.com/FredaFei/AUI" style={{ color: '#1890ff' }}>github</a>
-            </div>
-          </nav>
-        </header>
-        <div className="site-doc-body">
-          <div className={['site-doc-aside-wrapper', visibleMenu && 'active'].join(' ')}>
-            <div className="site-doc-mask" onClick={onToggleMenu}></div>
-            <aside className="site-doc-aside">
-              <h2>入门</h2>
-              <ol onClick={onToggleMenu}>
-                <li><NavLink to="/guide">快速上手</NavLink></li>
-              </ol>
-              <h2>组件</h2>
-              <ol onClick={onToggleMenu}>{renderLink(linkMap)}</ol>
-            </aside>
-          </div>
-          <main className="site-doc-main">
-            <Switch>
-              {linkMap.map(item => <Route path={item.path} exact component={item.component} key={item.name} />)}
-              <Route path="/" exact component={Home} />
-              <Route path="/guide" exact component={Home} />
-            </Switch>
-          </main>
+    <div className="site-doc-wrapper">
+      <header className="site-doc-header">
+        <div className="site-doc-menu-icon" onClick={onToggleMenu}>
+          <div className="menu-icon-line" onClick={onToggleMenu}></div>
         </div>
-        <footer className="site-doc-footer">
-          <p className="text-center">Made with ❤️<a href="https://github.com/Freda" target="_blank"> by Freda</a>
-          </p>
-        </footer>
+        <nav className="site-doc-logo-github">
+          <div className="site-nav-item">
+            <img src={logo} className="logo" />
+          </div>
+          <div className="site-nav-item"><a href="https://github.com/FredaFei/AUI" style={{ color: '#1890ff' }}>github</a>
+          </div>
+        </nav>
+      </header>
+      <div className="site-doc-body">
+        <div className={['site-doc-aside-wrapper', visibleMenu && 'active'].join(' ')}>
+          <div className="site-doc-mask" onClick={onToggleMenu}></div>
+          <aside className="site-doc-aside">
+            <h2>入门</h2>
+            <ol onClick={onToggleMenu}>
+              <li><NavLink to="/guide">快速上手</NavLink></li>
+            </ol>
+            <h2>组件</h2>
+            <ol onClick={onToggleMenu}>{renderLink(linkMap)}</ol>
+          </aside>
+        </div>
+        <main className="site-doc-main">
+          <Switch>
+            {linkMap.map(item => <Route path={item.path} exact component={item.component} key={item.name} />)}
+            <Route path="/" exact component={Home} />
+            <Route path="/guide" exact component={Home} />
+          </Switch>
+        </main>
       </div>
-    </React.Suspense>
-
+      <footer className="site-doc-footer">
+        <p className="text-center">Made with ❤️<a href="https://github.com/Freda" target="_blank"> by Freda</a>
+        </p>
+      </footer>
+    </div>
   );
 };
 
-ReactDOM.render(<HashRouter><App /></HashRouter>, document.getElementById('root'));
+ReactDOM.render(<React.Suspense fallback={<></>}>
+  <HashRouter>
+    <Switch>
+      <App />
+    </Switch>
+  </HashRouter>
+</React.Suspense>, document.getElementById('root'));
