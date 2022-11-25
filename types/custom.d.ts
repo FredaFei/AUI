@@ -7,6 +7,7 @@ declare module '*.md' {
   const content: any;
   export default content;
 }
+declare module '*.png'
 
 type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
   Pick<T, Exclude<keyof T, Keys>>

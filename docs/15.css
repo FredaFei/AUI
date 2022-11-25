@@ -1,0 +1,51 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0; } }
+
+.am-radio {
+  border: none;
+  outline: none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: 0; }
+  .am-radio-wrapper {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer; }
+    .am-radio-wrapper + .am-radio-wrapper {
+      margin-left: 1em; }
+  .am-radio-input {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #999;
+    border-radius: 50%; }
+    .am-radio-input:before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%; }
+  .am-radio-checked .am-radio-input:before {
+    background: #6f6f6f; }
+  .am-radio-indeterminate:before {
+    border: 1px solid #999;
+    background: none; }
+  .am-radio-disabled {
+    cursor: not-allowed;
+    opacity: 0.48; }
+  .am-radio-label {
+    margin-left: 0.5em; }
+
