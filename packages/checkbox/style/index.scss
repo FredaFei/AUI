@@ -7,8 +7,10 @@
   height: 100%;
   z-index: 1;
   opacity: 0;
+  cursor: pointer;
   &-wrapper {
     display: inline-flex;
+    vertical-align: middle;
     align-items: center;
     cursor: pointer;
     & + .am-checkbox-wrapper {
