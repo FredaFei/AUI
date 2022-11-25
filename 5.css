@@ -398,9 +398,11 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  opacity: 0; }
+  opacity: 0;
+  cursor: pointer; }
   .am-checkbox-wrapper {
     display: inline-flex;
+    vertical-align: middle;
     align-items: center;
     cursor: pointer; }
     .am-checkbox-wrapper + .am-checkbox-wrapper {
@@ -1170,7 +1172,7 @@ table {
     display: block;
     position: relative; }
     .am-treeItem-text:hover {
-      background: yellow; }
+      background: #d0d0d0; }
   .am-treeItem-children {
     overflow: hidden;
     transition: height .2s; }
