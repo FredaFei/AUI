@@ -1,0 +1,32 @@
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0; } }
+
+.am-layout {
+  display: flex;
+  flex-direction: column; }
+  .am-layout > .am-layout {
+    flex-grow: 1; }
+  .am-layout-hasAside {
+    flex-direction: row; }
+    .am-layout-hasAside .am-layout {
+      flex-direction: column; }
+
+.am-header {
+  flex-grow: 0;
+  flex-shrink: 1; }
+
+.am-footer {
+  flex-grow: 0;
+  flex-shrink: 1; }
+
+.am-main {
+  flex: 1; }
+

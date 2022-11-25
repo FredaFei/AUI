@@ -1,0 +1,63 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[23],{
+
+/***/ "./examples/markdown/message-demo-1.md":
+/*!*********************************************!*\
+  !*** ./examples/markdown/message-demo-1.md ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"``` jsx harmony\\r\\nimport * as React from 'react'\\r\\nimport {useState} from 'react'\\r\\n\\r\\nexport default function (props) {\\r\\n  const [text, setText] = useState('default')\\r\\n  const i = 5\\r\\n  const onCloseMessage = (key) => {\\r\\n    return () => setText(key)\\r\\n  }\\r\\n  const onMessage = (key) => {\\r\\n    if (key === 'open') {\\r\\n      message.open({\\r\\n        content: 'This is a normal message',\\r\\n        style: {color: 'red'}\\r\\n      })\\r\\n      return\\r\\n    }\\r\\n    message[key](`This is a ${key} message`, i - 1, onCloseMessage(key))\\r\\n  }\\r\\n  return (\\r\\n    <div className=\\\"exp-section\\\">\\r\\n      <Button onClick={() => onMessage('open')}>message open</Button>\\r\\n      <Button onClick={() => onMessage('success')}>success</Button>\\r\\n      <Button onClick={() => onMessage('info')}>info</Button>\\r\\n      <Button onClick={() => onMessage('warning')}>warning</Button>\\r\\n      <Button onClick={() => onMessage('error')}>error</Button>\\r\\n      <Button onClick={() => onMessage('loading')}>loading</Button>\\r\\n      <h4 style={{marginTop: '20px'}}>\\r\\n        current text: <span style={{color: '#1890ff'}}>{text}</span>\\r\\n      </h4>\\r\\n    </div>\\r\\n  )\\r\\n}\\r\\n```\");\n\n//# sourceURL=webpack:///./examples/markdown/message-demo-1.md?");
+
+/***/ }),
+
+/***/ "./examples/markdown/message-demo-2.md":
+/*!*********************************************!*\
+  !*** ./examples/markdown/message-demo-2.md ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"``` jsx harmony\\r\\nimport * as React from 'react'\\r\\n\\r\\nexport default function (props) {\\r\\n  const onManualClose = () => {\\r\\n    message['info']('This is message',0)\\r\\n  }\\r\\n  return (\\r\\n    <div className=\\\"exp-section\\\">\\r\\n      <Button onClick={onManualClose}>手动关闭</Button>\\r\\n    </div>\\r\\n  )\\r\\n}\\r\\n```\");\n\n//# sourceURL=webpack:///./examples/markdown/message-demo-2.md?");
+
+/***/ }),
+
+/***/ "./examples/markdown/message-demo-3.md":
+/*!*********************************************!*\
+  !*** ./examples/markdown/message-demo-3.md ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"``` jsx harmony\\r\\nimport * as React from 'react'\\r\\n\\r\\nexport default function () {\\r\\n  const onClose1 = () => {\\r\\n    message['info']('This is message',() => {\\r\\n      message['success']('我已经关闭了！')\\r\\n    })\\r\\n  }\\r\\n  const onClose2 = () => {\\r\\n    message['info']('This is message', 0, () => {\\r\\n      message['success']('我已经关闭了！')\\r\\n    })\\r\\n  }\\r\\n  return (\\r\\n    <div className=\\\"exp-section\\\">\\r\\n      <Button onClick={onClose1}>自动关闭时回调执行</Button>\\r\\n      <Button onClick={onClose2}>手动时回调执行</Button>\\r\\n    </div>\\r\\n  )\\r\\n}\\r\\n```\");\n\n//# sourceURL=webpack:///./examples/markdown/message-demo-3.md?");
+
+/***/ }),
+
+/***/ "./examples/markdown/message-doc.md":
+/*!******************************************!*\
+  !*** ./examples/markdown/message-doc.md ***!
+  \******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (\"### API\\r\\n组件提供了一些静态方法，使用方式和参数如下：\\r\\n\\r\\n```jsx\\r\\nmessage.success(content, [duration], onClose)\\r\\nmessage.error(content, [duration], onClose)\\r\\nmessage.info(content, [duration], onClose)\\r\\nmessage.warning(content, [duration], onClose)\\r\\nmessage.loading(content, [duration], onClose)\\r\\n```\\r\\n\\r\\n对象的形式传递参数：\\r\\n\\r\\n```jsx\\r\\nmessage.open(config)\\r\\n```\\r\\n\\r\\nconfig 对象属性：\\r\\n\\r\\n| 参数         |说明        |类型 |默认值 |可选值 |\\r\\n| ------------ | :----------------|:------- | :----- | :----- |\\r\\n| content    |提示内容 |String |—— |—— |\\r\\n| duration |自动关闭的延时,单位：秒 |Number |2 |—— |\\r\\n| mode      |提示类型  |String  |——|`info/success/warning/error/loading` |\\r\\n| className      |自定义类名  |String |—— |—— |\\r\\n| style      |自定义样式  |React.CSSProperties |—— |—— |\\r\\n| onClose    | 关闭时触发的回调函数 |       () => any |—— |—— |\\r\\n\\r\\n### 备注\\r\\n若 duration设置为0时，则需要手动关闭Message\\r\\n\");\n\n//# sourceURL=webpack:///./examples/markdown/message-doc.md?");
+
+/***/ }),
+
+/***/ "./examples/message.example.tsx":
+/*!**************************************!*\
+  !*** ./examples/message.example.tsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ \"./node_modules/react/index.js\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _packages_button_button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../packages/button/button */ \"./packages/button/button.tsx\");\n/* harmony import */ var _packages_message_message__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../packages/message/message */ \"./packages/message/message.tsx\");\n/* harmony import */ var _markdown_message_demo_1_md__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./markdown/message-demo-1.md */ \"./examples/markdown/message-demo-1.md\");\n/* harmony import */ var _markdown_message_demo_2_md__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./markdown/message-demo-2.md */ \"./examples/markdown/message-demo-2.md\");\n/* harmony import */ var _markdown_message_demo_3_md__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./markdown/message-demo-3.md */ \"./examples/markdown/message-demo-3.md\");\n/* harmony import */ var _codeBox__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./codeBox */ \"./examples/codeBox.tsx\");\n/* harmony import */ var _markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./markdown */ \"./examples/markdown.tsx\");\n/* harmony import */ var _markdown_message_doc_md__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./markdown/message-doc.md */ \"./examples/markdown/message-doc.md\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/* harmony default export */ __webpack_exports__[\"default\"] = (function (props) {\r\n    var _a = Object(react__WEBPACK_IMPORTED_MODULE_0__[\"useState\"])('default'), text = _a[0], setText = _a[1];\r\n    var i = 5;\r\n    var onCloseMessage = function (key) {\r\n        return function () { return setText(key); };\r\n    };\r\n    var onMessage = function (key) {\r\n        if (key === 'open') {\r\n            _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"].open({\r\n                content: 'This is a normal message',\r\n                style: { color: 'red' }\r\n            });\r\n            return false;\r\n        }\r\n        _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"][key](\"This is a \" + key + \" message\", i - 1, onCloseMessage(key));\r\n    };\r\n    var onManualClose = function () {\r\n        _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"]['info']('This is message', 0);\r\n    };\r\n    var onClose1 = function () {\r\n        _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"]['info']('This is message', function () {\r\n            _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"]['success']('我已经关闭了！');\r\n        });\r\n    };\r\n    var onClose2 = function () {\r\n        _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"]['info']('This is message', 0, function () {\r\n            _packages_message_message__WEBPACK_IMPORTED_MODULE_2__[\"default\"]['success']('我已经关闭了！');\r\n        });\r\n    };\r\n    return (react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: \"exp-box\" },\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h3\", null, \"\\u57FA\\u7840\\u5E94\\u7528\"),\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: \"exp-section\" },\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: function () { return onMessage('open'); } }, \"message open\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: function () { return onMessage('success'); } }, \"success\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: function () { return onMessage('info'); } }, \"info\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: function () { return onMessage('warning'); } }, \"warning\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: function () { return onMessage('error'); } }, \"error\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: function () { return onMessage('loading'); } }, \"loading\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h4\", { style: { marginTop: '20px' } },\r\n                \"current text: \",\r\n                react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"span\", { style: { color: '#1890ff' } }, text)),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_codeBox__WEBPACK_IMPORTED_MODULE_6__[\"default\"], { content: _markdown_message_demo_1_md__WEBPACK_IMPORTED_MODULE_3__[\"default\"] })),\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h3\", null, \"\\u624B\\u52A8\\u5173\\u95ED\"),\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: \"exp-section\" },\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: onManualClose }, \"\\u624B\\u52A8\\u5173\\u95ED\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_codeBox__WEBPACK_IMPORTED_MODULE_6__[\"default\"], { content: _markdown_message_demo_2_md__WEBPACK_IMPORTED_MODULE_4__[\"default\"] })),\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"h3\", null, \"\\u56DE\\u8C03\"),\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](\"div\", { className: \"exp-section\" },\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: onClose1 }, \"\\u81EA\\u52A8\\u5173\\u95ED\\u65F6\\u56DE\\u8C03\\u6267\\u884C\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_packages_button_button__WEBPACK_IMPORTED_MODULE_1__[\"default\"], { onClick: onClose2 }, \"\\u624B\\u52A8\\u65F6\\u56DE\\u8C03\\u6267\\u884C\"),\r\n            react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_codeBox__WEBPACK_IMPORTED_MODULE_6__[\"default\"], { content: _markdown_message_demo_3_md__WEBPACK_IMPORTED_MODULE_5__[\"default\"] })),\r\n        react__WEBPACK_IMPORTED_MODULE_0__[\"createElement\"](_markdown__WEBPACK_IMPORTED_MODULE_7__[\"default\"], { source: _markdown_message_doc_md__WEBPACK_IMPORTED_MODULE_8__[\"default\"] })));\r\n});\r\n\n\n//# sourceURL=webpack:///./examples/message.example.tsx?");
+
+/***/ })
+
+}]);
