@@ -12,6 +12,3 @@
 | style      |自定义样式  |React.CSSProperties |—— |—— |
 | onClick    | 点击按钮时触发 |       (event) => void |—— |—— |
 
-
-### 备注
-position可选值有：`right/left/leftBottom/rightTop/rightBottom/bottom/bottomLeft/bottomRight/topRight/topLeft/leftTop`
