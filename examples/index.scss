@@ -163,7 +163,7 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
-      overflow-y: auto;
+      overflow-y: hidden;
       -webkit-overflow-scrolling: touch;
       transform: translate3D(-100%, 0, 0);
       z-index: 9999;
@@ -180,6 +180,8 @@ body {
       border-radius: 0px;
       box-shadow: none;
       margin-bottom: 0;
+      height: 100%;
+      overflow-y: scroll;
     }
     &-mask {
       top: 0;
