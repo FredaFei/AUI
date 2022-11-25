@@ -29,7 +29,6 @@ const CarouselExample = React.lazy(() => import('./examples/carousel.example'));
 const TreeExample = React.lazy(() => import('./examples/tree.example'));
 import 'examples/index.scss';
 
-// @ts-ignore
 import logo from './logo.png';
 
 interface LinkItem {
