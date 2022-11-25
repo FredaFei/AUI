@@ -103,15 +103,17 @@ export default function (props: any) {
           onChange={onCheckAllChange}
           checked={state.checkAll}
         >全选水果</Checkbox>
-        <div>
+        <div style={{padding: '10px 0'}}>
           {groups.map(i => (
-            <Checkbox
+            <div>
+              <Checkbox
               key={i.value}
               value={i.value}
               checked={state.selected.includes(i.value)}
               onChange={onChange3}
               name={i.name}
             >{i.value}</Checkbox>
+            </div>
           ))}
         </div>
         <p>当前选中的水果: {JSON.stringify(state.selected)}</p>
